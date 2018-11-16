@@ -1,0 +1,37 @@
+/*
+@Author: ThemeMascot
+@URL: http://ThemeMascot.com
+
+This is the file where you can add your custom styles to change the look of the
+theme. But don't modify style-main.css file.
+
+*/
+
+/* Your custom css codes start here: */
+.bg-main-theme-color {
+	background: #00d7b3 !important;
+}
+
+.border-bottom-main-theme-color-2-1px {
+	border-bottom: 1px solid #00d7b3 !important;
+}
+
+.border-left-main-theme-color-2-6px {
+	border-left: 6px solid #00d7b3 !important;
+}
+
+.line-bottom-main-theme:after, .line-bottom-main-theme-center:after {
+	background: #00d7b3 !important;
+}
+
+.line-bottom-main-theme:after {
+	bottom: -1px;
+	height: 2px;
+	position: absolute;
+	width: 50px;
+}
+
+.heading-line-bottom-main-theme::after, .line-bottom-main-theme-centered:after, .line-bottom-main-theme:after {
+	content: "";
+	left: 0;
+}
