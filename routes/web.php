@@ -12,15 +12,13 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{locale}','GuestHomepageController@index', function($locale) {
-	App::set($locale);
-});
+Route::get('/','GuestHomepageController@index')->name('homepage');
+Route::get('/tutorials', 'TutorialCategoryController@index')->name('list_tutorials');
 
-
-Route::get('/{locale}/tutorials', 'TutorialCategoryController@index', function($locale) {
-	App::set($locale);
-});
-
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
+
+Route::get('/change-password','Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
+Route::post('/change-password','Auth\ChangePasswordController@changePassword')->name('changePassword');

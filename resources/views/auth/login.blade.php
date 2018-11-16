@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-md-push-3">
-                            <div class="text-center mb-60"><a href="#" class=""><img alt="" src="{{ asset('images/logo-login.png') }}"></a></div>
+                            <div class="text-center mb-60"><a href="{{ route('homepage') }}" class=""><img alt="" src="{{ asset('images/logo-login.png') }}"></a></div>
                             <h4 class="text-theme-colored mt-0 pt-5"> Login}</h4>
                             <hr>
                             <p>Connexion</p>
@@ -52,7 +52,7 @@
                                     </a>
                                 </div>
                                 <div class="clear text-center pt-10">
-                                    <a href="#">
+                                    <a href="{{ route('homepage') }}">
                                         <i class="fa fa-arrow-left"></i> Retour à l'accueil
                                     </a>
                                 </div>

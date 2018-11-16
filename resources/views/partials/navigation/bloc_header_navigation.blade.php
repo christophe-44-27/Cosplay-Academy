@@ -7,31 +7,35 @@
                         <ul class="list-inline font-13 sm-text-center mt-5">
                             @auth
                                 <li>
-                                    <a class="text-white" href="#">
+                                    <a class="text-white" href="{{ route('dashboard_homepage') }}">
                                         @lang('messages.my_account')
                                     </a>
                                 </li>
                                 <li class="text-white">|</li>
                                 <li>
-                                    <a class="text-white" href="#">
+                                    <a class="text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         @lang('messages.user_actions.logout')
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
                             @endauth
 
                             @guest
                                 <li>
-                                    <a class="text-white" href="#">
+                                    <a class="text-white" href="{{ route('register') }}">
                                         @lang('messages.user_actions.register')
                                     </a>
                                 </li>
                                 <li class="text-white">|</li>
                                 <li>
-                                    <a class="text-white" href="#">@lang('messages.user_actions.register_as_teacher')</a>
+                                    <a class="text-white" href="{{ route('register') }}">@lang('messages.user_actions.register_as_teacher')</a>
                                 </li>
                                 <li class="text-white">|</li>
                                 <li>
-                                    <a class="text-white" href="#">@lang('messages.user_actions.login')</a>
+                                    <a class="text-white" href="{{ route('login') }}">@lang('messages.user_actions.login')</a>
                                 </li>
                             @endguest
                         </ul>

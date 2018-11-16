@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutorials;
 
 use App\Models\TutorialCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TutorialCategoryController extends Controller {
 
