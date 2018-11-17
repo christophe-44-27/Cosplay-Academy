@@ -111,7 +111,7 @@
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="#">
+            <a href="{{ route('dashboard_tutorials_list') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Mes tutoriels
             </a>

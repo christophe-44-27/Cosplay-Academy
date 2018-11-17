@@ -3,9 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('themes/dashboard/css/vendor/simple-line-icons.css') }}">
-        <link rel="stylesheet" href="{{ asset('themes/dashboard/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('themes/dashboard/css/vendor/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('themes/dashboard/css/simple-line-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('themes/dashboard/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('themes/dashboard/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('themes/dashboard/css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -48,21 +47,17 @@
             </symbol>
         </svg>
         <!-- /SVG MINUS -->
-        {% block javascripts %}
         <!-- jQuery -->
         <script
             src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-        <script src="{{ asset('themes/dashboard/js/vendor/jquery.magnific-popup.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <!-- xmAlerts -->
-        <script src="{{ asset('themes/dashboard/js/vendor/jquery.xmalert.min.js') }}"></script>
         <!-- Side Menu -->
         <script src="{{ asset('themes/dashboard/js/side-menu.js') }}"></script>
         <!-- User Quickview Dropdown -->
         <script src="{{ asset('themes/dashboard/js/user-board.js') }}"></script>
         <script src="{{ asset('themes/dashboard/js/dashboard-header.js') }}"></script>
-        @yield('javascripts')
+        @stack('javascripts')
 
         @include('partials.notifications')
     </body>
