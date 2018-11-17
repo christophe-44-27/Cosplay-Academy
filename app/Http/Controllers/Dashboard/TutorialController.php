@@ -96,7 +96,7 @@ class TutorialController extends Controller {
 			}
 			$pathCover = "app/public/tutorials/covers/{$hash}.jpg";
 			$publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
-			$resizedThumbnailImage->save(storage_path($pathCover));
+			$resizedCoverImage->save(storage_path($pathCover));
 			$arrayToUpdate['main_picture'] = $publicCoversPath;
 		}
 
