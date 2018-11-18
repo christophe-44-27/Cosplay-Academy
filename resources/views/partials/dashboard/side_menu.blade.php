@@ -86,15 +86,6 @@
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
             <a href="#">
-                <span class="sl-icon icon-star"></span>
-                Mes notifications
-            </a>
-        </li>
-        <!-- /DROPDOWN ITEM -->
-
-        <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
-            <a href="#">
                 <span class="sl-icon icon-credit-card"></span>
                 Mes transactions
             </a>
