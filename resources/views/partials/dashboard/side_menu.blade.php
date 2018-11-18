@@ -67,7 +67,7 @@
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="#">
+            <a href="{{ route('my_address') }}">
                 <span class="sl-icon icon-map"></span>
                 Mon adresse
             </a>

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class TutorialController extends Controller {
+	public function __construct() {
+		$this->middleware('auth');
+	}
 
 	public function index() {
 		$tutorials = Tutorial::where('user_id', '=', Auth::user()->id)->get();
@@ -56,7 +59,6 @@ class TutorialController extends Controller {
 			'user_id' => Auth::id(),
 			'slug' => str_slug($validated['title'])
 		]);
-
 		$request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
 		return redirect(route('dashboard_tutorials_list'));
 	}
@@ -73,7 +75,6 @@ class TutorialController extends Controller {
 			'user_id' => Auth::id(),
 			'slug' => str_slug($validated['title'])
 		];
-
 		if ($request->file('thumbnail_picture')) {
 			$resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
 			// calculate md5 hash of encoded image
@@ -86,7 +87,6 @@ class TutorialController extends Controller {
 			$resizedThumbnailImage->save(storage_path($path));
 			$arrayToUpdate['thumbnail_picture'] = $publicThumbnailsPath;
 		}
-
 		if ($request->file('main_picture')) {
 			$resizedCoverImage = Image::make($request->file('main_picture'))->fit(700, 500)->encode('jpg');
 			// calculate md5 hash of encoded image
@@ -99,10 +99,8 @@ class TutorialController extends Controller {
 			$resizedCoverImage->save(storage_path($pathCover));
 			$arrayToUpdate['main_picture'] = $publicCoversPath;
 		}
-
 		Tutorial::where('slug', '=', $slug)
 			->update($arrayToUpdate);
-
 		$request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
 		return redirect(route('dashboard_tutorials_list'));
 	}

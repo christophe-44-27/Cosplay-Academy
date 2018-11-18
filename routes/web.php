@@ -26,12 +26,18 @@ Route::prefix('dashboard')->group(function () {
 	Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
 	Route::get('tutorials/edit/{slug}', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
 	Route::post('tutorials/update/{slug}', 'Dashboard\TutorialController@update', function($slug){
-
 	})->name('tutorial_update');
 	Route::get('tutorials/delete/{slug}', 'Dashboard\TutorialController@delete', function($slug){
 	})->name('tutorial_remove');
-
 	Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
+	Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
+	Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');
+	Route::get('address/edit/{id}', 'Dashboard\AddressController@edit', function($id){
+	})->name('my_address_edit');
+	Route::post('address/update/{id}', 'Dashboard\AddressController@update', function($id){
+	})->name('my_address_update');
+	Route::get('address/delete/{id}', 'Dashboard\AddressController@delete', function($id){
+	})->name('my_address_delete');
 });
 
 Route::get('/change-password','Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
