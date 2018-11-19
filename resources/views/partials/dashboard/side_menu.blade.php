@@ -58,7 +58,7 @@
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="#">
+            <a href="{{ route('my_account') }}">
                 <span class="sl-icon icon-settings"></span>
                 Mes paramètres de compte
             </a>

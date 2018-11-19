@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('dashboard')->group(function () {
 	Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
+	/** TUTORIELS **/
 	Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
 	Route::get('tutorials/new', 'Dashboard\TutorialController@newTutorial')->name('tutorial_new');
 	Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
@@ -30,6 +31,7 @@ Route::prefix('dashboard')->group(function () {
 	Route::get('tutorials/delete/{slug}', 'Dashboard\TutorialController@delete', function($slug){
 	})->name('tutorial_remove');
 	Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
+	/** ADRESSES **/
 	Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
 	Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');
 	Route::get('address/edit/{id}', 'Dashboard\AddressController@edit', function($id){
@@ -38,6 +40,9 @@ Route::prefix('dashboard')->group(function () {
 	})->name('my_address_update');
 	Route::get('address/delete/{id}', 'Dashboard\AddressController@delete', function($id){
 	})->name('my_address_delete');
+	/** MON COMPTE **/
+	Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
+	Route::get('account/update', 'Dashboard\AccountController@index')->name('my_account_update');
 });
 
 Route::get('/change-password','Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
