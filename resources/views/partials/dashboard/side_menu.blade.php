@@ -85,9 +85,9 @@
 
         <!-- DROPDOWN ITEM -->
         <li class="dropdown-item">
-            <a href="#">
+            <a href="{{ route('my_subscriptions') }}">
                 <span class="sl-icon icon-credit-card"></span>
-                Mes transactions
+                Mon abonnement
             </a>
         </li>
         <!-- /DROPDOWN ITEM -->
