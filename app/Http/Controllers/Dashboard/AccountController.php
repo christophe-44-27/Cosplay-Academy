@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Requests\AddressRequest;
-use App\Models\Address;
-use App\Models\Country;
-use App\Models\Province;
+use App\Http\Requests\AccountRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\TutorialCategory;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,33 +17,37 @@ class AccountController extends Controller {
 	}
 
 	public function index() {
-
 		$user = Auth::user();
-		$skills = TutorialCategory::all();
-
-		return view('dashboard/my_account', compact('user', 'skills'));
+		$categories = TutorialCategory::pluck('name', 'id');
+		return view('dashboard/my_account', compact('user', 'categories'));
 	}
 
-	public function create(AddressRequest $request) {
+	public function update(AccountRequest $request) {
 		$validated = $request->validated();
 
 		$dataArray = [
-			'street_name' => $validated['street_name'],
-			'zip_code' => $validated['zip_code'],
-			'city' => $validated['city'],
-			'province_id' => $validated['province_id'],
-			'country_id' => $validated['country_id'],
-			'user_address_id' => Auth::id()
+			'profile_picture' => $validated['profile_picture'],
+			'cover_picture' => $validated['cover_picture'],
+			'public_pseudonym' => $validated['public_pseudonym'],
+			'firstname' => $validated['firstname'],
+			'lastname' => $validated['lastname'],
+			'email' => $validated['email']
 		];
 
-		if (isset($validated['appartment'])) {
-			$dataArray['appartment'] = $validated['appartment'];
+		if ($request->request->get('description')) {
+			$dataArray['description'] = $request->request->get('description');
 		}
 
-		$address = Address::create($dataArray);
+		$user = User::where('id', '=', Auth::id())->first();
+		$user->categories()->sync($request->request->get('categories'));
+//		foreach ($request->request->get('categories') as $skill) {
+//			$user->categories()->attach($skill);
+//		}
 
-		$request->session()->flash('success', 'Votre adresse a bien été mise à jour, merci !');
-		return redirect(route('my_address_edit', $address->id));
+		$user->update($dataArray);
+
+		$request->session()->flash('success', "Votre profil a bien été mis à jour !");
+		return redirect(route('my_account'));
 	}
 
 	/**
@@ -52,10 +55,7 @@ class AccountController extends Controller {
 	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
 	 */
 	public function delete(Request $request, int $id) {
-		$address = Address::findOrFail($id);
-		$address->delete();
-
-		$request->session()->flash('success', 'Votre adresse a bien été supprimée !');
+		#TODO
 		return redirect(route('my_address'));
 	}
 }

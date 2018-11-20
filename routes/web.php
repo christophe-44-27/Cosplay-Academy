@@ -42,7 +42,7 @@ Route::prefix('dashboard')->group(function () {
 	})->name('my_address_delete');
 	/** MON COMPTE **/
 	Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
-	Route::get('account/update', 'Dashboard\AccountController@index')->name('my_account_update');
+	Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
 });
 
 Route::get('/change-password','Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');

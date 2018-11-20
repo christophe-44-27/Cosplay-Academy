@@ -1,4 +1,5 @@
 @extends('layout_dashboard')
+
 @push('stylesheets')
     <style>
         .share-links li a.yt {
@@ -23,6 +24,7 @@
         }
     </style>
 @endpush
+
 @section('content')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
@@ -61,7 +63,7 @@
                     <div class="input-container">
                         <div class="profile-image">
                             <div class="profile-image-data">
-                                <figure class="user-avatar user-avatar-profile  medium">
+                                <figure class="user-avatar user-avatar-profile medium">
                                     @if($user->profile_picture)
                                     <img src="{{ asset('img/uploads/avatars/' . $user->profile_picture ) }}"
                                          alt="profile-default-image">
@@ -70,7 +72,7 @@
                                          alt="profile-default-image">
                                     @endif
                                 </figure>
-                                <p class="text-header">Ma photo de profil</p>
+                                <p class="text-header">Ma photo de profil <span class="required">*</span></p>
                                 <p class="upload-details">Taille minimum 70px x 70px</p>
                                 <input type="file" name="profile_picture">
                             </div>
@@ -91,7 +93,7 @@
                                              alt="profile-default-image">
                                     @endif
                                 </figure>
-                                <p class="text-header">Ma photo de couverture</p>
+                                <p class="text-header">Ma photo de couverture <span class="required">*</span></p>
                                 <p class="upload-details">Taille minimum 1265px x 300px</p>
                                 <input type="file" name="cover_picture">
                             </div>
@@ -105,7 +107,7 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <label for="acc_name" class="rl-label required">Pseudonyme public</label>
-                        {{ Form::text('public_pseudonym') }}
+                        {{ Form::text('public_pseudonym', $user->public_pseudonym) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -118,8 +120,8 @@
 
                     <!-- INPUT CONTAINER -->
                     <div class="input-container half">
-                        <label for="firstname" class="rl-label">Prénom</label>
-                        {{ Form::text('firstname') }}
+                        <label for="firstname" class="rl-label required">Prénom</label>
+                        {{ Form::text('firstname', $user->firstname) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -127,14 +129,14 @@
                     <div class="input-container half">
                         <label for="lastname"
                                class="rl-label required">Nom</label>
-                        {{ Form::text('lastname') }}
+                        {{ Form::text('lastname', $user->lastname) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
-                        <label for="new_email" class="rl-label">Email</label>
-                        {{ Form::text('email') }}
+                        <label for="new_email" class="rl-label required">Email</label>
+                        {{ Form::text('email', $user->email) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
                 </div>
@@ -150,7 +152,7 @@
                         <ul class="share-links">
                             <li><a href="#" class="fb"></a></li>
                         </ul>
-                        {{ Form::text('facebook_page') }}
+                        {{ Form::text('facebook_page', $user->facebook_page) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -159,7 +161,7 @@
                         <ul class="share-links">
                             <li><a href="#" class="yt"></a></li>
                         </ul>
-                        {{ Form::text('youtube_page') }}
+                        {{ Form::text('youtube_page', $user->youtube_page) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -168,7 +170,7 @@
                         <ul class="share-links">
                             <li><a href="#" class="twt"></a></li>
                         </ul>
-                        {{ Form::text('twitter_page') }}
+                        {{ Form::text('twitter_page', $user->twitter_page) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -177,7 +179,7 @@
                         <ul class="share-links">
                             <li><a href="#" class="insta"></a></li>
                         </ul>
-                        {{ Form::text('instagram_page') }}
+                        {{ Form::text('instagram_page', $user->instagram_page) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
 
@@ -186,7 +188,7 @@
                         <ul class="share-links">
                             <li><a href="#" class="web"></a></li>
                         </ul>
-                        {{ Form::text('website') }}
+                        {{ Form::text('website', $user->website) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
                 </div>
@@ -204,17 +206,24 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <label for="skills" class="rl-label required">Mes compétences</label>
-                        <select name="skills" id="skills" multiple required="required">
-                            @foreach($skills as $skill)
-                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
-                            @endforeach
-                        </select>
+                        {{ Form::select('categories', $categories ,null,array('multiple'=>'multiple','name'=>'categories[]')) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
                 </div>
                 <!-- /FORM BOX ITEM -->
             </div>
             <!-- /FORM BOX ITEMS -->
+
+            <div class="form-box-items">
+                <!-- FORM BOX ITEM -->
+                <div class="form-box-item full">
+                    <div>
+                        <div class="clearfix"></div>
+                        {{ Form::submit('Mettre à jour', ['class' => 'button big dark']) }}
+                    </div>
+                </div>
+                <!-- /FORM BOX ITEM -->
+            </div>
             {!! Form::close() !!}
         </div>
         <!-- DASHBOARD CONTENT -->
