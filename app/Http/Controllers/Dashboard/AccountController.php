@@ -39,10 +39,8 @@ class AccountController extends Controller {
 		}
 
 		$user = User::where('id', '=', Auth::id())->first();
+
 		$user->categories()->sync($request->request->get('categories'));
-//		foreach ($request->request->get('categories') as $skill) {
-//			$user->categories()->attach($skill);
-//		}
 
 		$user->update($dataArray);
 
