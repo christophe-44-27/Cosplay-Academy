@@ -1,1 +1,1 @@
-@extends ('base_layout')
+@extends ('layout_dashboard')

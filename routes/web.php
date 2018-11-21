@@ -52,6 +52,9 @@ Route::get('/subscriptions', 'SubscriptionController@index')->name('subscription
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
 Route::get('/pages/about', 'PageController@about')->name('page_about');
+Route::get('/tutorials', 'TutorialController@index')->name('tutorials');
+Route::get('/tutorials/category/{filterValue}', 'TutorialController@tutorialByCategorie', function($filterValue){
+})->name('tutorials_by_category');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
 Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
