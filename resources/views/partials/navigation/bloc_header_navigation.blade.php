@@ -76,16 +76,16 @@
                 <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
                     <ul class="menuzord-menu">
                         <li class="">
-                            <a href="#">@lang('messages.navigation.home')</a>
+                            <a href="{{ route('homepage') }}">@lang('messages.navigation.home')</a>
                         </li>
                         <li class="">
                             <a href="#">@lang('messages.navigation.our_tutorials')</a>
                         </li>
                         <li class="">
-                            <a href="#">@lang('messages.navigation.our_teachers')</a>
+                            <a href="{{ route('teachers') }}">@lang('messages.navigation.our_teachers')</a>
                         </li>
                         <li class="#">
-                            <a href="#">@lang('messages.navigation.about_us')</a>
+                            <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>
                         </li>
                         <li class="">
                             <a href="http://shop.cosplayschool.ca">@lang('messages.navigation.our_shops')</a>

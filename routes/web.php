@@ -49,6 +49,9 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');
+Route::get('/teachers', 'TeacherController@index')->name('teachers');
+Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
+Route::get('/pages/about', 'PageController@about')->name('page_about');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
 Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');

@@ -1,1 +1,1 @@
-@extends 'base_layout'
+@extends ('base_layout')

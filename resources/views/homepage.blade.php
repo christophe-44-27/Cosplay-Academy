@@ -190,14 +190,14 @@
     </section>
 
     <!-- Section: About -->
-    <section data-bg-img="images/pattern/p13.png">
+    <section>
         <div class="container">
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="video-popup">
                             <a href="#" data-lightbox-gallery="youtube-video" title="Video">
-                                <img alt="" src="{{ asset('Common/images/cosplay-school-univers.png') }}" class="img-responsive img-fullwidth">
+                                <img alt="" src="{{ asset('images/cosplay-school-univers.png') }}" class="img-responsive img-fullwidth">
                             </a>
                         </div>
                     </div>
@@ -245,7 +245,7 @@
                         <div class="item">
                             <div class="campaign bg-lighter maxwidth500 mb-30">
                                 <div class="thumb">
-                                    <img src="{{ asset('Common/images/profile-picture-unknown.png') }}" alt="" class="img-fullwidth">
+                                    <img src="{{ asset('images/profile-picture-unknown.png') }}" alt="" class="img-fullwidth">
                                     <div class="campaign-overlay"></div>
                                 </div>
                                 <div class="campaign-details clearfix p-15 pt-10 pb-10">
