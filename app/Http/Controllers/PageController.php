@@ -27,4 +27,8 @@ class PageController extends Controller {
 			'tutorialNbViews'
 		));
 	}
+
+	public function authorProgram() {
+	    return view('pages.author_program');
+    }
 }

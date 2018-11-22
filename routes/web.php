@@ -49,9 +49,13 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');
+
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
+
 Route::get('/pages/about', 'PageController@about')->name('page_about');
+Route::get('/pages/program/author', 'PageController@authorProgram')->name('page_program_author');
+
 Route::get('/tutorials', 'TutorialController@index')->name('tutorials');
 Route::get('/tutorials/{slug}', 'TutorialController@show', function($slug) {})->name('tutorial_show');
 Route::get('/tutorials/category/{filterValue}', 'TutorialController@tutorialByCategorie', function($filterValue){
