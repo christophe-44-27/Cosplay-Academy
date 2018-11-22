@@ -21,4 +21,7 @@ return [
 	'navigation.our_shops' => "Notre boutique",
 
 	'next' => 'Suivant',
+
+	'Sewing' => 'Couture',
+	'sewing' => 'couture'
 ];

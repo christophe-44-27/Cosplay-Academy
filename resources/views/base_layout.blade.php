@@ -43,6 +43,7 @@
     <meta property="og:image" content="">
     @stack('google_analytic')
     @stack('stylesheets')
+    @stack('facebook_seo')
 </head>
 <body class="lighter">
     <div id="wrapper" class="clearfix">

@@ -53,6 +53,7 @@ Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
 Route::get('/pages/about', 'PageController@about')->name('page_about');
 Route::get('/tutorials', 'TutorialController@index')->name('tutorials');
+Route::get('/tutorials/{slug}', 'TutorialController@show', function($slug) {})->name('tutorial_show');
 Route::get('/tutorials/category/{filterValue}', 'TutorialController@tutorialByCategorie', function($filterValue){
 })->name('tutorials_by_category');
 

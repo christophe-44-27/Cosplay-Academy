@@ -79,7 +79,7 @@
                             <a href="{{ route('homepage') }}">@lang('messages.navigation.home')</a>
                         </li>
                         <li class="">
-                            <a href="#">@lang('messages.navigation.our_tutorials')</a>
+                            <a href="{{ route('tutorials') }}">@lang('messages.navigation.our_tutorials')</a>
                         </li>
                         <li class="">
                             <a href="{{ route('teachers') }}">@lang('messages.navigation.our_teachers')</a>
@@ -88,7 +88,7 @@
                             <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>
                         </li>
                         <li class="">
-                            <a href="http://shop.cosplayschool.ca">@lang('messages.navigation.our_shops')</a>
+                            <a href="http://shop.cosplayschool.ca" target="_blank">@lang('messages.navigation.our_shops')</a>
                         </li>
                     </ul>
                 </nav>

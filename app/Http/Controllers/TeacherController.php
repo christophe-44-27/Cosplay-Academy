@@ -29,6 +29,7 @@ class TeacherController extends Controller {
 	}
 
 	public function show(int $id) {
-		return view('teachers.frontend.index');
+		$teacher = User::findOrFail($id);
+		return view('teachers.frontend.show', compact('teacher'));
 	}
 }

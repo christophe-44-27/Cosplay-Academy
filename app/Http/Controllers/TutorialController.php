@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tutorial;
 use App\Http\Controllers\Controller;
 use App\Models\TutorialCategory;
+use Illuminate\Http\Request;
 
 class TutorialController extends Controller {
 
@@ -32,6 +33,16 @@ class TutorialController extends Controller {
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('tutorials.frontend.index', $tutorials);
+        return view('tutorials.frontend.index', compact('tutorials', 'category'));
     }
+
+    public function show(Request $request, string $slug) {
+    	$tutorial = Tutorial::where('slug', '=', $slug)->first();
+    	$tutorial->nb_views = $tutorial->nb_views + 1;
+    	$tutorial->save();
+
+     	$currentUrl = $request->url();
+
+    	return view('tutorials.frontend.show', compact('tutorial', 'currentUrl'));
+	}
 }

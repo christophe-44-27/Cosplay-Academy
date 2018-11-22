@@ -109,10 +109,15 @@ class TutorialController extends Controller {
 	 * @param string $slug
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-	public function edit(string $slug) {
+	public function edit(Request $request, string $slug) {
 		$tutorialCategories = TutorialCategory::pluck('name', 'id');
 		$tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
-		return view('dashboard/edit_tutorial', compact('tutorial', 'tutorialCategories'));
+		$currentUrl = $request->url();
+		return view('dashboard/edit_tutorial', compact(
+			'tutorial',
+			'tutorialCategories',
+			'currentUrl'
+		));
 	}
 
 	/**

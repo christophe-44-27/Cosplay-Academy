@@ -22,8 +22,8 @@ class Tutorial extends Model {
 		'slug'
 	];
 
-	public function author() {
-		return $this->belongsTo('App\User', 'fk_author_id');
+	public function user() {
+		return $this->belongsTo('App\User');
 	}
 
 	public function tutorialCategory() {

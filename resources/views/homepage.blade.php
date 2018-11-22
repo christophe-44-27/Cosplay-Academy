@@ -249,22 +249,69 @@
                                     <div class="campaign-overlay"></div>
                                 </div>
                                 <div class="campaign-details clearfix p-15 pt-10 pb-10">
-                                    <h4 class="font-weight-700 mt-0"><a href="#">Tutoriel trop cool</a></h4>
+                                    <h4 class="font-weight-700 mt-0">
+                                        <a href="#">
+                                            {{ $tutorial->title }}
+                                        </a>
+                                    </h4>
                                     <p>
-                                        Tutoriel trop cool
+                                        {!! str_limit($tutorial->content, $limit = 150, $end = '...') !!}
                                         <a class="text-theme-colored ml-5" href="#"> →</a>
                                     </p>
                                     <div class="campaign-bottom border-top clearfix mt-20">
                                         <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
-                                            <li class="text-theme-color-2 pr-0 mr-5">Tutoriel</li>
+                                            <li class="text-theme-color-2 pr-0 mr-5">
+                                                @lang($tutorial->tutorialCategory->name)
+                                            </li>
                                         </ul>
                                         <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"
-                                           href="#">Voir plus</a>
+                                           href="{{ route('tutorial_show', $tutorial->slug) }}">Voir plus</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider: Funfact -->
+    <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}"
+             data-parallax-ratio="0.7">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $studentCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $studentCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos étudiants</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos cours</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
                     </div>
                 </div>
             </div>
@@ -284,16 +331,19 @@
             </div>
             <div class="section-content">
                 <div class="row multi-row-clearfix">
-                    @foreach($teachers as $teachers)
+                    @foreach($teachers as $teacher)
                     <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30 margin-bot-20px">
                         <div class="team maxwidth400">
                             <div class="thumb">
-                                <img class="img-fullwidth" src="{{ asset('Common/images/default-thumbnails.png') }}" alt="">
+                                @if($teacher->profile_picture)
+                                    <img class="img-fullwidth" src="{{ asset('storage/users/profile-picture/' . $teacher->profile_picture) }}" alt="">
+                                @else
+                                    <img class="img-fullwidth" src="{{ asset('images/default-thumbnails.png') }}" alt="">
+                                @endif
                             </div>
                             <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                 <h4 class="name text-theme-color-2 mt-0">
-                                    Silverblack
-                                    -
+                                    {{ $teacher->public_pseudonym }}
                                     <small>@lang('messages.user_roles.teacher')</small>
                                 </h4>
                                 <p class="mb-20"></p>
@@ -315,7 +365,7 @@
 
     <!-- Divider: testimonials -->
     <section class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="0.5"
-             data-bg-img="{{ asset('Common/images/cosplay-school-bg.png') }}">
+             data-bg-img="{{ asset('images/cosplay-school-bg.png') }}">
         <div class="container pb-50">
             <div class="section-title">
                 <div class="row">
@@ -337,7 +387,7 @@
                                 <div class="ml-100 ">
                                     <h4 class="text-white mt-0">Merci à la Cosplay School d’offrir des contenus dédiés au Cosplay ! Grâce à ces tutoriels, j’ai pu me perfectionner et découvrir de nouvelles techniques.</h4>
                                     <p class="author mt-20">- <span
-                                                class="text-theme-color-2"><a class="text-theme-color-2" href="https://www.facebook.com/soupychasseusedecosplay/" target="_blank">Soupy Chasseuse de Cospaly</a></span>
+                                                class="text-theme-color-2"><a class="text-theme-color-2" href="https://www.facebook.com/soupychasseusedecosplay/" target="_blank">Soupy Chasseuse de Cosplay</a></span>
                                         <small><em class="text-gray-lightgray">France</em></small>
                                     </p>
                                 </div>

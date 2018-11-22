@@ -21,4 +21,7 @@ return [
 	'navigation.our_shops' => 'Our shop',
 
 	'next' => 'Next &raquo;',
+
+	'Sewing' => 'Sewing',
+	'sewing' => 'sewing'
 ];

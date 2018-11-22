@@ -44,49 +44,43 @@
             <div class="row">
                 <div class="col-md-9 blog-pull-right">
                     <div class="row">
-                        @if($tutorials)
-                            @foreach($tutorials as $tutorial)
-                                <div class="col-sm-6 col-md-4" style="max-height: 300px !important;">
+                        <div class="col-sm-6 col-md-4" style="max-height: 300px !important;">
                             <div class="service-block bg-white">
                                 <div class="thumb">
-                                    {% if tutorial.path %}
-                                    <img alt="featured project" src="{{ asset('img/uploads/tutorials/thumbnails/' ~ tutorial.path) }}" class="img-fullwidth">
-                                    {% else %}
-                                    <img alt="featured project" src="{{ asset('Common/images/thumbnail-tutorial-empty.png') }}" class="img-fullwidth">
-                                    {% endif %}
-                                    <h4 class="text-white mt-0 mb-0"><span class="price">{{ tutorial.category.name|trans({'%workshop.categorie.name%': 'workshop.categorie.name'}, 'messages') }}</span></h4>
-                                </div>
-                                <div class="content text-left flip p-25 pt-0">
-                                    <h4 class="line-bottom mb-10">
-                                        {% if tutorial.title |length > 18 %}
-                                        {{ tutorial.title |striptags |slice(0,18) }}
-                                        ...
-                                        {% else %}
-                                        {{ tutorial.title}}
-                                        {% endif %}
-                                    </h4>
-                                    {#<p>#}
-                                        {#{% autoescape false %}#}
-                                        {#{% if tutorial.resumeIntroduction |length > 107 %}#}
-                                        {#{{ tutorial.resumeIntroduction |striptags |slice(0,105) }}#}
-                                        {#...#}
-                                        {#{% else %}#}
-                                        {#{{ tutorial.resumeIntroduction}}#}
-                                        {#{% endif %}#}
-                                        {#{% endautoescape %}#}
-                                        {#</p>#}
-                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{{ path('frontend_tutorials_show', {'slug' : tutorial.slug}) }}">{{ 'show_details' |trans }}</a>
+                                    @if($tutorials)
+                                        @foreach($tutorials as $tutorial)
+                                            <div class="col-sm-6 col-md-4" style="max-height: 300px !important;">
+                                                <div class="service-block bg-white">
+                                                    <div class="thumb">
+                                                        @if($tutorial->thumbnail_picture)
+                                                            <img alt="featured project" src="{{ asset('storage/tutorials/thumbnails/' . $tutorial->thumbnail_picture) }}" class="img-fullwidth">
+                                                        @else
+                                                            <img alt="featured project" src="{{ asset('images/thumbnail-tutorial-empty.png') }}" class="img-fullwidth">
+                                                        @endif
+                                                        <h4 class="text-white mt-0 mb-0"><span class="price">{{ $tutorial->tutorialCategory->name }}</span></h4>
+                                                    </div>
+                                                    <div class="content text-left flip p-25 pt-0">
+                                                        <h4 class="line-bottom mb-10">
+                                                            {{ $tutorial->title }}
+                                                        </h4>
+                                                        <p>
+                                                            {!! str_limit($tutorial->content, $limit = 150, $end = '...') !!}
+                                                        </p>
+                                                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{{ route('tutorial_show', $tutorial->slug) }}">Voir</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="alert alert-info">
+                                                Aucun tutoriel ne correspond à votre recherche.
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                            @endforeach
-                        @else
-                            <div class="col-sm-6 col-md-4">
-                                <div class="alert alert-info">
-                                    Aucun tutoriel ne correspond à votre recherche.
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-3">
