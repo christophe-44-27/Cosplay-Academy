@@ -3,24 +3,24 @@
 @push('stylesheets')
     <style>
         .share-links li a.yt {
-            background-image: url({{ asset('themes/dashboard/images/social/youtube.png') }});
-            background-color: #cd201e;
-            background-repeat: no-repeat;
-            background-position: center;
+            background-image: url({{ asset('themes/dashboard/images/yt.png') }}) !important;
+            background-color: #cd201e !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
         }
 
         .share-links li a.insta {
-            background-image: url({{ asset('themes/dashboard/images/social/instagram.png') }});
-            background-color: #ef4178;
-            background-repeat: no-repeat;
-            background-position: center;
+            background-image: url({{ asset('themes/dashboard/images/insta.png') }}) !important;
+            background-color: #ef4178 !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
         }
 
         .share-links li a.web {
-            background-image: url({{ asset('themes/dashboard/images/social/web.png') }});
-            background-color: #00d7b3;
-            background-repeat: no-repeat;
-            background-position: center;
+            background-image: url({{ asset('themes/dashboard/images/web.png') }}) !important;
+            background-color: #00d7b3 !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
         }
     </style>
 @endpush
@@ -150,7 +150,9 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <ul class="share-links">
-                            <li><a href="#" class="fb"></a></li>
+                            <li>
+                                <a href="#" class="fb"></a>
+                            </li>
                         </ul>
                         {{ Form::text('facebook_page', $user->facebook_page) }}
                     </div>
@@ -159,7 +161,9 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <ul class="share-links">
-                            <li><a href="#" class="yt"></a></li>
+                            <li>
+                                <a href="#" class="yt"></a>
+                            </li>
                         </ul>
                         {{ Form::text('youtube_page', $user->youtube_page) }}
                     </div>
@@ -168,7 +172,9 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <ul class="share-links">
-                            <li><a href="#" class="twt"></a></li>
+                            <li>
+                                <a href="#" class="twt"></a>
+                            </li>
                         </ul>
                         {{ Form::text('twitter_page', $user->twitter_page) }}
                     </div>
@@ -177,7 +183,9 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <ul class="share-links">
-                            <li><a href="#" class="insta"></a></li>
+                            <li>
+                                <a href="#" class="insta"></a>
+                            </li>
                         </ul>
                         {{ Form::text('instagram_page', $user->instagram_page) }}
                     </div>

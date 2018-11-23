@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="{{ asset('themes/dashboard/css/simple-line-icons.css') }}">
-        <link rel="stylesheet" href="{{ asset('themes/dashboard/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('themes/dashboard/font-awesome-4.7.0/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('themes/dashboard/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('themes/dashboard/css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        @yield('stylesheets')
+        @stack('stylesheets')
         <!-- favicon -->
         <link rel="icon" href="{{ asset('favicon.ico') }}">
         <title>Cosplay School | Mon tableau de bord</title>
