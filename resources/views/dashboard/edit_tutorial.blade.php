@@ -145,6 +145,7 @@
                 };
 
                 formData = new FormData();
+                debugger;
                 formData.append('file', blobInfo.blob(), blobInfo.filename());
                 xhr.send(formData);
             },

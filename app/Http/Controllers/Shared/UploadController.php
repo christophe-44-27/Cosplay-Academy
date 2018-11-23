@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shared;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller {
 	/**

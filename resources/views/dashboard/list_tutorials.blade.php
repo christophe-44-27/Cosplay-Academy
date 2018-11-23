@@ -1,13 +1,5 @@
 @extends('layout_dashboard')
 
-@push('stylesheets')
-    <style>
-        .product-list.grid.v3 .product-item .product-info .category{
-            bottom: 3px !important;
-        }
-    </style>
-@endpush
-
 @section('content')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
@@ -26,14 +18,14 @@
             @endif
 
             <!-- PRODUCT LIST -->
-            <div class="product-list grid v3 column4-wrap">
+            <div class="product-list grid column4-wrap">
                 <a href="{{ route('tutorial_new') }}">
                     <div class="product-item upload-new column">
                         <!-- PRODUCT PREVIEW ACTIONS -->
                         <div class="product-preview-actions">
                             <!-- PRODUCT PREVIEW IMAGE -->
                             <figure class="product-preview-image">
-                                <img src="{{ asset('images/dashboard/uploadnew-bg.jpg') }}"
+                                <img src="{{ asset('themes/dashboard/images/dashboard/uploadnew-bg.jpg') }}"
                                      alt="product-image">
                             </figure>
                             <!-- /PRODUCT PREVIEW IMAGE -->
@@ -56,17 +48,12 @@
                             <div class="product-preview-actions">
                                 <!-- PRODUCT PREVIEW IMAGE -->
                                 <figure class="product-preview-image">
-                                    @if (isset($tutorial->video_id))
-                                    <img src="https://img.youtube.com/vi/{{$tutorial->video_id}}/hqdefault.jpg"
-                                         class="thumbnail-video" alt="Course image">
-                                    @else
-                                        @if (isset($tutorial->thumbnail_picture))
+                                    @if (isset($tutorial->thumbnail_picture))
                                         <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}"
                                              alt="product-image">
-                                        @else
-                                            <img src="{{ asset('images/structure/default-cover-cours-fr.png') }}"
-                                                 alt="Course image">
-                                        @endif
+                                    @else
+                                        <img src="{{ asset('images/structure/default-cover-cours-fr.png') }}"
+                                             alt="Course image">
                                     @endif
                                 </figure>
                                 <!-- /PRODUCT PREVIEW IMAGE -->
@@ -102,6 +89,7 @@
                                 <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
                                     <p class="text-header">{{ $tutorial->title }}</p>
                                 </a>
+                                <br>
                                 <a href="#">
                                     <p class="category primary">{{ $tutorial->tutorialCategory->name }}</p>
                                 </a>
@@ -113,12 +101,17 @@
                             <div class="user-rating">
                                 <a href="#">
                                     <figure class="user-avatar small">
-                                        <img src="{{ asset('images/structure/default-avatar.png') }}"
-                                             alt="user-avatar">
+                                        @if($tutorial->user->profile_picture)
+                                            <img src="{{ asset('storage/' . $tutorial->user->profile_picture) }}"
+                                                 alt="user-avatar">
+                                        @else
+                                            <img src="{{ asset('themes/dashboard/images/structure/default-avatar.png') }}"
+                                                 alt="user-avatar">
+                                        @endif
                                     </figure>
                                 </a>
                                 <a href="#">
-                                    <p class="text-header tiny">{{ Auth::user()->name }}</p>
+                                    <p class="text-header tiny">{{ $tutorial->user->name }}</p>
                                 </a>
                             </div>
                             <!-- /USER RATING -->

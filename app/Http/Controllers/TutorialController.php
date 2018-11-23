@@ -37,12 +37,18 @@ class TutorialController extends Controller {
     }
 
     public function show(Request $request, string $slug) {
-    	$tutorial = Tutorial::where('slug', '=', $slug)->first();
-    	$tutorial->nb_views = $tutorial->nb_views + 1;
-    	$tutorial->save();
 
-     	$currentUrl = $request->url();
+        $tutorial = Tutorial::where('slug', '=', $slug)->first();
+        $tutorial->nb_views = $tutorial->nb_views + 1;
+        $tutorial->save();
 
-    	return view('tutorials.frontend.show', compact('tutorial', 'currentUrl'));
-	}
+        $currentUrl = $request->url();
+
+        $relatedTutorials = Tutorial::where('tutorial_category_id', '=', $tutorial->tutorialCategory->id)
+                                ->orderBy('id', 'DESC')
+                                ->limit(4)
+                                ->get();
+
+        return view('tutorials.frontend.show', compact('tutorial', 'currentUrl', 'relatedTutorials'));
+    }
 }

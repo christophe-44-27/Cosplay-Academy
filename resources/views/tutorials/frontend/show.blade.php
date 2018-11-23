@@ -140,11 +140,70 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <h3 class="line-bottom">Dans la même catégorie</h3>
+                    <div class="row multi-row-clearfix">
+                        <div class="products related">
+                            @if($relatedTutorials)
+                                @foreach($relatedTutorials as $relatedTutorial)
+                                    <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
+                                        <div class="product">
+                                            <span class="tag-sale">{{ $relatedTutorial->tutorialCategory->name }}</span>
+                                            <div class="product-thumb">
+                                                <img alt="" src="{{ asset('storage/' . $relatedTutorial->thumbnail_picture) }}" class="img-responsive img-fullwidth">
+                                                <div class="overlay">
+                                                    <div class="btn-product-view-details">
+                                                        <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 text-uppercase font-weight-700"
+                                                           href="{{ route('tutorial_show', $relatedTutorial->slug) }}">Voir</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center">
+                                                <a href="{{ route('tutorial_show', $relatedTutorial->slug) }}"><h5 class="product-title">{{ $relatedTutorial->title }}</h5></a>
+                                                <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="alert alert-info">
+                                    Ce tutoriel est unique dans sa catégorie !
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h3 class="line-bottom">Commentaires</h3>
+                    <div class="row multi-row-clearfix">
+                        <div id="disqus_thread"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 @endsection
 @push('javascripts')
+    <script>
+
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+        var disqus_config = function () {
+        this.page.url = '{{ Request::url() }}';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '{{ $tutorial->id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://cosplayschool.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
     <script>
         (function() {
 
@@ -172,7 +231,7 @@
         })();
     </script>
     @if($tutorial->video_id)
-    <script>
+        <script>
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 

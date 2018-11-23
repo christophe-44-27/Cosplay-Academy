@@ -254,10 +254,6 @@
                                             {{ $tutorial->title }}
                                         </a>
                                     </h4>
-                                    <p>
-                                        {!! str_limit($tutorial->content, $limit = 150, $end = '...') !!}
-                                        <a class="text-theme-colored ml-5" href="#"> →</a>
-                                    </p>
                                     <div class="campaign-bottom border-top clearfix mt-20">
                                         <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
                                             <li class="text-theme-color-2 pr-0 mr-5">
