@@ -74,7 +74,7 @@
                         @if($tutorial->video_id)
                             <div id="player"></div>
                         @else
-                            <img src="{{ asset('storage/tutorials/covers/' . $tutorial->main_picture ) }}" />
+                            <img src="{{ asset('storage/' . $tutorial->main_picture ) }}" />
                         @endif
                         <hr>
                         {!! $tutorial->content !!}

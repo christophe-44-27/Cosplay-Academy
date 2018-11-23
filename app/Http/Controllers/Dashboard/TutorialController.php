@@ -44,7 +44,7 @@ class TutorialController extends Controller {
 		if (!is_dir(storage_path("app/public/tutorials/covers"))) {
 			Storage::makeDirectory("tutorials/covers");
 		}
-		$pathCover = "app/public/tutorials/covers/{$hash}.jpg";
+		$pathCover = "app/public/tutorials/covers/{$hashCover}.jpg";
 		$publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
 		$resizedThumbnailImage->save(storage_path($pathCover));
 		Tutorial::create([
@@ -88,13 +88,13 @@ class TutorialController extends Controller {
 			$arrayToUpdate['thumbnail_picture'] = $publicThumbnailsPath;
 		}
 		if ($request->file('main_picture')) {
-			$resizedCoverImage = Image::make($request->file('main_picture'))->fit(700, 500)->encode('jpg');
+			$resizedCoverImage = Image::make($request->file('main_picture'))->fit(750, 500)->encode('jpg');
 			// calculate md5 hash of encoded image
 			$hashCover = md5($resizedCoverImage->__toString());
 			if (!is_dir(storage_path("app/public/tutorials/covers"))) {
 				Storage::makeDirectory("tutorials/covers");
 			}
-			$pathCover = "app/public/tutorials/covers/{$hash}.jpg";
+			$pathCover = "app/public/tutorials/covers/{$hashCover}.jpg";
 			$publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
 			$resizedCoverImage->save(storage_path($pathCover));
 			$arrayToUpdate['main_picture'] = $publicCoversPath;

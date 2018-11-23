@@ -21,11 +21,11 @@ class UploadController extends Controller {
 	 * @return JsonResponse
 	 */
 	public function uploadFromWysiwyg(Request $request) {
-		$path = $request->file('file')->store('from_wysiwyg');
+		$path = $request->file('file')->store('from_wysiwyg', 'public');
 
 		$response = new JsonResponse();
 		$response->setStatusCode(200);
-		$response->setData(['location' => asset('public/storage/from_wysiwyg/' . $path)]);
+		$response->setData(['location' => asset('storage/' . $path)]);
 		return $response;
 	}
 }

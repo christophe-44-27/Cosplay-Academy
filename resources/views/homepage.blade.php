@@ -245,7 +245,7 @@
                         <div class="item">
                             <div class="campaign bg-lighter maxwidth500 mb-30">
                                 <div class="thumb">
-                                    <img src="{{ asset('images/profile-picture-unknown.png') }}" alt="" class="img-fullwidth">
+                                    <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="" class="img-fullwidth">
                                     <div class="campaign-overlay"></div>
                                 </div>
                                 <div class="campaign-details clearfix p-15 pt-10 pb-10">

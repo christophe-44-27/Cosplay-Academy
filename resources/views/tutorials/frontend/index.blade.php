@@ -53,7 +53,7 @@
                                                 <div class="service-block bg-white">
                                                     <div class="thumb">
                                                         @if($tutorial->thumbnail_picture)
-                                                            <img alt="featured project" src="{{ asset('storage/tutorials/thumbnails/' . $tutorial->thumbnail_picture) }}" class="img-fullwidth">
+                                                            <img alt="featured project" src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" class="img-fullwidth">
                                                         @else
                                                             <img alt="featured project" src="{{ asset('images/thumbnail-tutorial-empty.png') }}" class="img-fullwidth">
                                                         @endif
@@ -113,7 +113,7 @@
                                     <article class="post media-post clearfix pb-0 mb-10">
                                         <a class="post-thumb" href="#">
                                             @if($tutorial->thumbnail_picture)
-                                                <img class="thumbnail-75px" src="{{ asset('img/uploads/tutorials/thumbnails/' . $tutorial->thumbnail_picture) }}">
+                                                <img class="thumbnail-75px" src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}">
                                             @else
                                                 <img class="thumbnail-75px" src="{{ asset('images/thumbnail-tutorial-empty.png') }}">
                                             @endif

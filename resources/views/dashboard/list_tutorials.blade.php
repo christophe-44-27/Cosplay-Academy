@@ -33,7 +33,7 @@
                         <div class="product-preview-actions">
                             <!-- PRODUCT PREVIEW IMAGE -->
                             <figure class="product-preview-image">
-                                <img src="{{ asset('themes/dashboard/images/dashboard/uploadnew-bg.jpg') }}"
+                                <img src="{{ asset('images/dashboard/uploadnew-bg.jpg') }}"
                                      alt="product-image">
                             </figure>
                             <!-- /PRODUCT PREVIEW IMAGE -->
@@ -64,7 +64,7 @@
                                         <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}"
                                              alt="product-image">
                                         @else
-                                            <img src="{{ asset('themes/dashboard/images/structure/default-cover-cours-fr.png') }}"
+                                            <img src="{{ asset('images/structure/default-cover-cours-fr.png') }}"
                                                  alt="Course image">
                                         @endif
                                     @endif
@@ -113,7 +113,7 @@
                             <div class="user-rating">
                                 <a href="#">
                                     <figure class="user-avatar small">
-                                        <img src="{{ asset('themes/dashboard/images/structure/default-avatar.png') }}"
+                                        <img src="{{ asset('images/structure/default-avatar.png') }}"
                                              alt="user-avatar">
                                     </figure>
                                 </a>
