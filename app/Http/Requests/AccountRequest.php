@@ -21,12 +21,11 @@ class AccountRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'profile_picture' => 'required',
-			'cover_picture' => 'required',
 			'public_pseudonym' => 'required',
 			'firstname' => 'required',
 			'lastname' => 'required',
-			'email' => 'required'
+			'email' => 'required',
+			'description' => 'required'
 		];
 	}
 
@@ -37,8 +36,6 @@ class AccountRequest extends FormRequest {
 	 */
 	public function messages() {
 		return [
-			'profile_picture.required' => "L'image de profil est obligatoire",
-			'cover_picture.required' => "L'image de couverture est obligatoire",
 			'public_pseudonym.required' => "Le nom d'affichage est obligatoire",
 			'firstname.required' => "Le prénom est obligatoire",
 			'lastname.required' => "Le nom est obligatoire",

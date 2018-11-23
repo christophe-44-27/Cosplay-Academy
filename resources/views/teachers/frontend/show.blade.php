@@ -52,7 +52,7 @@
                     <div class="col-md-4">
                         <div class="thumb">
                             @if($teacher->profile_picture)
-                                <img src="{{ asset('storage/users/profile-picture/' . $teacher->profile_picture ) }}" alt="">
+                                <img src="{{ asset('storage/' . $teacher->profile_picture ) }}" alt="">
                             @else
                                 <img src="{{ asset('images/profile-picture-unknown.png') }}" alt="">
                             @endif
@@ -63,7 +63,7 @@
                         <h5 class="mt-5 text-theme-color-2">
                             Professeur
                         </h5>
-                        {!! $teacher->content !!}
+                        {!! $teacher->description !!}
                         <ul class="styled-icons icon-dark icon-theme-colored icon-sm mt-15 mb-0">
                             @if($teacher->facebook_page)
                             <li>
@@ -141,46 +141,41 @@
                         <div class="clearfix">
                             <h4 class="line-bottom">Mes derniers tutoriels:</h4>
                         </div>
-                        {{--<div class="col-md-12">--}}
-                            {{--<div class="row multi-row-clearfix">--}}
-                                {{--{% if teacher_tutorials %}--}}
-                                {{--{% for tutorial in teacher_tutorials %}--}}
-                                {{--<div class="products related">--}}
-                                    {{--<div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">--}}
-                                        {{--<div class="product">--}}
-                                            {{--<span class="tag-sale">{{ tutorial.category.name|trans({'%workshop.categorie.name%': 'workshop.categorie.name'}, 'messages') }}</span>--}}
-                                            {{--<div class="product-thumb">--}}
-                                                {{--<a href="{{ path('frontend_tutorials_show', {'slug' : tutorial.slug}) }}">--}}
-                                                    {{--{% if tutorial.path %}--}}
-                                                    {{--<img alt="" src="{{ asset('img/uploads/tutorials/thumbnails/' ~ tutorial.path) }}" class="img-responsive img-fullwidth">--}}
-                                                    {{--{% else %}--}}
-                                                    {{--<img alt="" src="{{ asset('Common/images/thumbnail-tutorial-empty.png') }}" class="img-responsive img-fullwidth">--}}
-                                                    {{--{% endif %}--}}
-                                                {{--</a>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="product-details text-center">--}}
-                                                {{--<a href="{{ path('frontend_tutorials_show', {'slug' : tutorial.slug}) }}">--}}
-                                                    {{--<h5 class="product-title">--}}
-                                                        {{--{% if tutorial.title |length > 20 %}--}}
-                                                        {{--{{ tutorial.title }}...--}}
-                                                        {{--{% else %}--}}
-                                                        {{--{{ tutorial.title }}--}}
-                                                        {{--{% endif %}--}}
-                                                    {{--</h5>--}}
-                                                {{--</a>--}}
-                                                {{--{#<div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>#}--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--{% endfor %}--}}
-                                {{--{% else %}--}}
-                                {{--<div class="alert alert-info">--}}
-                                    {{--Ce professeur n'a pas encore créé de tutoriels.--}}
-                                {{--</div>--}}
-                                {{--{% endif %}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                        <div class="col-md-12">
+                            <div class="row multi-row-clearfix">
+                                @if($teacherTutorials)
+                                    @foreach($teacherTutorials as $teacherTutorial)
+                                        <div class="products related">
+                                            <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
+                                                <div class="product">
+                                                <span class="tag-sale">{{ $teacherTutorial->tutorialCategory->name }}</span>
+                                                <div class="product-thumb">
+                                                    <a href="{{ route('tutorial_show', $teacherTutorial->slug)}}">
+                                                        @if($teacherTutorial->thumbnail_picture)
+                                                            <img alt="" src="{{ asset('storage/' . $teacherTutorial->thumbnail_picture) }}" class="img-responsive img-fullwidth">
+                                                        @else
+                                                            <img alt="" src="{{ asset('images/thumbnail-tutorial-empty.png') }}" class="img-responsive img-fullwidth">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                                <div class="product-details text-center">
+                                                    <a href="{{ route('tutorial_show', $teacherTutorial->slug)}}">
+                                                        <h5 class="product-title">
+                                                            {{ $teacherTutorial->title }}
+                                                        </h5>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-info">
+                                        Ce professeur n'a pas encore créé de tutoriels.
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

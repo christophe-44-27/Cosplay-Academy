@@ -65,8 +65,8 @@
                             <div class="profile-image-data">
                                 <figure class="user-avatar user-avatar-profile medium">
                                     @if($user->profile_picture)
-                                    <img src="{{ asset('img/uploads/avatars/' . $user->profile_picture ) }}"
-                                         alt="profile-default-image">
+                                        <img src="{{ asset('storage/' . $user->profile_picture ) }}"
+                                             alt="profile-default-image">
                                     @else
                                     <img src="{{ asset('themes/dashboard/images/dashboard/profile-default-image.png') }}"
                                          alt="profile-default-image">
@@ -86,7 +86,7 @@
                             <div class="profile-image-data">
                                 <figure class="user-avatar user-avatar-profile medium">
                                     @if($user->cover_picture)
-                                        <img src="{{ asset('img/uploads/avatars/' . $user->cover_picture ) }}"
+                                        <img src="{{ asset('storage/' . $user->cover_picture ) }}"
                                              alt="profile-default-image">
                                     @else
                                         <img src="{{ asset('themes/dashboard/images/dashboard/profile-default-image.png') }}"

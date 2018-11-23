@@ -34,10 +34,10 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
                     <div class="team-members maxwidth400">
                         <div class="team-thumb">
-                            @if ($teacher->profile_cover)
-                                <img class="img-fullwidth" alt="" src="{{ asset('images/thumbnail-tutorial-empty.png') }}">
+                            @if ($teacher->cover_picture)
+                                <img class="img-fullwidth" alt="" src="{{ asset('storage/' . $teacher->cover_picture) }}">
                             @else
-                                <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
+                                <img class="img-fullwidth" alt="" src="{{ asset('images/thumbnail-tutorial-empty.png') }}">
                             @endif
                         </div>
                         <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">

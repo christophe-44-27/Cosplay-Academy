@@ -30,6 +30,10 @@ class TeacherController extends Controller {
 
 	public function show(int $id) {
 		$teacher = User::findOrFail($id);
-		return view('teachers.frontend.show', compact('teacher'));
+		$teacherTutorials = Tutorial::where('user_id', '=', $teacher->id)
+						->orderBy('id', 'DESC')
+						->limit(4)
+						->get();
+		return view('teachers.frontend.show', compact('teacher', 'teacherTutorials'));
 	}
 }
