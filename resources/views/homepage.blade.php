@@ -220,7 +220,7 @@
                         <p class="text-theme-colored"><i class="fa fa-angle-double-right text-theme-color-2 font-15"></i>
                             Bénéficiez d’avantages chez nos partenaires True North Cosplay, Pebeo, Club Tissus, DeSerres, Sial Canada et découvrez leurs produits dans nos tutoriels officiels
                         </p>
-                        <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Voir plus →</a>
+                        <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="{{ route('page_about') }}">Voir plus →</a>
                     </div>
                 </div>
             </div>

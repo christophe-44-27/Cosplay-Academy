@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
-                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="#">
+                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="{{ route('homepage') }}">
                             <img src="{{ asset('images/logo-login.png') }}" alt="">
                         </a>
                     </div>

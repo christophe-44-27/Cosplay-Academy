@@ -41,6 +41,14 @@
     <meta property="og:description"
           content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !">
     <meta property="og:image" content="">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2&appId=526252497733390&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     @stack('google_analytic')
     @stack('stylesheets')
     @stack('facebook_seo')
@@ -58,10 +66,10 @@
     <!-- end main-content -->
 
     <!-- Footer -->
-    <footer id="footer" class="footer divider layer-overlay overlay-dark-9" data-bg-img="http://placehold.it/1920x1280">
+    <footer id="footer" class="footer divider layer-overlay overlay-dark-9" data-bg-img="{{ asset('images/cosplay-school-bg-.png') }}">
         <div class="container">
             <div class="row border-bottom">
-                <div class="col-sm-6 col-md-12">
+                <div class="col-sm-6 col-md-2">
                     <div class="widget dark">
                         <h5 class="widget-title mb-10">Restons en contact !</h5>
                         <ul class="styled-icons icon-bordered icon-sm">
@@ -73,6 +81,38 @@
                             <li><a href="https://www.instagram.com/cosplayschool/"><i class="fa fa-instagram"></i></a>
                             </li>
                         </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="widget dark">
+                        <h4 class="widget-title">L'entreprise</h4>
+                        <ul class="list angle-double-right list-border">
+                            <li><a href="{{ route('page_about') }}">Qui sommes-nous ?</a></li>
+                            <li><a href="{{ route('page_policy') }}">Politique de confidentialité</a></li>
+                            <li><a href="{{ route('page_cgu') }}">Conditions générales d'utilisation</a></li>
+                            <li><a href="{{ route('page_contact') }}">Contactez-nous !</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="widget dark">
+                        <h4 class="widget-title">La communauté</h4>
+                        <ul class="list angle-double-right list-border">
+                            <li><a href="{{ route('page_program_author') }}">Devenir professeurs</a></li>
+                            <li><a href="{{ route('teachers') }}">Nos professeurs</a></li>
+                            <li><a href="#">Nos événements</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="widget-dark">
+                        <div class="fb-page" data-href="https://www.facebook.com/cosplayschoolqc/"
+                             data-tabs="timeline" data-height="400" data-small-header="false" data-adapt-container-width="true"
+                             data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/cosplayschoolqc/" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/cosplayschoolqc/">Cosplay School</a>
+                            </blockquote>
+                        </div>
                     </div>
                 </div>
             </div>

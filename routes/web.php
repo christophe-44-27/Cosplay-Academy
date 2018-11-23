@@ -53,8 +53,13 @@ Route::get('/subscriptions', 'SubscriptionController@index')->name('subscription
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
 
-Route::get('/pages/about', 'PageController@about')->name('page_about');
-Route::get('/pages/program/author', 'PageController@authorProgram')->name('page_program_author');
+Route::get('/about', 'PageController@about')->name('page_about');
+Route::get('/policy', 'PageController@policy')->name('page_policy');
+Route::get('/cgu', 'PageController@cgu')->name('page_cgu');
+Route::get('/program/author', 'PageController@authorProgram')->name('page_program_author');
+Route::get('/contact', 'PageController@contact')->name('page_contact');
+Route::post('/contact/send', 'Contact\ContactController@contact')->name('send_mail');
+
 
 Route::get('/tutorials', 'TutorialController@index')->name('tutorials');
 Route::get('/tutorials/{slug}', 'TutorialController@show', function($slug) {})->name('tutorial_show');

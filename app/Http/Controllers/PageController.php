@@ -10,6 +10,7 @@ class PageController extends Controller {
 
 	/**
 	 * Display the page "about"
+	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function about() {
@@ -19,7 +20,6 @@ class PageController extends Controller {
 		$tutorialNbViews = DB::table('tutorials')
 			->where('is_published', '=', true)
 			->sum('nb_views');
-
 		return view('pages.about', compact(
 			'studentCount',
 			'teacherCount',
@@ -29,6 +29,18 @@ class PageController extends Controller {
 	}
 
 	public function authorProgram() {
-	    return view('pages.author_program');
-    }
+		return view('pages.author_program');
+	}
+
+	public function cgu() {
+		return view('pages.cgu');
+	}
+
+	public function policy() {
+		return view('pages.policy');
+	}
+
+	public function contact() {
+		return view('pages.contact');
+	}
 }

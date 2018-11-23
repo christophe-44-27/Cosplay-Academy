@@ -93,22 +93,24 @@
     <div class="intro">
         <div class="header-mail">
             <img class="image" src="https://cosplayschool.ca/images/logo-big-cs.png">
-            <h2>Confirmation de votre adresse courriel</h2>
+            <h2>Contact depuis le site internet</h2>
         </div>
         <div class="body-message">
-            <h3>Hello,</h3>
+            <h3>Bonjour,</h3>
 
             <p>
-                Merci pour votre inscription sur le site de la Cosplay School ! La communauté s'agrandit grâce à vous <3.
+                Vous avez reçu un courriel depuis votre site internet.
             </p>
             <p>
-                Afin de confirmer votre adresse courriel, et dans le but de recevoir les notifications de publications de cours,
-                de mise à jour de cours, et bien plus encore, veuillez cliquer sur le lien suivant :
+                Voici le détail du message :
             </p>
-
-            <a href="https://www.cosplayschool.ca" class="button">Aller sur le site internet</a>
-
-            <p>L'équipe de la Cosplay School</p>
+            <ul>
+                <li>Nom de l'expéditeur : {{ $exp_name }}</li>
+                <li>Courriel : {{ $exp_mail }}</li>
+                <li>Sujet : {{ $exp_subject }}</li>
+                <li>Téléphone : {{ $exp_phone }}</li>
+                <li>Message : {{ $exp_message }}</li>
+            </ul>
 
             <h6>Ceci est un courriel automatique, merci de ne pas y répondre.</h6>
         </div>
