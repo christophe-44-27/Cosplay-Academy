@@ -214,7 +214,7 @@
                     <!-- INPUT CONTAINER -->
                     <div class="input-container">
                         <label for="skills" class="rl-label required">Mes compétences</label>
-                        {{ Form::select('categories', $categories ,null,array('multiple'=>'multiple','name'=>'categories[]')) }}
+                        {{ Form::select('categories', $categories ,$user->categories,array('multiple'=>'multiple','name'=>'categories[]')) }}
                     </div>
                     <!-- /INPUT CONTAINER -->
                 </div>

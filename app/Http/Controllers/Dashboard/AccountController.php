@@ -19,6 +19,7 @@ class AccountController extends Controller {
 
 	public function index() {
 		$user = Auth::user();
+
 		$categories = TutorialCategory::pluck('name', 'id');
 		return view('dashboard/my_account', compact('user', 'categories'));
 	}

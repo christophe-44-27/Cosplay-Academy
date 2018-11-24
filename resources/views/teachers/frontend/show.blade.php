@@ -119,7 +119,18 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="mt-0 mb-0">Compétences:</h5>
-                                            <p>TOTO les compétences</p>
+                                            <p>
+                                                @if($teacher->categories)
+                                                    @foreach($teacher->categories as $category)
+                                                        {{ $category->name }}
+                                                    @endforeach
+                                                @else
+                                                    <div class="alert alert-info">
+                                                        {{ $teacher->public_pseudonym }} n'a pas encore renseigné ses
+                                                        compétences.
+                                                    </div>
+                                                @endif
+                                            </p>
                                         </div>
                                     </div>
                                 </li>
