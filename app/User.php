@@ -30,6 +30,11 @@ class User extends Authenticatable implements MustVerifyEmail {
 		'card_brand',
 		'card_last_four',
 		'trial_ends_at',
+		'youtube_page',
+		'facebook_page',
+		'instagram_page',
+		'website',
+		'twitter_page'
 	];
 
 	/**

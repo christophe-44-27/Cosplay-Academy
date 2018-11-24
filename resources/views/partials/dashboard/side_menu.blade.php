@@ -16,7 +16,7 @@
                     <div class="inner-ring"></div>
                     <figure class="user-avatar">
                         @if (Auth::user()->profile_picture)
-                            <img src="{{ asset('themes/backend/images/structure/default-avatar.png') }}" alt="avatar">
+                            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="avatar">
                         @else
                             <img src="{{ asset('themes/dashboard/images/structure/default-avatar.png') }}" alt="avatar">
                         @endif

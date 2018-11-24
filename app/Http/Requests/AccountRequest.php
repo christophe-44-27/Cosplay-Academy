@@ -25,7 +25,13 @@ class AccountRequest extends FormRequest {
 			'firstname' => 'required',
 			'lastname' => 'required',
 			'email' => 'required',
-			'description' => 'required'
+			'description' => 'required',
+			'youtube_page' => 'nullable',
+			'facebook_page' => 'nullable',
+			'instagram_page' => 'nullable',
+			'website' => 'nullable',
+			'twitter_page' => 'nullable'
+
 		];
 	}
 

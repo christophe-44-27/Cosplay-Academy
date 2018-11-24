@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\AccountRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\TutorialCategory;
 use App\User;
 use Illuminate\Http\Request;
@@ -32,7 +31,12 @@ class AccountController extends Controller {
 			'firstname' => $validated['firstname'],
 			'lastname' => $validated['lastname'],
 			'email' => $validated['email'],
-			'description' => $validated['description']
+			'description' => $validated['description'],
+			'youtube_page' => $validated['youtube_page'],
+			'twitter_page' => $validated['twitter_page'],
+			'facebook_page' => $validated['facebook_page'],
+			'website' => $validated['website'],
+			'instagram_page' => $validated['instagram_page'],
 		];
 
 		//Mise à jour de la photo de profil
