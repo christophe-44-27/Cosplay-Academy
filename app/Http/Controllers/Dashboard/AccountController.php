@@ -48,7 +48,7 @@ class AccountController extends Controller {
 			$path = "app/public/users/avatars/{$hash}.jpg";
 			$publicAvatarPath = "users/avatars/{$hash}.jpg";
 			if (!is_dir(storage_path("app/public/users/avatars"))) {
-				Storage::makeDirectory("users/avatars");
+				Storage::makeDirectory("public/users/avatars");
 			}
 			$avatar->save(storage_path($path));
 			$dataArray['profile_picture'] = $publicAvatarPath;
@@ -62,7 +62,7 @@ class AccountController extends Controller {
 			$pathCover = "app/public/users/covers/{$hashCover}.jpg";
 			$publicCoverPath = "users/covers/{$hashCover}.jpg";
 			if (!is_dir(storage_path("app/public/users/covers"))) {
-				Storage::makeDirectory("users/covers");
+				Storage::makeDirectory("public/users/covers");
 			}
 			$cover->save(storage_path($pathCover));
 			$dataArray['cover_picture'] = $publicCoverPath;
