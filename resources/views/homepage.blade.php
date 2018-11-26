@@ -66,7 +66,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap; font-weight:700;">@lang('messages.layout.titles.cosplay_school')
+                                 style="z-index: 7; white-space: nowrap; font-weight:700;">@lang('Cosplay School')
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -91,7 +91,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang('messages.layout.titles.learning_for_everyone')
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang("L'apprentissage pour tous")
                             </div>
 
                             <!-- LAYER NR. 3 -->
@@ -116,7 +116,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang('messages.layout.titles.learning_for_everyone')
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang("Ensembles, révolutionnons l'apprentissage du cosplay")
                             </div>
 
                             <!-- LAYER NR. 4 -->
@@ -141,7 +141,7 @@
                                  data-responsive_offset="on"
                                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a
                                         class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20"
-                                        href="#">@lang('messages.layout.titles.learning_for_everyone')</a>
+                                        href="#">@lang("Voir plus")</a>
                             </div>
                         </li>
                     </ul>
@@ -320,8 +320,8 @@
             <div class="section-title mb-10">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">@lang('messages.layout.titles.ours') <span
-                                    class="text-theme-color-2 font-weight-400">@lang('messages.layout.titles.last_teachers_registered')</span></h2>
+                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">@lang('Nos') <span
+                                    class="text-theme-color-2 font-weight-400">@lang('derniers professeurs enregistrés')</span></h2>
                     </div>
                 </div>
             </div>
@@ -332,7 +332,7 @@
                         <div class="team maxwidth400">
                             <div class="thumb">
                                 @if($teacher->profile_picture)
-                                    <img class="img-fullwidth" src="{{ asset('storage/users/profile-picture/' . $teacher->profile_picture) }}" alt="">
+                                    <img class="img-fullwidth" src="{{ asset('storage/' . $teacher->profile_picture) }}" alt="">
                                 @else
                                     <img class="img-fullwidth" src="{{ asset('images/default-thumbnails.png') }}" alt="">
                                 @endif
@@ -340,7 +340,7 @@
                             <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                                 <h4 class="name text-theme-color-2 mt-0">
                                     {{ $teacher->public_pseudonym }}
-                                    <small>@lang('messages.user_roles.teacher')</small>
+                                    <small>@lang('Professeur')</small>
                                 </h4>
                                 <p class="mb-20"></p>
                                 <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
@@ -349,7 +349,7 @@
                                     <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
                                 </ul>
                                 <a class="btn btn-theme-colored btn-sm pull-right flip"
-                                   href="#">@lang('messages.action.see_more')</a>
+                                   href="{{ route('teacher_profile', $teacher->id) }}">@lang('Voir plus')</a>
                             </div>
                         </div>
                     </div>

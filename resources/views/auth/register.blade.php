@@ -14,15 +14,15 @@
                                 <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                                     <i class="pe-7s-users"></i>
                                 </a>
-                                <h4 class="text-gray pt-10 mt-0 mb-30">Avez-vous déjà un compte ? <a href="{{ route('login') }}">Se connecter</a></h4>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">@lang('Avez-vous déjà un compte ?') <a href="{{ route('login') }}">Se connecter</a></h4>
                             </div>
                             <hr>
-                            <p class="text-gray">Vous avez envie d'apprendre de nouvelles choses, vous avez envie de
+                            <p class="text-gray">@lang("Vous avez envie d'apprendre de nouvelles choses, vous avez envie de
                                 partager vos connaissances ? Alors n'attendez plus et rejoignez la première école de
-                                cosplay en ligne !</p>
+                                cosplay en ligne !")</p>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">Nom de cosplayeur(se)</label>
+                                    <label for="name">@lang('Nom de cosplayeur(se)')</label>
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="email">Email</label>
+                                    <label for="email">@lang('Courriel')</label>
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="password">Mot de passe</label>
+                                    <label for="password">@lang('Mot de passe')</label>
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                     @if ($errors->has('password'))
@@ -52,12 +52,12 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                                    <label for="password-confirm">@lang('Confirmer votre mot de passe')</label>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Inscription</button>
+                                <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">@lang('Inscription')</button>
                             </div>
                             </form>
                         </div>

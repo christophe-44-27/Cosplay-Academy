@@ -20,6 +20,11 @@ return [
 	'navigation.about_us' => 'The school',
 	'navigation.our_shops' => 'Our shop',
 
+	'messages.layout.title.cosplay_school' => 'Cosplay School',
+	'messages.layout.title.learning_for_everyone' => 'Apprentissage pour tous',
+	'messages.layout.titles.learning_for_everyone' => "Ensembles, révolutionnons l'apprentissage du cosplay afin de le rendre plus accessible.",
+	'messages.layout.buttons.more' => 'Voir plus',
+
 	'next' => 'Next &raquo;',
 
 	'Sewing' => 'Sewing',

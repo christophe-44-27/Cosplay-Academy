@@ -11,7 +11,10 @@ class GuestHomepageController extends Controller {
 
 	public function index() {
 		$tutorials = Tutorial::where('is_published', '=', 1)->get();
-		$teachers = User::where('is_teacher', '=', true)->get();
+		$teachers = User::where('is_teacher', '=', true)
+						->where('profile_picture', '!=', null)
+						->where('cover_picture', '!=', null)
+						->get();
 
 		$teacherCount = User::where('is_teacher', '=', true)->count();
 		$studentCount = User::where('is_teacher', '=', false)->count();

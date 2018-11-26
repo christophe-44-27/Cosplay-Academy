@@ -17,7 +17,10 @@ class TeacherController extends Controller {
 			->where('is_published', '=', true)
 			->sum('nb_views');
 
-		$teachers = User::where('is_teacher', '=', true)->get();
+		$teachers = User::where('is_teacher', '=', true)
+						->where('profile_picture', '!=', null)
+						->where('cover_picture', '!=', null)
+						->get();
 
 		return view('teachers.frontend.index', compact(
 			'studentCount',

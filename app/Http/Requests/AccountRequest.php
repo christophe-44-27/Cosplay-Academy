@@ -45,7 +45,8 @@ class AccountRequest extends FormRequest {
 			'public_pseudonym.required' => "Le nom d'affichage est obligatoire",
 			'firstname.required' => "Le prénom est obligatoire",
 			'lastname.required' => "Le nom est obligatoire",
-			'email.required' => "L'adresse de courriel est obligatoire"
+			'email.required' => "L'adresse de courriel est obligatoire",
+			'description.required' => "Veuillez rédiger une description"
 		];
 	}
 }

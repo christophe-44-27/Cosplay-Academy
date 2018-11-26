@@ -51,7 +51,7 @@ Route::prefix('dashboard')->group(function () {
 Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');
 
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
-Route::get('/teachers/{id}', 'TeacherController@show')->name('teacher_profile');
+Route::get('/teachers/{id}', 'TeacherController@show', function($id){})->name('teacher_profile');
 
 Route::get('/about', 'PageController@about')->name('page_about');
 Route::get('/policy', 'PageController@policy')->name('page_policy');
