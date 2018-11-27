@@ -104,6 +104,9 @@
             height : "640",
             menubar: false,
             selector: '.tinymce',
+            relative_urls : false,
+            remove_script_host : false,
+            document_base_url : "http://localhost/cosplayschool-lar/public/",
             plugins: [
                 'image advlist autolink lists link image charmap print preview anchor textcolor',
                 'searchreplace visualblocks code fullscreen',
