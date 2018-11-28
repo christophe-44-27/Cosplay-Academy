@@ -29,6 +29,7 @@ class TutorialController extends Controller {
 
 	public function create(TutorialRequest $request) {
 		$validated = $request->validated();
+
 		$resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
 		// calculate md5 hash of encoded image
 		$hash = md5($resizedThumbnailImage->__toString());
@@ -38,6 +39,7 @@ class TutorialController extends Controller {
 			Storage::makeDirectory("public/tutorials/thumbnails");
 		}
 		$resizedThumbnailImage->save(storage_path($path));
+
 		$resizedCoverImage = Image::make($request->file('main_picture'))->fit(700, 500)->encode('jpg');
 		// calculate md5 hash of encoded image
 		$hashCover = md5($resizedCoverImage->__toString());
@@ -46,7 +48,8 @@ class TutorialController extends Controller {
 		}
 		$pathCover = "app/public/tutorials/covers/{$hashCover}.jpg";
 		$publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
-		$resizedThumbnailImage->save(storage_path($pathCover));
+        $resizedCoverImage->save(storage_path($pathCover));
+
 		Tutorial::create([
 			'title' => $validated['title'],
 			'tutorial_category_id' => $validated['tutorial_category_id'],
