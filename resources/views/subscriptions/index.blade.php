@@ -31,10 +31,40 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="img-fullwidth" src="http://placehold.it/450x450" alt="">
+                </div>
+                <div class="col-md-7">
+                    <h2 class="text-uppercase mt-0">La boîte du mois de Janvier !</h2>
+                    <h4>Abonnez-vous et retrouvez notre prochaine boîte de cosplay dans votre boîte aux lettres en Janvier !</h4>
+                    <p>
+                        La boîte du mois de Janvier est une boîte ayant pour thème, le monde fabuleux du jeu Zelda (sur Switch).
+                        Dans cette boîte vous aurez la possibilité de créer LA tablette Sheikah du jeu, accompagnée de
+                        ses LEDs.
+                    </p>
+                    <p>
+                        Voici la liste de ce que comprend la boîte de Janvier :
+                    </p>
+                    <ul class="list-divider pl-20">
+                        <li><i class="fa fa-check-square-o mr-10 text-black-light"></i> <a href="#">Mousse EVA (24cm de long)</a></li>
+                        <li><i class="fa fa-check-square-o mr-10 text-black-light"></i> <a href="#">Ensemble de LEDs</a></li>
+                        <li><i class="fa fa-check-square-o mr-10 text-black-light"></i> <a href="#">Peinture vitrail PEBEO bleue</a></li>
+                        <li><i class="fa fa-check-square-o mr-10 text-black-light"></i> <a href="#">Peinture vitrail PEBEO jaune</a></li>
+                        <li><i class="fa fa-check-square-o mr-10 text-black-light"></i> <a href="#">Patron</a></li>
+                    </ul>
+
+                    <a class="btn btn-dark mt-30" href="#subscriptions">Je m'abonne !</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="pricing" data-bg-img="images/pattern/p4.png" style="background-image: url({{asset('images/pattern/p4.png')}});">
         <div class="container">
             <div class="section-content">
-                <div class="row">
+                <div id="subscriptions" class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 hvr-float-shadow mb-sm-30">
                         &nbsp;
                     </div>
