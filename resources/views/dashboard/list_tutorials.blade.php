@@ -1,5 +1,11 @@
 @extends('layout_dashboard')
-
+@push('stylesheets')
+    <style>
+        .product-item{
+            min-height: 306px;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
