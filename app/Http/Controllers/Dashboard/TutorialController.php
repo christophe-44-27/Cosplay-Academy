@@ -18,7 +18,9 @@ class TutorialController extends Controller {
 	}
 
 	public function index() {
-		$tutorials = Tutorial::where('user_id', '=', Auth::user()->id)->get();
+		$tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
 		return view('dashboard/list_tutorials', compact('tutorials'));
 	}
 
