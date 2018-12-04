@@ -87,6 +87,9 @@
                         <li class="#">
                             <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>
                         </li>
+                        <li class="#">
+                            <a href="{{ route('subscriptions') }}">La boîte à cosplay</a>
+                        </li>
                         <li class="">
                             <a href="http://shop.cosplayschool.ca" target="_blank">@lang('messages.navigation.our_shops')</a>
                         </li>

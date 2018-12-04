@@ -57,7 +57,12 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 	})->name('admin_tutorial_unpublish');
 });
 
-Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');
+Route::prefix('subscriptions')->middleware('auth')->group(function () {
+    Route::get('/', 'SubscriptionController@index')->name('subscriptions');
+    Route::get('/checkout/cosplay-box/monthly', 'SubscriptionController@checkoutMonthly')->name('subscription_checkout_monthly');
+    Route::get('/checkout/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
+    Route::post('/checkout/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
+});
 
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show', function($id){})->name('teacher_profile');

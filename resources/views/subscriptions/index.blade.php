@@ -79,10 +79,13 @@
                                     <li><i class="fa fa-check"></i>Instructions de montage</li>
                                     <li><i class="fa fa-check"></i>Publication de votre réalisation</li>
                                     <li><i class="fa fa-times"></i>Aide au montage (Virtuelle)</li>
-                                    <li><i class="fa fa-times"></i>2 mois gratuits</li>
+                                    <li><i class="fa fa-times"></i>2 boîtes gratuites</li>
                                 </ul>
                             </div>
-                            <a href="#" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Signup</a>
+                            <a href="{{ route('subscription_checkout_monthly') }}"
+                               class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                S'abonner
+                            </a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 hvr-float-shadow mb-sm-30">
@@ -96,10 +99,12 @@
                                     <li><i class="fa fa-check"></i>Instructions de montage</li>
                                     <li><i class="fa fa-check"></i>Publication de votre réalisation</li>
                                     <li><i class="fa fa-check"></i>Aide au montage (Virtuelle)</li>
-                                    <li><i class="fa fa-check"></i>2 mois gratuits</li>
+                                    <li><i class="fa fa-check"></i>2 boîtes gratuites</li>
                                 </ul>
                             </div>
-                            <a href="#" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Signup</a>
+                            <a href="{{ route('subscription_checkout_yearly') }}" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                S'abonner
+                            </a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 hvr-float-shadow mb-sm-30">
@@ -162,99 +167,6 @@
                         <p>Si un élément est manquant dans votre boîte nous vous le ferons parvenir sans frais supplémentaire.</p>
                         <p>Si vous constatez un défaut dans votre boîte, contactez nous par le biais de la page Fan Facebook ou grâc au
                         formulaire de contact de ce site.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="mb-20">Photo Gallery</h4>
-                    <div class="owl-carousel-5col owl-carousel owl-theme owl-loaded" data-nav="true">
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage" style="transform: translate3d(-2310px, 0px, 0px); transition: all 0.25s ease 0s; width: 3696px;">
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item"><img src="https://placehold.it/285x215" alt=""></div></div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item">
-                                        <img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item"><img src="https://placehold.it/285x215" alt=""></div></div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item"><img src="https://placehold.it/285x215" alt=""></div></div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item"><img src="https://placehold.it/285x215" alt=""></div></div>
-                                <div class="owl-item active" style="width: 216px; margin-right: 15px;">
-                                    <div class="item"><img src="https://placehold.it/285x215" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="owl-controls">
-                            <div class="owl-nav">
-                                <div class="owl-prev" style="">
-                                    <i class="fa fa-angle-left"></i>
-                                </div>
-                                <div class="owl-next" style="">
-                                    <i class="fa fa-angle-right"></i>
-                                </div>
-                            </div>
-                            <div class="owl-dots" style="display: none;"></div>
-                        </div>
                     </div>
                 </div>
             </div>
