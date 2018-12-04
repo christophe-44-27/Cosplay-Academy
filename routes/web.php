@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
     /** TUTORIELS **/
     Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
@@ -46,6 +46,15 @@ Route::prefix('dashboard')->group(function () {
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
     /** MON ABONNEMENT **/
     Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
+});
+
+Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
+	Route::get('/', 'Administration\IndexController@index')->name('admin_homepage');
+	Route::get('/tutorials', 'Administration\TutorialController@index')->name('admin_tutorial_list');
+	Route::get('/tutorials/publish/{id}', 'Administration\TutorialController@publish', function($id){
+	})->name('admin_tutorial_publish');
+	Route::get('/tutorials/unpublish/{id}', 'Administration\TutorialController@unpublish', function($id){
+	})->name('admin_tutorial_unpublish');
 });
 
 Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');

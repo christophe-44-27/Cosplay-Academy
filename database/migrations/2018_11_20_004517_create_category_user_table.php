@@ -11,16 +11,18 @@ class CreateCategoryUserTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('category_user', function (Blueprint $table) {
-			$table->increments('id');
+		if (!Schema::hasTable('category_user') && !Schema::hasColumns('category_user', ['id', 'user_id', 'category_id'])) {
+			Schema::create('category_user', function (Blueprint $table) {
+				$table->increments('id');
 
-			$table->integer('user_id')->unsigned();
-			$table->integer('category_id')->unsigned();
+				$table->integer('user_id')->unsigned();
+				$table->integer('category_id')->unsigned();
 
-			$table->foreign('user_id', 'fk_user_categorie_id')->references('id')->on('users');
-			$table->foreign('category_id', 'fk_category_id')->references('id')->on('categories');
-			$table->timestamps();
-		});
+				$table->foreign('user_id', 'fk_user_categorie_id')->references('id')->on('users');
+				$table->foreign('category_id', 'fk_category_id')->references('id')->on('categories');
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

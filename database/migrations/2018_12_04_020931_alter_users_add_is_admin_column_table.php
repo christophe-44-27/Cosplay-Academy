@@ -4,18 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvincesTable extends Migration {
+class AlterUsersAddIsAdminColumnTable extends Migration {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
 	public function up() {
-		if (!Schema::hasTable('provinces') && !Schema::hasColumn('provinces', 'name')) {
-			Schema::create('provinces', function (Blueprint $table) {
-				$table->increments('id');
-				$table->string('name', 255);
-				$table->timestamps();
+		if (!Schema::hasColumn('users', 'is_admin')) {
+			Schema::table('users', function (Blueprint $table) {
+				$table->addColumn('boolean', 'is_admin')->default(false);
 			});
 		}
 	}
@@ -26,6 +24,8 @@ class CreateProvincesTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists('provinces');
+		Schema::table('users', function ($table) {
+			$table->dropColumn('is_admin');
+		});
 	}
 }

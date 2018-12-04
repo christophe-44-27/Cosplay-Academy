@@ -11,10 +11,12 @@ class AlterAddressTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::table('address', function (Blueprint $table) {
-			$table->addColumn('integer', 'province_id')->unsigned();
-			$table->foreign('province_id', 'fk_province_id')->references('id')->on('provinces');
-		});
+		if (!Schema::hasColumn('address', 'province_id')) {
+			Schema::table('address', function (Blueprint $table) {
+				$table->addColumn('integer', 'province_id')->unsigned();
+				$table->foreign('province_id', 'fk_province_id')->references('id')->on('provinces');
+			});
+		}
 	}
 
 	/**

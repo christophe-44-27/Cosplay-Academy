@@ -11,12 +11,15 @@ class CreateTutorialCategoriesTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('tutorial_categories', function (Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 255)->nullable(false);
-			$table->string('filter_value', 255)->nullable(false);
+		if(!Schema::hasTable('tutorial_categories') && !Schema::hasColumns('tutorial_categories',
+				['id', 'name', 'filter_value'])) {
+			Schema::create('tutorial_categories', function (Blueprint $table) {
+				$table->increments('id');
+				$table->string('name', 255)->nullable(false);
+				$table->string('filter_value', 255)->nullable(false);
 
-		});
+			});
+		}
 	}
 
 	/**
