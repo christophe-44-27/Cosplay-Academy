@@ -11,7 +11,19 @@
         gtag('config', 'UA-118215472-1');
     </script>
 @endpush
+@push('stylesheets')
+    <style>
+        .already-subscribed{
+            background-color: #F2184F !important;
+            border: none !important;
+        }
 
+        .switch-plan{
+            background-color: #00d7b3 !important;
+            border: none !important;
+        }
+    </style>
+@endpush
 @section('content')
     <section class="inner-header bg-black-222">
         <div class="container pt-10 pb-10">
@@ -82,10 +94,31 @@
                                     <li><i class="fa fa-times"></i>2 boîtes gratuites</li>
                                 </ul>
                             </div>
-                            <a href="{{ route('subscription_checkout_monthly') }}"
-                               class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
-                                S'abonner
-                            </a>
+                            @if(Auth::user())
+                                @if(!$user->subscribed('cs_box'))
+                                    <a href="{{ route('subscription_checkout_monthly') }}"
+                                       class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                        S'abonner
+                                    </a>
+                                @else
+                                    @if(!$user->onPlan('cs_box_monthly'))
+                                        <a href="#"
+                                            class="switch-plan btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                        Opter pour ce plan <br>d'abonnement
+                                        </a>
+                                    @else
+                                        <a href="#"
+                                           class="already-subscribed btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                            Vous êtes déjà abonné(e) :D
+                                        </a>
+                                    @endif
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}"
+                                   class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                    Connectez-vous <br>pour vous inscrire
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 hvr-float-shadow mb-sm-30">
@@ -102,9 +135,31 @@
                                     <li><i class="fa fa-check"></i>2 boîtes gratuites</li>
                                 </ul>
                             </div>
-                            <a href="{{ route('subscription_checkout_yearly') }}" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
-                                S'abonner
-                            </a>
+                            @if(Auth::user())
+                                @if(!$user->subscribed('cs_box'))
+                                    <a href="{{ route('subscription_checkout_yearly') }}"
+                                       class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                        S'abonner
+                                    </a>
+                                @else
+                                    @if(!$user->onPlan('cs_box_yearly'))
+                                        <a href="#"
+                                           class="switch-plan btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                            Opter pour ce plan <br>d'abonnement
+                                        </a>
+                                    @else
+                                        <a href="#"
+                                           class="already-subscribed btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                            Vous êtes déjà abonné(e) :D
+                                        </a>
+                                    @endif
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}"
+                                   class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">
+                                    Connectez-vous <br>pour vous inscrire
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 hvr-float-shadow mb-sm-30">

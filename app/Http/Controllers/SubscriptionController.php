@@ -9,7 +9,8 @@ use Stripe\Stripe;
 class SubscriptionController extends Controller {
 
     public function index() {
-        return view('subscriptions.index');
+        $user = Auth::user();
+        return view('subscriptions.index', compact('user'));
     }
 
     public function checkoutYearly(Request $request) {
