@@ -58,8 +58,8 @@
                                             <h4 class="text-white mt-0 mb-0"><span class="price">{{ $tutorial->tutorialCategory->name }}</span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
-                                            <h4 class="line-bottom mb-10">
-                                                {{ $tutorial->title }}
+                                            <h4 class="line-bottom mb-10" data-toggle="tooltip" title="{{ $tutorial->title }}">
+                                                {{ str_limit($tutorial->title, $limit = 44, $end = '...') }}
                                             </h4>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{{ route('tutorial_show', $tutorial->slug) }}">Voir</a>
                                         </div>

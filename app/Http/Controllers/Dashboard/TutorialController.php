@@ -81,7 +81,7 @@ class TutorialController extends Controller {
 			'slug' => str_slug($validated['title'])
 		]);
 
-        Mail::to($request->user())->send(new TutorialCreatedMail($tutorial));
+        Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
         Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
 
 		$request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
