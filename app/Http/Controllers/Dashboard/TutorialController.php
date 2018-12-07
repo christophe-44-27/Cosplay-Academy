@@ -4,19 +4,28 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\TutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
+use App\Mail\TutorialCreatedAdminMail;
+use App\Mail\TutorialCreatedMail;
 use App\Models\Tutorial;
 use App\Models\TutorialCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class TutorialController extends Controller {
+    /**
+     * TutorialController constructor.
+     */
 	public function __construct() {
 		$this->middleware('auth');
 	}
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function index() {
 		$tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
             ->orderBy('id', 'desc')
@@ -24,11 +33,18 @@ class TutorialController extends Controller {
 		return view('dashboard/list_tutorials', compact('tutorials'));
 	}
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function newTutorial() {
 		$tutorialCategories = TutorialCategory::pluck('name', 'id');
 		return view('dashboard/new_tutorial', compact('tutorialCategories'));
 	}
 
+    /**
+     * @param TutorialRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
 	public function create(TutorialRequest $request) {
 		$validated = $request->validated();
 
@@ -52,7 +68,7 @@ class TutorialController extends Controller {
 		$publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
         $resizedCoverImage->save(storage_path($pathCover));
 
-		Tutorial::create([
+		$tutorial = Tutorial::create([
 			'title' => $validated['title'],
 			'tutorial_category_id' => $validated['tutorial_category_id'],
 			'content' => $validated['content'],
@@ -64,10 +80,19 @@ class TutorialController extends Controller {
 			'user_id' => Auth::id(),
 			'slug' => str_slug($validated['title'])
 		]);
+
+        Mail::to($request->user())->send(new TutorialCreatedMail($tutorial));
+        Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
+
 		$request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
 		return redirect(route('dashboard_tutorials_list'));
 	}
 
+    /**
+     * @param UpdateTutorialRequest $request
+     * @param string                $slug
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
 	public function update(UpdateTutorialRequest $request, string $slug) {
 		$validated = $request->validated();
 		$arrayToUpdate = [

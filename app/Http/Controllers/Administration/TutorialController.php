@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Administration;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TutorialPublishedMail;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TutorialController extends Controller {
 
@@ -21,6 +23,8 @@ class TutorialController extends Controller {
 		$tutorial = Tutorial::findOrFail($id);
 		$tutorial->is_published = true;
 		$tutorial->save();
+
+        Mail::to($tutorial->user->email)->send(new TutorialPublishedMail($tutorial));
 
 		$request->session()->flash('success', 'Le tutoriel a été publié !');
 		return redirect(route('admin_tutorial_list'));
