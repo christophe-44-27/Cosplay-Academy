@@ -47,7 +47,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img class="img-fullwidth" src="http://placehold.it/450x450" alt="">
+                    <img class="img-fullwidth" src="{{ asset('images/boite-cosplay.png') }}" alt="">
                 </div>
                 <div class="col-md-7">
                     <h2 class="text-uppercase mt-0">La boîte du mois de Janvier !</h2>
@@ -227,35 +227,41 @@
             </div>
         </div>
     </section>
-    <section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg2.jpg" data-parallax-ratio="0.7" style="background-image: url({{asset('images/bg/bg2.jpg')}}); background-position: 50% 398px;">
+    <!-- Divider: Funfact -->
+    <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}"
+             data-parallax-ratio="0.7">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="5248" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">5,248</h2>
-                        <h5 class="text-white text-uppercase mb-0">Happy Students</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $studentCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $studentCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos étudiants</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">675</h2>
-                        <h5 class="text-white text-uppercase mb-0">Our Courses</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos cours</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="248" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">248</h2>
-                        <h5 class="text-white text-uppercase mb-0">Our Teachers</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
                     <div class="funfact text-center">
-                        <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="24" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">24</h2>
-                        <h5 class="text-white text-uppercase mb-0">Awards Won</h5>
+                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
                     </div>
                 </div>
             </div>
@@ -267,7 +273,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="pr-40">
-                            <h3 class="text-uppercase text-theme-colored title line-bottom">Our <span class="text-theme-color-2 font-weight-400">Features</span></h3>
+                            <h3 class="text-uppercase text-theme-colored title line-bottom">Ce qui <span class="text-theme-color-2 font-weight-400">compose la boîte</span></h3>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="icon-box p-0 mb-30">
@@ -275,8 +281,8 @@
                                             <i class="pe-7s-scissors text-white"></i>
                                         </a>
                                         <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Less CSS</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
+                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Matériel requis</h5>
+                                            <p class="text-gray">Worbla, Mousse EVA, etc.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -286,8 +292,8 @@
                                             <i class="pe-7s-pen text-white"></i>
                                         </a>
                                         <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Special ShortCode</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
+                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Patron</h5>
+                                            <p class="text-gray">Un patron papier est fournit</p>
                                         </div>
                                     </div>
                                 </div>
@@ -297,8 +303,8 @@
                                             <i class="pe-7s-tools text-white"></i>
                                         </a>
                                         <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Easy Customiz</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
+                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Instructions</h5>
+                                            <p class="text-gray">Instructions détaillées sous format papier.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -308,30 +314,8 @@
                                             <i class="pe-7s-phone text-white"></i>
                                         </a>
                                         <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Responsive</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-vector text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">W3 validation</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-light text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Retina Ready</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
+                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Publication</h5>
+                                            <p class="text-gray">Envoyez-nous votre oeuvre et nous la publierons :)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -339,30 +323,45 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3 class="line-bottom">Why <span class="text-theme-color-2">Choose Us?</span></h3>
-                        <p class="mb-20">The Cweren Law Firm is a recognized leader in landlord tenant representation throughout Texas.The largest professional property.</p>
+                        <h3 class="line-bottom">Pourquoi <span class="text-theme-color-2">choisir la boîte à cosplay ?</span></h3>
+                        <p class="mb-20">
+                            Vous débutez dans le cosplay, ou vous avez envie de découvrir un nouveau matériau sans vous
+                            ruinez ? Eh bien la boîte à cosplay est faite pour vous ! Grâce à ce service vous allez
+                            pouvoir démarrer le cosplay en apprenant des trucs et astuces donnés par des cosplayeurs
+                            talentueux tout en découvrant de nouvelles matériaux comme le Worbla Cristal Art, le Foam Clay
+                            et bien plus encore !
+                        </p>
                         <div id="accordion1" class="panel-group accordion">
                             <div class="panel">
-                                <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                                <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Matériaux utilisés</a> </div>
                                 <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                        <p>Dans la boîte à cosplay nous utilisons du Foam Clay, du Worbla Cristal Art,
+                                        de la mousse EVA, du Worbla, de la peinture acrylique, etc.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Que vais-je trouver dans ma boîte ?</a> </div>
                                 <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                        <p>
+                                            Chaque mois, nous allons annoncer le thème du mois prochain. En revanche vous
+                                            ne saurez pas exactement ce qui se trouvera dans la boîte que vous allez recevoir !
+                                            Eh oui, nous voulons garder un peu de mystère et de surprise :). Sachez
+                                            néanmoins que vous trouverez tout le nécessaire hormis le matériel lourd comme
+                                            une perceuse, une ponçeuse, ou autre.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> Et si ça ne me plaît pas ?</a> </div>
                                 <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                        <p>Pas de panique ! Si le contenu ne vous convient pas, renvoyez-nous la boîte et
+                                        nous vous rembouserons.</p>
+                                        <small>Les frais de port de retour seront à votre charge.</small>
                                     </div>
                                 </div>
                             </div>

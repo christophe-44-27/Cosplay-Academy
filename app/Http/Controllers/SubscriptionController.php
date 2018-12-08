@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tutorial;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 
 class SubscriptionController extends Controller {
 
     public function index() {
         $user = Auth::user();
-        return view('subscriptions.index', compact('user'));
+
+        $teacherCount = User::where('is_teacher', '=', true)->count();
+        $studentCount = User::where('is_teacher', '=', false)->count();
+        $tutorialCount = Tutorial::where('is_published', '=', true)->count();
+        $tutorialNbViews = DB::table('tutorials')
+            ->where('is_published', '=', true)
+            ->sum('nb_views');
+
+        return view('subscriptions.index', compact('user', 'teacherCount', 'studentCount', 'tutorialCount'
+        ,'tutorialNbViews'));
     }
 
     public function checkoutYearly(Request $request) {
