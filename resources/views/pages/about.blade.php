@@ -18,6 +18,11 @@
             color: #00d7b3;
             font-weight: bold;
         }
+        .partners {
+            width: 1000px;
+            height:150px;
+            margin:0 auto;
+        }
     </style>
 @endpush
 
@@ -83,11 +88,14 @@
                         <i class="fa fa-cog fa-spin"></i>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#"> <img alt="..." src="{{ asset('images/club-tissus.png') }}" class="img-fullwidth"> </a> </div>
-                        <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#"> <img alt="..." src="{{ asset('images/deserres.png') }}" class="img-fullwidth"> </a> </div>
-                        <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#"> <img alt="..." src="{{ asset('images/pebeo.png') }}" class="img-fullwidth"> </a> </div>
-                        <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://truenorthcosplay.com" target="_blank"> <img alt="..." src="{{ asset('images/true-north-cosplay.png') }}" class="img-fullwidth"> </a> </div>
-                        <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#"> <img alt="..." src="{{ asset('images/sial.png') }}" class="img-fullwidth"> </a> </div>
+                        <div class="partners">
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://www.clubtissus.com/" target="_blank"> <img alt="Logo Club Tissus" src="{{ asset('images/club-tissus.png') }}" class="img-fullwidth"> </a> </div>
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://www.deserres.ca/fr/" target="_blank"> <img alt="Logo DeSerres" src="{{ asset('images/deserres.png') }}" class="img-fullwidth"> </a> </div>
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="http://www.pebeo.com/Pebeo" target="_blank"> <img alt="Logo Pebeo" src="{{ asset('images/pebeo.png') }}" class="img-fullwidth"> </a> </div>
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://truenorthcosplay.com" target="_blank"> <img alt="..." src="{{ asset('images/true-north-cosplay.png') }}" class="img-fullwidth"> </a> </div>
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://www.sial-canada.com/" target="_blank"> <img alt="Logo SIAL" src="{{ asset('images/sial.png') }}" class="img-fullwidth"> </a> </div>
+                            <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#" target="_blank"> <img alt="" src="{{ asset('images/you.png') }}" class="img-fullwidth"> </a> </div>
+                        </div>
                     </div>
                     <div class="separator separator-rouned">
                         <i class="fa fa-cog fa-spin"></i>
@@ -260,10 +268,12 @@
                                 <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> La visibilité</a> </div>
                                 <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
-                                        <p>En partageant vos tutoriels sur notre site, vous touchez plus de 1 000
+                                        <p>
+                                            En partageant vos tutoriels sur notre site, vous touchez plus de 1 000
                                             personnes par mois. Et ce chiffre ne cesse d'augmenter ! De plus, nous vous
                                             donnons l'occasion de nous accompagner lors des Comic-con afin de présenter
-                                            vos oeuvres sur nos tables.</p>
+                                            vos oeuvres sur nos tables.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
