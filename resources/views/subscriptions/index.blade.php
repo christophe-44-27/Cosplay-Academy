@@ -31,12 +31,12 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-sm-8 xs-text-center">
-                        <h2 class="text-white mt-10">Abonnements</h2>
+                        <h2 class="text-white mt-10">La boîte à Cosplay</h2>
                     </div>
                     <div class="col-sm-4">
                         <ol class="breadcrumb white mt-10 text-right xs-text-center">
                             <li><a href="#">Accueil</a></li>
-                            <li class="active text-gray-silver">Abonnements</li>
+                            <li class="active text-gray-silver">La boîte à Cosplay</li>
                         </ol>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img class="img-fullwidth" src="http://placehold.it/450x450" alt="">
+                    <img class="img-fullwidth" src="{{ asset('images/jan-cosplay-box.png') }}" alt="">
                 </div>
                 <div class="col-md-7">
                     <h2 class="text-uppercase mt-0">La boîte du mois de Janvier !</h2>
