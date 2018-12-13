@@ -4,6 +4,9 @@
         .icon-active-social-network{
             background-color: #00d7b3 !important;
         }
+        .thumb > img{
+            border-radius: 50%;
+        }
     </style>
 @endpush
 
