@@ -233,140 +233,33 @@
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="5248" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">5,248</h2>
-                        <h5 class="text-white text-uppercase mb-0">Happy Students</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $studentCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $studentCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos étudiants</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">675</h2>
-                        <h5 class="text-white text-uppercase mb-0">Our Courses</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos cours</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="248" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">248</h2>
-                        <h5 class="text-white text-uppercase mb-0">Our Teachers</h5>
+                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
                     <div class="funfact text-center">
-                        <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="2000" data-value="24" class="animate-number text-white mt-0 font-38 font-weight-500 appeared">24</h2>
-                        <h5 class="text-white text-uppercase mb-0">Awards Won</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="">
-        <div class="container pt-40">
-            <div class="section-content">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="pr-40">
-                            <h3 class="text-uppercase text-theme-colored title line-bottom">Our <span class="text-theme-color-2 font-weight-400">Features</span></h3>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-scissors text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Less CSS</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-pen text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Special ShortCode</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-tools text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Easy Customiz</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-phone text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Responsive</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-vector text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">W3 validation</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-light text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Retina Ready</h5>
-                                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3 class="line-bottom">Why <span class="text-theme-color-2">Choose Us?</span></h3>
-                        <p class="mb-20">The Cweren Law Firm is a recognized leader in landlord tenant representation throughout Texas.The largest professional property.</p>
-                        <div id="accordion1" class="panel-group accordion">
-                            <div class="panel">
-                                <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                                <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                                <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                                <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
                     </div>
                 </div>
             </div>
