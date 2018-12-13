@@ -45,7 +45,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
     /** MON ABONNEMENT **/
-    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
+//    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
 });
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
@@ -59,11 +59,11 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 
 Route::get('/subscriptions', 'SubscriptionController@index')->name('subscriptions');
 
-Route::prefix('subscriptions/checkout')->middleware('auth')->group(function () {
-	Route::get('/cosplay-box/monthly', 'SubscriptionController@checkoutMonthly')->name('subscription_checkout_monthly');
-	Route::get('/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
-	Route::post('/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
-});
+//Route::prefix('subscriptions/checkout')->middleware('auth')->group(function () {
+//	Route::get('/cosplay-box/monthly', 'SubscriptionController@checkoutMonthly')->name('subscription_checkout_monthly');
+//	Route::get('/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
+//	Route::post('/cosplay-box/yearly', 'SubscriptionController@checkoutYearly')->name('subscription_checkout_yearly');
+//});
 
 
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
