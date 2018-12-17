@@ -26,21 +26,26 @@ class TutorialController extends Controller {
 
     public function tutorialByCategorie(string $filterValue) {
         $category = TutorialCategory::where('filter_value', '=', $filterValue)
-            ->get();
+            ->firstOrFail();
 
         $categories = TutorialCategory::all();
 
-        $tutorials = Tutorial::where('tutorial_category_id', '=', $category)
+        $tutorials = Tutorial::where('tutorial_category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('tutorials.frontend.index', compact('tutorials', 'category', 'categories'));
+        $lastTutorials = Tutorial::where('is_published', '=', '1')
+            ->orderBy('id', 'desc')
+            ->limit(3)
+            ->get();
+
+        return view('tutorials.frontend.index', compact('tutorials', 'category', 'categories', 'lastTutorials'));
     }
 
     public function show(Request $request, string $slug) {
 
-        $tutorial = Tutorial::where('slug', '=', $slug)->first();
+        $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
         $tutorial->nb_views = $tutorial->nb_views + 1;
         $tutorial->save();
 
