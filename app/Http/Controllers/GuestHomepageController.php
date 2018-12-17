@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Tutorial;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GuestHomepageController extends Controller {
 
 	public function index() {
-		$tutorials = Tutorial::where('is_published', '=', 1)->get();
+		$tutorials = Tutorial::where('is_published', '=', 1)
+						->orderBy('id', 'desc')
+						->limit(10)
+						->get();
 		$teachers = User::where('is_teacher', '=', true)
 						->where('profile_picture', '!=', null)
 						->where('cover_picture', '!=', null)
+						->orderBy('id', 'desc')
+						->limit(4)
 						->get();
 
 		$teacherCount = User::where('is_teacher', '=', true)->count();

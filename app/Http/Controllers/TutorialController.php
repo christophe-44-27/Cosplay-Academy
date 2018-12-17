@@ -28,12 +28,14 @@ class TutorialController extends Controller {
         $category = TutorialCategory::where('filter_value', '=', $filterValue)
             ->get();
 
+        $categories = TutorialCategory::all();
+
         $tutorials = Tutorial::where('tutorial_category_id', '=', $category)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('tutorials.frontend.index', compact('tutorials', 'category'));
+        return view('tutorials.frontend.index', compact('tutorials', 'category', 'categories'));
     }
 
     public function show(Request $request, string $slug) {
