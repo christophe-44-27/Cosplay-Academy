@@ -79,10 +79,10 @@
                             <a href="{{ route('homepage') }}">@lang('messages.navigation.home')</a>
                         </li>
                         <li class="">
-                            <a href="{{ route('tutorials') }}">@lang('messages.navigation.our_tutorials')</a>
+                            <a href="{{ route('tutorials') }}">Les tutoriels</a>
                         </li>
                         <li class="">
-                            <a href="{{ route('teachers') }}">@lang('messages.navigation.our_teachers')</a>
+                            <a href="{{ route('teachers') }}">Les auteurs</a>
                         </li>
                         <li class="#">
                             <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>

@@ -37,7 +37,7 @@
                         <h2 class="title text-white">{{ $teacher->public_pseudonym}}</h2>
                         <ol class="breadcrumb text-left text-black mt-10">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
-                            <li><a href="{{ route('teachers') }}">Nos professeurs</a></li>
+                            <li><a href="{{ route('teachers') }}">Les auteurs</a></li>
                             <li class="active text-gray-silver">{{ $teacher->public_pseudonym}}</li>
                         </ol>
                     </div>

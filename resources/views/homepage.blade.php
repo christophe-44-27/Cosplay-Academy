@@ -91,7 +91,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang("L'apprentissage pour tous")
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang("La plateforme d'entraide francophone pour le cosplay")
                             </div>
 
                             <!-- LAYER NR. 3 -->
@@ -116,7 +116,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang("Ensembles, révolutionnons l'apprentissage du cosplay")
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang("Ensembles, faisons avancer le cosplay")
                             </div>
 
                             <!-- LAYER NR. 4 -->
@@ -141,7 +141,7 @@
                                  data-responsive_offset="on"
                                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a
                                         class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20"
-                                        href="#">@lang("Voir plus")</a>
+                                        href="{{ route('page_about') }}">@lang("Voir plus")</a>
                             </div>
                         </li>
                     </ul>
@@ -163,7 +163,7 @@
                             </a>
                             <h4 class="icon-box-title text-uppercase"><a class="" href="#">Compétences</a>
                             </h4>
-                            <p class="">Grâce à nos tutoriels en ligne rédigés par des cosplayers expérimentés, améliorez vos compétences en matière de cosplay.</p>
+                            <p class="">Grâce aux tutoriels en ligne rédigés par des cosplayers expérimentés, améliorez vos compétences en matière de cosplay.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -172,7 +172,8 @@
                                 <img src="{{ asset('images/flaticon-png/small/desktop.png') }}" width="90" alt="">
                             </a>
                             <h4 class="icon-box-title text-uppercase"><a class="" href="#">Disponibilité</a></h4>
-                            <p class="">Nos cours sont consultables gratuitement, 24h/24 et 7j/7 et sur tous vos appareils, pour vous permettre à n’importe quel moment d’apprendre de nouvelles choses.</p>
+                            <p class="">Les tutoriels sont consultables gratuitement, 24h/24 et 7j/7 et sur tous vos
+                                appareils, pour vous permettre à n’importe quel moment d’apprendre de nouvelles choses.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -181,7 +182,8 @@
                                 <img src="{{ asset('images/flaticon-png/small/library.png') }}" width="90" alt="">
                             </a>
                             <h4 class="icon-box-title text-uppercase"><a class="" href="#">Diversité</a></h4>
-                            <p class="">Une gamme de tutoriels large couvrant tous les aspects du cosplay, de la fabrication à la photographie, en passant par le maquillage et les guides divers.</p>
+                            <p class="">Une gamme de tutoriels larges couvrant tous les aspects du cosplay, de la
+                                fabrication à la photographie, en passant par le maquillage et les guides divers.</p>
                         </div>
                     </div>
                 </div>
@@ -299,7 +301,7 @@
                         <i class="pe-7s-users mt-5 text-theme-color-2"></i>
                         <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
                             class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
+                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
@@ -338,8 +340,8 @@
                                 @endif
                             </div>
                             <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                                <h4 class="name text-theme-color-2 mt-0">
-                                    {{ $teacher->public_pseudonym }}
+                                <h4 class="name text-theme-color-2 mt-0" data-toggle="tooltip" title="{{ $teacher->public_pseudonym }}">
+                                    {{ str_limit($teacher->public_pseudonym, $limit = 12, $end = '...') }}
                                     <small>@lang('Professeur')</small>
                                 </h4>
                                 <p class="mb-20"></p>

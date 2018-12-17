@@ -107,8 +107,8 @@
                     <div class="widget dark">
                         <h4 class="widget-title">La communauté</h4>
                         <ul class="list angle-double-right list-border">
-                            <li><a href="{{ route('page_program_author') }}">Devenir professeurs</a></li>
-                            <li><a href="{{ route('teachers') }}">Nos professeurs</a></li>
+                            <li><a href="{{ route('page_program_author') }}">Publier un tutoriel</a></li>
+                            <li><a href="{{ route('teachers') }}">Les auteurs de tutoriel</a></li>
                             <li><a href="#">Nos événements</a></li>
                         </ul>
                     </div>

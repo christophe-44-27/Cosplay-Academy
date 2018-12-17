@@ -15,10 +15,10 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title text-white">Nos professeurs</h2>
+                        <h2 class="title text-white">Les auteurs de tutoriel</h2>
                         <ol class="breadcrumb text-left text-black mt-10">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
-                            <li class="active text-gray-silver">Nos professeurs</li>
+                            <li class="active text-gray-silver">Les auteurs de tutoriel</li>
                         </ol>
                     </div>
                 </div>
@@ -42,7 +42,9 @@
                         </div>
                         <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
                             <h4 class="text-uppercase font-raleway font-weight-600 m-0">
-                                <a class="text-theme-color-2" href="{{ route('teacher_profile', $teacher->id) }}">{{ $teacher->public_pseudonym }}</a>
+                                <a class="text-theme-color-2" href="{{ route('teacher_profile', $teacher->id) }}" data-toggle="tooltip" title="{{ $teacher->public_pseudonym }}">
+                                    {{ str_limit($teacher->public_pseudonym, $limit = 15, $end = '...') }}
+                                </a>
                             </h4>
                             <h5 class="text-theme-color">Canada</h5>
                             <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
@@ -153,7 +155,7 @@
                         <i class="pe-7s-users mt-5 text-theme-color-2"></i>
                         <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
                             class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
+                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
@@ -247,28 +249,39 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3 class="line-bottom">Pourquoi <span class="text-theme-color-2">nous choisir ?</span></h3>
-                        <p class="mb-20">La Cosplay School est la première école en ligne de cosplay. Nous avons pour
-                            but de révolutionner l'apprentissage du Cosplay, et nous souhaitons démocratiser son apprentissage.</p>
+                        <h3 class="line-bottom">Pourquoi publier <span class="text-theme-color-2">sur notre site ?</span></h3>
+                        <p class="mb-20">
+                            La Cosplay School c'est LA plateforme francophone de référence dans le partage
+                            des tutoriels de cosplay.
+                        </p>
                         <div id="accordion1" class="panel-group accordion">
                             <div class="panel">
-                                <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Partager ses connaissances</a> </div>
+                                <div class="panel-title">
+                                    <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true">
+                                        <span class="open-sub"></span> Partager ses connaissances
+                                    </a>
+                                </div>
                                 <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
                                         <p>
                                             Vous avez envie de partager vos connaissances, mais vous n'avez pas envie
-                                            d'avoir à gérer un site internet ? Parfait, nous le faisaons pour vous !
+                                            d'avoir à gérer un site internet ? Parfait, nous le faisons pour vous !
                                             Déposez vos tutoriels, organisez vos ateliers, on s'occupent du reste :).
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Les récompenses d'auteur</a> </div>
+                                <div class="panel-title">
+                                    <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true">
+                                        <span class="open-sub"></span>
+                                        Les récompenses
+                                    </a>
+                                </div>
                                 <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
                                         <p>
-                                            Les récompenses d'auteurs vous permettent de recevoir des contreparties
+                                            Les récompenses vous permettent de recevoir des contreparties
                                             allant de 20$ à 100$ (+ du matériel gratuit). Ces récompenses sont
                                             accessibles grâce à des palliers de publications de tutoriels.
                                         </p>
@@ -276,13 +289,20 @@
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> La visibilité</a> </div>
+                                <div class="panel-title">
+                                    <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true">
+                                        <span class="open-sub"></span>
+                                        La visibilité
+                                    </a>
+                                </div>
                                 <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
                                     <div class="panel-content">
-                                        <p>En partageant vos tutoriels sur notre site, vous touchez plus de 1 000
+                                        <p>
+                                            En partageant vos tutoriels sur notre site, vous touchez plus de 1 000
                                             personnes par mois. Et ce chiffre ne cesse d'augmenter ! De plus, nous vous
                                             donnons l'occasion de nous accompagner lors des Comic-con afin de présenter
-                                            vos oeuvres sur nos tables.</p>
+                                            vos oeuvres sur nos tables.
+                                        </p>
                                     </div>
                                 </div>
                             </div>

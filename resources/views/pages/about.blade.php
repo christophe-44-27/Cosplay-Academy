@@ -142,7 +142,7 @@
                         <i class="pe-7s-users mt-5 text-theme-color-2"></i>
                         <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
                             class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos professeurs</h5>
+                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
