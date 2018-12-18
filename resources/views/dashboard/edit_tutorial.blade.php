@@ -9,6 +9,7 @@
             <!-- HEADLINE -->
             <div class="headline simple primary">
                 <h4>Mettre à jour le tutoriel {{ $tutorial->title }}</h4>
+                <a href="{{ route('tutorial_publish', $tutorial->id) }}" class="button mid-short primary">Publier le tutoriel</a>
             </div>
             <!-- /HEADLINE -->
 
@@ -83,7 +84,7 @@
                     <div class="form-box-item full">
                         <div>
                             <div class="clearfix"></div>
-                            {{ Form::submit('Enregistrer', ['class' => 'button big dark']) }}
+                            {{ Form::submit('Enregistrer le brouillon', ['class' => 'button big dark']) }}
                         </div>
                     </div>
                     <!-- /FORM BOX ITEM -->

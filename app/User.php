@@ -6,10 +6,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail {
-	use Notifiable;
-	use Billable;
+	use HasApiTokens, Notifiable, Billable;
 
 	/**
 	 * The attributes that are mass assignable.

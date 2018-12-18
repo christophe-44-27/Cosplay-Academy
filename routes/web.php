@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Tutorial;
 
 Route::get('/', 'GuestHomepageController@index')->name('homepage');
 Route::get('/tutorials', 'Tutorials\TutorialCategoryController@index')->name('list_tutorials');
@@ -31,7 +32,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     })->name('tutorial_update');
     Route::get('tutorials/delete/{slug}', 'Dashboard\TutorialController@delete', function ($slug) {
     })->name('tutorial_remove');
-    Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
+    Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')
+        ->name('upload_from_wysiwyg');
+    Route::get('tutorials/publish/{id}', 'Dashboard\TutorialController@publish', function($id){
+    })->name('tutorial_publish');
+    Route::get('tutorials/unpublish/{id}', 'Dashboard\TutorialController@unpublish', function($id){
+    })->name('tutorial_unpublish');
     /** ADRESSES **/
     Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
     Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');

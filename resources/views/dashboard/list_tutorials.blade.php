@@ -23,6 +23,10 @@
                 <div class="alert alert-success">{{ Session::get('success') }}</div>
             @endif
 
+            @if(Session::has('error'))
+                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+        @endif
+
             <!-- PRODUCT LIST -->
             <div class="product-list grid column4-wrap">
                 <a href="{{ route('tutorial_new') }}">
@@ -50,6 +54,9 @@
                     @foreach($tutorials as $tutorial)
                         <!-- PRODUCT ITEM -->
                         <div class="product-item column">
+                            @if($tutorial->is_published)
+                                <span class="pin primary">Publié</span>
+                            @endif
                             <!-- PRODUCT PREVIEW ACTIONS -->
                             <div class="product-preview-actions">
                                 <!-- PRODUCT PREVIEW IMAGE -->
@@ -76,9 +83,15 @@
                                         <!-- DP TRIANGLE -->
                                         <div class="dp-triangle"></div>
                                         <!-- DP TRIANGLE -->
-                                        <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
-                                            Modifier
-                                        </a>
+                                        @if($tutorial->is_published)
+                                            <a href="{{ route('tutorial_unpublish', $tutorial->id)}}">
+                                                Dépublier
+                                            </a>
+                                        @else
+                                            <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
+                                                Modifier
+                                            </a>
+                                        @endif
                                     </li>
                                     <li class="dropdown-item">
                                         <a href="{{ route('tutorial_remove', $tutorial->slug) }}">

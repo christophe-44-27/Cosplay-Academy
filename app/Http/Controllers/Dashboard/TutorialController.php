@@ -7,6 +7,7 @@ use App\Http\Requests\TutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
 use App\Mail\TutorialCreatedAdminMail;
 use App\Mail\TutorialCreatedMail;
+use App\Mail\TutorialPublishedMail;
 use App\Models\Tutorial;
 use App\Models\TutorialCategory;
 use App\Http\Controllers\Controller;
@@ -49,14 +50,18 @@ class TutorialController extends Controller {
      */
     public function create(TutorialRequest $request, ExtractYoutubeVideoIdService $videoIdService) {
         $validated = $request->validated();
+        $arrayToCreate = [];
 
         /**
          * If there is a video url, just check if we can retrieve the video ID.
          */
-        try{
-            $videoId = $videoIdService->retrieveYoutubeVideoId($request->request->get('url_video'));
-        } catch(YoutubeVideoIdNotFoundException $idNotFoundException) {
-            return back()->withErrors($idNotFoundException->getMessage())->withInput();
+        if($request->request->get('url_video')) {
+            try{
+                $videoId = $videoIdService->retrieveYoutubeVideoId($request->request->get('url_video'));
+                $arrayToCreate['video_id'] = $videoId;
+            } catch(YoutubeVideoIdNotFoundException $idNotFoundException) {
+                return back()->withErrors($idNotFoundException->getMessage())->withInput();
+            }
         }
 
         $resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
@@ -79,19 +84,20 @@ class TutorialController extends Controller {
         $publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
         $resizedCoverImage->save(storage_path($pathCover));
 
-        $tutorial = Tutorial::create([
+        $arrayToCreate = [
             'title' => $validated['title'],
             'tutorial_category_id' => $validated['tutorial_category_id'],
             'content' => $validated['content'],
             'thumbnail_picture' => $publicThumbnailsPath,
             'main_picture' => $publicCoversPath,
             'url_video' => $request->request->get('url_video'),
-            'video_id' => $videoId,
             'nb_views' => 0,
             'nb_likes' => 0,
             'user_id' => Auth::id(),
             'slug' => str_slug($validated['title']),
-        ]);
+        ];
+
+        $tutorial = Tutorial::create($arrayToCreate);
 
         Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
         Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
@@ -158,6 +164,11 @@ class TutorialController extends Controller {
     public function edit(Request $request, string $slug) {
         $tutorialCategories = TutorialCategory::pluck('name', 'id');
         $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
+
+        if($tutorial->is_published) {
+            $request->session()->flash('error', 'Veuillez dépublier le tutoriel avant de le modifier.');
+            return redirect(route('dashboard_tutorials_list'));
+        }
         $currentUrl = $request->url();
         return view('dashboard/edit_tutorial', compact(
             'tutorial',
@@ -172,6 +183,26 @@ class TutorialController extends Controller {
     public function delete(string $slug) {
         $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
         $tutorial->delete();
+        return redirect(route('dashboard_tutorials_list'));
+    }
+
+    public function publish(Request $request, $id) {
+        $tutorial = Tutorial::findOrFail($id);
+        $tutorial->is_published = true;
+        $tutorial->save();
+
+        Mail::to($tutorial->user->email)->send(new TutorialPublishedMail($tutorial));
+
+        $request->session()->flash('success', 'Le tutoriel a été publié !');
+        return redirect(route('dashboard_tutorials_list'));
+    }
+
+    public function unpublish(Request $request, $id) {
+        $tutorial = Tutorial::findOrFail($id);
+        $tutorial->is_published = false;
+        $tutorial->save();
+
+        $request->session()->flash('success', 'Le tutoriel a été dépublié !');
         return redirect(route('dashboard_tutorials_list'));
     }
 }
