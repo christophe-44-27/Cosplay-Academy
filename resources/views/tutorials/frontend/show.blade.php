@@ -138,6 +138,12 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="widget">
+                            <a href="{{ route('tutoriel_report', $tutorial) }}" class="btn btn-danger">
+                                Signaler le tutoriel
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12">

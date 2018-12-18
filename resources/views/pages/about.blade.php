@@ -72,18 +72,17 @@
                         aider les cosplayers de tous niveaux à apprendre de nouvelles choses, grâce à des cosplayers
                         experts dans différents domaines tels que l’artisanat, la couture, le maquillage ou encore la
                         photographie et l’impression 3D.
-
                     </p>
                     <p>
-                        Ce projet d’école est un projet à long-terme, et avant de créer une école physique (ce qui
-                        s’apparente à notre rêve), nous avons opté pour l’ouverture d’une plateforme virtuelle,
-                        proposant des tutoriels en ligne et en français, complétés par des ateliers physiques organisés
-                        grâce à nos partenaires.
-
+                        Nous avons décidé de mettre en place un projet à long terme. Nous souhaitons fédérer une communauté
+                        de cosplayeurs, de photographes, et autres professionnels avant de créer une école physique (ce qui
+                        s’apparente à notre rêve). Notre plateforme propose des tutoriels en ligne et en français, complétés
+                        par des ateliers physiques organisés grâce à nos partenaires.
                     </p>
                     <div class="clearfix"></div>
                     <h5 class="about">Nos partenaires</h5>
-                    <p>La Cosplay School est suivie par des partenaires formidables, tels que DeSerres des Galeries de la Capitale à Québec, SIAL Canada à Montréal, True North Cosplay, PEBEO, et Club Tissus à Québec.</p>
+                    <p>La Cosplay School est suivie par des partenaires formidables, tels que DeSerres des Galeries de
+                        la Capitale à Québec, SIAL Canada à Montréal, True North Cosplay, PEBEO, et Club Tissus à Québec.</p>
                     <div class="separator separator-rouned">
                         <i class="fa fa-cog fa-spin"></i>
                     </div>

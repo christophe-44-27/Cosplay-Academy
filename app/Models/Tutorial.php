@@ -19,7 +19,8 @@ class Tutorial extends Model {
 		'nb_likes',
 		'tutorial_category_id',
 		'user_id',
-		'slug'
+		'slug',
+		'is_reported'
 	];
 
 	public function user() {

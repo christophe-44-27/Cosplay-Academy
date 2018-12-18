@@ -87,6 +87,7 @@ Route::get('/tutorials', 'TutorialController@index')->name('tutorials');
 Route::get('/tutorials/{slug}', 'TutorialController@show', function($slug) {})->name('tutorial_show');
 Route::get('/tutorials/category/{filterValue}', 'TutorialController@tutorialByCategorie', function($filterValue){
 })->name('tutorials_by_category');
+Route::get('/tutorials/report/{id}', 'TutorialController@reportTutorial', function($id){})->name('tutoriel_report');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
 Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
