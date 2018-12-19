@@ -83,6 +83,15 @@
         </li>
         <!-- /DROPDOWN ITEM -->
 
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('gallery') }}">
+                <span class="sl-icon icon-picture"></span>
+                Mes galeries
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+
         {{--<!-- DROPDOWN ITEM -->--}}
         {{--<li class="dropdown-item">--}}
             {{--<a href="{{ route('my_subscriptions') }}">--}}

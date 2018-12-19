@@ -52,6 +52,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
     /** MON ABONNEMENT **/
 //    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
+    /** GALERIE PHOTOS */
+    Route::get('gallery', 'Dashboard\GalleryController@index')->name('gallery');
+    Route::get('gallery/new', 'Dashboard\GalleryController@newGallery')->name('gallery_new');
+    Route::post('gallery/create', 'Dashboard\GalleryController@create', function($slug){})->name('gallery_create');
+    Route::get('gallery/edit/{slug}', 'Dashboard\GalleryController@edit', function($slug){})->name('gallery_edit');
+    Route::post('gallery/update/{slug}', 'Dashboard\GalleryController@update')->name('gallery_update');
+    Route::get('gallery/delete/{slug}', 'Dashboard\GalleryController@delete')->name('gallery_delete');
+    Route::get('gallery/{slug}/photos', 'Dashboard\GalleryController@displayGalleryContent')->name('gallery_display_photos');
+    Route::post('gallery/{slug}/photos/add', 'Dashboard\GalleryController@addPhotoToGallery', function($slug){})->name('gallery_add_photo');
 });
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
