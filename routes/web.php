@@ -84,6 +84,8 @@ Route::get('/subscriptions', 'SubscriptionController@index')->name('subscription
 Route::get('/teachers', 'TeacherController@index')->name('teachers');
 Route::get('/teachers/{id}', 'TeacherController@show', function($id){})->name('teacher_profile');
 
+Route::get('/community', 'CommunityController@index')->name('community');
+Route::get('/community/gallery/{slug}', 'CommunityController@showGallery', function($slug){})->name('community_gallery_show');
 Route::get('/about', 'PageController@about')->name('page_about');
 Route::get('/policy', 'PageController@policy')->name('page_policy');
 Route::get('/cgu', 'PageController@cgu')->name('page_cgu');

@@ -92,15 +92,9 @@
                                         <a href="{{ route('gallery_display_photos', $gallery->slug)}}">
                                             Ajouter des images
                                         </a>
-                                        @if($gallery->is_published)
-                                            <a href="{{ route('gallery_unpublish', $gallery->id)}}">
-                                                Dépublier
-                                            </a>
-                                        @else
-                                            <a href="{{ route('gallery_edit', $gallery->slug)}}">
-                                                Modifier
-                                            </a>
-                                        @endif
+                                        <a href="{{ route('gallery_edit', $gallery->slug)}}">
+                                            Modifier
+                                        </a>
                                     </li>
                                     <li class="dropdown-item">
                                         <a href="{{ route('gallery_delete', $gallery->slug) }}">

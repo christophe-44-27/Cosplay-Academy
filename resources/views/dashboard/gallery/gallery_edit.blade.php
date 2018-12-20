@@ -22,7 +22,7 @@
                 </div>
             @endif
 
-            {!! Form::open(['url' => route('gallery_update'), 'enctype' => "multipart/form-data"]) !!}
+            {!! Form::open(['url' => route('gallery_update', $gallery->slug), 'enctype' => "multipart/form-data"]) !!}
             <div class="form-box-items full">
                 <!-- FORM BOX ITEM -->
                 <div class="form-box-item full">
@@ -30,9 +30,15 @@
                     <hr class="line-separator">
                     <div>
                         <!-- INPUT CONTAINER -->
+                        <div class="input-container">
+                            <label for="cover_image" class="rl-label required">Miniature de la galerie</label>
+                            <input id="cover_image" type="file" name="cover_image">
+                        </div>
+                        <!-- /INPUT CONTAINER -->
+                        <!-- INPUT CONTAINER -->
                         <div class="input-container half">
                             <label for="title" class="rl-label required">Titre de la galerie</label>
-                            {{ Form::text('title') }}
+                            {{ Form::text('title', $gallery->title) }}
                         </div>
                         <!-- /INPUT CONTAINER -->
 
@@ -48,7 +54,7 @@
                         <!-- INPUT CONTAINER -->
                         <div class="input-container">
                             <label for="content" class="rl-label required">Description</label>
-                            {{ Form::text('description') }}
+                            {{ Form::text('description', $gallery->description) }}
                         </div>
                         <!-- /INPUT CONTAINER -->
                     </div>
@@ -59,7 +65,7 @@
                 <div class="form-box-item full">
                     <div>
                         <div class="clearfix"></div>
-                        {{ Form::submit('Ajouter la galerie', ['class' => 'button big dark']) }}
+                        {{ Form::submit('Modifier la galerie', ['class' => 'button big dark']) }}
                     </div>
                 </div>
                 <!-- /FORM BOX ITEM -->

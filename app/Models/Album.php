@@ -15,6 +15,7 @@ class Album extends Model {
         'category_id',
         'slug',
         'cover_image',
+        'cover_frontend',
         'user_id',
     ];
 

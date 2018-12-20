@@ -84,6 +84,9 @@
                         <li class="">
                             <a href="{{ route('teachers') }}">Les auteurs</a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('community') }}">Découvrir</a>
+                        </li>
                         <li class="#">
                             <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>
                         </li>

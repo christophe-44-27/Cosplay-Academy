@@ -17,6 +17,7 @@ class CreateAlbumsTable extends Migration {
             $table->text('description')->nullable();
             $table->string('slug', 255);
             $table->string('cover_image', 255);
+            $table->string('cover_frontend', 255);
             $table->boolean('is_published')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
