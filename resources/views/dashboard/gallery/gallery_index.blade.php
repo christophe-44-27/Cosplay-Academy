@@ -113,7 +113,7 @@
                                 </a>
 
                                 <a href="#">
-                                    <p class="category primary">{{ $gallery->category->name }}</p>
+                                    <p class="category primary">{{ $gallery->galleryCategory->name }}</p>
                                 </a>
                             </div>
                             <!-- /PRODUCT INFO -->

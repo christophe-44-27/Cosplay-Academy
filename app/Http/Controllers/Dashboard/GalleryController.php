@@ -13,6 +13,7 @@ use App\Mail\TutorialCreatedMail;
 use App\Mail\TutorialPublishedMail;
 use App\Models\Album;
 use App\Models\Category;
+use App\Models\GalleryCategory;
 use App\Models\Photo;
 use App\Models\Tutorial;
 use App\Models\TutorialCategory;
@@ -46,7 +47,7 @@ class GalleryController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function newGallery() {
-        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = GalleryCategory::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('dashboard.gallery.gallery_new', compact('categories'));
     }
 
@@ -63,11 +64,11 @@ class GalleryController extends Controller {
         $hashCover = md5($coverImageResized->__toString());
 
         if (!is_dir(storage_path("app/public/users/" . $user->id . "/albums/covers"))) {
-            Storage::makeDirectory("users/". $user->id . "/albums/covers");
+            Storage::makeDirectory("public/users/". $user->id . "/albums/covers");
         }
 
-        $pathCover = "app/public/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
-        $publicCoversPath = "/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
+        $pathCover = "users/". $user->id ."/albums/covers/{$hashCover}.jpg";
+        $publicCoversPath = "users/". $user->id ."/albums/covers/{$hashCover}.jpg";
         $coverImageResized->save(storage_path($pathCover));
 
         ///////////////////////////////////////////////////
@@ -76,13 +77,13 @@ class GalleryController extends Controller {
         // calculate md5 hash of encoded image
         $hashCoverFrontend = md5($coverFrontend->__toString());
 
-        $pathCoverFrontend = "app/public/users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
-        $publicCoversFrontendPath = "/users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
+        $pathCoverFrontend = "users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
+        $publicCoversFrontendPath = "users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
         $coverFrontend->save(storage_path($pathCoverFrontend));
 
         $arrayToCreate = [
             'title' => $validated['title'],
-            'category_id' => $validated['category_id'],
+            'gallery_category_id' => $validated['gallery_category_id'],
             'description' => $validated['description'],
             'user_id' => $user->id,
             'is_published' => true,
@@ -98,7 +99,7 @@ class GalleryController extends Controller {
 
     public function edit(string $slug) {
         $gallery = Album::where('slug', '=', $slug)->firstOrFail();
-        $categories = Category::pluck('name', 'id');
+        $categories = GalleryCategory::pluck('name', 'id');
 
         return view('dashboard.gallery.gallery_edit', compact('gallery', 'categories'));
     }
@@ -129,7 +130,7 @@ class GalleryController extends Controller {
 
         $arrayToUpdate = [
             'title' => $validated['title'],
-            'category_id' => $validated['category_id'],
+            'gallery_category_id' => $validated['gallery_category_id'],
             'description' => $validated['description'],
             'user_id' => $user->id,
             'is_published' => true,

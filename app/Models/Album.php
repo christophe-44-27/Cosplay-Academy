@@ -12,7 +12,7 @@ class Album extends Model {
         'title',
         'description',
         'is_published',
-        'category_id',
+        'gallery_category_id',
         'slug',
         'cover_image',
         'cover_frontend',
@@ -23,7 +23,7 @@ class Album extends Model {
         return $this->belongsTo(User::class);
     }
 
-    public function category() {
-        return $this->belongsTo(Category::class);
+    public function galleryCategory() {
+        return $this->belongsTo(GalleryCategory::class);
     }
 }

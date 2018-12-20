@@ -13,8 +13,7 @@ class Address extends Model {
 		'zip_code',
 		'city',
 		'country_id',
-		'user_address_id',
-		'province_id'
+		'user_address_id'
 	];
 
 	public function user() {

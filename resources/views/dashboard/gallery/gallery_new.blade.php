@@ -44,8 +44,8 @@
 
                         <!-- INPUT CONTAINER -->
                         <div class="input-container half">
-                            <label for="url_video" class="rl-label">Sa catégorie</label>
-                            {{ Form::select('category_id', $categories) }}
+                            <label for="gallery_category_id" class="rl-label">Sa catégorie</label>
+                            {{ Form::select('gallery_category_id', $categories) }}
                         </div>
                         <!-- /INPUT CONTAINER -->
 

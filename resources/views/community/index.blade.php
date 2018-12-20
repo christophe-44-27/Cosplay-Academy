@@ -37,10 +37,10 @@
                 <div class="col-md-12">
                     <!-- Works Filter -->
                     <div class="portfolio-filter font-alt align-center">
-                        <a href="#" class="active" data-filter="*">All</a>
-                        <a href="#branding" class="" data-filter=".branding">Branding</a>
-                        <a href="#design" class="" data-filter=".design">Design</a>
-                        <a href="#photography" class="" data-filter=".photography">Photography</a>
+                        <a href="#" class="active" data-filter="*">Toutes</a>
+                        @foreach($categories as $category)
+                            <a href="#{{ $category->slug }}" class="" data-filter=".{{ $category->slug }}">{{ $category->name }}</a>
+                        @endforeach
                     </div>
                     <!-- End Works Filter -->
 
@@ -49,7 +49,7 @@
                         @if($galleries)
                             @foreach($galleries as $gallery)
                                 <!-- Portfolio Item Start -->
-                                <div class="gallery-item photography">
+                                <div class="gallery-item {{ $gallery->galleryCategory->slug }}">
                                     <div class="thumb">
                                         <img class="img-fullwidth" src="{{ asset('storage/' . $gallery->cover_frontend) }}" alt="project">
                                         <div class="overlay-shade"></div>

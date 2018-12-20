@@ -26,7 +26,7 @@ class UpdateGalleryRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'category_id' => 'required',
+            'gallery_category_id' => 'required',
             'cover_image' => 'dimensions:min_width=258,min_height=150'
         ];
     }
@@ -41,7 +41,7 @@ class UpdateGalleryRequest extends FormRequest
         return [
             'title.required' => "Le titre est obligatoire",
             'description.required'  => "La description est obligatoire",
-            'category_id.required' => "Le choix d'une catégorie est obligatoire",
+            'gallery_category_id.required' => "Le choix d'une catégorie est obligatoire",
             'cover_image.dimensions' => 'Les dimensions minimum sont de 258x150px'
         ];
     }
