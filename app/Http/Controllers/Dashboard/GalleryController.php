@@ -64,10 +64,10 @@ class GalleryController extends Controller {
         $hashCover = md5($coverImageResized->__toString());
 
         if (!is_dir(storage_path("app/public/users/" . $user->id . "/albums/covers"))) {
-            Storage::makeDirectory("public/users/". $user->id . "/albums/covers");
+            Storage::makeDirectory("users/". $user->id . "/albums/covers");
         }
 
-        $pathCover = "users/". $user->id ."/albums/covers/{$hashCover}.jpg";
+        $pathCover = "app/public/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
         $publicCoversPath = "users/". $user->id ."/albums/covers/{$hashCover}.jpg";
         $coverImageResized->save(storage_path($pathCover));
 
@@ -77,7 +77,7 @@ class GalleryController extends Controller {
         // calculate md5 hash of encoded image
         $hashCoverFrontend = md5($coverFrontend->__toString());
 
-        $pathCoverFrontend = "users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
+        $pathCoverFrontend = "app/public/users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
         $publicCoversFrontendPath = "users/". $user->id ."/albums/covers/{$hashCoverFrontend}.jpg";
         $coverFrontend->save(storage_path($pathCoverFrontend));
 
@@ -117,12 +117,8 @@ class GalleryController extends Controller {
             // calculate md5 hash of encoded image
             $hashCover = md5($coverImageResized->__toString());
 
-            if (!is_dir(storage_path("app/public/users/" . $user->id . "/albums/covers"))) {
-                Storage::makeDirectory("users/". $user->id . "/albums/covers");
-            }
-
             $pathCover = "app/public/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
-            $publicCoversPath = "/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
+            $publicCoversPath = "public/users/". $user->id ."/albums/covers/{$hashCover}.jpg";
             $coverImageResized->save(storage_path($pathCover));
 
             $arrayToUpdate['cover_image'] = $publicCoversPath;

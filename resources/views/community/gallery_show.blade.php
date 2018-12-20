@@ -38,7 +38,7 @@
                     <div class="">
                         <blockquote class="bg-theme-colored">
                             <p>{{ $gallery->description }}</p>
-                            <footer>Someone famous in <cite title="Source Title">{{ $gallery->user->name }}</cite></footer>
+                            <footer><cite title="Source Title">{{ $gallery->user->name }}</cite></footer>
                         </blockquote>
                     </div>
 
