@@ -214,4 +214,18 @@ class GalleryController extends Controller {
         $request->session()->flash('success', "Ton album a bien été supprimé ! :)");
         return redirect(route('gallery'));
     }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @param string $slug
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function deletePhotoFromGallery(Request $request, int $id, string $slug) {
+        $photo = Photo::where('id', '=', $id)->firstOrFail();
+        $photo->delete();
+
+        $request->session()->flash('success', "Ta photo a bien été supprimée ! :)");
+        return redirect(route('gallery_display_photos', $slug));
+    }
 }

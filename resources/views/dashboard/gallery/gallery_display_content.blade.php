@@ -125,7 +125,7 @@
                                 <!-- DROPDOWN -->
                                 <ul class="dropdown small hover-effect closed">
                                     <li class="dropdown-item">
-                                        <a href="#">
+                                        <a href="{{ route('community_gallery_delete_photo', [$photo->id, $gallery->slug]) }}">
                                             Supprimer
                                         </a>
                                     </li>

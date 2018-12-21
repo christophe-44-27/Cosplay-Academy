@@ -61,6 +61,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('gallery/delete/{slug}', 'Dashboard\GalleryController@delete')->name('gallery_delete');
     Route::get('gallery/{slug}/photos', 'Dashboard\GalleryController@displayGalleryContent')->name('gallery_display_photos');
     Route::post('gallery/{slug}/photos/add', 'Dashboard\GalleryController@addPhotoToGallery', function($slug){})->name('gallery_add_photo');
+    Route::get('gallery/{slug}/photo/delete/{id}', 'Dashboard\GalleryController@deletePhotoFromGallery', function($id, $slug){})
+        ->name('community_gallery_delete_photo');
 });
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
@@ -86,6 +88,7 @@ Route::get('/teachers/{id}', 'TeacherController@show', function($id){})->name('t
 
 Route::get('/community', 'CommunityController@index')->name('community');
 Route::get('/community/gallery/{slug}', 'CommunityController@showGallery', function($slug){})->name('community_gallery_show');
+
 Route::get('/about', 'PageController@about')->name('page_about');
 Route::get('/policy', 'PageController@policy')->name('page_policy');
 Route::get('/cgu', 'PageController@cgu')->name('page_cgu');
