@@ -109,8 +109,8 @@
                             <div class="product-preview-actions">
                                 <!-- PRODUCT PREVIEW IMAGE -->
                                 <figure class="product-preview-image">
-                                    @if (isset($photo->image_path))
-                                        <img src="{{ asset('storage/' . $photo->image_path) }}"
+                                    @if (isset($photo->image_dashboard_path))
+                                        <img src="{{ asset('storage/' . $photo->image_dashboard_path) }}"
                                              alt="product-image">
                                     @endif
                                 </figure>

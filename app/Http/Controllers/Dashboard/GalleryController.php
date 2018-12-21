@@ -176,10 +176,23 @@ class GalleryController extends Controller {
         $publicPath = "users/". $user->id ."/albums/" . $gallery->id . "/{$hashCover}.jpg";
         $imagePath->save(storage_path($path));
 
+        $coverImageResized = Image::make($request->file('image_path'))->fit(258, 150)->encode('jpg');
+        // calculate md5 hash of encoded image
+        $hashCoverDashboard = md5($coverImageResized->__toString());
+
+        if (!is_dir(storage_path("app/public/users/" . $user->id . "/albums/photos/covers"))) {
+            Storage::makeDirectory("users/". $user->id . "/albums/photos/covers");
+        }
+
+        $pathCover = "app/public/users/". $user->id ."/albums/photos/covers/{$hashCoverDashboard}.jpg";
+        $publicCoversPath = "users/". $user->id ."/albums/photos/covers/{$hashCoverDashboard}.jpg";
+        $coverImageResized->save(storage_path($pathCover));
+
         $arrayToCreate = [
             'title' => $validated['title'],
             'album_id' => $gallery->id,
             'image_path' => $publicPath,
+            'image_dashboard_path' => $publicCoversPath,
             'slug' => str_slug($validated['title'])
         ];
 

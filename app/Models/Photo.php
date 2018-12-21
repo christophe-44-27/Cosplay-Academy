@@ -10,6 +10,7 @@ class Photo extends Model {
         'title',
         'album_id',
         'image_path',
+        'image_dashboard_path',
         'slug'
     ];
     public $timestamps = true;
