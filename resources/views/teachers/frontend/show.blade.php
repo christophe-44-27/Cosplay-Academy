@@ -144,7 +144,13 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="mt-0 mb-0">Lieu de résidence:</h5>
-                                            <p>Canada</p>
+                                            <p>
+                                                @if($teacher->address)
+                                                    {{ $teacher->address->country->name }}
+                                                @else
+                                                    &nbsp;
+                                                @endif
+                                            </p>
                                         </div>
                                     </div>
                                 </li>

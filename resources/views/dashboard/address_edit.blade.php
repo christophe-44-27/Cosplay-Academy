@@ -61,13 +61,6 @@
                         <!-- /INPUT CONTAINER -->
 
                         <!-- INPUT CONTAINER -->
-                        <div class="input-container half">
-                            <label for="province" class="rl-label required">Province / Région</label>
-                            {{ Form::select('province_id', $provinces) }}
-                        </div>
-                        <!-- /INPUT CONTAINER -->
-
-                        <!-- INPUT CONTAINER -->
                         <div class="input-container">
                             <label for="country_id" class="rl-label required">Pays</label>
                             {{ Form::select('country_id', $countries) }}

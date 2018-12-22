@@ -46,7 +46,13 @@
                                     {{ str_limit($teacher->public_pseudonym, $limit = 15, $end = '...') }}
                                 </a>
                             </h4>
-                            <h5 class="text-theme-color">Canada</h5>
+                            <h5 class="text-theme-color">
+                                @if($teacher->address)
+                                    {{ $teacher->address->country->name }}
+                                @else
+                                    &nbsp;
+                                @endif
+                            </h5>
                             <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
                                 @if ($teacher->facebook_page)
                                     <li>

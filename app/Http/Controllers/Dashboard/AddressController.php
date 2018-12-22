@@ -36,7 +36,6 @@ class AddressController extends Controller {
 			'street_name' => $validated['street_name'],
 			'zip_code' => $validated['zip_code'],
 			'city' => $validated['city'],
-			'province_id' => $validated['province_id'],
 			'country_id' => $validated['country_id'],
 			'user_address_id' => Auth::id()
 		];
@@ -70,7 +69,6 @@ class AddressController extends Controller {
 			'street_name' => $validated['street_name'],
 			'zip_code' => $validated['zip_code'],
 			'city' => $validated['city'],
-			'province_id' => $validated['province_id'],
 			'country_id' => $validated['country_id'],
 			'user_address_id' => Auth::id()
 		];

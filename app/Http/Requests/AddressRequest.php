@@ -24,7 +24,6 @@ class AddressRequest extends FormRequest {
 			'street_name' => 'required',
 			'zip_code' => 'required',
 			'city' => 'required',
-			'province_id' => 'required',
 			'country_id' => 'required',
 			'apartment' => 'max:50'
 		];
@@ -40,7 +39,6 @@ class AddressRequest extends FormRequest {
 		return [
 			'street_name.required' => 'The street name is required',
 			'zip_code.required'  => 'The zip code is required',
-			'province_id.required' => 'Please specify a province',
 			'country_id.required' => 'Please specify a country'
 		];
 	}
