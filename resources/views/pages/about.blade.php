@@ -23,6 +23,182 @@
             height:150px;
             margin:0 auto;
         }
+
+        #fdw-pricing-table {
+            margin:0 auto;
+            text-align: center;
+            width: 928px; /* total computed width */
+            zoom: 1;
+        }
+
+        #fdw-pricing-table:before, #fdw-pricing-table:after {
+            content: "";
+            display: table
+        }
+
+        #fdw-pricing-table:after {
+            clear: both
+        }
+
+        /* --------------- */
+
+        #fdw-pricing-table .plan {
+            font: 13px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 20px;
+            width: 175px;
+            float: left;
+            _display: inline; /* IE6 double margin fix */
+            position: relative;
+            margin: 0 5px;
+            -moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+            -webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+            box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+        }
+
+        #fdw-pricing-table .plan:after {
+            z-index: -1;
+            position: absolute;
+            content: "";
+            bottom: 10px;
+            right: 4px;
+            width: 80%;
+            top: 80%;
+            -webkit-box-shadow: 0 12px 5px rgba(0, 0, 0, .3);
+            -moz-box-shadow: 0 12px 5px rgba(0, 0, 0, .3);
+            box-shadow: 0 12px 5px rgba(0, 0, 0, .3);
+            -webkit-transform: rotate(3deg);
+            -moz-transform: rotate(3deg);
+            -o-transform: rotate(3deg);
+            -ms-transform: rotate(3deg);
+            transform: rotate(3deg);
+        }
+
+        #fdw-pricing-table .popular-plan {
+            top: -20px;
+            padding: 40px 20px;
+        }
+
+        /* --------------- */
+
+        #fdw-pricing-table .header {
+            position: relative;
+            font-size: 20px;
+            font-weight: normal;
+            text-transform: uppercase;
+            padding: 40px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 8px solid;
+            background-color: #eee;
+            background-image: -moz-linear-gradient(#fff,#eee);
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+            background-image: -webkit-linear-gradient(#fff, #eee);
+            background-image: -o-linear-gradient(#fff, #eee);
+            background-image: -ms-linear-gradient(#fff, #eee);
+            background-image: linear-gradient(#fff, #eee);
+        }
+
+        #fdw-pricing-table .header:after {
+            position: absolute;
+            bottom: -8px; left: 0;
+            height: 3px; width: 100%;
+            content: '';
+            background-image: url(images/bar.png);
+        }
+
+        #fdw-pricing-table .popular-plan .header {
+            margin-top: -40px;
+            padding-top: 60px;
+        }
+
+        #fdw-pricing-table .plan1 .header{
+            border-bottom-color: #B3E03F;
+        }
+
+        #fdw-pricing-table .plan2 .header{
+            border-bottom-color: #7BD553;
+        }
+
+        #fdw-pricing-table .plan3 .header{
+            border-bottom-color: #3AD5A0;
+        }
+
+        #fdw-pricing-table .plan4 .header{
+            border-bottom-color: #45D0DA;
+        }
+
+        /* --------------- */
+
+        #fdw-pricing-table .price{
+            font-size: 45px;
+        }
+
+        #fdw-pricing-table .monthly{
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #999;
+        }
+
+        /* --------------- */
+
+        #fdw-pricing-table ul {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #fdw-pricing-table li {
+            padding: 10px 0;
+        }
+
+        /* --------------- */
+
+        #fdw-pricing-table .signup {
+            position: relative;
+            padding: 10px 20px;
+            color: #fff;
+            font: bold 14px Arial, Helvetica;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            background-color: #72ce3f;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+            opacity: .9;
+        }
+
+        #fdw-pricing-table .signup:hover {
+            opacity: 1;
+        }
+
+        #fdw-pricing-table .signup:active {
+            -moz-box-shadow: 0 2px 2px rgba(0,0,0,.3) inset;
+            -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.3) inset;
+            box-shadow: 0 2px 2px rgba(0,0,0,.3) inset;
+        }
+
+        #fdw-pricing-table .plan1 .signup{
+            background: #B3E03F;
+        }
+
+        #fdw-pricing-table .plan2 .signup{
+            background: #7BD553;
+        }
+
+        #fdw-pricing-table .plan3 .signup{
+            background: #3AD5A0;
+        }
+
+        #fdw-pricing-table .plan4 .signup{
+            background: #45D0DA;
+        }
+
+        /* end --------------- */
     </style>
 @endpush
 
@@ -39,7 +215,7 @@
                     <div class="col-sm-4">
                         <ol class="breadcrumb white mt-10 text-right xs-text-center">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
-                            <li class="active">La Cosplay School</li>
+                            <li class="active">Récompenses d'auteur</li>
                         </ol>
                     </div>
                 </div>
@@ -65,7 +241,7 @@
                     </p>
                     <p>
                         Cependant, l’apprenti cosplayer peut être confronté à certaines difficultés, notamment
-                        lorsqu’il envisage de créer un costume lui-même; en effet, il existe de nombreux tutoriels
+                        lorsqu’il envisage de créer un costume lui-même. En effet, il existe de nombreux tutoriels
                         sur Internet, mais pas toujours adaptés à ce que l’on veut faire, ou encore mal expliqués; la
                         plupart des tutoriels cosplay sur le web sont proposés en anglais, ce qui peut également être
                         une difficulté pour les passionnés francophones. Suite à ces constats, nous avons souhaité
@@ -76,13 +252,74 @@
                     <p>
                         Nous avons décidé de mettre en place un projet à long terme. Nous souhaitons fédérer une communauté
                         de cosplayeurs, de photographes, et autres professionnels avant de créer une école physique (ce qui
-                        s’apparente à notre rêve). Notre plateforme propose des tutoriels en ligne et en français, complétés
-                        par des ateliers physiques organisés grâce à nos partenaires.
+                        s’apparente à notre rêve). Notre plateforme propose des tutoriels en ligne et en français.
                     </p>
                     <div class="clearfix"></div>
-                    <h5 class="about">Nos partenaires</h5>
-                    <p>La Cosplay School est suivie par des partenaires formidables, tels que DeSerres des Galeries de
-                        la Capitale à Québec, SIAL Canada à Montréal, True North Cosplay, PEBEO, et Club Tissus à Québec.</p>
+                    <h5 class="about">Les récompenses d'auteurs</h5>
+                    <p>
+                        Faire partie de la Cosplay School c'est cool, mais recevoir des récompenses lorsqu'on publie des
+                        tutoriels c'est encore mieux ! Eh oui, vous avez bien lu, nous vous recompensons pour tous les
+                        tutoriels publiés sur notre plateforme !
+                    </p>
+                    <p>
+                        Nous sommes conscients du travail conséquent que la création de tutoriels impose, et c'est pour cela
+                        que nous avons voulu vous aider en développant ce programme d'auteur. Retrouvez ci-dessous un tableau
+                        récapitulant l'ensemble des récompoenses que vous pouvez obtenir par pallier.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr>
+                            <div id="fdw-pricing-table">
+                                <div class="plan plan1">
+                                    <div class="price">5</div>
+                                    <div class="monthly">tutoriels</div>
+                                    <ul>
+                                        <li><b>20$ </b> Carte cadeaux</li>
+                                    </ul>
+                                </div>
+                                <div class="plan plan2">
+                                    <div class="price">10</div>
+                                    <div class="monthly">tutoriels</div>
+                                    <ul>
+                                        <li><b>50$ </b> Carte cadeaux</li>
+                                    </ul>
+                                </div>
+                                <div class="plan plan3">
+                                    <div class="price">20</div>
+                                    <div class="monthly">tutoriels</div>
+                                    <ul>
+                                        <li><b>45$ </b> Carte cadeaux</li>
+                                        <li><b>1</b> plaque de Worbla (Taille S)</li>
+                                    </ul>
+                                </div>
+                                <div class="plan plan4">
+                                    <div class="price">30</div>
+                                    <div class="monthly">tutoriels</div>
+                                    <ul>
+                                        <li><b>60$ </b> Carte cadeaux</li>
+                                        <li><b>1</b> plaque de Worbla (Taille M)</li>
+                                        <li><b>1</b> plaque de Mousse EVA 10mm</li>
+                                    </ul>
+                                </div>
+                                <div class="plan plan4">
+                                    <div class="price">35</div>
+                                    <div class="monthly">tutoriels</div>
+                                    <ul>
+                                        <li><b>60$ </b> Carte cadeaux</li>
+                                        <li><b>1</b> plaque de Worbla</li>
+                                        <li><b>1</b> plaque de Mousse EVA 10mm</li>
+                                        <li><b>1</b> plaque de Mousse EVA 5mm</li>
+                                        <li><b>1</b> plaque de Mousse EVA 2mm</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+                            <p>
+                                Vous habitez en Europe ou vous êtes hors du Canada ? Vous pouvez tout-de-même participer ! :D Elle est pas belle la vie ?
+                                Tadada da daaaa.
+                            </p>
+                        </div>
+                    </div>
                     <div class="separator separator-rouned">
                         <i class="fa fa-cog fa-spin"></i>
                     </div>
@@ -94,188 +331,6 @@
                             <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://truenorthcosplay.com" target="_blank"> <img alt="..." src="{{ asset('images/true-north-cosplay.png') }}" class="img-fullwidth"> </a> </div>
                             <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="https://www.sial-canada.com/" target="_blank"> <img alt="Logo SIAL" src="{{ asset('images/sial.png') }}" class="img-fullwidth"> </a> </div>
                             <div class="col-xs-6 col-md-2"> <a class="thumbnail" href="#" target="_blank"> <img alt="" src="{{ asset('images/you.png') }}" class="img-fullwidth"> </a> </div>
-                        </div>
-                    </div>
-                    <div class="separator separator-rouned">
-                        <i class="fa fa-cog fa-spin"></i>
-                    </div>
-                    <h5 class="about">Faire partie de la Cosplay School</h5>
-                    <p>
-                        Vous avez envie de faire partie de la Cosplay School en tant que partenaire ? Contactez-nous
-                        depuis la page <a href="https://www.facebook.com/cosplayschoolqc/" target="_blank" style="color: #00d7b3;">Facebook</a> de l'école !
-                        Nous nous ferons une joie d'échanger avec vous concernant un éventuel partenariat.
-                    </p>
-                    <p>
-                        La Cosplay School c'est plus de 1000 visiteurs par mois depuis son ouverture. Vous avez besoin de visibilité pour vos
-                        produits ? N'hésitez pas à entrer en contact avec nous afin que nous puissions vous aider à diffuser faire
-                        connaître votre marque dans le milieu du Cosplay.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider: Funfact -->
-    <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}"
-             data-parallax-ratio="0.7">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $studentCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $studentCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos étudiants</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos cours</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Why Choose Us -->
-    <section class="">
-        <div class="container pt-40">
-            <div class="section-content">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="pr-40">
-                            <h3 class="text-uppercase text-theme-colored title line-bottom">Nos <span class="text-theme-color-2 font-weight-400">avantages</span></h3>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-scissors text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Ateliers</h5>
-                                            <p class="text-gray">Augmentez vos revenus grâce à nos ateliers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-diamond text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Récompenses</h5>
-                                            <p class="text-gray">Recevez des récompenses pour vos tutoriels</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-graph2 text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Visibilité</h5>
-                                            <p class="text-gray">Augmentez votre visibilité grâce aux nombreuses visites du site !</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-clock text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">événements</h5>
-                                            <p class="text-gray">Prenez part aux événements de la Cosplay School</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-world text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">International</h5>
-                                            <p class="text-gray">Rapprochez vous de vos fans internationaux !</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div class="icon-box p-0 mb-30">
-                                        <a href="#" class="icon bg-theme-colored pull-left sm-pull-none flip">
-                                            <i class="pe-7s-light text-white"></i>
-                                        </a>
-                                        <div class="icon-box-details ml-sm-0">
-                                            <h5 class="icon-box-title mt-15 text-uppercase letter-space-1 font-weight-600 mb-5">Révolution</h5>
-                                            <p class="text-gray">Prenez part à la révolution de l'apprentissage du Cosplay</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <h3 class="line-bottom">Pourquoi <span class="text-theme-color-2">nous choisir ?</span></h3>
-                        <p class="mb-20">La Cosplay School est la première école en ligne de cosplay. Nous avons pour
-                            but de révolutionner l'apprentissage du Cosplay, et nous souhaitons démocratiser son apprentissage.</p>
-                        <div id="accordion1" class="panel-group accordion">
-                            <div class="panel">
-                                <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Partager ses connaissances</a> </div>
-                                <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>
-                                            Vous avez envie de partager vos connaissances, mais vous n'avez pas envie
-                                            d'avoir à gérer un site internet ? Parfait, nous le faisaons pour vous !
-                                            Déposez vos tutoriels, organisez vos ateliers, on s'occupent du reste :).
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Les récompenses d'auteur</a> </div>
-                                <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>
-                                            Les récompenses d'auteurs vous permettent de recevoir des contreparties
-                                            allant de 20$ à 100$ (+ du matériel gratuit). Ces récompenses sont
-                                            accessibles grâce à des palliers de publications de tutoriels.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> La visibilité</a> </div>
-                                <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                                    <div class="panel-content">
-                                        <p>
-                                            En partageant vos tutoriels sur notre site, vous touchez plus de 1 000
-                                            personnes par mois. Et ce chiffre ne cesse d'augmenter ! De plus, nous vous
-                                            donnons l'occasion de nous accompagner lors des Comic-con afin de présenter
-                                            vos oeuvres sur nos tables.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -31,10 +31,6 @@
                                 </li>
                                 <li class="text-white">|</li>
                                 <li>
-                                    <a class="text-white" href="{{ route('register') }}">@lang('messages.user_actions.register_as_teacher')</a>
-                                </li>
-                                <li class="text-white">|</li>
-                                <li>
                                     <a class="text-white" href="{{ route('login') }}">@lang('messages.user_actions.login')</a>
                                 </li>
                             @endguest
@@ -88,13 +84,13 @@
                             <a href="{{ route('community') }}">Découvrir</a>
                         </li>
                         <li class="#">
-                            <a href="{{ route('page_about') }}">@lang('messages.navigation.about_us')</a>
+                            <a href="{{ route('page_about') }}">Récompenses d'auteur</a>
                         </li>
                         <!--<li class="#">
                             <a href="{{ route('subscriptions') }}">La boîte à cosplay</a>
                         </li>-->
                         <li class="">
-                            <a href="http://shop.cosplayschool.ca" target="_blank">@lang('messages.navigation.our_shops')</a>
+                            <a href="http://shop.cosplayschool.ca" target="_blank">Cosplay Shop</a>
                         </li>
                     </ul>
                 </nav>

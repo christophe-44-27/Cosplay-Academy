@@ -25,7 +25,7 @@
 
             @if(Session::has('error'))
                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
-        @endif
+            @endif
 
             <!-- PRODUCT LIST -->
             <div class="product-list grid column4-wrap">
