@@ -61,6 +61,7 @@
                                             <h4 class="line-bottom mb-10" data-toggle="tooltip" title="{{ $tutorial->title }}">
                                                 {{ str_limit($tutorial->title, $limit = 20, $end = '...') }}
                                             </h4>
+                                            <p>{{ $tutorial->user->name }}</p>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="{{ route('tutorial_show', $tutorial->slug) }}">Voir</a>
                                         </div>
                                     </div>
