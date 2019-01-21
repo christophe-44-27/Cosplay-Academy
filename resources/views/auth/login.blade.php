@@ -54,6 +54,7 @@
                                     <a href="{{ route('homepage') }}">
                                         <i class="fa fa-arrow-left"></i> @lang("Retour à l'accueil")
                                     </a>
+                                    <a href="{{ route('facebook_login') }}">Connexion Facebook</a>
                                 </div>
                             </form>
                         </div>

@@ -20,6 +20,8 @@ Route::get('/tutorials', 'Tutorials\TutorialCategoryController@index')->name('li
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('login/facebook', 'Auth\LoginFacebookController@redirectToProvider')->name('facebook_login');
+Route::get('login/facebook/callback', 'Auth\LoginFacebookController@handleProviderCallback');
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
@@ -63,6 +65,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('gallery/{slug}/photos/add', 'Dashboard\GalleryController@addPhotoToGallery', function($slug){})->name('gallery_add_photo');
     Route::get('gallery/{slug}/photo/delete/{id}', 'Dashboard\GalleryController@deletePhotoFromGallery', function($id, $slug){})
         ->name('community_gallery_delete_photo');
+    /** Commissions */
+    Route::get('/commissions/received', 'Dashboard\CommissionController@index')->name('commission_received');
+    Route::get('/commissions/sended', 'Dashboard\CommissionController@sended')->name('commission_sended');
+    Route::post('/commission/create', 'Dashboard\CommissionController@create')->name('commission_request_create');
+    Route::get('/commission/offers', 'Dashboard\CommissionController@offerList')->name('dashboard_commissions_offer');
+    Route::get('/commissions/quotations/{id}', 'Dashboard\CommissionController@displayQuotations')->name('commission_quotations');
+    Route::post('/commissions/quotations/accept', 'Dashboard\CommissionController@accept')->name('commission_quotation_accept');
+    Route::get('/commissions/quotations/{id}/decline', 'Dashboard\CommissionController@decline')->name('commission_quotation_decline');
 });
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
@@ -105,3 +115,11 @@ Route::get('/tutorials/report/{id}', 'TutorialController@reportTutorial', functi
 
 Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
 Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
+
+Route::get('commissions', 'CommissionController@index')->name('commissions');
+Route::get('commissions/offers/{slug}', 'CommissionController@show')->name('commission_show');
+Route::get('commissions/category/{filterName}', 'CommissionController@searchByCategory')->name('commission_by_category');
+Route::get('/commissions/new', 'CommissionController@newCommissionRequest')->name('commission_new');
+Route::post('/commissions/create', 'CommissionController@create')
+    ->name('commission_create');
+Route::get('/commissions/report/{id}', 'CommissionController@report', function($id){})->name('commission_report');

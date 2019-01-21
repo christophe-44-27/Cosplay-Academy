@@ -92,6 +92,7 @@
         </li>
         <!-- /DROPDOWN ITEM -->
 
+
         {{--<!-- DROPDOWN ITEM -->--}}
         {{--<li class="dropdown-item">--}}
             {{--<a href="{{ route('my_subscriptions') }}">--}}
@@ -102,6 +103,31 @@
         {{--<!-- /DROPDOWN ITEM -->--}}
     </ul>
     <!-- /DROPDOWN -->
+
+
+    <!-- SIDE MENU TITLE -->
+    <p class="side-menu-title">Commissions</p>
+    <!-- /SIDE MENU TITLE -->
+
+    <ul class="dropdown dark hover-effect">
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('dashboard_commissions_offer') }}">
+                <span class="sl-icon icon-cloud-download"></span>
+                Vos offres
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item">
+            <a href="{{ route('commission_sended') }}">
+                <span class="sl-icon icon-cloud-upload"></span>
+                Propositions envoyées
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
+    </ul>
 
     <!-- SIDE MENU TITLE -->
     <p class="side-menu-title">Outils d'auteurs</p>

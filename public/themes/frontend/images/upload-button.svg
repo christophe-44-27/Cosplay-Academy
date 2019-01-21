@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="15px" viewBox="0 0 12 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>upload-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="1.-ACCUEIL" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-+-menu-Copy-3" transform="translate(-463.000000, -1737.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group" transform="translate(250.000000, 1724.000000)">
+                <g id="upload-button" transform="translate(213.000000, 13.000000)">
+                    <polygon id="Shape" points="3.42857143 11 8.57142857 11 8.57142857 5.92307692 12 5.92307692 6 0 0 5.92307692 3.42857143 5.92307692"></polygon>
+                    <rect id="Rectangle-path" x="0" y="14" width="12" height="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

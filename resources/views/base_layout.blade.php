@@ -34,13 +34,13 @@
     <meta name="description"
           content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !"/>
 
-    <meta property="fb:app_id" content="#"/>
+    <meta property="fb:app_id" content="526252497733390"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="#"/>
-    <meta property="og:title" content="La Cosplay School">
+    <meta property="og:url" content="https://www.cosplayschool.ca"/>
+    <meta property="og:title" content="Cosplay School">
     <meta property="og:description"
-          content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !">
-    <meta property="og:image" content="">
+          content="Rejoignez la nouvelle plateforme d'entraide francophone de cosplay.">
+    <meta property="og:image" content="{{ asset('images/cs-default-sharing-image.png') }}">
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -52,15 +52,6 @@
     @stack('google_analytic')
     @stack('stylesheets')
     @stack('facebook_seo')
-    <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">
-        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-            $.src="https://v2.zopim.com/?6B8NUcuXh0h2AhkY7JbkqkkpXUmSU8GM";z.t=+new Date;$.
-                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>
-    <!--End of Zendesk Chat Script-->
 </head>
 <body class="lighter">
     <div id="wrapper" class="clearfix">
@@ -154,25 +145,4 @@
 @include('partials.notifications')
 <!-- /NOTIFICATIONS FLASH -->
 @stack('javascripts')
-<script>
-    $('document').ready(function () {
-        $("#user-notifications").click(function () {
-            $.ajax({
-                url: "#",
-                data: {},
-                method: "POST",
-                success: function () {
-                    setTimeout(function () {
-                        $('#notifications-list').html(
-                            '        <li class="dropdown-item">' +
-                            '            <p>Vous n\'avez aucune nouvelle notification.</p>' +
-                            '            <a href="dashboard-notifications.html" class="button primary">View all Notifications</a>' +
-                            '        </li>');
-                        $('#count-notification').html('0');
-                    }, 10000);
-                }
-            });
-        });
-    });
-</script>
 </html>

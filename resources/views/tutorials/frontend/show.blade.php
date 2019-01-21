@@ -54,7 +54,7 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title text-white">Les tutoriels</h2>
+                        <h2 class="title text-white">{{ $tutorial->title }}</h2>
                         <ol class="breadcrumb text-left text-black mt-10">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
                             <li class="active text-gray-silver">Les tutoriels</li>

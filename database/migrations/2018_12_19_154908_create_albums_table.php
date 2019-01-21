@@ -11,13 +11,6 @@ class CreateAlbumsTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('gallery_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 255);
-            $table->string('slug', 255);
-            $table->timestamps();
-        });
-
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 255);
@@ -40,7 +33,6 @@ class CreateAlbumsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('gallery_categories');
         Schema::dropIfExists('albums');
     }
 }

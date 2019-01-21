@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="40px" viewBox="0 0 48 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="38.7199017 39.9404902 38.7199017 0.194066325 0.215237728 0.194066325 0.215237728 39.9404902 38.7199017 39.9404902"></polygon>
+        <polygon id="path-3" points="18.3733875 18.9988323 0.127959553 18.9988323 0.127959553 0.0366324885 18.3733875 0.0366324885 18.3733875 18.9988323"></polygon>
+    </defs>
+    <g id="2.-RERCHERCHE-PRO-:-DÉPOT-D'OFFRE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-20" transform="translate(-1023.000000, -857.000000)">
+            <g id="Group-4" transform="translate(1023.000000, 857.000000)">
+                <g id="Group-6" transform="translate(8.960000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-5"></g>
+                    <polygon id="Fill-4" fill="#FF601B" mask="url(#mask-2)" points="34.1349656 0.158494168 0.215237728 35.1136406 4.89902484 39.9404902 38.8191407 4.98534381"></polygon>
+                </g>
+                <g id="Group-9" transform="translate(0.000000, 21.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-8"></g>
+                    <polygon id="Fill-7" fill="#FF601B" mask="url(#mask-4)" points="0.127883159 4.82944928 13.7614961 18.9989117 18.3733875 14.2060949 4.73977463 0.0366324885"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
