@@ -24,9 +24,9 @@ class AddressController extends Controller {
 		}
 
 		$countries = Country::pluck('name', 'id');
-		$provinces = Province::pluck('name', 'id');
+        $controller = 'address';
 
-		return view('dashboard/address', compact('countries', 'provinces'));
+		return view('dashboard/address', compact('countries', 'controller'));
 	}
 
 	public function create(AddressRequest $request) {
@@ -57,9 +57,9 @@ class AddressController extends Controller {
 	public function edit(string $id) {
 		$address = Address::findOrFail($id);
 		$countries = Country::pluck('name', 'id');
-		$provinces = Province::pluck('name', 'id');
+        $controller = 'address';
 
-		return view('dashboard/address_edit', compact('address', 'countries', 'provinces'));
+		return view('dashboard/address_edit', compact('address', 'countries', 'controller'));
 	}
 
 	public function update(AddressRequest $request, int $id) {
@@ -76,7 +76,6 @@ class AddressController extends Controller {
 		if (isset($validated['apartment'])) {
 			$dataArray['apartment'] = $validated['apartment'];
 		}
-
 
 		Address::where('id', '=', $id)
 			->update($dataArray);

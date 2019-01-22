@@ -85,7 +85,8 @@
                             <p class="price"><span>$</span>{{ $offer->max_budget }}</p>
                         </div>
                         <div class="purchase-item-download">
-                            <a href="{{ route('commission_show', $offer->slug) }}">Voir</a> - <a href="{{ route('commission_quotations', $offer->id) }}">Candidatures</a>
+                            <a href="{{ route('commission_show', $offer->slug) }}" target="_blank">Voir</a> -
+                            <a href="{{ route('commission_quotations', $offer->id) }}">Candidatures</a>
                         </div>
                     </div>
                     <!-- /PURCHASE ITEM -->

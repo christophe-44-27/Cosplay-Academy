@@ -67,7 +67,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         ->name('community_gallery_delete_photo');
     /** Commissions */
     Route::get('/commissions/received', 'Dashboard\CommissionController@index')->name('commission_received');
-    Route::get('/commissions/sended', 'Dashboard\CommissionController@sended')->name('commission_sended');
+    Route::get('/commissions/sended', 'Dashboard\CommissionQuotationController@index')->name('commission_sended');
     Route::post('/commission/create', 'Dashboard\CommissionController@create')->name('commission_request_create');
     Route::get('/commission/offers', 'Dashboard\CommissionController@offerList')->name('dashboard_commissions_offer');
     Route::get('/commissions/quotations/{id}', 'Dashboard\CommissionController@displayQuotations')->name('commission_quotations');
@@ -121,5 +121,9 @@ Route::get('commissions/offers/{slug}', 'CommissionController@show')->name('comm
 Route::get('commissions/category/{filterName}', 'CommissionController@searchByCategory')->name('commission_by_category');
 Route::get('/commissions/new', 'CommissionController@newCommissionRequest')->name('commission_new');
 Route::post('/commissions/create', 'CommissionController@create')
+    ->middleware('auth')
     ->name('commission_create');
+Route::post('/commissions/quotation/create', 'CommissionQuotationController@submitQuotation')
+    ->middleware('auth')
+    ->name('commission_quotation_submit');
 Route::get('/commissions/report/{id}', 'CommissionController@report', function($id){})->name('commission_report');

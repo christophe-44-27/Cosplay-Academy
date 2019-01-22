@@ -20,7 +20,7 @@ class CreateCommissionQuotationsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('commission_id');
             $table->foreign('commission_id')->references('id')->on('commissions');
-            $table->boolean('is_accepted')->default(false);
+            $table->boolean('is_accepted')->nullable();
             $table->timestamps();
         });
     }

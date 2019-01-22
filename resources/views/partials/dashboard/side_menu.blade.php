@@ -40,7 +40,7 @@
     <!-- DROPDOWN -->
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'dashboard') ? 'active' : '' }}">
             <a href="{{ route('dashboard_homepage') }}">
                 <span class="sl-icon icon-grid"></span>
                 Mon tableau de bord
@@ -57,7 +57,7 @@
     <!-- DROPDOWN -->
     <ul class="dropdown dark hover-effect interactive">
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'account') ? 'active' : '' }}">
             <a href="{{ route('my_account') }}">
                 <span class="sl-icon icon-settings"></span>
                 Mes paramètres de compte
@@ -66,7 +66,7 @@
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'address') ? 'active' : '' }}">
             <a href="{{ route('my_address') }}">
                 <span class="sl-icon icon-map"></span>
                 Mon adresse
@@ -75,7 +75,7 @@
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'security') ? 'active' : '' }}">
             <a href="{{ route('change-password') }}">
                 <span class="sl-icon icon-shield"></span>
                 Sécurité du compte
@@ -84,7 +84,7 @@
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'gallery') ? 'active' : '' }}">
             <a href="{{ route('gallery') }}">
                 <span class="sl-icon icon-picture"></span>
                 Mes galeries
@@ -111,7 +111,7 @@
 
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'offers') ? 'active' : '' }}">
             <a href="{{ route('dashboard_commissions_offer') }}">
                 <span class="sl-icon icon-cloud-download"></span>
                 Vos offres
@@ -120,7 +120,7 @@
         <!-- /DROPDOWN ITEM -->
 
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item {{ ($controller == 'quotations') ? 'active' : '' }}">
             <a href="{{ route('commission_sended') }}">
                 <span class="sl-icon icon-cloud-upload"></span>
                 Propositions envoyées
@@ -136,7 +136,7 @@
     <!-- DROPDOWN -->
     <ul class="dropdown dark hover-effect">
         <!-- DROPDOWN ITEM -->
-        <li class="dropdown-item">
+        <li class="dropdown-item  {{ ($controller == 'tutorials') ? 'active' : '' }}">
             <a href="{{ route('dashboard_tutorials_list') }}">
                 <span class="sl-icon icon-arrow-up-circle"></span>
                 Mes tutoriels

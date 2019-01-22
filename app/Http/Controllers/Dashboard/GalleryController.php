@@ -39,8 +39,10 @@ class GalleryController extends Controller {
     public function index() {
         $user = Auth::user();
 
+        $controller = 'gallery';
+
         $galleries = Album::where('user_id', '=', $user->id)->get();
-        return view('dashboard.gallery.gallery_index', compact('galleries'));
+        return view('dashboard.gallery.gallery_index', compact('galleries', 'controller'));
     }
 
     /**
@@ -48,7 +50,8 @@ class GalleryController extends Controller {
      */
     public function newGallery() {
         $categories = GalleryCategory::orderBy('name', 'ASC')->pluck('name', 'id');
-        return view('dashboard.gallery.gallery_new', compact('categories'));
+        $controller = 'gallery';
+        return view('dashboard.gallery.gallery_new', compact('categories', 'controller'));
     }
 
     public function create(CreateGalleryRequest $request) {
@@ -148,7 +151,8 @@ class GalleryController extends Controller {
         $gallery = Album::where('slug', '=', $slug)->firstOrFail();
         $photos = Photo::where('album_id', '=', $gallery->id)->orderBy('id', 'DESC')->get();
 
-        return view('dashboard.gallery.gallery_display_content', compact('gallery', 'photos'));
+        $controller = 'gallery';
+        return view('dashboard.gallery.gallery_display_content', compact('gallery', 'photos', 'controller'));
     }
 
     /**

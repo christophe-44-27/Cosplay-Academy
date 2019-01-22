@@ -28,10 +28,10 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title text-white">Les tutoriels</h2>
+                        <h2 class="title text-white">Les annonces de commissions</h2>
                         <ol class="breadcrumb text-left text-black mt-10">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
-                            <li class="active text-gray-silver">Les tutoriels</li>
+                            <li class="active text-gray-silver">Les annonces de commissions</li>
                         </ol>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                     {!! str_limit($commission->description, $limit = 200, $end = '...') !!}
                                 </p>
                                 <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                   href="#">Voir l'annonce</a>
+                                   href="{{ route('commission_show', $commission->slug) }}">Voir l'annonce</a>
                             </div>
                         </div>
                         <hr>

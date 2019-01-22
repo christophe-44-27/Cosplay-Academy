@@ -31,4 +31,8 @@ class Commission extends Model {
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function category() {
+        return $this->belongsTo(TutorialCategory::class, 'category_id');
+    }
 }

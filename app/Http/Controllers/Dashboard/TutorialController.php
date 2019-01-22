@@ -33,7 +33,8 @@ class TutorialController extends Controller {
         $tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
             ->orderBy('id', 'desc')
             ->get();
-        return view('dashboard/list_tutorials', compact('tutorials'));
+        $controller = 'tutorials';
+        return view('dashboard/list_tutorials', compact('tutorials', 'controller'));
     }
 
     /**
@@ -41,7 +42,8 @@ class TutorialController extends Controller {
      */
     public function newTutorial() {
         $tutorialCategories = TutorialCategory::pluck('name', 'id');
-        return view('dashboard/new_tutorial', compact('tutorialCategories'));
+        $controller = 'tutorials';
+        return view('dashboard/new_tutorial', compact('tutorialCategories', 'controller'));
     }
 
     /**
@@ -170,15 +172,18 @@ class TutorialController extends Controller {
             return redirect(route('dashboard_tutorials_list'));
         }
         $currentUrl = $request->url();
+        $controller = 'tutorials';
         return view('dashboard/edit_tutorial', compact(
             'tutorial',
             'tutorialCategories',
-            'currentUrl'
+            'currentUrl',
+            'controller'
         ));
     }
 
     /**
      * @param string $slug
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function delete(string $slug) {
         $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();

@@ -10,7 +10,6 @@ use App\Models\CommissionQuotation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
 
 class CommissionController extends Controller {
 
@@ -18,8 +17,9 @@ class CommissionController extends Controller {
         $commissions = Commission::where('in_review', '=', false)
             ->orderBy('id', 'DESC')
             ->paginate(15);
+        $controller = 'offers';
 
-        return view('commissions.dashboard.index', compact('commissions'));
+        return view('commissions.dashboard.index', compact('commissions', 'controller'));
     }
 
     public function newRequest() {
@@ -28,25 +28,28 @@ class CommissionController extends Controller {
 
     public function offerList() {
         $user = Auth::user();
+        $controller = 'offers';
 
         $offers = Commission::where('user_id', '=', $user->id)
             ->orderBy('id', 'DESC')
             ->get();
 
-        return view('commissions.dashboard.offer_list', compact('offers'));
+        return view('commissions.dashboard.offer_list', compact('offers','controller'));
     }
 
     public function show(int $id) {
         $commission = Commission::findOrFail($id);
+        $controller = 'offers';
 
-        return view('commissions.frontend.show', compact('commission'));
+        return view('commissions.frontend.show', compact('commission', 'controller'));
     }
 
     public function displayQuotations(int $id) {
         $offer = Commission::where('id', '=', $id)->firstOrFail();
         $quotations = CommissionQuotation::where('commission_id', '=', $offer->id)->get();
+        $controller = 'offers';
 
-        return view('commissions.dashboard.offer_quotations', compact('offer', 'quotations'));
+        return view('commissions.dashboard.offer_quotations', compact('offer', 'quotations', 'controller'));
     }
 
     public function accept(SendAnswerToCommissionQuotationRequest $request){

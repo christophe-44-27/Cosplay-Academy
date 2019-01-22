@@ -66,10 +66,21 @@ class CommissionController extends Controller {
         return redirect(route('dashboard_commissions_offer'));
     }
 
-    public function show(string $slug) {
-        $commission = Commission::where('slug', '=', $slug)->firstOrFail();
+    public function show(Request $request, string $slug) {
+        $commission = Commission::where('slug', '=', $slug)
+            ->where('is_published', '=', true)
+            ->firstOrFail();
+        $commission->nb_views = $commission->nb_views + 1;
+        $commission->save();
 
-        return view('commissions.frontend.show', compact('commission'));
+        $currentUrl = $request->url();
+        $user = Auth::user();
+
+        $userHasAlreadySubmitted = CommissionQuotation::where('commission_id', '=', $commission->id)
+            ->where('user_id', '=', $user->id)
+            ->count();
+
+        return view('commissions.frontend.show', compact('commission', 'currentUrl', 'userHasAlreadySubmitted'));
     }
 
     public function searchByCategory() {

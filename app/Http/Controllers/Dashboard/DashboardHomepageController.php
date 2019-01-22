@@ -11,6 +11,7 @@ class DashboardHomepageController extends Controller {
 	}
 
 	public function index() {
-		return view('dashboard.homepage');
+        $controller = 'dashboard';
+        return view('dashboard.homepage', compact('controller'));
 	}
 }

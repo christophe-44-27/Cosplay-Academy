@@ -1,6 +1,5 @@
 @extends('layout_dashboard')
-@push('stylesheets')
-@endpush
+
 @section('content')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
@@ -58,10 +57,12 @@
                                  aria-labelledby="quotation-id-{{ $quotation->id }}">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Description</h4>
+                                        </div>
                                         <div class="modal-body">
-                                            <div class="row">
-                                                {!! $quotation->description !!}
-                                            </div>
+                                            {!! $quotation->description !!}
                                         </div>
                                     </div>
                                 </div>

@@ -19,7 +19,8 @@ class ChangePasswordController extends Controller {
     }
 
     public function showChangePasswordForm() {
-        return view('dashboard.change-password');
+        $controller = 'security';
+        return view('dashboard.change-password', compact('controller'));
     }
 
     public function changePassword(Request $request) {

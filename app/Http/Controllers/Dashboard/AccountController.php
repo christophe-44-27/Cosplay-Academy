@@ -21,7 +21,8 @@ class AccountController extends Controller {
 		$user = Auth::user();
 
 		$categories = TutorialCategory::pluck('name', 'id');
-		return view('dashboard/my_account', compact('user', 'categories'));
+        $controller = 'account';
+		return view('dashboard/my_account', compact('user', 'categories', 'controller'));
 	}
 
 	public function update(AccountRequest $request) {
