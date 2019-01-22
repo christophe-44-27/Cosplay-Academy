@@ -93,9 +93,6 @@
                         <li class="#">
                             <a href="{{ route('page_about') }}">Récompenses d'auteur</a>
                         </li>
-                        <!--<li class="#">
-                            <a href="{{ route('subscriptions') }}">La boîte à cosplay</a>
-                        </li>-->
                         <li class="">
                             <a href="http://shop.cosplayschool.ca" target="_blank">Cosplay Shop</a>
                         </li>
