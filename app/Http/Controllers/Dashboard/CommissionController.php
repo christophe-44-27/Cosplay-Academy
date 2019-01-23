@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\CreateCommissionRequest;
 use App\Http\Requests\SendAnswerToCommissionQuotationRequest;
+use App\Http\Requests\UpdateCommissionRequest;
 use App\Mail\CommissionCreatedAdminMail;
 use App\Mail\CommissionCreatedMail;
 use App\Mail\CommissionQuotationAcceptedMail;
@@ -64,6 +65,45 @@ class CommissionController extends Controller {
         Mail::to(getenv('MAIL_ADMIN'))->send(new CommissionCreatedAdminMail($commission));
 
         $request->session()->flash('success', "Votre offre a bien été enregistrée, merci de votre confiance !");
+        return redirect(route('dashboard_commissions_offer'));
+    }
+
+    public function edit(Commission $offer) {
+        $categories = TutorialCategory::orderBy('name', 'ASC')->get();
+        $controller = 'offers';
+
+        return view('commissions.dashboard.edit_commission_request', compact('offer', 'categories', 'controller'));
+    }
+
+    public function update(UpdateCommissionRequest $request, Commission $offer) {
+        $validated = $request->validated();
+
+        if ($request->file('cover_path')) {
+            $resizedThumbnail = Image::make($request->file('cover_path'))->fit(750, 500)->encode('jpg');
+            $hash = md5($resizedThumbnail->__toString());
+            $path = "app/public/commissions/thumbnails/{$hash}.jpg";
+            $publicPath = "commissions/thumbnails/{$hash}.jpg";
+            if (!is_dir(storage_path("app/public/commissions/thumbnails"))) {
+                Storage::makeDirectory("public/commissions/thumbnails");
+            }
+            $resizedThumbnail->save(storage_path($path));
+
+            $datas['cover_path']  = $publicPath;
+        }
+
+        $datas = [
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'max_budget' => $validated['max_budget'],
+            'delivery_location' => $validated['delivery_location'],
+            'desired_delivery_date' => $validated['desired_delivery_date'],
+            'category_id' => $validated['category_id'],
+            'slug' => str_slug($validated['title']),
+        ];
+
+        $offer->update($datas);
+
+        $request->session()->flash('success', "Votre offre a bien été mise à jour !");
         return redirect(route('dashboard_commissions_offer'));
     }
 

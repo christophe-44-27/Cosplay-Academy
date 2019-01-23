@@ -47,6 +47,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/commissions/sended', 'Dashboard\CommissionQuotationController@index')->name('commission_sended');
     Route::get('/commission/new', 'Dashboard\CommissionController@newRequest')->name('commission_request_new');
     Route::post('/commission/create', 'Dashboard\CommissionController@create')->name('commission_request_create');
+    Route::get('/commission/edit/{commission}', 'Dashboard\CommissionController@edit', function(\App\Models\Commission $commission){})
+        ->name('commission_request_edit');
+    Route::post('/commission/update/{commission}', 'Dashboard\CommissionController@update', function(\App\Models\Commission $commission){})
+        ->name('commission_request_update');
     Route::get('/commission/offers', 'Dashboard\CommissionController@offerList')->name('dashboard_commissions_offer');
     Route::get('/commissions/quotations/{id}', 'Dashboard\CommissionController@displayQuotations')->name('commission_quotations');
     Route::post('/commissions/quotations/accept', 'Dashboard\CommissionController@accept')->name('commission_quotation_accept');

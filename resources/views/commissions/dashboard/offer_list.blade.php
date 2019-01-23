@@ -84,7 +84,7 @@
                                                 Supprimer
                                             </a>
                                         @else
-                                            <a href="#">
+                                            <a href="{{ route('commission_request_edit', $offer->id) }}">
                                                 Modifier
                                             </a>
                                         @endif
@@ -96,7 +96,7 @@
 
                             <!-- PRODUCT INFO -->
                             <div class="product-info">
-                                <a href="{{ route('tutorial_edit', $offer->slug)}}">
+                                <a href=#">
                                     <p class="text-header">{{ $offer->title }}</p>
                                 </a>
                                 <br>
