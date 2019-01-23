@@ -45,6 +45,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     /** Commissions */
     Route::get('/commissions/received', 'Dashboard\CommissionController@index')->name('commission_received');
     Route::get('/commissions/sended', 'Dashboard\CommissionQuotationController@index')->name('commission_sended');
+    Route::get('/commission/new', 'Dashboard\CommissionController@newRequest')->name('commission_request_new');
     Route::post('/commission/create', 'Dashboard\CommissionController@create')->name('commission_request_create');
     Route::get('/commission/offers', 'Dashboard\CommissionController@offerList')->name('dashboard_commissions_offer');
     Route::get('/commissions/quotations/{id}', 'Dashboard\CommissionController@displayQuotations')->name('commission_quotations');

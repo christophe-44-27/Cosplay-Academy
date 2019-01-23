@@ -8,7 +8,7 @@
         <div class="dashboard-content">
             <!-- HEADLINE -->
             <div class="headline simple primary">
-                <h4>Publier une requête de commission</h4>
+                <h4>Publier une offre de commission</h4>
             </div>
             <!-- /HEADLINE -->
 
@@ -30,16 +30,9 @@
                     <hr class="line-separator">
                     <div>
                         <!-- INPUT CONTAINER -->
-                        <div class="input-container half">
-                            <label for="thumbnail_picture" class="rl-label required">Miniature</label>
-                            <input id="thumbnail_picture" type="file" name="thumbnail_picture">
-                        </div>
-                        <!-- /INPUT CONTAINER -->
-
-                        <!-- INPUT CONTAINER -->
-                        <div class="input-container half">
-                            <label for="main_picture" class="rl-label required">Image de couverture</label>
-                            <input id="main_picture" type="file" name="main_picture">
+                        <div class="input-container">
+                            <label for="cover_path" class="rl-label required">Miniature</label>
+                            <input name="cover_path" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
                         </div>
                         <!-- /INPUT CONTAINER -->
 
@@ -48,31 +41,43 @@
 
                         <!-- INPUT CONTAINER -->
                         <div class="input-container">
-                            <label for="title" class="rl-label required">Titre du tutoriel</label>
+                            <label for="title" class="rl-label required">Titre de de l'offre</label>
                             {{ Form::text('title') }}
                         </div>
                         <!-- /INPUT CONTAINER -->
 
                         <!-- INPUT CONTAINER -->
                         <div class="input-container half">
-                            <label for="url_video" class="rl-label">Vidéo du cours (facultative)</label>
-                            {{ Form::text('url_video', null, ['placeholder' => 'Exemple : https://www.youtube.com/watch?v=6dB1YsDjkck']) }}
+                            <label for="delivery_location" class="rl-label">Lieu de livraison</label>
+                            {{ Form::text('delivery_location', null, ['placeholder' => 'Ex: Québec, Canada']) }}
                         </div>
                         <!-- /INPUT CONTAINER -->
 
                         <!-- INPUT CONTAINER -->
                         <div class="input-container half">
-                            <label for="category" class="rl-label required">Catérogie</label>
-                            {{ Form::select('tutorial_category_id', $tutorialCategories) }}
+                            <label for="max_budget" class="rl-label required">Budget indicatif</label>
+                            {{ Form::text('max_budget') }}
                         </div>
                         <!-- /INPUT CONTAINER -->
 
                         <div class="clearfix"></div>
 
+                        <div class="input-container half">
+                            <label>Date de réalisation souhaitée <small>*</small></label>
+                            {{ Form::date('desired_delivery_date', \Carbon\Carbon::now()) }}
+                        </div>
+
+                        <div class="input-container half">
+                            <label>Date de réalisation souhaitée <small>*</small></label>
+                            {{ Form::select('category_id', $categories) }}
+                        </div>
+
+                        <div class="clearfix"></div>
+
                         <!-- INPUT CONTAINER -->
                         <div class="input-container">
-                            <label for="content" class="rl-label required">Contenu du tutoriel</label>
-                            {{ Form::text('content', null, ['class' => 'tinymce']) }}
+                            <label for="description" class="rl-label required">Contenu de l'offre</label>
+                            {{ Form::text('description', null, ['class' => 'tinymce']) }}
                         </div>
                         <!-- /INPUT CONTAINER -->
                     </div>

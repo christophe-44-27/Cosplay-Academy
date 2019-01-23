@@ -28,7 +28,7 @@
 
             <!-- PRODUCT LIST -->
             <div class="product-list grid column4-wrap">
-                <a href="#">
+                <a href="{{ route('commission_request_new') }}">
                     <div class="product-item upload-new column">
                         <!-- PRODUCT PREVIEW ACTIONS -->
                         <div class="product-preview-actions">

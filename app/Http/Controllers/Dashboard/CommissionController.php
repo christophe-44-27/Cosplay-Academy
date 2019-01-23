@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Requests\CreateCommissionRequest;
 use App\Http\Requests\SendAnswerToCommissionQuotationRequest;
+use App\Mail\CommissionCreatedAdminMail;
+use App\Mail\CommissionCreatedMail;
 use App\Mail\CommissionQuotationAcceptedMail;
 use App\Models\Commission;
 use App\Http\Controllers\Controller;
 use App\Models\CommissionQuotation;
+use App\Models\TutorialCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class CommissionController extends Controller {
 
@@ -23,7 +29,42 @@ class CommissionController extends Controller {
     }
 
     public function newRequest() {
-        return view('commissions.dashboard.new_commission_request');
+        $categories = TutorialCategory::orderBy('name', 'ASC')->pluck('name', 'id');
+        $controller = 'offers';
+        return view('commissions.dashboard.new_commission_request', compact('categories', 'controller'));
+    }
+
+    public function create(CreateCommissionRequest $request) {
+        $validated = $request->validated();
+
+        $resizedThumbnail = Image::make($request->file('cover_path'))->fit(750, 500)->encode('jpg');
+        $hash = md5($resizedThumbnail->__toString());
+        $path = "app/public/commissions/thumbnails/{$hash}.jpg";
+        $publicPath = "commissions/thumbnails/{$hash}.jpg";
+        if (!is_dir(storage_path("app/public/commissions/thumbnails"))) {
+            Storage::makeDirectory("public/commissions/thumbnails");
+        }
+        $resizedThumbnail->save(storage_path($path));
+
+        $arrayToCreate = [
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'max_budget' => $validated['max_budget'],
+            'delivery_location' => $validated['delivery_location'],
+            'desired_delivery_date' => $validated['desired_delivery_date'],
+            'category_id' => $validated['category_id'],
+            'cover_path' => $publicPath,
+            'user_id' => Auth::id(),
+            'slug' => str_slug($validated['title']),
+        ];
+
+        $commission = Commission::create($arrayToCreate);
+
+        Mail::to($commission->user->email)->send(new CommissionCreatedMail($commission));
+        Mail::to(getenv('MAIL_ADMIN'))->send(new CommissionCreatedAdminMail($commission));
+
+        $request->session()->flash('success', "Votre offre a bien été enregistrée, merci de votre confiance !");
+        return redirect(route('dashboard_commissions_offer'));
     }
 
     public function offerList() {
