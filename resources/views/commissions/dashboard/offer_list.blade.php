@@ -1,29 +1,8 @@
 @extends('layout_dashboard')
 @push('stylesheets')
     <style>
-        .purchases-list{
-            text-align: center;
-        }
-        .purchases-list-header-details{
-            width: 250px !important;
-        }
-        .product-preview-image{
-            position: unset !important;
-        }
-        .text-header{
-            line-height: 4em !important;
-        }
-        .purchase-item-details{
-            width: 225px !important;
-        }
-        .purchases-list-header-price{
-            width: 285px !important;
-        }
-        .purchase-item-price{
-            width: 220px;
-        }
-        .purchase-item-download{
-            width: 230px !important;
+        .product-item{
+            min-height: 306px;
         }
     </style>
 @endpush
@@ -39,67 +18,144 @@
             </div>
             <!-- /HEADLINE -->
 
-            <!-- PURCHASES LIST -->
-            <div class="purchases-list">
-                <!-- PURCHASES LIST HEADER -->
-                <div class="purchases-list-header">
-                    <div class="purchases-list-header-date">
-                        <p class="text-header small">Date</p>
-                    </div>
-                    <div class="purchases-list-header-details">
-                        <p class="text-header small">Image de référence</p>
-                    </div>
-                    <div class="purchases-list-header-info">
-                        <p class="text-header small">Titre de l'offre</p>
-                    </div>
-                    <div class="purchases-list-header-price">
-                        <p class="text-header small">Budget</p>
-                    </div>
-                    <div class="purchases-list-header-download">
-                        <p class="text-header small">Actions</p>
-                    </div>
-                </div>
-                <!-- /PURCHASES LIST HEADER -->
-                @if($offers)
-                    @foreach($offers as $offer)
-                    <!-- PURCHASE ITEM -->
-                    <div class="purchase-item">
-                        <div class="purchase-item-date">
-                            <p>
-                                {{ \Carbon\Carbon::parse($offer->desired_delivery_date)->format('d/m/Y')}}
-                            </p>
+            @if(Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+
+            @if(Session::has('error'))
+                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
+
+            <!-- PRODUCT LIST -->
+            <div class="product-list grid column4-wrap">
+                <a href="#">
+                    <div class="product-item upload-new column">
+                        <!-- PRODUCT PREVIEW ACTIONS -->
+                        <div class="product-preview-actions">
+                            <!-- PRODUCT PREVIEW IMAGE -->
+                            <figure class="product-preview-image">
+                                <img src="{{ asset('themes/dashboard/images/dashboard/uploadnew-bg.jpg') }}"
+                                     alt="product-image">
+                            </figure>
+                            <!-- /PRODUCT PREVIEW IMAGE -->
                         </div>
-                        <div class="purchase-item-details">
-                            <!-- ITEM PREVIEW -->
-                            <div class="item-preview">
-                                <figure class="product-preview-image small liquid">
-                                    <img src="{{ asset('storage/' . $offer->cover_path) }}" alt="product-image">
+                        <!-- /PRODUCT PREVIEW ACTIONS -->
+
+                        <!-- PRODUCT INFO -->
+                        <div class="product-info">
+                            <p class="text-header">Publier une annonce</p>
+                        </div>
+                        <!-- /PRODUCT INFO -->
+                    </div>
+                </a>
+
+            @if ($offers)
+                @foreach($offers as $offer)
+                    <!-- PRODUCT ITEM -->
+                        <div class="product-item column">
+                            @if($offer->is_published)
+                                <span class="pin primary">Publiée</span>
+                            @endif
+                            <!-- PRODUCT PREVIEW ACTIONS -->
+                            <div class="product-preview-actions">
+                                <!-- PRODUCT PREVIEW IMAGE -->
+                                <figure class="product-preview-image">
+                                    @if (isset($offer->cover_path))
+                                        <img src="{{ asset('storage/' . $offer->cover_path) }}"
+                                             alt="product-image">
+                                    @endif
                                 </figure>
+                                <!-- /PRODUCT PREVIEW IMAGE -->
+
+                                <!-- PRODUCT SETTINGS -->
+                                <div class="product-settings primary dropdown-handle">
+                                    <span class="sl-icon icon-settings"></span>
+                                </div>
+                                <!-- /PRODUCT SETTINGS -->
+
+                                <!-- DROPDOWN -->
+                                <ul class="dropdown small hover-effect closed">
+                                    <li class="dropdown-item">
+                                        <!-- DP TRIANGLE -->
+                                        <div class="dp-triangle"></div>
+                                        <!-- DP TRIANGLE -->
+                                        @if($offer->is_published)
+                                            <a href="#">
+                                                Supprimer
+                                            </a>
+                                        @else
+                                            <a href="#">
+                                                Modifier
+                                            </a>
+                                        @endif
+                                    </li>
+                                </ul>
+                                <!-- /DROPDOWN -->
                             </div>
-                            <!-- /ITEM PREVIEW -->
+                            <!-- /PRODUCT PREVIEW ACTIONS -->
+
+                            <!-- PRODUCT INFO -->
+                            <div class="product-info">
+                                <a href="{{ route('tutorial_edit', $offer->slug)}}">
+                                    <p class="text-header">{{ $offer->title }}</p>
+                                </a>
+                                <br>
+                                <a href="#">
+                                    <p class="category primary">{{ $offer->category->name }}</p>
+                                </a>
+                            </div>
+                            <!-- /PRODUCT INFO -->
+                            <hr class="line-separator">
+
+                            <!-- USER RATING -->
+                            <div class="user-rating">
+                                <a href="#">
+                                    <figure class="user-avatar small">
+                                        @if($offer->user->profile_picture)
+                                            <img src="{{ asset('storage/' . $offer->user->profile_picture) }}"
+                                                 alt="user-avatar">
+                                        @else
+                                            <img src="{{ asset('themes/dashboard/images/structure/default-avatar.png') }}"
+                                                 alt="user-avatar">
+                                        @endif
+                                    </figure>
+                                </a>
+                                <a href="#">
+                                    <p class="text-header tiny">{{ $offer->user->name }}</p>
+                                </a>
+                            </div>
+                            <!-- /USER RATING -->
                         </div>
-                        <div class="purchase-item-details">
-                            <p class="text-header">{{ $offer->title }}</p>
-                        </div>
-                        <div class="purchase-item-price">
-                            <p class="price"><span>$</span>{{ $offer->max_budget }}</p>
-                        </div>
-                        <div class="purchase-item-download">
-                            <a href="{{ route('commission_show', $offer->slug) }}" target="_blank">Voir</a> -
-                            <a href="{{ route('commission_quotations', $offer->id) }}">Candidatures</a>
-                        </div>
-                    </div>
-                    <!-- /PURCHASE ITEM -->
+                        <!-- /PRODUCT ITEM -->
                     @endforeach
-                @else
-                    <div class="alert alert-info">
-                        Vous n'avez pas encore publié d'offres.
-                    </div>
                 @endif
             </div>
-            <!-- /PURCHASES LIST -->
+            <!-- /PRODUCT LIST -->
+            <div class="clearfix"></div>
         </div>
         <!-- DASHBOARD CONTENT -->
     </div>
     <!-- /DASHBOARD BODY -->
 @endsection
+@push('javascripts')
+    <script>
+        (function($) {
+            var $dp_handle = $('.dropdown-handle');
+
+            $dp_handle.on('click', toggleSettings);
+
+            function toggleSettings() {
+                var $this = $(this),
+                    $dp = $this.siblings('.dropdown');
+
+                if ($dp.hasClass('closed')) {
+                    $dp.removeClass('closed');
+                    $this.addClass('active');
+                } else {
+                    $dp.addClass('closed');
+                    $this.removeClass('active');
+                }
+            }
+        })(jQuery);
+    </script>
+@endpush
