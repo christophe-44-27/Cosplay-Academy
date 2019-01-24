@@ -35,4 +35,8 @@ class Commission extends Model {
     public function category() {
         return $this->belongsTo(TutorialCategory::class, 'category_id');
     }
+
+    public function quotations() {
+        return $this->hasMany(CommissionQuotation::class);
+    }
 }

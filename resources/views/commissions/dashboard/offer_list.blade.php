@@ -4,6 +4,15 @@
         .product-item{
             min-height: 306px;
         }
+        .icon-stats > img{
+            width: 20px;
+            margin-top: 3px;
+            margin-left: 6px;
+        }
+        .icon-stats > span {
+            font-size: 10px;
+            color: #00d7b3;
+        }
     </style>
 @endpush
 @section('content')
@@ -123,6 +132,12 @@
                                 <a href="#">
                                     <p class="text-header tiny">{{ $offer->user->name }}</p>
                                 </a>
+                                <div class="icon-stats">
+                                    <img src="{{ asset('themes/dashboard/images/icons/eye.svg') }}" >
+                                    <span>({{ $offer->nb_views }})</span>
+                                    <img src="{{ asset('themes/dashboard/images/icons/profile.svg') }}" >
+                                    <span>({{ count($offer->quotations) }})</span>
+                                </div>
                             </div>
                             <!-- /USER RATING -->
                         </div>

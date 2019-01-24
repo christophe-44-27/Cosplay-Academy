@@ -16,17 +16,15 @@
     </script>
 @endpush
 
-@push('facebook_seo')
+@section('facebook_seo')
     <!-- ZONE SEO FACEBOOK -->
-    <meta property="fb:app_id" content="526252497733390" />
-    <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ $currentUrl }}" />
     <meta property="og:title" content="{{ $tutorial->title }}" />
     <meta property="og:image"
           content="{{ asset('storage/' . $tutorial->main_picture) }}">
     <meta property="og:description"
           content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}" />
-@endpush
+@endsection
 
 @push('stylesheets')
     <style>

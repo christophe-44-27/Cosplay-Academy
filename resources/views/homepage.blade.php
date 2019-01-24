@@ -1,5 +1,13 @@
 @extends('base_layout')
 
+@section('facebook_seo')
+    <meta property="og:url" content="https://www.cosplayschool.ca"/>
+    <meta property="og:title" content="Cosplay School">
+    <meta property="og:description"
+          content="Rejoignez la nouvelle plateforme d'entraide francophone de cosplay.">
+    <meta property="og:image" content="{{ asset('images/cs-default-sharing-image.png') }}">
+@endsection
+
 @push('stylesheets')
     <style>
         .margin-bot-20px{

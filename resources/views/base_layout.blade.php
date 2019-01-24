@@ -36,11 +36,8 @@
 
     <meta property="fb:app_id" content="526252497733390"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://www.cosplayschool.ca"/>
-    <meta property="og:title" content="Cosplay School">
-    <meta property="og:description"
-          content="Rejoignez la nouvelle plateforme d'entraide francophone de cosplay.">
-    <meta property="og:image" content="{{ asset('images/cs-default-sharing-image.png') }}">
+    @yield('facebook_seo')
+
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -51,7 +48,7 @@
         }(document, 'script', 'facebook-jssdk'));</script>
     @stack('google_analytic')
     @stack('stylesheets')
-    @stack('facebook_seo')
+{{--    @stack('facebook_seo')--}}
 </head>
 <body class="lighter">
     <div id="wrapper" class="clearfix">
