@@ -82,7 +82,7 @@
                                     @foreach($categories as $category)
                                         <li>
                                             <a href="{{ route('commission_by_category', $category->filter_value) }}">
-                                                {{ $category->name }}
+                                                {{ $category->name }} ({{ count($category->commissions) }})
                                             </a>
                                         </li>
                                     @endforeach

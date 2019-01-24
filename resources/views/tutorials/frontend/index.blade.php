@@ -86,8 +86,7 @@
                                         @foreach($categories as $category)
                                             <li>
                                                 <a href="{{ route('tutorials_by_category', $category->filter_value) }}">
-                                                    {{ $category->name }}
-                                                    <!-- Rajouter les chiffres pour les catégories -->
+                                                    {{ $category->name }} ({{ count($category->tutorials) }})
                                                 </a>
                                             </li>
                                         @endforeach

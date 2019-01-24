@@ -12,4 +12,8 @@ class TutorialCategory extends Model {
 	public function tutorials() {
 		return $this->hasMany('App\Models\Tutorial');
 	}
+
+    public function commissions() {
+        return $this->hasMany(Commission::class, 'category_id');
+    }
 }
