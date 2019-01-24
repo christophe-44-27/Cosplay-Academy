@@ -23,6 +23,9 @@ class Commission extends Model {
         'is_reported',
         'slug'
     ];
+    protected $casts = [
+        'is_published' => 'boolean'
+    ];
     public $timestamps = true;
 
     /**

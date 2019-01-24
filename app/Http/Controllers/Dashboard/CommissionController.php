@@ -21,8 +21,7 @@ use Intervention\Image\Facades\Image;
 class CommissionController extends Controller {
 
     public function index() {
-        $commissions = Commission::where('in_review', '=', false)
-            ->orderBy('id', 'DESC')
+        $commissions = Commission::orderBy('id', 'DESC')
             ->paginate(15);
         $controller = 'offers';
 
@@ -112,6 +111,7 @@ class CommissionController extends Controller {
         $controller = 'offers';
 
         $offers = Commission::where('user_id', '=', $user->id)
+            ->orderBy('is_published', 'DESC')
             ->orderBy('id', 'DESC')
             ->get();
 
