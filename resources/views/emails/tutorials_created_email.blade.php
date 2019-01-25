@@ -102,17 +102,15 @@
                 avoir fini la rédaction de votre cours, vous n'aurez qu'à demander sa vérification pour qu'il soit publié.
             </p>
             <p>
-                Une fois la vérification effectuée vous recevrez un courriel vous indiquant qu'il a été publié. Dans le cas
-                où malheureusement votre tutoriel ne pourrait satisfaire les conditions générales d'utilisation, nous vous
-                enverrons un courriel vous suggérant des modifications afin de publier votre tutoriel le plus rapidement
-                possible.
+                Afin de publier votre tutoriel, vous devez cliquer sur le bouton <b>"Publier"</b>, qui se trouve sur la page d'édition du tutoriel, ainsi que dans le menu
+                déroulant présent sur la page listant l'ensemble de vos tutoriels.
             </p>
             <p>L'équipe de la Cosplay School</p>
             <h6>Ceci est un courriel automatique, merci de ne pas y répondre.</h6>
         </div>
 
         <div class="footer-message">
-            <p>Tous droits réservés © 2018 - L’école du costume Inc</p>
+            <p>Tous droits réservés © 2018-2019 - L’école du costume Inc</p>
 
         </div>
     </div>

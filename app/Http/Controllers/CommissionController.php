@@ -17,14 +17,21 @@ use Intervention\Image\Facades\Image;
 
 class CommissionController extends Controller {
 
-    public function index() {
+    public function index(Request $request) {
         $commissions = Commission::where('in_review', '=', false)
             ->where('is_published', '=', true)
             ->orderBy('id', 'DESC')
             ->paginate(15);
         $categories = TutorialCategory::orderBy('name', 'ASC')->get();
 
-        return view('commissions.frontend.index', compact('categories', 'commissions'));
+        $currentUrl = $request->url();
+
+        $lastCommissions = Commission::where('is_published', '=', '1')
+            ->orderBy('id', 'desc')
+            ->limit(3)
+            ->get();
+
+        return view('commissions.frontend.index', compact('categories', 'commissions', 'lastCommissions', 'currentUrl'));
     }
 
     public function newCommissionRequest(Request $request) {
@@ -83,8 +90,24 @@ class CommissionController extends Controller {
         return view('commissions.frontend.show', compact('commission', 'currentUrl', 'userHasAlreadySubmitted'));
     }
 
-    public function searchByCategory() {
+    public function searchByCategory(Request $request, string $filterCategory) {
+        $category = TutorialCategory::where('filter_value', '=', $filterCategory)->firstOrFail();
+        $currentUrl = $request->url();
 
+        $commissions = Commission::where('in_review', '=', false)
+            ->where('category_id', '=', $category->id)
+            ->where('is_published', '=', true)
+            ->orderBy('id', 'DESC')
+            ->paginate(15);
+
+        $lastCommissions = Commission::where('is_published', '=', '1')
+            ->orderBy('id', 'desc')
+            ->limit(3)
+            ->get();
+
+        $categories = TutorialCategory::orderBy('name', 'ASC')->get();
+
+        return view('commissions.frontend.index', compact('categories', 'commissions', 'lastCommissions', 'currentUrl'));
     }
 
     public function report(Request $request, int $id) {

@@ -94,7 +94,7 @@
                             <a href="{{ route('page_about') }}">Récompenses d'auteur</a>
                         </li>
                         <li class="">
-                            <a href="http://shop.cosplayschool.ca" target="_blank">Cosplay Shop</a>
+                            <a href="https://shop.cosplayschool.ca" target="_blank">Cosplay Shop</a>
                         </li>
                     </ul>
                 </nav>

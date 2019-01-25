@@ -98,7 +98,7 @@
                         </div>
                         <!-- Widget last tutorials -->
                         <div class="widget">
-                            <h5 class="widget-title line-bottom">Derniers <span class="text-theme-color-2">Les tutoriels</span></h5>
+                            <h5 class="widget-title line-bottom">Derniers <span class="text-theme-color-2">tutoriels</span></h5>
                             <div class="latest-posts">
                                 @if($lastTutorials)
                                     @foreach($lastTutorials as $tutorial)
@@ -111,7 +111,7 @@
                                             @endif
                                         </a>
                                         <div class="post-right">
-                                            <h5 class="post-title mt-0"><a href="#">{{ str_limit($tutorial->title, $limit = 20, $end = '...') }}</a></h5>
+                                            <h5 class="post-title mt-0"><a href="{{ route('tutorial_show', $tutorial->slug) }}">{{ str_limit($tutorial->title, $limit = 20, $end = '...') }}</a></h5>
                                         </div>
                                     </article>
                                     @endforeach
@@ -129,17 +129,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <nav>
-                        {{--{{ knp_pagination_render(tutorials) }}--}}
-                        {{--{#<ul class="pagination theme-colored xs-pull-center m-0">#}--}}
-                            {{--{#<li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>#}--}}
-                            {{--{#<li class="active"><a href="#">1</a></li>#}--}}
-                            {{--{#<li><a href="#">2</a></li>#}--}}
-                            {{--{#<li><a href="#">3</a></li>#}--}}
-                            {{--{#<li><a href="#">4</a></li>#}--}}
-                            {{--{#<li><a href="#">5</a></li>#}--}}
-                            {{--{#<li><a href="#">...</a></li>#}--}}
-                            {{--{#<li> <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a> </li>#}--}}
-                            {{--{#</ul>#}--}}
+                        {{ $tutorials->links() }}
                     </nav>
                 </div>
             </div>

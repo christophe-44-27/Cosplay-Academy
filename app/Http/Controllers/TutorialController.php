@@ -15,7 +15,7 @@ class TutorialController extends Controller {
     public function index() {
         $tutorials = Tutorial::where('is_published', '=', '1')
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(15);
 
         $lastTutorials = Tutorial::where('is_published', '=', '1')
             ->orderBy('id', 'desc')
@@ -36,7 +36,7 @@ class TutorialController extends Controller {
         $tutorials = Tutorial::where('tutorial_category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(15);
 
         $lastTutorials = Tutorial::where('is_published', '=', '1')
             ->orderBy('id', 'desc')

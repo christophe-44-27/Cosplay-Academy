@@ -14,6 +14,7 @@ class TutorialCategory extends Model {
 	}
 
     public function commissions() {
-        return $this->hasMany(Commission::class, 'category_id');
+        return $this->hasMany(Commission::class, 'category_id')
+            ->where('is_published', '=', true);
     }
 }

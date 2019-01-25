@@ -12,26 +12,41 @@
     </script>
 @endpush
 
+@section('facebook_seo')
+    <!-- ZONE SEO FACEBOOK -->
+    <meta property="og:url" content="{{ $currentUrl }}" />
+    <meta property="og:title" content="Réaliser des commissions" />
+    <meta property="og:image" content="{{ asset('images/cs-default-sharing-image.png') }}">
+    <meta property="og:description"
+          content="Retrouvez des annonces pour des commissions, demandées par la communauté !" />
+@endsection
+
 @push('stylesheets')
     <style>
         .thumbnail-75px{
             width: 75px;
+        }
+        .alert-error{
+            background: #d72b2b;
+            color: #ffffff;
         }
     </style>
 @endpush
 
 @section('content')
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}">
-        <div class="container pt-70 pb-20">
+    <section class="inner-header bg-black-222">
+        <div class="container pt-10 pb-10">
             <!-- Section Content -->
             <div class="section-content">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="title text-white">Les annonces de commissions</h2>
-                        <ol class="breadcrumb text-left text-black mt-10">
+                    <div class="col-sm-8 xs-text-center">
+                        <h3 class="text-white mt-10">Les commissions</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <ol class="breadcrumb white mt-10 text-right xs-text-center">
                             <li><a href="{{ route('homepage') }}">Accueil</a></li>
-                            <li class="active text-gray-silver">Les annonces de commissions</li>
+                            <li class="active text-gray-silver">Les commissions</li>
                         </ol>
                     </div>
                 </div>
@@ -43,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9 blog-pull-right">
-                    @if($commissions)
+                    @if(count($commissions) > 0)
                         @foreach($commissions as $commission)
                         <div class="row mb-15">
                             <div class="col-sm-6 col-md-4">
@@ -66,9 +81,11 @@
                         <hr>
                         @endforeach
                     @else
-                        <div class="col-sm-6 col-md-4">
-                            <div class="alert alert-info">
-                                Aucune annonce ne correspond à votre recherche.
+                        <div class="row mb-15">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="alert alert-error bg-theme-color-1">
+                                    Aucune annonce ne correspond à cette catégorie.
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -91,20 +108,34 @@
                         </div>
                         <!-- Widget last tutorials -->
                         <div class="widget">
-                            <h5 class="widget-title line-bottom">Derniers <span class="text-theme-color-2">Les tutoriels</span></h5>
+                            <h5 class="widget-title line-bottom">Dernières <span class="text-theme-color-2">offres</span></h5>
                             <div class="latest-posts">
-                                <article class="post media-post clearfix pb-0 mb-10">
-                                    <a class="post-thumb" href="#">
-                                        <img class="thumbnail-75px" src="{{ asset('images/thumbnail-tutorial-empty.png') }}">
-                                    </a>
-                                    <div class="post-right">
-                                        <h5 class="post-title mt-0"><a href="#">Super commission !</a></h5>
+                                @if($lastCommissions)
+                                    @foreach($lastCommissions as $commission)
+                                        <article class="post media-post clearfix pb-0 mb-10">
+                                            <a class="post-thumb" href="#">
+                                                <img class="thumbnail-75px" src="{{ asset('storage/' . $commission->cover_path) }}">
+                                            </a>
+                                            <div class="post-right">
+                                                <h5 class="post-title mt-0"><a href="{{ route('commission_show', $commission->slug) }}">{{ str_limit($commission->title, $limit = 20, $end = '...') }}</a></h5>
+                                            </div>
+                                        </article>
+                                    @endforeach
+                                @else
+                                    <div class="alert alert-error">
+                                        Aucun tutoriel n'est encore publié.
                                     </div>
-                                </article>
+                                @endif
                             </div>
                         </div>
                         <!-- /Widget last tutorials -->
                     </div>
+                </div>
+            </div><div class="row">
+                <div class="col-sm-12">
+                    <nav>
+                        {{ $commissions->links() }}
+                    </nav>
                 </div>
             </div>
         </div>

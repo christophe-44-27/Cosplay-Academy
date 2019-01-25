@@ -91,6 +91,9 @@
                                             <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
                                                 Modifier
                                             </a>
+                                            <a href="{{ route('tutorial_publish', $tutorial->id)}}">
+                                                Publier
+                                            </a>
                                         @endif
                                     </li>
                                     <li class="dropdown-item">
