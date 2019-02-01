@@ -16,17 +16,15 @@
     </script>
 @endpush
 
-@push('facebook_seo')
+@section('facebook_seo')
     <!-- ZONE SEO FACEBOOK -->
-    <meta property="fb:app_id" content="526252497733390" />
-    <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ $currentUrl }}" />
     <meta property="og:title" content="{{ $commission->title }}" />
     <meta property="og:image"
           content="{{ asset('storage/' . $commission->cover_path) }}">
     <meta property="og:description"
           content="Demande de commission, réalisée par {{ $commission->user->public_pseudonym }} et qui s'intitule {{ $commission->title }}" />
-@endpush
+@endsection
 
 @push('stylesheets')
     <style>

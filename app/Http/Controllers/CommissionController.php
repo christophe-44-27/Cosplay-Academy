@@ -82,10 +82,13 @@ class CommissionController extends Controller {
 
         $currentUrl = $request->url();
         $user = Auth::user();
+        $userHasAlreadySubmitted = 0;
 
-        $userHasAlreadySubmitted = CommissionQuotation::where('commission_id', '=', $commission->id)
-            ->where('user_id', '=', $user->id)
-            ->count();
+        if (Auth::user()) {
+            $userHasAlreadySubmitted = CommissionQuotation::where('commission_id', '=', $commission->id)
+                ->where('user_id', '=', $user->id)
+                ->count();
+        }
 
         return view('commissions.frontend.show', compact('commission', 'currentUrl', 'userHasAlreadySubmitted'));
     }
