@@ -7,6 +7,24 @@
     </style>
 @endpush
 
+@section('seo')
+    <meta name="keywords"
+          content="Professeurs, professeurs, teachers, teacher, Tutorials, tutoriels, tutorials, Cosplay School, Cosplay, cosplay, school, ecole,
+          loisir, apprentissage, videos, cours, ateliers, workshops, courses, retrouvez, apprendre en ligne">
+    <meta name="description"
+          content="Retrouvez l'ensemble des professeurs de la Cosplay School ! Envie d'en faire partie ? Inscrivez-vous !"/>
+@endsection
+
+@section('facebook_seo')
+    <!-- ZONE SEO FACEBOOK -->
+    <meta property="og:url" content="https://www.cosplayschool.ca/teachers" />
+    <meta property="og:title" content="Plateforme d'entraide francophone de cosplay" />
+    <meta property="og:image"
+          content="{{ asset('images/cs-default-sharing-image.png')}}">
+    <meta property="og:description"
+          content="Retrouvez l'ensemble des professeurs de la Cosplay School ! Envie d'en faire partie ? Inscrivez-vous !" />
+@endsection
+
 @section('content')
     <!-- Section: inner-header -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}">

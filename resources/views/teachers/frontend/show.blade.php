@@ -10,6 +10,23 @@
     </style>
 @endpush
 
+@section('seo')
+    <meta name="keywords"
+          content="tutorial, tutoriel, apprendre, {{  $teacher->public_pseudonym }}">
+    <meta name="description"
+          content="Découvrez le profil de {{ $teacher->public_pseudonym }} et parcourez ses tutoriels mis en ligne sur la Cosplay School !"/>
+@endsection
+
+@section('facebook_seo')
+    <!-- ZONE SEO FACEBOOK -->
+    <meta property="og:url" content="{{ $currentUrl }}" />
+    <meta property="og:title" content="{{ $teacher->public_pseudonym }} est présent sur la Cosplay School !" />
+    <meta property="og:image"
+          content="{{ asset('storage/' . $teacher->profile_picture ) }}">
+    <meta property="og:description"
+          content="Découvrez le profil de {{ $teacher->public_pseudonym }} et parcourez ses tutoriels mis en ligne sur la Cosplay School !" />
+@endsection
+
 @push('google_analytics')
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118215472-1"></script>

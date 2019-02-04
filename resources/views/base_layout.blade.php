@@ -28,15 +28,16 @@
     <!-- favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <title>Plateforme en ligne d'apprentissage du cosplay</title>
-    <meta name="keywords"
-          content="Cosplay School, Cosplay, cosplay, school, ecole, loisir, apprentissage, videos, tutoriels, cours, ateliers, workshops, courses">
+    <!-- Zone SEO classique -->
     <meta name="google" content="notranslate"/>
-    <meta name="description"
-          content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !"/>
+    @yield('seo')
+    <!-- /Zone SEO classique -->
 
+    <!-- Zone SEO Facebook -->
     <meta property="fb:app_id" content="526252497733390"/>
     <meta property="og:type" content="website"/>
     @yield('facebook_seo')
+    <!-- /Zone SEO Facebook -->
 
     <div id="fb-root"></div>
     <script>(function(d, s, id) {

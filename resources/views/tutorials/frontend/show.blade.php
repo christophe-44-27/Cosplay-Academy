@@ -16,6 +16,13 @@
     </script>
 @endpush
 
+@section('seo')
+    <meta name="keywords"
+          content="tutorial, tutoriel, apprendre, {{ $tutorial->title }}">
+    <meta name="description"
+          content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}"/>
+@endsection
+
 @section('facebook_seo')
     <!-- ZONE SEO FACEBOOK -->
     <meta property="og:url" content="{{ $currentUrl }}" />

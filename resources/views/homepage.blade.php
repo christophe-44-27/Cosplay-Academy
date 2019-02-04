@@ -21,6 +21,23 @@
     <link href="{{ asset('css/revolution-slider/navigation.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
+@section('seo')
+    <meta name="keywords"
+          content="Cosplay School, Cosplay, cosplay, school, ecole, loisir, apprentissage, videos, tutoriels, cours, ateliers, workshops, courses">
+    <meta name="description"
+          content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !"/>
+@endsection
+
+@section('facebook_seo')
+    <!-- ZONE SEO FACEBOOK -->
+    <meta property="og:url" content="https://www.cosplayschool.ca" />
+    <meta property="og:title" content="Plateforme d'entraide francophone de cosplay" />
+    <meta property="og:image"
+          content="{{ asset('images/cs-default-sharing-image.png')}}">
+    <meta property="og:description"
+          content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !" />
+@endsection
+
 @push('google_analytic')
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118215472-1"></script>

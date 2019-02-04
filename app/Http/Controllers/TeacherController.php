@@ -32,12 +32,15 @@ class TeacherController extends Controller {
         ));
     }
 
-    public function show(int $id) {
+    public function show(Request $request, int $id) {
         $teacher = User::findOrFail($id);
         $teacherTutorials = Tutorial::where('user_id', '=', $teacher->id)
             ->orderBy('id', 'DESC')
             ->limit(4)
             ->get();
-        return view('teachers.frontend.show', compact('teacher', 'teacherTutorials'));
+
+        $currentUrl = $request->url();
+
+        return view('teachers.frontend.show', compact('teacher', 'teacherTutorials', 'currentUrl'));
     }
 }
