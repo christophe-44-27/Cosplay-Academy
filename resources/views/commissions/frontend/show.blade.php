@@ -170,8 +170,8 @@
                             @endauth
 
                             @guest()
-                                <a href="{{ route('commission_report', $commission) }}" class="btn btn-danger">
-                                    Signaler la demande de commission
+                                <a href="{{ route('login') }}" class="btn btn-primary clearfix">
+                                    Connectez-vous pour soumettre une proposition
                                 </a>
                             @endguest
                             <br>
