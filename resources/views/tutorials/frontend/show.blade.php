@@ -16,24 +16,8 @@
     </script>
 @endpush
 
-@section('seo')
-    <meta name="keywords"
-          content="tutorial, tutoriel, apprendre, {{ $tutorial->title }}">
-    <meta name="description"
-          content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}"/>
-@endsection
-
-@section('facebook_seo')
-    <!-- ZONE SEO FACEBOOK -->
-    <meta property="og:url" content="{{ $currentUrl }}" />
-    <meta property="og:title" content="{{ $tutorial->title }}" />
-    <meta property="og:image"
-          content="{{ asset('storage/' . $tutorial->main_picture) }}">
-    <meta property="og:description"
-          content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}" />
-@endsection
-
 @push('stylesheets')
+    <link rel="stylesheet" href="{{ asset('themes/dashboard/js/tinymce/prism.css') }}">
     <style>
         #player{
             width: 750px;
@@ -50,6 +34,23 @@
         }
     </style>
 @endpush
+
+@section('seo')
+    <meta name="keywords"
+          content="tutorial, tutoriel, apprendre, {{ $tutorial->title }}">
+    <meta name="description"
+          content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}"/>
+@endsection
+
+@section('facebook_seo')
+    <!-- ZONE SEO FACEBOOK -->
+    <meta property="og:url" content="{{ $currentUrl }}" />
+    <meta property="og:title" content="{{ $tutorial->title }}" />
+    <meta property="og:image"
+          content="{{ asset('storage/' . $tutorial->main_picture) }}">
+    <meta property="og:description"
+          content="Retrouvez notre dernier tutoriel en ligne, réalisé par {{ $tutorial->user->public_pseudonym }} et qui s'intitule {{ $tutorial->title }}" />
+@endsection
 
 @section('content')
     <!-- Section: inner-header -->
@@ -144,6 +145,25 @@
                             </div>
                         </div>
 
+                        @if(count($tutorial->documents) > 0)
+                        <div class="widget">
+                            <h4 class="widget-title line-bottom">Télécharger <span class="text-theme-color-2">les sources</span></h4>
+                            <div class="opening-hours">
+                                <ul class="list-border">
+                                    @foreach($tutorial->documents as $document)
+                                        <li class="clearfix" data-toggle="tooltip" title="{{$document->filename}}"> <span> {{ str_limit($document->filename, $limit = 20, $end = '...') }}</span>
+                                            <div class="value pull-right">
+                                                <a href="{{ asset('storage/' . $document->path) }}" target="_blank">Télécharger</a>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        @endif
+                        <br>
+                        <br>
+                        <br>
                         <div class="widget">
                             <a href="{{ route('tutoriel_report', $tutorial) }}" class="btn btn-danger">
                                 Signaler le tutoriel
@@ -195,6 +215,7 @@
     </section>
 @endsection
 @push('javascripts')
+    <script src="{{ asset('themes/dashboard/js/tinymce/prism.js') }}"></script>
     <script>
 
         /**
@@ -243,40 +264,40 @@
     </script>
     @if($tutorial->video_id)
         <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
 
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '490',
-                width: '840',
-                videoId: '{{ $tutorial->video_id }}',
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
-                setTimeout(stopVideo, 6000);
-                done = true;
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    height: '490',
+                    width: '840',
+                    videoId: '{{ $tutorial->video_id }}',
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
             }
-        }
-        function stopVideo() {
-            player.stopVideo();
-        }
-    </script>
+
+            // 5. The API calls this function when the player's state changes.
+            //    The function indicates that when playing a video (state=1),
+            //    the player should play for six seconds and then stop.
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING && !done) {
+                    setTimeout(stopVideo, 6000);
+                    done = true;
+                }
+            }
+            function stopVideo() {
+                player.stopVideo();
+            }
+        </script>
     @endif
 @endpush

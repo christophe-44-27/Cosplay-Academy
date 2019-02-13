@@ -380,9 +380,8 @@ img {
 }
 ul,
 ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    margin: 0;;
+    padding-left: 15px;
 }
 .fluid-video-wrapper {
   padding: 0;
@@ -501,9 +500,8 @@ iframe {
 /* -------- List ---------- */
 ul,
 ol {
-  list-style: none;
   margin: 0;
-  padding: 0;
+    padding-left: 15px;
 }
 ul ul,
 ol ul {
@@ -560,8 +558,9 @@ ul.list.list-white li a {
 }
 /* -------- List border bottom ---------- */
 ul.list-border-bottom li {
-  border-bottom: 1px solid #eeeeee;
-  padding-bottom: 10px;
+    list-style: none;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px;
 }
 ul.list.list-border-bottom li:last-child {
   border-bottom: none;
@@ -935,6 +934,9 @@ section > .container-fluid {
   right: 0;
   top: 0;
   width: 50%;
+}
+ul.list-border {
+    list-style: none;
 }
 /*
  * Header.less

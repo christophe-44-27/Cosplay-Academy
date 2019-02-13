@@ -10,6 +10,14 @@
 
         <!-- DASHBOARD CONTENT -->
         <div class="dashboard-content">
+            @if(Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+
+            @if(Session::has('error'))
+                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
+
             <!-- HEADLINE -->
             <div class="headline buttons primary">
                 <h4>Mon tableau de bord</h4>

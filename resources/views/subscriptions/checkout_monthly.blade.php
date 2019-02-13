@@ -54,11 +54,11 @@
                                         <li class="variation-size">Vous pouvez l'annuler à tout moment.</li>
                                     </ul>
                                 </td>
-                                <td class="product-price"><span class="amount">29.99</span></td>
+                                <td class="product-price"><span class="amount">2.50</span></td>
                                 <td class="product-quantity">
                                     1
                                 </td>
-                                <td class="product-subtotal"><span class="amount">29.99</span></td>
+                                <td class="product-subtotal"><span class="amount">2.50</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -75,23 +75,36 @@
                                 <tbody>
                                 <tr>
                                     <td>Sous total</td>
-                                    <td>29.99$</td>
+                                    <td>2.50 $</td>
                                 </tr>
                                 <tr>
                                     <td>Taxes (TPS + TVQ)</td>
-                                    <td>4.49$</td>
+                                    <td>0.87 $</td>
                                 </tr>
                                 <tr>
                                     <td>Frais de paiement</td>
-                                    <td>1.30$</td>
+                                    <td>0.40 $</td>
                                 </tr>
                                 <tr>
                                     <td>Total charges comprises</td>
-                                    <td>35.80$</td>
+                                    <td>3.27 $</td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <a class="btn btn-default">Procéder au paiement</a>
+                            <form action="{{ route('subscription_checkout_monthly') }}" method="POST">
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="pk_test_aH1Egd5ZlKc3bGWEbsFQzuJV"
+                                    data-amount="327"
+                                    data-label="Procéder au paiement"
+                                    data-name="Cosplay School"
+                                    data-description="Abonnement premium mensuel"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-locale="fr"
+                                    data-currency="cad">
+                                </script>
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>

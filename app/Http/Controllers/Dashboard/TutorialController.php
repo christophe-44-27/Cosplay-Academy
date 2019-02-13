@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTutorialRequest;
 use App\Mail\TutorialCreatedAdminMail;
 use App\Mail\TutorialCreatedMail;
 use App\Mail\TutorialPublishedMail;
+use App\Models\Document;
 use App\Models\Tutorial;
 use App\Models\TutorialCategory;
 use App\Http\Controllers\Controller;
@@ -101,6 +102,29 @@ class TutorialController extends Controller {
 
         $tutorial = Tutorial::create($arrayToCreate);
 
+        if ($request->hasfile('filename')) {
+
+
+            foreach ($request->file('filename') as $file) {
+                $name = $file->getClientOriginalName();
+
+                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
+                    Storage::makeDirectory("public/documents/tutorials");
+                }
+
+                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
+
+                $document = new Document();
+                $document->filename = $name;
+                $document->type = $file->getClientOriginalExtension();
+                $document->documentable_id = $tutorial->id;
+                $document->documentable_type = 'App\Models\Tutorial';
+                $document->path = 'documents/tutorials/' . $name;
+
+                $document->save();
+            }
+        }
+
         Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
         Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
 
@@ -120,11 +144,10 @@ class TutorialController extends Controller {
             'tutorial_category_id' => $validated['tutorial_category_id'],
             'content' => $validated['content'],
             'url_video' => $request->request->get('url_video'),
-            'nb_views' => 0,
-            'nb_likes' => 0,
             'user_id' => Auth::id(),
             'slug' => str_slug($validated['title']),
         ];
+
         if ($request->file('thumbnail_picture')) {
             $resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
             // calculate md5 hash of encoded image
@@ -139,6 +162,7 @@ class TutorialController extends Controller {
             $resizedThumbnailImage->save(storage_path($path));
             $arrayToUpdate['thumbnail_picture'] = $publicThumbnailsPath;
         }
+
         if ($request->file('main_picture')) {
             $resizedCoverImage = Image::make($request->file('main_picture'))->fit(750, 500)->encode('jpg');
             // calculate md5 hash of encoded image
@@ -153,6 +177,7 @@ class TutorialController extends Controller {
             $resizedCoverImage->save(storage_path($pathCover));
             $arrayToUpdate['main_picture'] = $publicCoversPath;
         }
+
         Tutorial::where('slug', '=', $slug)
             ->update($arrayToUpdate);
         $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');

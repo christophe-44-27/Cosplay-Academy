@@ -83,14 +83,14 @@
                                         <!-- DP TRIANGLE -->
                                         <div class="dp-triangle"></div>
                                         <!-- DP TRIANGLE -->
+                                        <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
+                                            Modifier
+                                        </a>
                                         @if($tutorial->is_published)
                                             <a href="{{ route('tutorial_unpublish', $tutorial->id)}}">
                                                 Dépublier
                                             </a>
                                         @else
-                                            <a href="{{ route('tutorial_edit', $tutorial->slug)}}">
-                                                Modifier
-                                            </a>
                                             <a href="{{ route('tutorial_publish', $tutorial->id)}}">
                                                 Publier
                                             </a>

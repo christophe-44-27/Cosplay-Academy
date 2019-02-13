@@ -37,3 +37,4 @@ include ('Guest/teachers.php');
 
 /*** Connected User Section ***/
 include ('ConnectedUser/dashboard_routes.php');
+include ('ConnectedUser/subscriptions.php');

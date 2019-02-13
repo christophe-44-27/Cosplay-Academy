@@ -49,16 +49,16 @@
                             <tbody>
                             <tr class="cart_item">
                                 <td class="product-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
-                                <td class="product-name"><a href="#">Abonnement annuel - Le petit cosplayeur</a>
+                                <td class="product-name"><a href="#">Abonnement annuel - Membre premium</a>
                                     <ul class="variation">
                                         <li class="variation-size">Deux mois gratuits ! - Vous pouvez l'annuler à tout moment.</li>
                                     </ul>
                                 </td>
-                                <td class="product-price"><span class="amount">299.99 $</span></td>
+                                <td class="product-price"><span class="amount">25 $</span></td>
                                 <td class="product-quantity">
                                     1
                                 </td>
-                                <td class="product-subtotal"><span class="amount">299.99 $</span></td>
+                                <td class="product-subtotal"><span class="amount">25 $</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -75,19 +75,19 @@
                                 <tbody>
                                 <tr>
                                     <td>Sous total</td>
-                                    <td>299.99 $</td>
+                                    <td>25.00 $</td>
                                 </tr>
                                 <tr>
                                     <td>Taxes (TPS + TVQ)</td>
-                                    <td>44.01 $</td>
+                                    <td>3.74 $</td>
                                 </tr>
                                 <tr>
                                     <td>Frais de paiement</td>
-                                    <td>10.27 $</td>
+                                    <td>1.35 $</td>
                                 </tr>
                                 <tr>
                                     <td>Total charges comprises</td>
-                                    <td>354.27 $</td>
+                                    <td>30.05 $</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -95,16 +95,16 @@
                                 <script
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="pk_test_aH1Egd5ZlKc3bGWEbsFQzuJV"
-                                    data-amount="999"
+                                    data-amount="3005"
+                                    data-label="Procéder au paiement"
                                     data-name="Cosplay School"
-                                    data-description="Example charge"
+                                    data-description="Abonnement premium"
                                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                    data-locale="auto"
+                                    data-locale="fr"
                                     data-currency="cad">
                                 </script>
                                 @csrf
                             </form>
-                            <a class="btn btn-default">Procéder au paiement</a>
                         </div>
                     </div>
                 </div>

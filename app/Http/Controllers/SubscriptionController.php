@@ -21,14 +21,14 @@ class SubscriptionController extends Controller {
             ->where('is_published', '=', true)
             ->sum('nb_views');
 
-        return view('subscriptions.index', compact('user', 'teacherCount', 'studentCount', 'tutorialCount'
+        return view('subscriptions.premium', compact('user', 'teacherCount', 'studentCount', 'tutorialCount'
         ,'tutorialNbViews'));
     }
 
     public function checkoutYearly(Request $request) {
         $user = Auth::user();
 
-        if ($user->subscribed('cs_box')) {
+        if ($user->subscribed('premium_plan')) {
             $request->session()->flash('success', "Vous êtes déjà abonné(e) ! :)");
 
             return redirect(route('my_subscriptions'));
@@ -40,9 +40,9 @@ class SubscriptionController extends Controller {
             $stripeToken = $request->stripeToken;
 
             if ($user->stripe_id) {
-                $user->newSubscription('cs_box', 'cs_box_yearly')->create();
+                $user->newSubscription('premium_plan', 'premium_yearly')->create();
             } else {
-                $user->newSubscription('cs_box', 'cs_box_yearly')->create($stripeToken, [
+                $user->newSubscription('premium_plan', 'premium_yearly')->create($stripeToken, [
                     'email' => $request->stripeEmail
                 ]);
             }
@@ -56,7 +56,7 @@ class SubscriptionController extends Controller {
 
     public function checkoutMonthly(Request $request) {
         $user = Auth::user();
-        if ($user->subscribed('cs_box')) {
+        if ($user->subscribed('premium_plan')) {
             $request->session()->flash('success', "Vous êtes déjà abonné(e) ! :)");
 
             return redirect(route('my_subscriptions'));
@@ -66,9 +66,9 @@ class SubscriptionController extends Controller {
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $stripeToken = $request->stripeToken;
             if ($user->stripe_id) {
-                $user->newSubscription('cs_box', 'cs_box_monthly')->create();
+                $user->newSubscription('premium_plan', 'premium_monthly')->create();
             } else {
-                $user->newSubscription('cs_box', 'cs_box_monthly')->create($stripeToken, [
+                $user->newSubscription('premium_plan', 'premium_monthly')->create($stripeToken, [
                     'email' => $request->stripeEmail
                 ]);
             }

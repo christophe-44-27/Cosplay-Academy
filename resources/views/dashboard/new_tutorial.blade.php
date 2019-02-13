@@ -1,5 +1,4 @@
 @extends('layout_dashboard')
-
 @section('content')
     <!-- DASHBOARD BODY -->
     <div class="dashboard-body">
@@ -75,6 +74,26 @@
                                 {{ Form::text('content', null, ['class' => 'tinymce']) }}
                             </div>
                             <!-- /INPUT CONTAINER -->
+
+                            <!-- INPUT CONTAINER -->
+                            <div class="input-container half">
+                                <label for="filename[]" class="rl-label required">Source(s)</label>
+                                <div class="input-group control-group increment" >
+                                    <input type="file" name="filename[]" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                    </div>
+                                </div>
+                                <div class="clone hide">
+                                    <div class="control-group input-group" style="margin-top:10px">
+                                        <input type="file" name="filename[]" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /INPUT CONTAINER -->
                         </div>
                     </div>
                     <!-- /FORM BOX ITEM -->
@@ -99,6 +118,7 @@
 
 @push('javascripts')
     <script src="{{ asset('themes/dashboard/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('themes/dashboard/js/tinymce/prism.js') }}"></script>
     <script>
         tinymce.init({
             height : "640",
@@ -109,10 +129,17 @@
             document_base_url : "http://localhost/cosplayschool-lar/public/",
             plugins: [
                 'image advlist autolink lists link image charmap print preview anchor textcolor',
-                'searchreplace visualblocks code fullscreen',
+                'searchreplace visualblocks code codesample fullscreen',
                 'insertdatetime media table contextmenu paste code help wordcount'
             ],
-            toolbar: 'insert | undo redo | image code | formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | ',
+            codesample_languages: [
+                {text: 'C', value: 'c'},
+                {text: 'C++', value: 'cpp'},
+                {text: 'PHP', value: 'php'}
+            ],
+            codesample_dialog_height: 400,
+            codesample_dialog_width: 600,
+            toolbar: 'insert | undo redo | image code codesample | formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | ',
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tinymce.com/css/codepen.min.css'],
@@ -153,5 +180,21 @@
                 xhr.send(formData);
             },
         });
+    </script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $(".btn-success").click(function(){
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+
+            $("body").on("click",".btn-danger",function(){
+                $(this).parents(".control-group").remove();
+            });
+
+        });
+
     </script>
 @endpush

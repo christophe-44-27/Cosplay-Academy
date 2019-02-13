@@ -30,7 +30,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
     /** MON ABONNEMENT **/
-//    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
+    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
+    Route::get('subscriptions/cancel', 'Dashboard\SubscriptionController@cancel')->name('subscription_cancel');
+    Route::get('subscriptions/resume', 'Dashboard\SubscriptionController@resume')->name('subscription_resume');
     /** GALERIE PHOTOS */
     Route::get('gallery', 'Dashboard\GalleryController@index')->name('gallery');
     Route::get('gallery/new', 'Dashboard\GalleryController@newGallery')->name('gallery_new');

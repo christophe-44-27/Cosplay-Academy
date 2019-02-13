@@ -28,6 +28,10 @@ class PageController extends Controller {
 		));
 	}
 
+	public function printingProgram() {
+		return view('pages.printing_programm');
+	}
+
 	public function authorProgram() {
 		return view('pages.author_program');
 	}

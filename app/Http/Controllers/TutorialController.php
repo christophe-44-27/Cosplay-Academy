@@ -51,6 +51,7 @@ class TutorialController extends Controller {
         $tutorial = Tutorial::where('slug', '=', $slug)
             ->where('is_published', '=', true)
             ->firstOrFail();
+
         $tutorial->nb_views = $tutorial->nb_views + 1;
         $tutorial->save();
 

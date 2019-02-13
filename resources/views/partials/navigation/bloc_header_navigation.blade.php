@@ -82,10 +82,14 @@
                             </ul>
                         </li>
                         <li class="">
-                            <a href="{{ route('tutorials') }}">Les tutoriels</a>
+                            <a href="#">Explorer</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('tutorials') }}">Les tutoriels</a></li>
+                                <li><a href="{{ route('teachers') }}">Les auteurs</a></li>
+                            </ul>
                         </li>
                         <li class="">
-                            <a href="{{ route('teachers') }}">Les auteurs</a>
+                            <a href="{{ route('premium_index') }}">Premium</a>
                         </li>
                         <li class="">
                             <a href="{{ route('community') }}">Découvrir</a>

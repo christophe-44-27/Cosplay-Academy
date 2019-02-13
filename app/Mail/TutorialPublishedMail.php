@@ -31,7 +31,7 @@ class TutorialPublishedMail extends Mailable {
      */
     public function build() {
         return $this->from('contact@cosplayschool.ca')
-            ->subject('Publication de votre tutoriel')
+            ->subject("Votre tutoriel a bien été publié !")
             ->view('emails.tutorials_published_email');
     }
 }

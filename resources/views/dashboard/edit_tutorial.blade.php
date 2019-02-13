@@ -100,6 +100,7 @@
 
 @push('javascripts')
     <script src="{{ asset('themes/dashboard/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('themes/dashboard/js/tinymce/prism.js') }}"></script>
     <script>
         tinymce.init({
             height : "640",
@@ -110,10 +111,15 @@
             document_base_url : "http://localhost/cosplayschool-lar/public/",
             plugins: [
                 'image advlist autolink lists link image charmap print preview anchor textcolor',
-                'searchreplace visualblocks code fullscreen',
+                'searchreplace visualblocks code codesample fullscreen',
                 'insertdatetime media table contextmenu paste code help wordcount'
             ],
-            toolbar: 'insert | undo redo | image code | formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | ',
+            codesample_languages: [
+                {text: 'C', value: 'c'},
+                {text: 'C++', value: 'cpp'},
+                {text: 'PHP', value: 'php'}
+            ],
+            toolbar: 'insert | undo redo | image code codesample | formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | ',
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tinymce.com/css/codepen.min.css'],

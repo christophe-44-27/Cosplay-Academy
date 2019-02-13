@@ -92,15 +92,14 @@
         </li>
         <!-- /DROPDOWN ITEM -->
 
-
-        {{--<!-- DROPDOWN ITEM -->--}}
-        {{--<li class="dropdown-item">--}}
-            {{--<a href="{{ route('my_subscriptions') }}">--}}
-                {{--<span class="sl-icon icon-credit-card"></span>--}}
-                {{--Mon abonnement--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<!-- /DROPDOWN ITEM -->--}}
+        <!-- DROPDOWN ITEM -->
+        <li class="dropdown-item  {{ ($controller == 'subscriptions') ? 'active' : '' }}">
+            <a href="{{ route('my_subscriptions') }}">
+                <span class="sl-icon icon-credit-card"></span>
+                Mon abonnement
+            </a>
+        </li>
+        <!-- /DROPDOWN ITEM -->
     </ul>
     <!-- /DROPDOWN -->
 
