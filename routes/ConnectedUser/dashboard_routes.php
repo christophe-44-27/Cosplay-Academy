@@ -20,6 +20,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
     Route::get('tutorials/publish/{id}', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
     Route::get('tutorials/unpublish/{id}', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
+    Route::get('tutorials/document/delete/{id}/{tutorialId}', 'Dashboard\TutorialController@deleteDocument', function(string $id, string $tutorialId){})
+        ->name('delete_tutorial_document');
     /** ADRESSES **/
     Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
     Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');

@@ -103,8 +103,6 @@ class TutorialController extends Controller {
         $tutorial = Tutorial::create($arrayToCreate);
 
         if ($request->hasfile('filename')) {
-
-
             foreach ($request->file('filename') as $file) {
                 $name = $file->getClientOriginalName();
 
@@ -180,6 +178,30 @@ class TutorialController extends Controller {
 
         Tutorial::where('slug', '=', $slug)
             ->update($arrayToUpdate);
+
+        $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
+
+        if ($request->hasfile('filename')) {
+            foreach ($request->file('filename') as $file) {
+                $name = $file->getClientOriginalName();
+
+                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
+                    Storage::makeDirectory("public/documents/tutorials");
+                }
+
+                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
+
+                $document = new Document();
+                $document->filename = $name;
+                $document->type = $file->getClientOriginalExtension();
+                $document->documentable_id = $tutorial->id;
+                $document->documentable_type = 'App\Models\Tutorial';
+                $document->path = 'documents/tutorials/' . $name;
+
+                $document->save();
+            }
+        }
+
         $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
         return redirect(route('dashboard_tutorials_list'));
     }
@@ -234,5 +256,15 @@ class TutorialController extends Controller {
 
         $request->session()->flash('success', 'Le tutoriel a été dépublié !');
         return redirect(route('dashboard_tutorials_list'));
+    }
+
+    public function deleteDocument(Request $request, int $id, int $tutorialId) {
+        $tutorial = Tutorial::where('id', '=', $tutorialId)->firstOrFail();
+
+        $document = Document::findOrFail($id);
+        $document->delete();
+
+        $request->session()->flash('success', 'Le document a bien été supprimé !');
+        return redirect(route('tutorial_edit', $tutorial->slug));
     }
 }
