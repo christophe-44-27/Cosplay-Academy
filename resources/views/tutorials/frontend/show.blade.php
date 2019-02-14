@@ -153,7 +153,15 @@
                                     @foreach($tutorial->documents as $document)
                                         <li class="clearfix" data-toggle="tooltip" title="{{$document->filename}}"> <span> {{ str_limit($document->filename, $limit = 20, $end = '...') }}</span>
                                             <div class="value pull-right">
-                                                <a href="{{ asset('storage/' . $document->path) }}" target="_blank">Télécharger</a>
+                                                @if($tutorial->user->id = 1)
+                                                    @if(Auth::user()->subscription('premium_plan') and !empty(Auth::user()->subscription('premium_plan')->ends_at))
+                                                        <p>Vous devez être premium - <a href="{{ route('premium_index') }}" class="primary">Devenir premium</a> </p>
+                                                    @else
+                                                        <a href="{{ asset('storage/' . $document->path) }}" target="_blank">Télécharger</a>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ asset('storage/' . $document->path) }}" target="_blank">Télécharger</a>
+                                                @endif
                                             </div>
                                         </li>
                                     @endforeach
