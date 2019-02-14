@@ -29,8 +29,11 @@
                                 <a href="{{ route('subscription_resume') }}">Réactiver fin à mon abonnement</a>
                             @endif
 
-                            @if($subscription && !$onGracePeriod)
+                            @if($subscription && !$onGracePeriod && is_null($subscription->ends_at))
                                 <a href="{{ route('subscription_cancel') }}">Mettre fin à mon abonnement</a>
+                            @else
+                                <p>Votre abonnement est annulé.</p>
+                                <p><a href="{{ route('premium_index') }}" class="primary">Reprendre un abonnement</a> </p>
                             @endif
                         </p>
                     </div>

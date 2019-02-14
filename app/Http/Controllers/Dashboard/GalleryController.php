@@ -103,8 +103,9 @@ class GalleryController extends Controller {
     public function edit(string $slug) {
         $gallery = Album::where('slug', '=', $slug)->firstOrFail();
         $categories = GalleryCategory::pluck('name', 'id');
+        $controller = 'gallery';
 
-        return view('dashboard.gallery.gallery_edit', compact('gallery', 'categories'));
+        return view('dashboard.gallery.gallery_edit', compact('gallery', 'categories', 'controller'));
     }
 
     public function update(UpdateGalleryRequest $request, $slug) {

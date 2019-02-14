@@ -49,7 +49,7 @@
                             <tbody>
                             <tr class="cart_item">
                                 <td class="product-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
-                                <td class="product-name"><a href="#">Abonnement annuel - Membre premium</a>
+                                <td class="product-name"><a href="#">Abonnement annuel</a>
                                     <ul class="variation">
                                         <li class="variation-size">Deux mois gratuits ! - Vous pouvez l'annuler à tout moment.</li>
                                     </ul>

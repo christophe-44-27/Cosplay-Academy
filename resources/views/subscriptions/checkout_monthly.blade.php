@@ -49,7 +49,7 @@
                             <tbody>
                             <tr class="cart_item">
                                 <td class="product-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
-                                <td class="product-name"><a href="#">Abonnement mensuel - Le petit cosplayeur</a>
+                                <td class="product-name"><a href="#">Abonnement mensuel</a>
                                     <ul class="variation">
                                         <li class="variation-size">Vous pouvez l'annuler à tout moment.</li>
                                     </ul>
@@ -79,11 +79,11 @@
                                 </tr>
                                 <tr>
                                     <td>Taxes (TPS + TVQ)</td>
-                                    <td>0.87 $</td>
+                                    <td>0.88 $</td>
                                 </tr>
                                 <tr>
                                     <td>Frais de paiement</td>
-                                    <td>0.40 $</td>
+                                    <td>0.39 $</td>
                                 </tr>
                                 <tr>
                                     <td>Total charges comprises</td>

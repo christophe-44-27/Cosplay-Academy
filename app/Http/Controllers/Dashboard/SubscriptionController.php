@@ -21,6 +21,11 @@ class SubscriptionController extends Controller {
         $upcomingPrice = 0;
         $subscription = $user->subscription('premium_plan');
 
+        if(!$subscription) {
+            $request->session()->flash('error', "Vous n'avez pas d'abonnement actif.");
+            return redirect(route('premium_index'));
+        }
+
         if ($subscription && $user->subscription('premium_plan')->onGracePeriod()) {
             $onGracePeriod = true;
         }

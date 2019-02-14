@@ -35,6 +35,14 @@
     </section>
     <section>
         <div class="header-pricing">
+            @if(Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
+
+            @if(Session::has('error'))
+                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+            @endif
+
             <div class="container-price">
                 <div class="title">
                     Devenir premium
@@ -155,7 +163,7 @@
                     </p>
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-bottom: .5rem">
                         <input name="cmd" type="hidden" value="_s-xclick">
-                        <input name="hosted_button_id" type="hidden" value="Q6LF5QZBDYD28">
+                        <input name="hosted_button_id" type="hidden" value="VRH8WVM7RTD52">
                         <button class="btn"><i class="icon icon-paypal"></i> Faire un don via paypal</button>
                     </form>
                 </div>
