@@ -61,7 +61,7 @@
                         <div class="col-s-12 col-m-4 col-l-4">
                             <div class="pricing-col">
                                 <header class="price">
-                                    0<em>$ HT</em><sup>A vie</sup>
+                                    0<em>$ </em><sup>A vie</sup>
                                 </header>
                                 <ul class="nobull">
                                     <li>
@@ -88,7 +88,7 @@
                         <div class="col-s-12 col-m-4 col-l-4">
                             <div class="pricing-col">
                                 <header class="price">
-                                    2.5<em>$ HT</em><sup>1 Mois</sup>
+                                    2.5<em>$ +tx</em><sup>1 Mois</sup>
                                 </header>
                                 <ul class="nobull">
                                     <li>
@@ -115,7 +115,7 @@
                         <div class="col-s-12 col-m-4 col-l-4">
                             <div class="pricing-col">
                                 <header class="price">
-                                    25<em>$ HT</em><sup>12 Mois</sup>
+                                    25<em>$ +tx</em><sup>12 Mois</sup>
                                 </header>
                                 <ul class="nobull">
                                     <li>
@@ -152,7 +152,7 @@
                     <p>
                         Malgré tout, le développement du site internet, les présences sur les événements, l'impression 3D,
                         nécessite du temps et de l'argent.
-                        Du coup proposer des options payantes, comme le téléchargement des sources, l'impression 3D permettent d'amortir une partie du temps passé et de continuer
+                        Du coup proposer des options payantes, comme le téléchargement des sources, des modèles 3D, l'impression 3D permettent d'amortir une partie du temps passé et de continuer
                         à faire vivre le site.
                     </p>
                     <h2>

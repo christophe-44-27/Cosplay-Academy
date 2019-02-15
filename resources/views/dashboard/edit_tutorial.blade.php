@@ -79,7 +79,7 @@
 
                             <!-- INPUT CONTAINER -->
                             <div class="input-container half">
-                                <label for="filename[]" class="rl-label required">Source(s)</label>
+                                <label for="filename[]" class="rl-label required">Source(s) (Taille maximum : 2mo)</label>
                                 <div class="input-group control-group increment" >
                                     <input type="file" name="filename[]" class="form-control">
                                     <div class="input-group-btn">
