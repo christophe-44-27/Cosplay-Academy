@@ -48,9 +48,10 @@
                     Devenir premium
                 </div>
                 <p>
-                    Devenir premium sur Cosplay School, c'est <strong>soutenir</strong> la création des contenues faits par
+                    Devenir premium sur Cosplay School, c'est <strong style="color: #00d7b3;">soutenir</strong> la création des contenus faits par
                     la Cosplay School et le développement du site internet tout en accédant des fonctionnalités exclusives.
                     (Comme le téléchargement des sources de code de nos cours, ou bien encore l'heure d'impression à 1$ au lieu d'1.5$).
+                    <b style="color: #00d7b3;">Rassurez-vous l'ensemble des tutoriels sera toujours accessible gratuitement, c'est promis !</b>
                 </p>
             </div>
         </div>
@@ -64,20 +65,20 @@
                                     0<em>$ </em><sup>A vie</sup>
                                 </header>
                                 <ul class="nobull">
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Visionner les tutoriels
                                     </li>
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Ajouter des photos / albums
                                     </li>
-                                    <li>
-                                        Visionner les tutoriels
+                                    <li style="color: #00d7b3;">
+                                        Impression 3D <strong>(1.50$ / heure)</strong>
+                                    </li>
+                                    <li style="color: #00d7b3;">
+                                        Accès aux sources des tutoriels
                                     </li>
                                     <li>
-                                        Impression 3D (1.5$ / heure)
-                                    </li>
-                                    <li>
-                                        <strong>Télécharger les sources des tutoriels</strong>
+                                        Accès aux sources des tutoriels Cosplay School
                                     </li>
                                 </ul>
                                 <footer>
@@ -91,20 +92,20 @@
                                     2.5<em>$ +tx</em><sup>1 Mois</sup>
                                 </header>
                                 <ul class="nobull">
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Visionner les tutoriels
                                     </li>
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Ajouter des photos / albums
                                     </li>
-                                    <li>
-                                        Visionner les tutoriels
+                                    <li style="color: #00d7b3;">
+                                        Impression 3D <strong>(1.50$ / heure)</strong>
                                     </li>
-                                    <li>
-                                        Impression 3D <strong>(1.5$ / heure)</strong>
+                                    <li style="color: #00d7b3;">
+                                        Accès aux sources des tutoriels
                                     </li>
-                                    <li>
-                                        <strong>Télécharger les sources des tutoriels</strong>
+                                    <li style="color: #00d7b3;">
+                                        Accès aux sources des tutoriels Cosplay School*
                                     </li>
                                 </ul>
                                 <footer>
@@ -118,20 +119,20 @@
                                     25<em>$ +tx</em><sup>12 Mois</sup>
                                 </header>
                                 <ul class="nobull">
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Visionner les tutoriels
                                     </li>
-                                    <li>
+                                    <li style="color: #00d7b3;">
                                         Ajouter des photos / albums
                                     </li>
-                                    <li>
-                                        Visionner les tutoriels
+                                    <li style="color: #00d7b3;">
+                                        Impression 3D <strong>(1.00$ / heure)</strong>
                                     </li>
-                                    <li>
-                                        Impression 3D <strong>(1$ / heure)</strong>
+                                    <li style="color: #00d7b3;">
+                                        Accès aux sources des tutoriels
                                     </li>
-                                    <li>
-                                        <strong>Télécharger les sources des tutoriels</strong>
+                                    <li style="color: #00d7b3;">
+                                        Accès aux sources des tutoriels Cosplay School*
                                     </li>
                                 </ul>
                                 <footer>
@@ -166,6 +167,10 @@
                         <input name="hosted_button_id" type="hidden" value="VRH8WVM7RTD52">
                         <button class="btn"><i class="icon icon-paypal"></i> Faire un don via paypal</button>
                     </form>
+                </div>
+                <div class="col-s-12 col-md-12 formatted">
+                    <p>* Les sources des tutoriels de la Cosplay School peuvent être des modèles 3D prêts à être imprimés, des échantillons de code dans le cadre
+                    d'un tutoriel Arduino, des patrons sous format PDF ou .doc, etc.</p>
                 </div>
             </div>
         </div>
