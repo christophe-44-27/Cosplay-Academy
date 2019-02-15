@@ -99,7 +99,7 @@
                                     data-label="Procéder au paiement"
                                     data-name="Cosplay School"
                                     data-description="Abonnement premium mensuel"
-                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-image="https://www.cosplayschool.ca/images/logo-big-cs.png"
                                     data-locale="fr"
                                     data-currency="cad">
                                 </script>
