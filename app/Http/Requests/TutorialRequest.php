@@ -26,7 +26,6 @@ class TutorialRequest extends FormRequest {
             'content' => 'required',
             'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
             'main_picture' => 'required|dimensions:min_width=700,min_height=500',
-            'filename' => 'required',
             'filename.*' => 'mimes:doc,pdf,docx,zip|size:2048',
         ];
     }

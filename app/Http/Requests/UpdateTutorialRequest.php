@@ -25,7 +25,7 @@ class UpdateTutorialRequest extends FormRequest {
 			'tutorial_category_id' => 'required',
 			'content' => 'required',
 			'thumbnail_picture' => 'dimensions:min_width=258,min_height=150',
-            'filename.*' => 'required|size:2048',
+            'filename.*' => 'size:2048',
 			'main_picture' => 'dimensions:min_width=700,min_height=500'
 		];
 	}
