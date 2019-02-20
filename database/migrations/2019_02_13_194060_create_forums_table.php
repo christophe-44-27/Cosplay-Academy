@@ -15,8 +15,8 @@ class CreateForumsTable extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->string('short_description');
-            $table->unsignedInteger('forum_category_id');
-            $table->foreign('forum_category_id')->references('id')->on('forum_categories');
+            $table->unsignedInteger('forum_section_id');
+            $table->foreign('forum_section_id')->references('id')->on('forum_sections');
         });
     }
 

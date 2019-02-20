@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ForumCategory extends Model {
-    protected $table = 'forum_categories';
+class ForumSection extends Model {
+    protected $table = 'forum_sections';
     protected $fillable = ['title'];
     public $timestamps = false;
 }

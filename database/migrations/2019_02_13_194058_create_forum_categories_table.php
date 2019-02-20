@@ -11,7 +11,7 @@ class CreateForumCategoriesTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('forum_categories', function (Blueprint $table) {
+        Schema::create('forum_sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
         });
@@ -23,6 +23,6 @@ class CreateForumCategoriesTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('forum_categories');
+        Schema::dropIfExists('forum_sections');
     }
 }

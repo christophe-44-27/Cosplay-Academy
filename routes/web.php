@@ -33,6 +33,7 @@ include ('Guest/commissions.php');
 include ('Guest/community.php');
 include ('Guest/pages.php');
 include ('Guest/teachers.php');
+include ('Guest/forum.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/
