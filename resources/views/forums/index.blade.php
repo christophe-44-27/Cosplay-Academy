@@ -134,84 +134,21 @@
                     Les catégories
                 </h2>
                 <div class="row">
+                    @foreach($materialForums as $materialForum)
                     <div class="col-s-12 col-m-6 col-l-4">
                         <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/htmlcss-4">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/needle.png') }}" alt="4"></a>
+                            <div class="forum_icon"><a href="{{ route('show_forum', $materialForum->id ) }}">
+                                <img height="60" src="{{ asset('images/flaticon-png/forum/' . $materialForum->icon) }}" alt="4"></a>
                             </div>
                             <h3 class="forum_name">
-                                <a href="/forum/htmlcss-4">Couture</a>
+                                <a href="{{ route('show_forum', $materialForum->id ) }}">{{ $materialForum->title }}</a>
                             </h3>
                             <div class="forum_last">
                                 <a href="/forum/topics/30527">position sticky</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/javascript-7">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/stage-props.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/javascript-7">Accessoires</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30543">[AngularJS] Problème d'installat...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/php-5">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/rug.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/php-5">Artisanat</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/29483">Gmail smtp stop working</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/mysql-6">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/led.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/mysql-6">Electronique</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30380">Installation d'une base Mysql po...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/ruby-8">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/tools.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/ruby-8">Peinture</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30086">Nouvelle question sur la réalisa...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/linux-61">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/blueprint.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/linux-61">Patronnage</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/21281">-jailshell: -jailshell:: command...</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-s-12 col-m-6">
@@ -299,252 +236,45 @@
                     </div>
                 </div>
             </div>
-            <div class="col-s-12">
-                <h2 class="forum-category-title">
-                    La Cosplay School
-                </h2>
-                <table class="table">
-                    <tbody>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <h3 class="forum_title">
-                                    Suggestion d'améliorations pour le site
-                                </h3>
-                                <div class="s-hidden">
-                                    Des suggestions, des idées pour améliorer le site ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            599
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="#">Améliorer un site web</a><em><span class="js-vue"><abbr class="timeago">Il y a 2 mois</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/proposition-de-tutoriels-57">
-                                <h3 class="forum_title">
-                                    Proposition de tutoriels
-                                </h3>
-                                <div class="s-hidden">
-                                    Une idée de tutoriel intéréssant ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            924
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/12157">AngularJS and Firebase</a><em><span class="js-vue"><abbr class="timeago">Il y a 5 ans</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/proposer-une-video-78">
-                                <h3 class="forum_title">
-                                    Proposer une vidéo
-                                </h3>
-                                <div class="s-hidden">
-                                    Vous avez envie de montrer vos tutoriels vidéo et de partager vos connaissances ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            68
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/29945">Programmation Réactive Fonctionnelle:...</a><em><span class="js-vue"><abbr class="timeago">Il y a 4 mois</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/offres-demploi-79">
-                                <h3 class="forum_title">
-                                    Offres de commissions
-                                </h3>
-                                <div class="s-hidden">
-                                    Vous cherchez des cosplayeurs ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            310
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/29740">Montpellier, Développeur Front JS</a><em><span class="js-vue"><abbr class="timeago">Il y a 6 mois</abbr></span></em>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-s-12">
-                <h2 class="forum-category-title">
-                    La taverne
-                </h2>
-                <table class="table">
-                    <tbody><tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/formation-60">
-                                <h3 class="forum_title">
-                                    Formation
-                                </h3>
-                                <div class="s-hidden">
-                                    Une question ou avis de donner votre avis sur vos études / votre formation ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            223
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/30542">O'clock</a><em><span class="js-vue"><abbr class="timeago">Il y a 14 heures</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/vos-creations-2">
-                                <h3 class="forum_title">
-                                    Vos créations
-                                </h3>
-                                <div class="s-hidden">
-                                    Vous avez créé un joli site avec les tutoriels et vous cherchez des avis et des remarques ?
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            680
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/22503">[Jeux Navigateur] Expédition-Wars</a><em><span class="js-vue"><abbr class="timeago">Il y a 3 ans</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/jeux-videos-55">
-                                <h3 class="forum_title">
-                                    Jeux Vidéos
-                                </h3>
-                                <div class="s-hidden">
-                                    Pour qu'on puisse se retrouver sur des jeux en ligne
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            72
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/30388">Vos jeux préférés</a><em><span class="js-vue"><abbr class="timeago">Il y a environ un mois</abbr></span></em>
-                        </td>
-                    </tr>
-                    <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/divers-33">
-                                <h3 class="forum_title">
-                                    Divers
-                                </h3>
-                                <div class="s-hidden">
-                                    Pour parler de tout mais surtout de rien
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            951
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/29291">Faire des vidéos</a><em><span class="js-vue"><abbr class="timeago">Il y a 8 mois</abbr></span></em>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-s-12">
-                <h2 class="forum-category-title">
-                    Les questions - Logiciels
-                </h2>
-                <table class="table">
-                    <tbody>
-                        <tr class="forum is-unread">
-                        <td class="tcenter" width="50">
-                            <i class="icon topic_icon"></i>
-                        </td>
-                        <td>
-                            <a href="/forum/les-ide-63">
-                                <h3 class="forum_title">
-                                    Les IDE
-                                </h3>
-                                <div class="s-hidden">
-                                    Développez avec classe
-                                </div></a>
-                        </td>
-                        <td class="forum_count" width="40">
-                            325
-                        </td>
-                        <td class="forum_last" width="300">
-                            <a href="/forum/topics/30520">Make a sweet Memory of Honeymoon in N...</a><em><span class="js-vue"><abbr class="timeago">Il y a 6 jours</abbr></span></em>
-                        </td>
-                    </tr>
-                        <tr class="forum is-unread">
-                            <td class="tcenter" width="50">
-                                <i class="icon topic_icon"></i>
-                            </td>
-                            <td>
-                                <a href="/forum/photoshop-12">
-                                    <h3 class="forum_title">
-                                        Photoshop
-                                    </h3>
-                                    <div class="s-hidden">
-
-                                    </div></a>
-                            </td>
-                            <td class="forum_count" width="40">
-                                134
-                            </td>
-                            <td class="forum_last" width="300">
-                                <a href="/forum/topics/29390">wacom or photoshop issue ?</a><em><span class="js-vue"><abbr class="timeago">Il y a 8 mois</abbr></span></em>
-                            </td>
-                        </tr>
-                        <tr class="forum is-unread">
-                            <td class="tcenter" width="50">
-                                <i class="icon topic_icon"></i>
-                            </td>
-                            <td>
-                                <a href="/forum/illustrator-16">
-                                    <h3 class="forum_title">
-                                        Illustrator
-                                    </h3>
-                                    <div class="s-hidden">
-
-                                    </div></a>
-                            </td>
-                            <td class="forum_count" width="40">
-                                104
-                            </td>
-                            <td class="forum_last" width="300">
-                                <a href="/forum/topics/30116">vectorisation de contour</a><em><span class="js-vue"><abbr class="timeago">Il y a 3 mois</abbr></span></em>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            @if($sections)
+                @foreach($sections as $section)
+                <div class="col-s-12">
+                    <h2 class="forum-category-title">
+                        {{ $section->title }}
+                    </h2>
+                    <table class="table">
+                        <tbody>
+                        @if($forums)
+                            @foreach($forums as $forum)
+                                @if($section->id == $forum->forum_category_id)
+                                <tr class="forum is-unread">
+                                    <td class="tcenter" width="50">
+                                        <i class="icon topic_icon"></i>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('show_forum', $forum->id ) }}">
+                                            <h3 class="forum_title">
+                                                {{ $forum->title }}
+                                            </h3>
+                                            <div class="s-hidden">
+                                                {{ $forum->short_description }}
+                                            </div></a>
+                                    </td>
+                                    <td class="forum_count" width="40">
+                                        0
+                                    </td>
+                                    <td class="forum_last" width="300">
+                                        <a href="#">Améliorer un site web</a><em><span class="js-vue"><abbr class="timeago">Il y a 2 mois</abbr></span></em>
+                                    </td>
+                                </tr>
+                                @endif
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

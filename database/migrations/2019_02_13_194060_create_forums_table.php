@@ -14,8 +14,10 @@ class CreateForumsTable extends Migration {
         Schema::create('forums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('short_description');
-            $table->unsignedInteger('forum_section_id');
+            $table->string('short_description')->nullable(true);
+            $table->unsignedInteger('forum_section_id')->nullable(true);
+            $table->integer('order')->nullable(true);
+            $table->string('icon')->nullable(true);
             $table->foreign('forum_section_id')->references('id')->on('forum_sections');
         });
     }

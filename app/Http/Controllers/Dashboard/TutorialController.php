@@ -137,7 +137,7 @@ class TutorialController extends Controller {
      */
     public function update(UpdateTutorialRequest $request, string $slug) {
         $validated = $request->validated();
-        dd($validated);
+
         $arrayToUpdate = [
             'title' => $validated['title'],
             'tutorial_category_id' => $validated['tutorial_category_id'],

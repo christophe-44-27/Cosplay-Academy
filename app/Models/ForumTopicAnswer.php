@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class ForumTopicAnswer extends Model {
     protected $table = 'forum_topic_answers';
@@ -16,4 +17,8 @@ class ForumTopicAnswer extends Model {
         'updated_at'
     ];
     public $timestamps = true;
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
