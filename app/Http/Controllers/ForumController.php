@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddAnswerToForumTopicRequest;
 use App\Http\Requests\CreateTopicRequest;
-use App\Models\ForumSection;
-use App\Models\Forum;
-use App\Models\ForumTopic;
-use App\Models\ForumTopicAnswer;
+use App\Forum\Models\ForumSection;
+use App\Forum\Models\Thread;
+use App\Forum\Models\ForumTopic;
+use App\Forum\Models\Reply;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -15,13 +15,15 @@ class ForumController extends Controller {
 
     public function index() {
         $sections = ForumSection::all();
-        $forums = Forum::orderBy('order')->get();
-        $materialForums = Forum::whereIn('title', ['Couture', 'Patronnage', 'Artisanat', 'Electronique', 'Peinture', 'Accessoires'])->get();
+        $forums = Thread::orderBy('order')->get();
+        $materialForums = Thread::whereIn('title', ['Couture', 'Patronnage', 'Artisanat', 'Electronique', 'Peinture', 'Accessoires'])->get();
 
         return view('forums.index', compact('sections', 'forums', 'materialForums'));
     }
 
-    public function show(Forum $forum) {
+    public function show(int $forumId) {
+        $forum = Thread::where('id', '=', $forumId)->firstOrFail();
+
         $topics = ForumTopic::where('forum_id', '=', $forum->id)
             ->orderBy('id', 'DESC')
             ->paginate(15);
@@ -32,7 +34,7 @@ class ForumController extends Controller {
     public function showThread($slug) {
         $forumTopic = ForumTopic::where('slug', '=', $slug)->firstOrFail();
 
-        $answers = ForumTopicAnswer::where('forum_topic_id', '=', $forumTopic->id)
+        $answers = Reply::where('forum_topic_id', '=', $forumTopic->id)
             ->orderBy('id', 'DESC')
             ->get();
 
@@ -50,7 +52,7 @@ class ForumController extends Controller {
             'updated_at' => Carbon::now(),
         ];
 
-        ForumTopicAnswer::create($datas);
+        Reply::create($datas);
 
         $request->session()->flash('success', "Votre réponse a bien été ajoutée !");
         return redirect(route('show_forum', $forumId));

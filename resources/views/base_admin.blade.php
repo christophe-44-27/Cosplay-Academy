@@ -1,121 +1,247 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
+    <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-    <link href="{{ asset('themes/administration/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('themes/administration/css/bootstrap-theme.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('themes/administration/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('themes/administration/css/skins/_all-skins.css') }}" rel="stylesheet" type="text/css">
+    <!-- Title Page-->
+    <title>Dashboard</title>
 
-    <!-- favicon -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
-    <title>Espace d'administration</title>
+    <!-- Fontfaces CSS-->
+    <link href="{{ asset('themes/admin/css/font-face.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{{ asset('themes/admin/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{{ asset('themes/admin/vendor/wow/animate.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/slick/slick.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('themes/admin/vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ asset('themes/admin/css/theme.css') }}" rel="stylesheet" media="all">
+
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        <header class="main-header">
-            <!-- Logo -->
-            <a href="{{ route('admin_homepage') }}" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>C</b>S</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Cosplay</b>School</span>
-            </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs">Cosplay School</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-                                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
-                    </ul>
+<body>
+<div class="page-wrapper">
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+        <div class="header-mobile__bar">
+            <div class="container-fluid">
+                <div class="header-mobile-inner">
+                    <a class="logo" href="index.html">
+                        <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    </a>
+                    <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                    </button>
                 </div>
-            </nav>
+            </div>
+        </div>
+        <nav class="navbar-mobile">
+            <div class="container-fluid">
+                <ul class="navbar-mobile__list list-unstyled">
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="index.html">Dashboard 1</a>
+                            </li>
+                            <li>
+                                <a href="index2.html">Dashboard 2</a>
+                            </li>
+                            <li>
+                                <a href="index3.html">Dashboard 3</a>
+                            </li>
+                            <li>
+                                <a href="index4.html">Dashboard 4</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="chart.html">
+                            <i class="fas fa-chart-bar"></i>Charts</a>
+                    </li>
+                    <li>
+                        <a href="table.html">
+                            <i class="fas fa-table"></i>Tables</a>
+                    </li>
+                    <li>
+                        <a href="form.html">
+                            <i class="far fa-check-square"></i>Forms</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>Calendar</a>
+                    </li>
+                    <li>
+                        <a href="map.html">
+                            <i class="fas fa-map-marker-alt"></i>Maps</a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-copy"></i>Pages</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="login.html">Login</a>
+                            </li>
+                            <li>
+                                <a href="register.html">Register</a>
+                            </li>
+                            <li>
+                                <a href="forget-pass.html">Forget Password</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-desktop"></i>UI Elements</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="button.html">Button</a>
+                            </li>
+                            <li>
+                                <a href="badge.html">Badges</a>
+                            </li>
+                            <li>
+                                <a href="tab.html">Tabs</a>
+                            </li>
+                            <li>
+                                <a href="card.html">Cards</a>
+                            </li>
+                            <li>
+                                <a href="alert.html">Alerts</a>
+                            </li>
+                            <li>
+                                <a href="progress-bar.html">Progress Bars</a>
+                            </li>
+                            <li>
+                                <a href="modal.html">Modals</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">Switchs</a>
+                            </li>
+                            <li>
+                                <a href="grid.html">Grids</a>
+                            </li>
+                            <li>
+                                <a href="fontawesome.html">Fontawesome Icon</a>
+                            </li>
+                            <li>
+                                <a href="typo.html">Typography</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- END HEADER MOBILE-->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <a href="#">
+                <img src="images/icon/logo.png" alt="Cool Admin" />
+            </a>
+        </div>
+        <div class="menu-sidebar__content js-scrollbar1">
+            <!-- Sidemenu -->
+            @include('partials.navigation.sidemenu-admin')
+        </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <div class="form-header"></div>
+                        <div class="header-button">
+                            <div class="account-wrap">
+                                <div class="account-item clearfix js-item-menu">
+                                    <div class="image">
+                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    </div>
+                                    <div class="content">
+                                        <a class="js-acc-btn" href="#">john doe</a>
+                                    </div>
+                                    <div class="account-dropdown js-dropdown">
+                                        <div class="info clearfix">
+                                            <div class="image">
+                                                <a href="#">
+                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                </a>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="name">
+                                                    <a href="#">john doe</a>
+                                                </h5>
+                                                <span class="email">johndoe@example.com</span>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__body">
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                            </div>
+                                        </div>
+                                        <div class="account-dropdown__footer">
+                                            <a href="{{ route('logout') }}">
+                                                <i class="zmdi zmdi-power"></i>Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
+        <!-- HEADER DESKTOP-->
 
-        <!-- Navbar -->
-        @include('partials.navigation.sidemenu-admin')
-        <!-- /Navbar -->
-
-        <!-- Start main-content -->
-        <div class="content-wrapper">
-            @yield('content')
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+            </div>
         </div>
-        <!-- end main-content -->
+        <!-- END MAIN CONTENT-->
+        <!-- END PAGE CONTAINER-->
+    </div>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
-        </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
-    </footer>
 </div>
-</body>
-<!-- end wrapper -->
 
-<!-- external javascripts -->
-<script src="{{ asset('themes/administration/js/jquery.min.js') }}"></script>
-<script src="{{ asset('themes/administration/js/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('themes/administration/js/boostrap.min.js') }}"></script>
-<script src="{{ asset('themes/administration/js/adminlte.min.js') }}"></script>
-<script src="{{ asset('themes/administration/js/dashboard2.js') }}"></script>
+<!-- Jquery JS-->
+<script src="{{ asset('themes/admin/vendor/jquery-3.2.1.min.js') }}"></script>
+<!-- Bootstrap JS-->
+<script src="{{ asset('themes/admin/vendor/bootstrap-4.1/popper.min.js') }}"></script>
+<script src="{{ asset('themes/admin/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+<!-- Vendor JS       -->
+<script src="{{ asset('themes/admin/vendor/slick/slick.min.js') }}"></script>
+<script src="{{ asset('themes/admin/vendor/animsition/animsition.min.js') }}"></script>
+<script src="{{ asset('themes/admin/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('themes/admin/vendor/chartjs/Chart.bundle.min.js') }}"></script>
 
-<!-- NOTIFICATIONS FLASH -->
-@include('partials.notifications')
-<!-- /NOTIFICATIONS FLASH -->
+<!-- Main JS-->
+<script src="{{ asset('themes/admin/js/main.js') }}"></script>
 @stack('javascripts')
+</body>
 </html>

@@ -89,6 +89,9 @@
                             </ul>
                         </li>
                         <li class="">
+                            <a href="{{ route('forums') }}">Forum</a>
+                        </li>
+                        <li class="">
                             <a href="{{ route('premium_index') }}">Premium</a>
                         </li>
                         <li class="">

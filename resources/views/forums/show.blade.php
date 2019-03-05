@@ -11,23 +11,9 @@
             -webkit-transition-duration: .3s;
             transition-duration: .3s;
         }
-        .forum-category-title {
-            margin: 20px 0 10px;
-            font-size: 1.2em;
-            color: #2a2f35;
-            font-weight: 700;
-        }
 
         .col-s-12 {
             width: 100%;
-        }
-
-        .col-l-4 {
-            width: 33.33333% !important;
-        }
-
-        .col-m-6 {
-            width: 50%;
         }
 
         .row {
@@ -35,7 +21,7 @@
             margin-right: -15px;
         }
 
-        .col-l-4, .col-m-6, .col-s-12, .col-m-9, .col-m-3 {
+        .col-s-12, .col-m-9, .col-m-3 {
             float: left;
             position: relative;
             min-height: 1px;
@@ -43,35 +29,12 @@
             padding-right: 15px;
         }
 
-        .forum-bloc-mono {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-top: 10px;
-            height: 152px;
-            background-color: #fff;
-            border-radius: 3px;
-            box-shadow: 0 1px 4px hsla(0, 0%, 73%, .5);
-        }
-
-        .forum_count {
-            text-align: center;
-            color: #9e9e9e;
-        }
-
-        .forum {
-            font-size: 14px;
-        }
-
-        .forum-bloc-mono .forum_name {
+        .forum-bloc-mono{
             font-weight: 700;
             margin-bottom: 5px;
         }
 
-        .forum_name {
-            font-size: 14px;
-        }
-
-        .forum-bloc-mono .forum_last {
+        .forum-bloc-mono{
             height: 36px;
             padding: 0 5px;
             margin-bottom: 10px;
@@ -94,7 +57,7 @@
             transition-duration: .3s;
         }
 
-        .container, .formation-header {
+        .container {
             width: 100%;
             position: relative;
             max-width: 1130px;
@@ -103,7 +66,7 @@
             margin: 0 auto;
         }
 
-        .is-unread .topic_icon {
+        .is-unread {
             color: #404852;
         }
 

@@ -11,18 +11,31 @@ class CreateUsersTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		if(!Schema::hasTable('users') && !Schema::hasColumns('users', ['id', 'name', 'email', 'email_verified_at',
-				'password'])) {
-			Schema::create('users', function (Blueprint $table) {
-				$table->increments('id');
-				$table->string('name');
-				$table->string('email')->unique();
-				$table->timestamp('email_verified_at')->nullable();
-				$table->string('password');
-				$table->rememberToken();
-				$table->timestamps();
-			});
-		}
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('firstname', 255)->nullable();
+            $table->string('lastname', 255)->nullable();
+            $table->text('description')->nullable();
+            $table->string('stripe_customer_id', 255)->nullable();
+            $table->dateTime('last_login')->nullable();
+            $table->boolean('is_teacher')->default(0);
+            $table->boolean('enabled')->default(0);
+            $table->boolean('blocked')->default(0);
+            $table->string('public_pseudonym', 255)->nullable();
+            $table->string('facebook_page', 255)->nullable();
+            $table->string('twitter_page', 255)->nullable();
+            $table->string('instagram_page', 255)->nullable();
+            $table->string('youtube_page', 255)->nullable();
+            $table->string('website', 255)->nullable();
+            $table->string('profile_picture', 255)->nullable();
+            $table->string('cover_picture', 255)->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
 	}
 
 	/**
