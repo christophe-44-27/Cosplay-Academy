@@ -15,4 +15,16 @@ class ThreadController extends Controller {
 
 		return view('administration.threads_list', compact('threads', 'activeSection', 'action'));
 	}
+
+    public function toModerate() {
+
+        $threads = Thread::where('to_moderate', '=', true)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $activeSection = 'threads';
+        $action = 'to_moderate';
+
+        return view('administration.threads_list', compact('threads', 'activeSection', 'action'));
+    }
 }

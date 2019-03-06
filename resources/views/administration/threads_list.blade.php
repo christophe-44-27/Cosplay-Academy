@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h3 class="title-5 m-b-35">Sujets du forum</h3>
+            <h3 class="title-5 m-b-35">Les sujets</h3>
             <div class="table-responsive table-responsive-data2">
                 @if(count($threads) > 0)
                     <table class="table table-data2">
@@ -18,7 +18,6 @@
                             <th>Créé le</th>
                             <th>Modifié le</th>
                             <th>Actions</th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,7 +58,7 @@
                 @else
                     <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
                         <i class="zmdi zmdi-time-restore-setting"></i>
-                        <span class="content">Aucun sujet n'a encore été créé sur le forum.</span>
+                        <span class="content">Aucun sujet à afficher.</span>
                     </div>
                 @endif
             </div>
