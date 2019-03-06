@@ -15,6 +15,8 @@ class CreateForumChannelsTable extends Migration {
             $table->increments('id');
             $table->string('name', 50);
             $table->string('slug', 50);
+            $table->string('icon')->nullable(true);
+            $table->integer('position')->nullable(true);
             $table->timestamps();
         });
     }

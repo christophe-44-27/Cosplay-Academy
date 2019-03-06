@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder {
          $this->call(TutorialCategoriesTableSeeder::class);
          $this->call(CommissionsTableSeeder::class);
          $this->call(CommissionQuotationsTableSeeder::class);
+         $this->call(ForumChannelSeeder::class);
     }
 }

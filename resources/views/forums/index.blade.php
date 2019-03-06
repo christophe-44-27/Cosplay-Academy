@@ -134,20 +134,20 @@
                     Les catégories
                 </h2>
                 <div class="row">
-                    @foreach($materialForums as $materialForum)
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="{{ route('show_forum', $materialForum->id ) }}">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/' . $materialForum->icon) }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="{{ route('show_forum', $materialForum->id ) }}">{{ $materialForum->title }}</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30527">position sticky</a>
+                    @foreach($channelCategories as $category)
+                        <div class="col-s-12 col-m-6 col-l-4">
+                            <div class="forum forum-bloc-mono is-unread">
+                                <div class="forum_icon"><a href="{{ route('show_forum', $category->id ) }}">
+                                    <img height="60" src="{{ asset('images/flaticon-png/forum/' . $category->icon) }}" alt="4"></a>
+                                </div>
+                                <h3 class="forum_name">
+                                    <a href="{{ route('show_forum', $category->id ) }}">{{ $category->name }}</a>
+                                </h3>
+                                <div class="forum_last">
+                                    <a href="#">position sticky</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -156,97 +156,34 @@
                     Les matériaux
                 </h2>
                 <div class="row">
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/cakephp-10">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/mat.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/cakephp-10">Le foam</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/4295">Upload avatar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/symfony-72">
-                                <img height="60" src="{{ asset('images/flaticon-png/forum/mat-worbla.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/symfony-72">Les thermoplastiques</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30540">Problème /admin hébergeur 1&amp;1  </a>
+                    @foreach($channelMaterials as $categoryMat)
+                        <div class="col-s-12 col-m-6 col-l-4">
+                            <div class="forum forum-bloc-mono is-unread">
+                                <div class="forum_icon"><a href="{{ route('show_forum', $categoryMat->id ) }}">
+                                        <img height="60" src="{{ asset('images/flaticon-png/forum/' . $categoryMat->icon) }}" alt="4"></a>
+                                </div>
+                                <h3 class="forum_name">
+                                    <a href="{{ route('show_forum', $categoryMat->id ) }}">{{ $categoryMat->name }}</a>
+                                </h3>
+                                <div class="forum_last">
+                                    <a href="#">position sticky</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/laravel-87">
-                                    <img height="60" src="{{ asset('images/flaticon-png/forum/clothing.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/laravel-87">Le tissu</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30521">insuffisance d'information sur  ...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/wordpress-9">
-                                    <img height="60" src="{{ asset('images/flaticon-png/forum/caulk.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/wordpress-9">La colle</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30541">Assignment Help Australia</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/nodejs-89">
-                                    <img height="60" src="{{ asset('images/flaticon-png/forum/spray.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/nodejs-89">La peinture</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30536">Aide discord js lastMessage</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-s-12 col-m-6 col-l-4">
-                        <div class="forum forum-bloc-mono is-unread">
-                            <div class="forum_icon"><a href="/forum/ruby-on-rails-88">
-                                    <img height="60" src="{{ asset('images/flaticon-png/forum/wig.png') }}" alt="4"></a>
-                            </div>
-                            <h3 class="forum_name">
-                                <a href="/forum/ruby-on-rails-88">Les wigs</a>
-                            </h3>
-                            <div class="forum_last">
-                                <a href="/forum/topics/30524">Souci génération de liens dynami...</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @if($sections)
-                @foreach($sections as $section)
+            @if($allChannels)
+                @foreach($allChannels as $channel)
                 <div class="col-s-12">
                     <h2 class="forum-category-title">
-                        {{ $section->title }}
+                        {{ $channel->name }}
                     </h2>
                     <table class="table">
                         <tbody>
                         @if($forums)
                             @foreach($forums as $forum)
-                                @if($section->id == $forum->forum_category_id)
+                                @if($channel->id == $forum->channel_id)
                                 <tr class="forum is-unread">
                                     <td class="tcenter" width="50">
                                         <i class="icon topic_icon"></i>

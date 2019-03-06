@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Forum\Models\Channel;
 use App\Http\Requests\AddAnswerToForumTopicRequest;
 use App\Http\Requests\CreateTopicRequest;
-use App\Forum\Models\ForumSection;
 use App\Forum\Models\Thread;
 use App\Forum\Models\ForumTopic;
 use App\Forum\Models\Reply;
@@ -14,11 +14,16 @@ use Carbon\Carbon;
 class ForumController extends Controller {
 
     public function index() {
-        $sections = ForumSection::all();
-        $forums = Thread::orderBy('order')->get();
-        $materialForums = Thread::whereIn('title', ['Couture', 'Patronnage', 'Artisanat', 'Electronique', 'Peinture', 'Accessoires'])->get();
+        $forums = Thread::orderBy('id')->get();
 
-        return view('forums.index', compact('sections', 'forums', 'materialForums'));
+        $allChannels = Channel::orderBy('name', 'ASC')
+            ->where('position', '=', null)
+            ->get();
+
+        $channelMaterials = Channel::where('position', '=', '2')->get();
+        $channelCategories = Channel::where('position', '=', '1')->get();
+
+        return view('forums.index', compact('allChannels', 'forums', 'channelCategories', 'channelMaterials'));
     }
 
     public function show(int $forumId) {
