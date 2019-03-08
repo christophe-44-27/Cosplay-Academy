@@ -34,8 +34,8 @@
             color: #9e9e9e;
             font-size: .7rem;
         }
-        .danger{
-            color: #c0392b;
+        .js-report{
+            color: #c0392b !important;
         }
         .forum-actions {
             margin: 30px 0;
@@ -154,7 +154,7 @@
                         <a title="Forum" href="{{ route('forums') }}">
                             <span itemprop="title">Forum /</span>
                         </a>
-                        <a title="{{ $thread->forum->title }}" href="{{ route('show_forum', $thread->slug) }}">
+                        <a title="{{ $thread->forum->title }}" href="{{ route('show_forum', $thread->forum->slug) }}">
                             <span itemprop="title">{{ $thread->forum->title }} / </span>
                         </a>
                         <a title="{{ $thread->title }}" href="#">
@@ -176,9 +176,15 @@
                         {{ $thread->creator->name }}
                     </a>, <a href="#" class="forum-post_date"><abbr class="timeago">Il y a environ un jour</abbr></a>
                     <span class="forum-post_actions">
-                        <span class="danger">
+                        @if (Auth::user()->id == $thread->creator->id)
+                            <span class="danger">
+                            - <a href="{{ route('forum_delete_my_thread', $thread->slug ) }}" class="js-report">Supprimer</a>
+                        </span>
+                        @else
+                            <span class="danger">
                             - <a href="#" class="js-report">Signaler</a>
                         </span>
+                        @endif
                     </span>
                     <div class="forum-post_text">
                         <div></div>
@@ -213,9 +219,15 @@
                                 </span>
                             </a>
                             <span class="forum-post_actions">
-                                <span class="danger">
-                                    - <a href="#" class="js-report">Signaler</a>
-                                </span>
+                                 @if (Auth::user()->id == $answer->owner->id)
+                                    <span class="danger">
+                                        - <a href="{{ route('forum_delete_my_thread_answer', $answer->id ) }}" class="js-report">Supprimer</a>
+                                    </span>
+                                @else
+                                    <span class="danger">
+                                        - <a href="#" class="js-report">Signaler</a>
+                                    </span>
+                                @endif
                             </span>
                             <div class="forum-post_text">
                                 <div></div>

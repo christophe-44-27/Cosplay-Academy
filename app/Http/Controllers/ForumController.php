@@ -8,6 +8,7 @@ use App\Http\Requests\AddAnswerToForumTopicRequest;
 use App\Http\Requests\CreateTopicRequest;
 use App\Forum\Models\Thread;
 use App\Forum\Models\Reply;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -86,5 +87,25 @@ class ForumController extends Controller {
 
         $request->session()->flash('success', "Votre nouveau sujet " . $forumTopic->title . " a bien été envoyé !");
         return redirect(route('show_forum', $forum->slug));
+    }
+
+    public function deleteMyThread(Request $request, string $slug){
+
+        $thread = Thread::where('slug', '=', $slug)->first();
+
+        $thread->delete();
+
+        $request->session()->flash('success', "Votre sujet a bien été supprimé !");
+        return redirect(route('forums'));
+
+    }
+
+    public function deleteMyAnswer(Request $request, int $id) {
+        $reply = Reply::where('id', '=',$id)->first();
+
+        $reply->delete();
+
+        $request->session()->flash('success', "Votre réponse a bien été supprimée !");
+        return redirect(route('forums'));
     }
 }

@@ -13,6 +13,9 @@
             color: #2a2f35;
             font-weight: 700;
         }
+        .danger{
+            color: #c0392b !important;
+        }
         .col-s-12 {
             width: 100%;
         }
@@ -154,6 +157,17 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                @if(Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             <div class="col-s-12 col-m-6">
                 <h2 class="forum-category-title">
                     Les catégories
@@ -173,6 +187,8 @@
                                     <a href="{{ route('show_forum_thread', $category->lastThread->slug) }}">
                                         {{ $category->lastThread->title }}
                                     </a>
+                                    @else
+                                        -
                                     @endif
                                 </div>
                             </div>
@@ -195,7 +211,13 @@
                                     <a href="{{ route('show_forum_channel', $categoryMat->slug ) }}">{{ $categoryMat->title }}</a>
                                 </h3>
                                 <div class="forum_last">
-                                    <a href="#">position sticky</a>
+                                    @if($categoryMat->lastThread)
+                                        <a href="{{ route('show_forum_thread', $categoryMat->lastThread->slug) }}">
+                                            {{ $categoryMat->lastThread->title }}
+                                        </a>
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -228,12 +250,18 @@
                                         </a>
                                     </td>
                                     <td class="forum_count" width="40">
-                                        0
+                                        {{ count($forum->threads) }}
                                     </td>
                                     <td class="forum_last" width="300">
-                                        <a href="#">
-
-                                        </a>
+                                        @if($forum->lastThread)
+                                            <a href="#">
+                                                {{ $forum->lastThread->title }} par <span class="danger">{{ $forum->lastThread->creator->name }}</span>
+                                                <br>
+                                                {{ Carbon\Carbon::parse($forum->lastThread->created_at)->diffForHumans()}}
+                                            </a>
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                 </tr>
                                 @endif
