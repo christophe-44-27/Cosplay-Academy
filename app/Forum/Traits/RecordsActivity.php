@@ -9,6 +9,8 @@
 namespace App\Forum\Traits;
 
 
+use App\Forum\Models\Activity;
+
 trait RecordsActivity {
     /**
      * Boot the trait.
@@ -52,7 +54,7 @@ trait RecordsActivity {
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function activity() {
-        return $this->morphMany('App\Activity', 'subject');
+        return $this->morphMany(Activity::class, 'subject');
     }
 
     /**

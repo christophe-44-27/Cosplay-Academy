@@ -8,6 +8,7 @@
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/css-plugin-collections.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- CSS | menuzord megamenu skins -->
     <link id="menuzord-menu-skins" href="{{ asset('css/menuzord-skins/menuzord-rounded-boxed.css') }}"
           rel="stylesheet"/>
@@ -138,9 +139,5 @@
 <!-- JS | jquery plugin collection for this theme -->
 <script src="{{ asset('js/jquery-plugin-collection.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
-
-<!-- NOTIFICATIONS FLASH -->
-@include('partials.notifications')
-<!-- /NOTIFICATIONS FLASH -->
 @stack('javascripts')
 </html>

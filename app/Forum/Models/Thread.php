@@ -22,7 +22,7 @@ class Thread extends Model {
      *
      * @var array
      */
-    protected $with = ['creator', 'channel'];
+    protected $with = ['creator', 'forum'];
     /**
      * The accessors to append to the model's array form.
      *
@@ -57,7 +57,7 @@ class Thread extends Model {
      * @return string
      */
     public function path() {
-        return "/threads/{$this->channel->slug}/{$this->slug}";
+        return "/threads/{$this->forum->slug}/{$this->slug}";
     }
 
     /**
@@ -74,8 +74,8 @@ class Thread extends Model {
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function channel() {
-        return $this->belongsTo(Channel::class);
+    public function forum() {
+        return $this->belongsTo(Forum::class);
     }
 
     /**
@@ -85,6 +85,10 @@ class Thread extends Model {
      */
     public function replies() {
         return $this->hasMany(Reply::class);
+    }
+
+    public function lastReply() {
+        return $this->hasOne(Reply::class)->latest();
     }
 
     /**

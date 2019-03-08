@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Forum\Models\Channel;
+use App\Forum\Models\Forum;
 use App\Http\Requests\AddAnswerToForumTopicRequest;
 use App\Http\Requests\CreateTopicRequest;
 use App\Forum\Models\Thread;
-use App\Forum\Models\ForumTopic;
 use App\Forum\Models\Reply;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -14,45 +14,48 @@ use Carbon\Carbon;
 class ForumController extends Controller {
 
     public function index() {
-        $forums = Thread::orderBy('id')->get();
-
-        $allChannels = Channel::orderBy('name', 'ASC')
-            ->where('position', '=', null)
+        $forums = Forum::orderBy('id')
             ->get();
 
-        $channelMaterials = Channel::where('position', '=', '2')->get();
-        $channelCategories = Channel::where('position', '=', '1')->get();
+        $allChannels = Channel::orderBy('name', 'ASC')
+            ->get();
 
-        return view('forums.index', compact('allChannels', 'forums', 'channelCategories', 'channelMaterials'));
+
+        $forumMaterials = Forum::where('position', '=', '2')->get();
+        $forumCategories = Forum::where('position', '=', '1')->get();
+
+        return view('forums.index', compact('allChannels', 'forums', 'forumCategories', 'forumMaterials'));
     }
 
-    public function show(int $forumId) {
-        $forum = Thread::where('id', '=', $forumId)->firstOrFail();
+    public function showThreads(string $slug) {
+        $forum = Forum::where('slug', '=', $slug)->firstOrFail();
 
-        $topics = ForumTopic::where('forum_id', '=', $forum->id)
+        $threads = Thread::where('forum_id', '=', $forum->id)
             ->orderBy('id', 'DESC')
             ->paginate(15);
 
-        return view('forums.show', compact('forum', 'topics'));
+        return view('forums.show_threads', compact('forum', 'threads', 'forum'));
     }
 
     public function showThread($slug) {
-        $forumTopic = ForumTopic::where('slug', '=', $slug)->firstOrFail();
+        $thread = Thread::where('slug', '=', $slug)->firstOrFail();
 
-        $answers = Reply::where('forum_topic_id', '=', $forumTopic->id)
+        $answers = Reply::where('thread_id', '=', $thread->id)
             ->orderBy('id', 'DESC')
             ->get();
 
-        return view('forums.show_thread', compact('forumTopic', 'answers'));
+        return view('forums.show_thread', compact('thread', 'answers'));
     }
 
-    public function addAnswerToForumTopic(AddAnswerToForumTopicRequest $request, int $forumId, int $forumTopicId) {
+    public function addAnswerToForumTopic(AddAnswerToForumTopicRequest $request, string $slug) {
         $validated = $request->validated();
 
+        $thread = Thread::where('slug', '=', $slug)->firstOrFail();
+
         $datas = [
-            'content' => $validated['content'],
+            'body' => $validated['content'],
             'user_id' => Auth::id(),
-            'forum_topic_id' => $forumTopicId,
+            'thread_id' => $thread->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
@@ -60,26 +63,28 @@ class ForumController extends Controller {
         Reply::create($datas);
 
         $request->session()->flash('success', "Votre réponse a bien été ajoutée !");
-        return redirect(route('show_forum', $forumId));
+        return redirect(route('show_forum_thread', $thread->slug));
 
     }
 
     public function createTopic(CreateTopicRequest $request, int $forumId) {
         $validated = $request->validated();
 
+        $forum = Forum::where('id', '=', $forumId)->firstOrFail();
+
         $datas = [
             'title' => $validated['title'],
-            'content' => $validated['content'],
+            'body' => $validated['content'],
             'user_id' => Auth::id(),
-            'forum_id' => $forumId,
+            'forum_id' => $forum->id,
             'slug' => str_slug($validated['title']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
 
-        $forumTopic = ForumTopic::create($datas);
+        $forumTopic = Thread::create($datas);
 
         $request->session()->flash('success', "Votre nouveau sujet " . $forumTopic->title . " a bien été envoyé !");
-        return redirect(route('show_forum', $forumId));
+        return redirect(route('show_forum', $forum->slug));
     }
 }

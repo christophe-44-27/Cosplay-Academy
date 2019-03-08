@@ -1,6 +1,12 @@
 @extends('base_layout')
 @push('stylesheets')
     <style>
+        h3{
+             margin-top: unset !important;
+        }
+        table{
+            line-height: 1.8;
+        }
         .forum-category-title {
             margin: 20px 0 10px;
             font-size: 1.2em;
@@ -19,6 +25,11 @@
         .row {
             margin-left: -15px;
             margin-right: -15px;
+        }
+        .forum_title {
+            color: #2a2f35;
+            font-weight: 700;
+            font-size: 14px;
         }
         .col-l-4, .col-m-6, .col-s-12{
             float: left;
@@ -41,7 +52,7 @@
             color: #9e9e9e;
         }
         .forum {
-            font-size: 14px;
+            font-size: 14px !important;
         }
         .forum-bloc-mono .forum_name {
             font-weight: 700;
@@ -71,7 +82,7 @@
             -webkit-transition-duration: .3s;
             transition-duration: .3s;
         }
-        .container, .formation-header {
+        .container {
             width: 100%;
             position: relative;
             max-width: 1130px;
@@ -79,8 +90,15 @@
             padding-right: 15px;
             margin: 0 auto;
         }
-        .is-unread .topic_icon {
+        .is-unread {
             color: #404852;
+            font-size: 23px;
+        }
+
+        .fa-dot-circle{
+            font-size: 23px;
+            color: #404852;
+            line-height: 1.8em;
         }
         .table {
             width: 100%;
@@ -100,7 +118,7 @@
             padding: 7px 13px;
             border: 1px solid #f1f1f1;
             border-top: none;
-            vertical-align: middle;
+            vertical-align: middle !important;
         }
         .tcenter {
             text-align: center;
@@ -124,6 +142,13 @@
             font-size: 100%;
             font: inherit;
         }
+
+        @media only screen and (min-width: 640px) {
+            .s-hidden {
+                display: block;
+            }
+        }
+
     </style>
 @endpush()
 @section('content')
@@ -134,17 +159,21 @@
                     Les catégories
                 </h2>
                 <div class="row">
-                    @foreach($channelCategories as $category)
+                    @foreach($forumCategories as $category)
                         <div class="col-s-12 col-m-6 col-l-4">
                             <div class="forum forum-bloc-mono is-unread">
-                                <div class="forum_icon"><a href="{{ route('show_forum', $category->id ) }}">
+                                <div class="forum_icon"><a href="{{ route('show_forum_channel', $category->slug ) }}">
                                     <img height="60" src="{{ asset('images/flaticon-png/forum/' . $category->icon) }}" alt="4"></a>
                                 </div>
                                 <h3 class="forum_name">
-                                    <a href="{{ route('show_forum', $category->id ) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('show_forum', $category->slug ) }}">{{ $category->title }}</a>
                                 </h3>
                                 <div class="forum_last">
-                                    <a href="#">position sticky</a>
+                                    @if($category->lastThread)
+                                    <a href="{{ route('show_forum_thread', $category->lastThread->slug) }}">
+                                        {{ $category->lastThread->title }}
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -156,14 +185,14 @@
                     Les matériaux
                 </h2>
                 <div class="row">
-                    @foreach($channelMaterials as $categoryMat)
+                    @foreach($forumMaterials as $categoryMat)
                         <div class="col-s-12 col-m-6 col-l-4">
                             <div class="forum forum-bloc-mono is-unread">
-                                <div class="forum_icon"><a href="{{ route('show_forum', $categoryMat->id ) }}">
-                                        <img height="60" src="{{ asset('images/flaticon-png/forum/' . $categoryMat->icon) }}" alt="4"></a>
+                                <div class="forum_icon"><a href="{{ route('show_forum_channel', $categoryMat->slug ) }}">
+                                    <img height="60" src="{{ asset('images/flaticon-png/forum/' . $categoryMat->icon) }}" alt="4"></a>
                                 </div>
                                 <h3 class="forum_name">
-                                    <a href="{{ route('show_forum', $categoryMat->id ) }}">{{ $categoryMat->name }}</a>
+                                    <a href="{{ route('show_forum_channel', $categoryMat->slug ) }}">{{ $categoryMat->title }}</a>
                                 </h3>
                                 <div class="forum_last">
                                     <a href="#">position sticky</a>
@@ -186,22 +215,25 @@
                                 @if($channel->id == $forum->channel_id)
                                 <tr class="forum is-unread">
                                     <td class="tcenter" width="50">
-                                        <i class="icon topic_icon"></i>
+                                        <i class="far fa-dot-circle"></i>
                                     </td>
                                     <td>
-                                        <a href="{{ route('show_forum', $forum->id ) }}">
+                                        <a href="{{ route('show_forum', $forum->slug ) }}">
                                             <h3 class="forum_title">
                                                 {{ $forum->title }}
                                             </h3>
-                                            <div class="s-hidden">
+                                            <div class="">
                                                 {{ $forum->short_description }}
-                                            </div></a>
+                                            </div>
+                                        </a>
                                     </td>
                                     <td class="forum_count" width="40">
                                         0
                                     </td>
                                     <td class="forum_last" width="300">
-                                        <a href="#">Améliorer un site web</a><em><span class="js-vue"><abbr class="timeago">Il y a 2 mois</abbr></span></em>
+                                        <a href="#">
+
+                                        </a>
                                     </td>
                                 </tr>
                                 @endif

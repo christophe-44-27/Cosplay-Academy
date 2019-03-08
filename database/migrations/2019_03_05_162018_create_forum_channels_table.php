@@ -14,9 +14,9 @@ class CreateForumChannelsTable extends Migration {
         Schema::create('forum_channels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->string('short_description', 255)->nullable();
             $table->string('slug', 50);
             $table->string('icon')->nullable(true);
-            $table->integer('position')->nullable(true);
             $table->timestamps();
         });
     }

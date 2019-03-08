@@ -15,13 +15,4 @@ class Channel extends Model {
     public function getRouteKeyName() {
         return 'slug';
     }
-
-    /**
-     * A channel consists of threads.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function threads() {
-        return $this->hasMany(ForumTopic::class);
-    }
 }

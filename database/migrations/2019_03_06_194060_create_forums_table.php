@@ -15,10 +15,12 @@ class CreateForumsTable extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->string('short_description')->nullable(true);
-            $table->unsignedInteger('forum_section_id')->nullable(true);
+            $table->string('slug');
+            $table->unsignedInteger('channel_id')->nullable(true);
             $table->integer('order')->nullable(true);
             $table->string('icon')->nullable(true);
-            $table->foreign('forum_section_id')->references('id')->on('forum_sections');
+            $table->integer('position')->nullable(true);
+            $table->foreign('channel_id')->references('id')->on('forum_channels');
         });
     }
 

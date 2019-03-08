@@ -130,7 +130,7 @@
         <div class="container">
             <div class="col-s-12 col-m-9">
                 <h1 class="title tcenter m-left">
-                    {{ $forumTopic->title }}
+                    {{ $thread->title }}
                 </h1>
             </div>
         </div>
@@ -138,74 +138,89 @@
     <section>
         <div class="container-forum">
             <div class="row">
+                <div class="col-md-12">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-s-6">
                     <div class="breadcrumb">
-                        <a itemprop="url" title="Forum" href="{{ route('forums') }}">
+                        <a title="Forum" href="{{ route('forums') }}">
                             <span itemprop="title">Forum /</span>
                         </a>
-                        <a itemprop="url" title="Suggestion d'améliorations pour le site" href="{{ route('show_forum', $forumTopic->forum) }}">
-                            <span itemprop="title">{{ $forumTopic->forum->title }} / </span>
+                        <a title="{{ $thread->forum->title }}" href="{{ route('show_forum', $thread->slug) }}">
+                            <span itemprop="title">{{ $thread->forum->title }} / </span>
                         </a>
-                        <a itemprop="url" title="Site Web d'un artiste peintre" href="{{ route('show_forum_thread', $forumTopic->slug) }}">
-                            <span itemprop="title">{{ $forumTopic->title }}</span>
+                        <a title="{{ $thread->title }}" href="#">
+                            <span itemprop="title">{{ $thread->title }}</span>
                         </a>
-                    </div>
-                </div>
-                <div class="col-s-6">
-                    <div class="forum-actions">
-                        <a data-remote="true" rel="nofollow" href="#">
-                            <i class="icon icon-eye-slash"></i> M'alerter par email des nouveaux messages</a>
                     </div>
                 </div>
             </div>
             <div class="forum-post js-forum-post">
-                <a href="{{ route('community_show_member', $forumTopic->user->id ) }}">
-                    <img class="forum-post_avatar" src="{{ asset('storage/' . $forumTopic->user->profile_picture ) }}" alt="Default">
+                <a href="{{ route('community_show_member', $thread->creator->id ) }}">
+                    @if($thread->creator->profile_picture)
+                        <img class="forum-post_avatar" src="{{ asset('storage/' . $thread->creator->profile_picture ) }}" alt="Default">
+                    @else
+                        <img class="forum-post_avatar" src="{{ asset('themes/dashboard/images/structure/default-avatar.png' ) }}" alt="Default">
+                    @endif
                 </a>
                 <div class="forum-post_body">
-                    <a class="forum-post_author" href="{{ route('community_show_member', $forumTopic->user->id ) }}">
-                        {{ $forumTopic->user->name }}
-                    </a>, <a href="#" class="forum-post_date js-vue"><span class="js-vue"><abbr class="timeago">Il y a environ un jour</abbr></span></a><span class="forum-post_actions">
-                    <span v-if="isLogged &amp;&amp; !canEdit" class="danger">
-                        - <a href="#" class="js-report">Signaler</a></span>
+                    <a class="forum-post_author" href="{{ route('community_show_member', $thread->creator->id ) }}">
+                        {{ $thread->creator->name }}
+                    </a>, <a href="#" class="forum-post_date"><abbr class="timeago">Il y a environ un jour</abbr></a>
+                    <span class="forum-post_actions">
+                        <span class="danger">
+                            - <a href="#" class="js-report">Signaler</a>
+                        </span>
                     </span>
                     <div class="forum-post_text">
                         <div></div>
                         <div class="forum-post_edit">
-                            {!! $forumTopic->content !!}
+                            {!! $thread->body !!}
                         </div>
                     </div>
                 </div>
             </div>
-            @if (count($forumTopic->topicAnswers) > 0)
+            @if (count($answers) > 0)
                 <h2 class="title title-small">
-                    {{ count($forumTopic->topicAnswers) }} Réponses
+                    {{ count($answers) }} Réponses
                 </h2>
                 @foreach($answers as $answer)
                     <div class="forum-post js-forum-post">
-                        <a href="{{ route('community_show_member', $answer->user->id ) }}">
-                            <img class="forum-post_avatar" src="{{ asset('storage/' . $answer->user->profile_picture ) }}" alt="Default">
+                        <a href="{{ route('community_show_member', $answer->owner->id ) }}">
+                            @if($answer->owner->profile_picture)
+                                <img class="forum-post_avatar" src="{{ asset('storage/' . $answer->owner->profile_picture ) }}" alt="Default">
+                            @else
+                                <img class="forum-post_avatar" src="{{ asset('themes/dashboard/images/structure/default-avatar.png' ) }}" alt="Default">
+                            @endif
                         </a>
                         <div class="forum-post_body">
-                            <a class="forum-post_author" href="{{ route('community_show_member', $answer->user->id ) }}">
-                                {{ $answer->user->name }}
+                            <a class="forum-post_author" href="{{ route('community_show_member', $answer->owner->id ) }}">
+                                {{ $answer->owner->name }}
                             </a>,
                             <a href="#" class="forum-post_date js-vue">
                                 <span class="js-vue">
                                     <abbr class="timeago">
-                                                {{ Carbon\Carbon::parse($answer->created_at)->diffForHumans()}}
+                                        {{ Carbon\Carbon::parse($answer->created_at)->diffForHumans()}}
                                     </abbr>
                                 </span>
                             </a>
                             <span class="forum-post_actions">
-                                <span v-if="isLogged &amp;&amp; !canEdit" class="danger">
+                                <span class="danger">
                                     - <a href="#" class="js-report">Signaler</a>
                                 </span>
                             </span>
                             <div class="forum-post_text">
                                 <div></div>
                                 <div class="forum-post_edit">
-                                    {!! $answer->content !!}
+                                    {!! $answer->body !!}
                                 </div>
                             </div>
                         </div>
@@ -217,7 +232,7 @@
             <h2 class="title title-small">
                 Répondre
             </h2>
-            {!! Form::open(['url' => route('forum_topic_add_answer', [$forumTopic->forum_id, $forumTopic->id]), 'enctype' => "multipart/form-data"]) !!}
+            {!! Form::open(['url' => route('forum_topic_add_answer', [$thread->slug]), 'enctype' => "multipart/form-data"]) !!}
                 {{ Form::text('content', null, ['class' => 'tinymce']) }}
                 <hr>
                 <input type="submit" name="commit" value="Répondre" class="btn btn-primary" data-disable-with="Répondre">

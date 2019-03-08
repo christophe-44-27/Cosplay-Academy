@@ -189,6 +189,17 @@
     </div>
     <section>
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                    @endif
+                </div>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -246,7 +257,7 @@
     </section>
     <div class="modal fade" id="postTopic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            {!! Form::open(['url' => route('forum_create_topic', $channel->id), 'enctype' => "multipart/form-data"]) !!}
+            {!! Form::open(['url' => route('forum_create_topic', $forum->id), 'enctype' => "multipart/form-data"]) !!}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
