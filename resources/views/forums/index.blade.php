@@ -249,8 +249,8 @@
                                             </div>
                                         </a>
                                     </td>
-                                    <td class="forum_count" width="40">
-                                        {{ count($forum->threads) }}
+                                    <td class="forum_count" width="100">
+                                        {{ count($forum->threads) }} <small>(sujet{{ (count($forum->threads) > 1) ? 's' : '' }})</small>
                                     </td>
                                     <td class="forum_last" width="300">
                                         @if($forum->lastThread)

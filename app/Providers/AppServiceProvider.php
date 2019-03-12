@@ -25,5 +25,9 @@ class AppServiceProvider extends ServiceProvider {
      */
     public function register() {
         Stripe::setApiKey(getenv('STRIPE_SECRET'));
+
+        if ($this->app->isLocal()) {
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 }

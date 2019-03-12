@@ -175,6 +175,7 @@
                     <a class="forum-post_author" href="{{ route('community_show_member', $thread->creator->id ) }}">
                         {{ $thread->creator->name }}
                     </a>, <a href="#" class="forum-post_date"><abbr class="timeago">Il y a environ un jour</abbr></a>
+                    @auth
                     <span class="forum-post_actions">
                         @if (Auth::user()->id == $thread->creator->id)
                             <span class="danger">
@@ -186,6 +187,7 @@
                         </span>
                         @endif
                     </span>
+                    @endauth
                     <div class="forum-post_text">
                         <div></div>
                         <div class="forum-post_edit">
@@ -196,7 +198,7 @@
             </div>
             @if (count($answers) > 0)
                 <h2 class="title title-small">
-                    {{ count($answers) }} Réponses
+                    {{ $countAnswers }} Réponses
                 </h2>
                 @foreach($answers as $answer)
                     <div class="forum-post js-forum-post">
@@ -218,6 +220,7 @@
                                     </abbr>
                                 </span>
                             </a>
+                            @auth()
                             <span class="forum-post_actions">
                                  @if (Auth::user()->id == $answer->owner->id)
                                     <span class="danger">
@@ -229,6 +232,7 @@
                                     </span>
                                 @endif
                             </span>
+                            @endauth
                             <div class="forum-post_text">
                                 <div></div>
                                 <div class="forum-post_edit">
@@ -238,6 +242,13 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav>
+                            {{ $answers->links() }}
+                        </nav>
+                    </div>
+                </div>
             @endif
         </div>
         <div class="container-forum">

@@ -7,4 +7,7 @@ Route::prefix('forums')->middleware('auth')->group(function () {
     Route::post('/topics/{slug}/add-answer', 'ForumController@addAnswerToForumTopic', function(string $slug){})->name('forum_topic_add_answer');
     Route::get('/my-threads/delete/answer/{id}', 'ForumController@deleteMyAnswer', function(int $id){})->name('forum_delete_my_thread_answer');
     Route::get('/my-threads/delete/{slug}', 'ForumController@deleteMyThread', function(string $slug){})->name('forum_delete_my_thread');
+
+    Route::post('/threads/{channel}/{thread}/subscriptions', 'Forum\ThreadSubscriptionsController@store')->middleware('auth');
+    Route::delete('/threads/{channel}/{thread}/subscriptions', 'Forum\ThreadSubscriptionsController@destroy')->middleware('auth');
 });

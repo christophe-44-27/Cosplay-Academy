@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Forum\Notifications;
+namespace App\Notifications;
 
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class ThreadWasUpdated extends Notification {
     /**
      * The thread that was updated.
      *
-     * @var \App\Forum\Models\ForumTopic
+     * @var \App\Forum\Models\Thread
      */
     protected $thread;
     /**
@@ -21,7 +22,7 @@ class ThreadWasUpdated extends Notification {
     /**
      * Create a new notification instance.
      *
-     * @param \App\Forum\Models\ForumTopic $thread
+     * @param \App\Forum\Models\Thread $thread
      * @param \App\Forum\Models\Reply $reply
      */
     public function __construct($thread, $reply) {
@@ -35,7 +36,25 @@ class ThreadWasUpdated extends Notification {
      * @return array
      */
     public function via() {
-        return ['database'];
+        return ['mail'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable) {
+        $urlThread = url(route('show_forum_thread', $this->reply->thread->slug));
+
+        return (new MailMessage)
+            ->from("contact@cosplayschool.ca")
+            ->subject("Forum de la Cosplay School - Une nouvelle réponse a été apportée au sujet")
+            ->view('emails.thread_new_reply', [
+                'thread_title' => $this->thread->title,
+                'url_thread' => $urlThread,
+            ]);
     }
 
     /**

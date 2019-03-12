@@ -1,5 +1,5 @@
 <?php
-namespace App\Forum\Notifications;
+namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -27,7 +27,7 @@ class YouWereMentioned extends Notification {
      * @return array
      */
     public function via($notifiable) {
-        return ['database'];
+        return ['mail'];
     }
 
     /**

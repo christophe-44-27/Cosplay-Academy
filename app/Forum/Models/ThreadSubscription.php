@@ -8,7 +8,7 @@
 
 namespace App\Forum\Models;
 
-use App\Forum\Notifications\ThreadWasUpdated;
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 
@@ -35,7 +35,7 @@ class ThreadSubscription extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function thread() {
-        return $this->belongsTo(ForumTopic::class);
+        return $this->belongsTo(Thread::class);
     }
 
     /**

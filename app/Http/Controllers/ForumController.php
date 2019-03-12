@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forum\Models\Channel;
 use App\Forum\Models\Forum;
+use App\Forum\Models\ThreadSubscription;
 use App\Http\Requests\AddAnswerToForumTopicRequest;
 use App\Http\Requests\CreateTopicRequest;
 use App\Forum\Models\Thread;
@@ -43,25 +44,23 @@ class ForumController extends Controller {
 
         $answers = Reply::where('thread_id', '=', $thread->id)
             ->orderBy('id', 'DESC')
-            ->get();
+            ->paginate(15);
 
-        return view('forums.show_thread', compact('thread', 'answers'));
+        $countAnswers = count(Reply::where('thread_id', '=', $thread->id)->get());
+
+        return view('forums.show_thread', compact('thread', 'answers', 'countAnswers'));
     }
 
     public function addAnswerToForumTopic(AddAnswerToForumTopicRequest $request, string $slug) {
         $validated = $request->validated();
 
+        /** @var Thread $thread */
         $thread = Thread::where('slug', '=', $slug)->firstOrFail();
 
-        $datas = [
+        $thread->addReply([
             'body' => $validated['content'],
-            'user_id' => Auth::id(),
-            'thread_id' => $thread->id,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
-
-        Reply::create($datas);
+            'user_id' => auth()->id()
+        ]);
 
         $request->session()->flash('success', "Votre réponse a bien été ajoutée !");
         return redirect(route('show_forum_thread', $thread->slug));
@@ -85,6 +84,14 @@ class ForumController extends Controller {
 
         $forumTopic = Thread::create($datas);
 
+        //Un user qui créé un sujet est forcément abonné à celui-ci.
+        ThreadSubscription::create([
+            'user_id' => Auth::id(),
+            'thread_id' => $forumTopic->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         $request->session()->flash('success', "Votre nouveau sujet " . $forumTopic->title . " a bien été envoyé !");
         return redirect(route('show_forum', $forum->slug));
     }
@@ -102,10 +109,11 @@ class ForumController extends Controller {
 
     public function deleteMyAnswer(Request $request, int $id) {
         $reply = Reply::where('id', '=',$id)->first();
+        $thread = $reply->thread;
 
         $reply->delete();
 
         $request->session()->flash('success', "Votre réponse a bien été supprimée !");
-        return redirect(route('forums'));
+        return redirect(route('show_forum_thread', $thread->slug));
     }
 }
