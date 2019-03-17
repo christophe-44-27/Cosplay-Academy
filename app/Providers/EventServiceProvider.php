@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Forum\Events\ThreadIsReported;
 use App\Forum\Events\ThreadReceivedNewReply;
+use App\Forum\Listeners\NotifyAdminWhenThreadIsReported;
 use App\Forum\Listeners\NotifyMentionedUsers;
 use App\Forum\Listeners\NotifySubscribers;
 use Illuminate\Support\Facades\Event;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadReceivedNewReply::class => [
             NotifyMentionedUsers::class,
             NotifySubscribers::class
+        ],
+        ThreadIsReported::class => [
+            NotifyAdminWhenThreadIsReported::class
         ]
     ];
 

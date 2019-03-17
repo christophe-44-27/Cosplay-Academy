@@ -10,4 +10,6 @@ Route::prefix('forums')->middleware('auth')->group(function () {
 
     Route::post('/threads/{channel}/{thread}/subscriptions', 'Forum\ThreadSubscriptionsController@store')->middleware('auth');
     Route::delete('/threads/{channel}/{thread}/subscriptions', 'Forum\ThreadSubscriptionsController@destroy')->middleware('auth');
+
+    Route::get('/threads/report/{id}', 'ForumController@report', function(int $id){})->middleware('auth')->name('report_thread');
 });

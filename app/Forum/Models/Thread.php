@@ -2,6 +2,7 @@
 
 namespace App\Forum\Models;
 
+use App\Forum\Events\ThreadIsReported;
 use Illuminate\Database\Eloquent\Model;
 use App\Forum\Events\ThreadReceivedNewReply;
 use App\Forum\Filters\ThreadFilters;
@@ -101,6 +102,14 @@ class Thread extends Model {
         $reply = $this->replies()->create($reply);
         event(new ThreadReceivedNewReply($reply));
         return $reply;
+    }
+
+    /**
+     * @param $thread
+     * @return void
+     */
+    public function report($thread) {
+        event(new ThreadIsReported($thread));
     }
 
     /**

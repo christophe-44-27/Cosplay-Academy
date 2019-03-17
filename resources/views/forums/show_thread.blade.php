@@ -183,7 +183,7 @@
                         </span>
                         @else
                             <span class="danger">
-                            - <a href="#" class="js-report">Signaler</a>
+                            - <a href="{{ route('report_thread', $thread->id) }}" class="js-report">Signaler</a>
                         </span>
                         @endif
                     </span>

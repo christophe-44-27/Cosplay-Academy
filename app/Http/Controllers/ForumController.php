@@ -116,4 +116,17 @@ class ForumController extends Controller {
         $request->session()->flash('success', "Votre réponse a bien été supprimée !");
         return redirect(route('show_forum_thread', $thread->slug));
     }
+
+    public function report(Request $request, int $id) {
+        /** @var Thread $thread */
+        $thread = Thread::findOrFail($id);
+        $thread->to_moderate = true;
+        $thread->save();
+
+        //On signale le sujet
+        $thread->report($thread);
+
+        $request->session()->flash('success', "Le sujet a bien été signalé à un modérateur, merci de votre vigilance !");
+        return redirect(route('show_forum_thread', $thread->slug));
+    }
 }

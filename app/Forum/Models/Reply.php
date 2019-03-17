@@ -128,4 +128,12 @@ class Reply extends Model {
     {
         return \Purify::clean($body);
     }
+
+    /**
+     * @param $thread
+     * @return void
+     */
+    public function report($thread) {
+        event(new ThreadIsReported($thread));
+    }
 }
