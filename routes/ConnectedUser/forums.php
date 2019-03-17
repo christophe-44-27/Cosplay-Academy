@@ -12,4 +12,5 @@ Route::prefix('forums')->middleware('auth')->group(function () {
     Route::delete('/threads/{channel}/{thread}/subscriptions', 'Forum\ThreadSubscriptionsController@destroy')->middleware('auth');
 
     Route::get('/threads/report/{id}', 'ForumController@report', function(int $id){})->middleware('auth')->name('report_thread');
+    Route::get('/threads/{slug}/report-reply/{id}', 'ForumController@reportReply', function(string $slug, int $id){})->middleware('auth')->name('report_thread_reply');
 });

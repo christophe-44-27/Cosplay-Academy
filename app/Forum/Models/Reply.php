@@ -2,6 +2,7 @@
 
 namespace App\Forum\Models;
 
+use App\Forum\Events\ReplyIsReported;
 use App\Forum\Traits\Favoritable;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
@@ -130,10 +131,10 @@ class Reply extends Model {
     }
 
     /**
-     * @param $thread
+     * @param $reply
      * @return void
      */
-    public function report($thread) {
-        event(new ThreadIsReported($thread));
+    public function report($reply) {
+        event(new ReplyIsReported($reply));
     }
 }

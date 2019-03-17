@@ -9,17 +9,17 @@ class ReplyWasReported extends Notification {
     /**
      * The thread that was updated.
      *
-     * @var \App\Forum\Models\Thread
+     * @var \App\Forum\Models\Reply
      */
-    protected $thread;
+    protected $reply;
 
     /**
      * Create a new notification instance.
      *
-     * @param \App\Forum\Models\Thread $thread
+     * @param \App\Forum\Models\Reply $reply
      */
-    public function __construct($thread) {
-        $this->thread = $thread;
+    public function __construct($reply) {
+        $this->reply = $reply;
     }
 
     /**
@@ -38,13 +38,14 @@ class ReplyWasReported extends Notification {
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable) {
-        $urlThread = url(route('show_forum_thread', $this->thread->slug));
+        $urlThread = url(route('show_forum_thread', $this->reply->thread->slug));
 
         return (new MailMessage)
             ->from("contact@cosplayschool.ca")
-            ->subject("Un sujet a été signalé")
-            ->view('emails.thread_new_reply', [
-                'thread_title' => $this->thread->title,
+            ->subject("Une réponse a été signalée")
+            ->view('emails.reply_is_reported', [
+                'thread_title' => $this->reply->thread->title,
+                'body_answer' => $this->reply->body,
                 'url_thread' => $urlThread,
             ]);
     }

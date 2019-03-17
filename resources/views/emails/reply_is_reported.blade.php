@@ -101,7 +101,9 @@
                 les mesures nécessaires au besoin.
             </p>
 
-            <a href="{{ $url_thread }}" class="button">Voir la réponse</a>
+            {!! $body_answer !!}
+
+            <a href="{{ $url_thread }}" class="button">Voir le sujet</a>
 
             <p>L'équipe de la Cosplay School</p>
             <h6>Ceci est un courriel automatique, merci de ne pas y répondre.</h6>

@@ -129,4 +129,15 @@ class ForumController extends Controller {
         $request->session()->flash('success', "Le sujet a bien été signalé à un modérateur, merci de votre vigilance !");
         return redirect(route('show_forum_thread', $thread->slug));
     }
+
+    public function reportReply(Request $request, string $slug, int $id) {
+        /** @var Reply $reply */
+        $reply = Reply::findOrFail($id);
+
+        //On signale la réponse
+        $reply->report($reply);
+
+        $request->session()->flash('success', "La réponse a bien été signalée à un modérateur, merci de votre vigilance !");
+        return redirect(route('show_forum_thread', $reply->thread->slug));
+    }
 }
