@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fedd5b23fbfd71132ad3a737f0e4f84",
+    "content-hash": "3494697f31bc2696dcb76d49c6b18e4b",
     "packages": [
         {
             "name": "aimeos/ai-admin-jqadm",
@@ -314,16 +314,16 @@
         },
         {
             "name": "aimeos/ai-laravel",
-            "version": "2018.10.2",
+            "version": "2018.10.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aimeos/ai-laravel.git",
-                "reference": "757061cd14824c98c9a2d02c0116341ba70ae711"
+                "reference": "79b4eb6c585c3ee0e58f452afd178ea495a2a839"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aimeos/ai-laravel/zipball/757061cd14824c98c9a2d02c0116341ba70ae711",
-                "reference": "757061cd14824c98c9a2d02c0116341ba70ae711",
+                "url": "https://api.github.com/repos/aimeos/ai-laravel/zipball/79b4eb6c585c3ee0e58f452afd178ea495a2a839",
+                "reference": "79b4eb6c585c3ee0e58f452afd178ea495a2a839",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,7 @@
                 "laravel",
                 "shop"
             ],
-            "time": "2019-02-10T13:39:34+00:00"
+            "time": "2019-03-18T17:11:10+00:00"
         },
         {
             "name": "aimeos/ai-swiftmailer",
@@ -3908,16 +3908,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.30.5",
+            "version": "v6.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "1ffc751e7ee2d68b3e4a0068f5537b8334945467"
+                "reference": "a44a095af88057922a08b03daaf79d6859e12e2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/1ffc751e7ee2d68b3e4a0068f5537b8334945467",
-                "reference": "1ffc751e7ee2d68b3e4a0068f5537b8334945467",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a44a095af88057922a08b03daaf79d6859e12e2d",
+                "reference": "a44a095af88057922a08b03daaf79d6859e12e2d",
                 "shasum": ""
             },
             "require": {
@@ -3960,7 +3960,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-03-11T20:45:23+00:00"
+            "time": "2019-03-18T23:36:33+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7202,7 +7202,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "aimeos/ai-laravel": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

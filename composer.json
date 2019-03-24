@@ -16,7 +16,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
         "stevebauman/purify": "^2.0",
-        "aimeos/aimeos-laravel": "~2018.10"
+        "aimeos/aimeos-laravel": "2018.10.4",
+        "aimeos/ai-laravel": "2018.10.x-dev"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
