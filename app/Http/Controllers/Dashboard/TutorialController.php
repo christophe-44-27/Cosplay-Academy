@@ -221,6 +221,7 @@ class TutorialController extends Controller {
         }
         $currentUrl = $request->url();
         $controller = 'tutorials';
+
         return view('dashboard/edit_tutorial', compact(
             'tutorial',
             'tutorialCategories',

@@ -39,7 +39,7 @@
 
                             <!-- INPUT CONTAINER -->
                             <div class="input-container half">
-                                <label for="main_picture" class="rl-label required">Image de couverture</label>
+                                <label for="main_picture" class="rl-label required">Image de couverture (750 x 500px)</label>
                                 <input id="main_picture" type="file" name="main_picture">
                             </div>
                             <!-- /INPUT CONTAINER -->
@@ -64,7 +64,7 @@
                             <!-- INPUT CONTAINER -->
                             <div class="input-container half">
                                 <label for="category" class="rl-label required">Catérogie</label>
-                                {{ Form::select('tutorial_category_id', $tutorialCategories) }}
+                                {{ Form::select('tutorial_category_id', $tutorialCategories, $tutorial->tutorial_category_id) }}
                             </div>
                             <!-- /INPUT CONTAINER -->
 

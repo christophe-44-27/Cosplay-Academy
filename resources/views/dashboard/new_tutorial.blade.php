@@ -37,7 +37,7 @@
 
                             <!-- INPUT CONTAINER -->
                             <div class="input-container half">
-                                <label for="main_picture" class="rl-label required">Image de couverture</label>
+                                <label for="main_picture" class="rl-label required">Image de couverture (750px x 500px)</label>
                                 <input id="main_picture" type="file" name="main_picture">
                             </div>
                             <!-- /INPUT CONTAINER -->
