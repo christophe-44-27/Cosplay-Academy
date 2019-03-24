@@ -59,6 +59,6 @@
         <script src="{{ asset('themes/dashboard/js/dashboard-header.js') }}"></script>
         @stack('javascripts')
 
-        @include('partials.notifications')
+        {{--@include('partials.notifications')--}}
     </body>
 </html>
