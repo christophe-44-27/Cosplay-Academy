@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -10,3 +12,14 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| Route pour les tutoriels
+|--------------------------------------------------------------------------
+|
+| Routes pour la config initales des champs de recherche du bottin.
+|
+*/
+Route::get('tutorials', 'Api\TutorialController@index');
+Route::get('tutorials/search', 'Api\TutorialController@search');
