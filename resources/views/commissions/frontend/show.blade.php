@@ -195,7 +195,7 @@
             selector: '.tinymce',
             relative_urls : false,
             remove_script_host : false,
-            document_base_url : "http://cosplayschool-lar.test/",
+            document_base_url : "{{ env('APP_URL') }}",
             plugins: [
                 'image advlist autolink lists link image charmap print preview anchor textcolor',
                 'searchreplace visualblocks fullscreen',
