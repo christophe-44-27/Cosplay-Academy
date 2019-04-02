@@ -176,7 +176,7 @@
                     @foreach($forumCategories as $category)
                         <div class="col-s-12 col-m-6 col-l-4">
                             <div class="forum forum-bloc-mono is-unread">
-                                <div class="forum_icon"><a href="{{ route('show_forum_channel', $category->slug ) }}">
+                                <div class="forum_icon"><a href="{{ route('show_forum', $category->slug ) }}">
                                     <img height="60" src="{{ asset('images/flaticon-png/forum/' . $category->icon) }}" alt="4"></a>
                                 </div>
                                 <h3 class="forum_name">
@@ -204,11 +204,11 @@
                     @foreach($forumMaterials as $categoryMat)
                         <div class="col-s-12 col-m-6 col-l-4">
                             <div class="forum forum-bloc-mono is-unread">
-                                <div class="forum_icon"><a href="{{ route('show_forum_channel', $categoryMat->slug ) }}">
+                                <div class="forum_icon"><a href="{{ route('show_forum', $categoryMat->slug ) }}">
                                     <img height="60" src="{{ asset('images/flaticon-png/forum/' . $categoryMat->icon) }}" alt="4"></a>
                                 </div>
                                 <h3 class="forum_name">
-                                    <a href="{{ route('show_forum_channel', $categoryMat->slug ) }}">{{ $categoryMat->title }}</a>
+                                    <a href="{{ route('show_forum', $categoryMat->slug ) }}">{{ $categoryMat->title }}</a>
                                 </h3>
                                 <div class="forum_last">
                                     @if($categoryMat->lastThread)
