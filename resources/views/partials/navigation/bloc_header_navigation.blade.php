@@ -75,13 +75,6 @@
                             <a href="{{ route('homepage') }}">@lang('messages.navigation.home')</a>
                         </li>
                         <li class="">
-                            <a href="#">Commissions</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('commission_new') }}">Déposer une offre</a> </li>
-                                <li><a href="{{ route('commissions') }}">Voir les offres de commissions</a> </li>
-                            </ul>
-                        </li>
-                        <li class="">
                             <a href="#">Explorer</a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('tutorials') }}">Les tutoriels</a></li>

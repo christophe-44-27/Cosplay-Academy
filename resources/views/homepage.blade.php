@@ -2,7 +2,7 @@
 
 @section('facebook_seo')
     <meta property="og:url" content="https://www.cosplayschool.ca"/>
-    <meta property="og:title" content="Cosplay School">
+    <meta property="og:title" content="Plateforme d'entraide francophone de cosplay" />
     <meta property="og:description"
           content="Rejoignez la nouvelle plateforme d'entraide francophone de cosplay.">
     <meta property="og:image" content="{{ asset('images/cs-default-sharing-image.png') }}">
@@ -26,16 +26,6 @@
           content="Cosplay School, Cosplay, cosplay, school, ecole, loisir, apprentissage, videos, tutoriels, cours, ateliers, workshops, courses">
     <meta name="description"
           content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !"/>
-@endsection
-
-@section('facebook_seo')
-    <!-- ZONE SEO FACEBOOK -->
-    <meta property="og:url" content="https://www.cosplayschool.ca" />
-    <meta property="og:title" content="Plateforme d'entraide francophone de cosplay" />
-    <meta property="og:image"
-          content="{{ asset('images/cs-default-sharing-image.png')}}">
-    <meta property="og:description"
-          content="Grâce à la Cosplay School, l'apprentissage du Cosplay n'aura jamais été aussi simple ! Rejoignez-nous !" />
 @endsection
 
 @push('google_analytic')
@@ -91,7 +81,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap; font-weight:700;">@lang('Cosplay School')
+                                 style="z-index: 7; white-space: nowrap; font-weight:700;">@lang('Publiez vos tutoriels')
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -116,12 +106,12 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang("La plateforme d'entraide francophone pour le cosplay")
+                                 style="z-index: 7; white-space: nowrap; font-weight:600;">@lang("Comment ça marche ?")
                             </div>
 
                             <!-- LAYER NR. 3 -->
                             <div class="tp-caption tp-resizeme text-white"
-                                 id="rs-1-layer-3"
+                                 id="rs-2-layer-3"
 
                                  data-x="['left']"
                                  data-hoffset="['35']"
@@ -141,7 +131,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang("Ensembles, faisons avancer le cosplay")
+                                 style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">@lang("Venez partager vos connaissances")
                             </div>
 
                             <!-- LAYER NR. 4 -->
@@ -165,11 +155,11 @@
                                  data-splitout="none"
                                  data-responsive_offset="on"
                                  style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a
-                                        class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20"
-                                        href="{{ route('page_about') }}">@lang("Voir plus")</a>
+                                    class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20"
+                                    href="#">@lang("Voir plus")</a>
                             </div>
                         </li>
-                        <li data-index="rs21" data-transition="slidingoverlayhorizontal" data-slotamount="default"
+                        <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default"
                             data-easein="default" data-easeout="default" data-masterspeed="default"
                             data-thumb="{{ asset('images/slider-profs.jpg') }}" data-rotate="0" data-saveperformance="off"
                             data-title="Slide 2" data-description="">
@@ -287,76 +277,46 @@
         </div>
     </section>
 
-    <section>
+
+    <!-- Section: Courses -->
+    <section class="">
         <div class="container">
-            <div class="section-content">
+            <div class="section-title mb-10">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <a href="#" class="">
-                                <img src="{{ asset('images/flaticon-png/small/graduates.png') }}" width="90" alt="">
-                            </a>
-                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Compétences</a>
-                            </h4>
-                            <p class="">Grâce aux tutoriels en ligne rédigés par des cosplayers expérimentés, améliorez vos compétences en matière de cosplay.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <a href="#" class="">
-                                <img src="{{ asset('images/flaticon-png/small/desktop.png') }}" width="90" alt="">
-                            </a>
-                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Disponibilité</a></h4>
-                            <p class="">Les tutoriels sont consultables gratuitement, 24h/24 et 7j/7 et sur tous vos
-                                appareils, pour vous permettre à n’importe quel moment d’apprendre de nouvelles choses.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <a href="#" class="">
-                                <img src="{{ asset('images/flaticon-png/small/library.png') }}" width="90" alt="">
-                            </a>
-                            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Diversité</a></h4>
-                            <p class="">Une gamme de tutoriels larges couvrant tous les aspects du cosplay, de la
-                                fabrication à la photographie, en passant par le maquillage et les guides divers.</p>
-                        </div>
+                    <div class="col-md-8">
+                        <h2 class="text-uppercase font-28 line-bottom mt-0 line-height-1">Tutoriels <span
+                                class="text-theme-color-2 font-weight-400">à la une</span></h2>
+                        <h4 class="pb-20">Les derniers tutoriels publiés</h4>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Section: About -->
-    <section>
-        <div class="container">
-            <div class="section-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="video-popup">
-                            <a href="#" data-lightbox-gallery="youtube-video" title="Video">
-                                <img alt="" src="{{ asset('images/cosplay-school-univers.png') }}" class="img-responsive img-fullwidth">
-                            </a>
+            <div class="row">
+                @foreach($promotedTutorials as $tutorial)
+                    <div class="col-sm-6 col-md-3">
+                        <div class="service-block bg-white">
+                            <div class="thumb">
+                                <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="" class="img-fullwidth">
+                                <div class="campaign-overlay"></div>
+                            </div>
+                            <div class="campaign-details clearfix p-15 pt-10 pb-10">
+                                <h4 class="font-weight-700 mt-0">
+                                    <a href="#">
+                                        {{ $tutorial->title }}
+                                    </a>
+                                </h4>
+                                <div class="campaign-bottom border-top clearfix mt-20">
+                                    <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
+                                        <li class="text-theme-color-2 pr-0 mr-5">
+                                            @lang($tutorial->tutorialCategory->name)
+                                        </li>
+                                    </ul>
+                                    <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"
+                                       href="{{ route('tutorial_show', $tutorial->slug) }}">Voir plus</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <h6 class="letter-space-4 text-theme-colored text-uppercase mt-sm-30 mt-0 mb-0">Bienvenue</h6>
-                        <h2 class="text-uppercase text-theme-colored font-weight-600 mt-0 font-28 line-bottom">
-                            dans l'univers de la Cosplay School
-                        </h2>
-                        <h4 class="text-theme-colored">La Cosplay School, c’est le site de référence sur le cosplay qui
-                            vous assure de développer vos compétences et vous aide à créer les plus beaux costumes.</h4>
-                        <p class="text-theme-colored"><i class="fa fa-angle-double-right text-theme-color-2 font-15"></i>
-                            Découvrez chaque semaine deux à trois nouveaux tutoriels pas à pas, illustrés et précis
-                        </p>
-                        <p class="text-theme-colored"><i class="fa fa-angle-double-right text-theme-color-2 font-15"></i>
-                            Apprenez avec les meilleurs cosplayers francophones tels que ChimeralCosplayArt (Vice-championne de France de cosplay 2017)
-                        </p>
-                        <p class="text-theme-colored"><i class="fa fa-angle-double-right text-theme-color-2 font-15"></i>
-                            Bénéficiez d’avantages chez nos partenaires True North Cosplay, Pebeo, Club Tissus, DeSerres, Sial Canada et découvrez leurs produits dans nos tutoriels officiels
-                        </p>
-                        <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="{{ route('page_about') }}">Voir plus →</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -367,83 +327,39 @@
             <div class="section-title mb-10">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Nos <span
-                                    class="text-theme-color-2 font-weight-400">tutoriels</span></h2>
+                        <h2 class="text-uppercase font-28 line-bottom mt-0 line-height-1">Tutoriels <span
+                                class="text-theme-color-2 font-weight-400">les plus populaires</span></h2>
+                        <h4 class="pb-20">Les tutoriels les plus vus</h4>
                     </div>
                 </div>
             </div>
-            <div class="row multi-row-clearfix">
-                <div class="col-md-12">
-                    <div class="owl-carousel-4col" data-dots="true">
-                        @foreach($tutorials as $tutorial)
-                        <div class="item">
-                            <div class="campaign bg-lighter maxwidth500 mb-30">
-                                <div class="thumb">
-                                    <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="" class="img-fullwidth">
-                                    <div class="campaign-overlay"></div>
-                                </div>
-                                <div class="campaign-details clearfix p-15 pt-10 pb-10">
-                                    <h4 class="font-weight-700 mt-0">
-                                        <a href="#">
-                                            {{ $tutorial->title }}
-                                        </a>
-                                    </h4>
-                                    <div class="campaign-bottom border-top clearfix mt-20">
-                                        <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
-                                            <li class="text-theme-color-2 pr-0 mr-5">
-                                                @lang($tutorial->tutorialCategory->name)
-                                            </li>
-                                        </ul>
-                                        <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"
-                                           href="{{ route('tutorial_show', $tutorial->slug) }}">Voir plus</a>
-                                    </div>
+            <div class="row">
+                @foreach($famousTutorials as $tutorial)
+                    <div class="col-sm-6 col-md-3">
+                        <div class="service-block bg-white">
+                            <div class="thumb">
+                                <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="" class="img-fullwidth">
+                                <div class="campaign-overlay"></div>
+                            </div>
+                            <div class="campaign-details clearfix p-15 pt-10 pb-10">
+                                <h4 class="font-weight-700 mt-0">
+                                    <a href="#">
+                                        {{ $tutorial->title }}
+                                    </a>
+                                </h4>
+                                <div class="campaign-bottom border-top clearfix mt-20">
+                                    <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
+                                        <li class="text-theme-color-2 pr-0 mr-5">
+                                            @lang($tutorial->tutorialCategory->name)
+                                        </li>
+                                    </ul>
+                                    <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"
+                                       href="{{ route('tutorial_show', $tutorial->slug) }}">Voir plus</a>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider: Funfact -->
-    <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}"
-             data-parallax-ratio="0.7">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $studentCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $studentCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos étudiants</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nos cours</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -454,8 +370,9 @@
             <div class="section-title mb-10">
                 <div class="row">
                     <div class="col-md-8">
-                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">@lang('Nos') <span
-                                    class="text-theme-color-2 font-weight-400">@lang('derniers professeurs enregistrés')</span></h2>
+                        <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">@lang('Ils') <span
+                                    class="text-theme-color-2 font-weight-400">@lang('publient des tutoriels')</span></h2>
+                        <h4 class="pb-20">@lang("Retrouvez l'ensemble des cosplayeurs qui publient des tutoriels sur la Cosplay School")</h4>
                     </div>
                 </div>
             </div>
@@ -493,56 +410,46 @@
         </div>
     </section>
 
-    <!-- Divider: testimonials -->
-    <section class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="0.5"
-             data-bg-img="{{ asset('images/cosplay-school-bg.png') }}">
-        <div class="container pb-50">
-            <div class="section-title">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="font-weight-300 m-0 text-gray-lightgray">Joyeux étudiants</h5>
-                        <h2 class="mt-0 mb-0 text-uppercase line-bottom text-white font-28">Témoignages<span
-                                    class="font-30 text-theme-color-2">.</span></h2>
+    <!-- Divider: Funfact -->
+    <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="{{ asset('images/cosplay-school-bg.png') }}"
+             data-parallax-ratio="0.7">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $members }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $members }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos membres</h5>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-10">
-                    <div class="owl-carousel-2col boxed" data-dots="true">
-                        <div class="item">
-                            <div class="testimonial pt-10">
-                                <div class="thumb pull-left mb-0 mr-0 pr-20">
-                                    <img width="75" class="img-circle" alt="" src="{{ asset('images/soupy_chasseusse_de_cosplay.png') }}">
-                                </div>
-                                <div class="ml-100 ">
-                                    <h4 class="text-white mt-0">Merci à la Cosplay School d’offrir des contenus dédiés au Cosplay ! Grâce à ces tutoriels, j’ai pu me perfectionner et découvrir de nouvelles techniques.</h4>
-                                    <p class="author mt-20">- <span
-                                                class="text-theme-color-2"><a class="text-theme-color-2" href="https://www.facebook.com/soupychasseusedecosplay/" target="_blank">Soupy Chasseuse de Cosplay</a></span>
-                                        <small><em class="text-gray-lightgray">France</em></small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial pt-10">
-                                <div class="thumb pull-left mb-0 mr-0 pr-20">
-                                    <img width="75" class="img-circle" alt="" src="{{ asset('images/kyokos_art.jpg') }}">
-                                </div>
-                                <div class="ml-100 ">
-                                    <h4 class="text-white mt-0">La Cosplay School partage du contenu varié avec des tutoriels de qualité. Pratique pour se renseigner et expérimenter de nouvelles techniques !</h4>
-                                    <p class="author mt-20">- <span
-                                                class="text-theme-color-2"><a class="text-theme-color-2" href="https://www.facebook.com/Kyokocosplayart/" target="_blank">Kyokos'Art</a></span>
-                                        <small><em class="text-gray-lightgray">France</em></small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nos tutoriels</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                    <div class="funfact text-center">
+                        <i class="pe-7s-look mt-5 text-theme-color-2"></i>
+                        <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $tutorialNbViews }}</h2>
+                        <h5 class="text-white text-uppercase mb-0">Nombre de visites des tutos</h5>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Slider Revolution Ends -->
 @endsection
 
 @push('javascripts')
