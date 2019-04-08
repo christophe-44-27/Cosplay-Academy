@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\DB;
 class GuestHomepageController extends Controller {
 
     public function index() {
-        $promotedTutorials = Tutorial::where('is_published', '=', 1)
+        $promotedTutorials = Tutorial::where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->limit(8)
             ->get();
 
-        $famousTutorials = Tutorial::where('is_published', '=', 1)
+        $famousTutorials = Tutorial::where('is_published', '=', true)
             ->orderBy('nb_views', 'desc')
             ->limit(8)
             ->get();
@@ -29,9 +29,7 @@ class GuestHomepageController extends Controller {
         $teacherCount = User::where('is_teacher', '=', true)->count();
         $members = User::count();
         $tutorialCount = Tutorial::where('is_published', '=', true)->count();
-        $tutorialNbViews = DB::table('tutorials')
-            ->where('is_published', '=', true)
-            ->sum('nb_views');
+        $tutorialNbViews = Tutorial::where('is_published', '=', true)->sum('nb_views');
 
         return view('homepage', compact(
             'promotedTutorials',
