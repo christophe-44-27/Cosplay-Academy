@@ -300,8 +300,8 @@
                             </div>
                             <div class="campaign-details clearfix p-15 pt-10 pb-10">
                                 <h4 class="font-weight-700 mt-0">
-                                    <a href="#">
-                                        {{ $tutorial->title }}
+                                    <a href="{{ route('tutorial_show', $tutorial->slug) }}">
+                                        {{ str_limit($tutorial->title, $limit = 20, $end = '...') }}
                                     </a>
                                 </h4>
                                 <div class="campaign-bottom border-top clearfix mt-20">
@@ -343,8 +343,8 @@
                             </div>
                             <div class="campaign-details clearfix p-15 pt-10 pb-10">
                                 <h4 class="font-weight-700 mt-0">
-                                    <a href="#">
-                                        {{ $tutorial->title }}
+                                    <a href="{{ route('tutorial_show', $tutorial->slug) }}">
+                                        {{ str_limit($tutorial->title, $limit = 20, $end = '...') }}
                                     </a>
                                 </h4>
                                 <div class="campaign-bottom border-top clearfix mt-20">
