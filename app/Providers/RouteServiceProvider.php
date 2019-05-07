@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Commission;
+use App\Models\Tutorial;
 use App\Models\TutorialCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -27,6 +28,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
         Route::model('commission', Commission::class);
+        Route::model('tutorials', Tutorial::class);
     }
 
     /**

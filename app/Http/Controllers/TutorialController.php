@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ReportTutorialMail;
 use App\Models\Tutorial;
-use App\Http\Controllers\Controller;
 use App\Models\TutorialCategory;
+use App\Services\TutorialService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class TutorialController extends Controller {
 
-    public function index() {
+    public function index(TutorialService $tutorialService) {
         $tutorials = Tutorial::where('is_published', '=', '1')
             ->orderBy('id', 'desc')
             ->paginate(15);
 
-        $lastTutorials = Tutorial::where('is_published', '=', '1')
-            ->orderBy('id', 'desc')
-            ->limit(3)
-            ->get();
+        $lastTutorials = $tutorialService->getTutorials(3);
 
         $categories = TutorialCategory::all();
 
         return view('tutorials.frontend.index', compact('tutorials', 'categories', 'lastTutorials'));
     }
 
-    public function tutorialByCategorie(string $filterValue) {
+    public function tutorialByCategorie(string $filterValue, TutorialService $tutorialService) {
         $category = TutorialCategory::where('filter_value', '=', $filterValue)
             ->firstOrFail();
 
@@ -38,10 +32,7 @@ class TutorialController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate(15);
 
-        $lastTutorials = Tutorial::where('is_published', '=', '1')
-            ->orderBy('id', 'desc')
-            ->limit(3)
-            ->get();
+        $lastTutorials = $tutorialService->getTutorials(3);
 
         return view('tutorials.frontend.index', compact('tutorials', 'category', 'categories', 'lastTutorials'));
     }
@@ -70,20 +61,14 @@ class TutorialController extends Controller {
      * This method is used to report some tutorial that are not in some good quality or
      * no allowed by the CGU.
      * @param Request $request
-     * @param int $id
+     * @param Tutorial $tutorial
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function reportTutorial(Request $request, int $id){
-        if (!Auth::check()) {
-            $request->session()->flash('error', 'Veuillez vous connecter pour signaler un tutoriel.');
-            return redirect(route('login'));
-        }
-        $tutorial = Tutorial::where('id', '=', $id)->firstOrFail();
-
+    public function reportTutorial(Request $request, Tutorial $tutorial){
         $tutorial->is_reported = true;
         $tutorial->save();
 
-        Mail::to('contact@cosplayschool.ca')->send(new ReportTutorialMail($tutorial));
+        $tutorial->report($tutorial);
 
         $request->session()->flash('success', 'Le tutoriel a bien été signalé !');
         return redirect(route('tutorials'));

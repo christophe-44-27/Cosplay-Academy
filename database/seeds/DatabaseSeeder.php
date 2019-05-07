@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder {
          $this->call(CommissionQuotationsTableSeeder::class);
          $this->call(ForumChannelSeeder::class);
          $this->call(ForumsTableSeeder::class);
+         $this->call(TutorialsTableSeeder::class);
     }
 }

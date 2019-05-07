@@ -33,7 +33,7 @@ class TutorialController extends Controller {
     public function index() {
         $tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
             ->orderBy('id', 'desc')
-            ->get();
+            ->paginate(15);
         $controller = 'tutorials';
         return view('dashboard/list_tutorials', compact('tutorials', 'controller'));
     }
@@ -54,6 +54,7 @@ class TutorialController extends Controller {
     public function create(TutorialRequest $request, ExtractYoutubeVideoIdService $videoIdService) {
         $validated = $request->validated();
         $arrayToCreate = [];
+        $videoId = null;
 
         /**
          * If there is a video url, just check if we can retrieve the video ID.
@@ -61,7 +62,6 @@ class TutorialController extends Controller {
         if($request->request->get('url_video')) {
             try{
                 $videoId = $videoIdService->retrieveYoutubeVideoId($request->request->get('url_video'));
-                $arrayToCreate['video_id'] = $videoId;
             } catch(YoutubeVideoIdNotFoundException $idNotFoundException) {
                 return back()->withErrors($idNotFoundException->getMessage())->withInput();
             }
@@ -94,6 +94,7 @@ class TutorialController extends Controller {
             'thumbnail_picture' => $publicThumbnailsPath,
             'main_picture' => $publicCoversPath,
             'url_video' => $request->request->get('url_video'),
+            'video_id' => ($videoId != null) ? $videoId : null,
             'nb_views' => 0,
             'nb_likes' => 0,
             'user_id' => Auth::id(),

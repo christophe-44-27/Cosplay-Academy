@@ -40,3 +40,4 @@ include ('Guest/forum.php');
 include ('ConnectedUser/dashboard_routes.php');
 include ('ConnectedUser/subscriptions.php');
 include ('ConnectedUser/forums.php');
+include ('ConnectedUser/tutorials.php');

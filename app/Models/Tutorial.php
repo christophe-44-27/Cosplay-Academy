@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Tutorial\Events\TutorialIsReported;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Tutorial extends Model {
@@ -25,14 +27,22 @@ class Tutorial extends Model {
     ];
 
     public function user() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function tutorialCategory() {
-        return $this->belongsTo('App\Models\TutorialCategory');
+        return $this->belongsTo(TutorialCategory::class);
     }
 
     public function documents() {
         return $this->morphMany(Document::class, 'documentable')->orderBy('created_at', 'DESC');
+    }
+
+    /**
+     * @param $tutorial
+     * @return void
+     */
+    public function report($tutorial) {
+        event(new TutorialIsReported($tutorial));
     }
 }
