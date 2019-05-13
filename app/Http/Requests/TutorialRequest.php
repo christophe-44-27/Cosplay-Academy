@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TutorialRequest extends FormRequest {
     /**
@@ -46,5 +48,14 @@ class TutorialRequest extends FormRequest {
             'filename.*.size' => "Le poids de votre fichier est trop volumineux (Maximum: 2mo)",
             'main_picture.dimensions' => 'Minimum dimensions are 700x500px'
         ];
+    }
+
+    /**
+     * This function display a better error message.
+     * @param Validator $validator
+     */
+    protected function failedValidation(Validator $validator) {
+        $message = $validator->errors()->all();
+        throw new HttpResponseException(response()->json(['status' => 0,'messages' => $message]));
     }
 }

@@ -13,7 +13,7 @@ class AddFullTextIndexTable extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE tutorials ADD FULLTEXT title(title)');
+        //DB::statement('ALTER TABLE tutorials ADD FULLTEXT title(title)');
     }
 
     /**
@@ -23,6 +23,6 @@ class AddFullTextIndexTable extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE tutorials DROP INDEX title)');
+        //DB::statement('ALTER TABLE tutorials DROP INDEX title)');
     }
 }

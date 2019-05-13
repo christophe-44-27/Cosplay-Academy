@@ -13,11 +13,12 @@ use App\Models\Tutorial;
 use App\Models\TutorialCategory;
 use App\Http\Controllers\Controller;
 use App\Services\ExtractYoutubeVideoIdService;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class TutorialController extends Controller {
     /**
@@ -49,11 +50,12 @@ class TutorialController extends Controller {
 
     /**
      * @param TutorialRequest $request
+     * @param ExtractYoutubeVideoIdService $videoIdService
+     * @param FileUploadService $fileUploadService
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function create(TutorialRequest $request, ExtractYoutubeVideoIdService $videoIdService) {
+    public function create(TutorialRequest $request, ExtractYoutubeVideoIdService $videoIdService, FileUploadService $fileUploadService) {
         $validated = $request->validated();
-        $arrayToCreate = [];
         $videoId = null;
 
         /**
@@ -67,38 +69,21 @@ class TutorialController extends Controller {
             }
         }
 
-        $resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
-        // calculate md5 hash of encoded image
-        $hash = md5($resizedThumbnailImage->__toString());
-        $path = "app/public/tutorials/thumbnails/{$hash}.jpg";
-        $publicThumbnailsPath = "tutorials/thumbnails/{$hash}.jpg";
-        if (!is_dir(storage_path("app/public/tutorials/thumbnails"))) {
-            Storage::makeDirectory("public/tutorials/thumbnails");
-        }
-        $resizedThumbnailImage->save(storage_path($path));
-
-        $resizedCoverImage = Image::make($request->file('main_picture'))->fit(700, 500)->encode('jpg');
-        // calculate md5 hash of encoded image
-        $hashCover = md5($resizedCoverImage->__toString());
-        if (!is_dir(storage_path("app/public/tutorials/covers"))) {
-            Storage::makeDirectory("public/tutorials/covers");
-        }
-        $pathCover = "app/public/tutorials/covers/{$hashCover}.jpg";
-        $publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
-        $resizedCoverImage->save(storage_path($pathCover));
+        $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
+        $cover = $fileUploadService->upload($request, 'main_picture', 700, 500, 'tutorials/covers');
 
         $arrayToCreate = [
             'title' => $validated['title'],
             'tutorial_category_id' => $validated['tutorial_category_id'],
             'content' => $validated['content'],
-            'thumbnail_picture' => $publicThumbnailsPath,
-            'main_picture' => $publicCoversPath,
+            'thumbnail_picture' => $thumbnail,
+            'main_picture' => $cover,
             'url_video' => $request->request->get('url_video'),
             'video_id' => ($videoId != null) ? $videoId : null,
             'nb_views' => 0,
             'nb_likes' => 0,
             'user_id' => Auth::id(),
-            'slug' => str_slug($validated['title']),
+            'slug' => Str::slug($validated['title']),
         ];
 
         $tutorial = Tutorial::create($arrayToCreate);
@@ -133,10 +118,11 @@ class TutorialController extends Controller {
 
     /**
      * @param UpdateTutorialRequest $request
+     * @param FileUploadService $fileUploadService
      * @param string $slug
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(UpdateTutorialRequest $request, string $slug) {
+    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, string $slug) {
         $validated = $request->validated();
 
         $arrayToUpdate = [
@@ -145,37 +131,17 @@ class TutorialController extends Controller {
             'content' => $validated['content'],
             'url_video' => $request->request->get('url_video'),
             'user_id' => Auth::id(),
-            'slug' => str_slug($validated['title']),
+            'slug' => Str::slug($validated['title']),
         ];
 
         if ($request->file('thumbnail_picture')) {
-            $resizedThumbnailImage = Image::make($request->file('thumbnail_picture'))->fit(258, 150)->encode('jpg');
-            // calculate md5 hash of encoded image
-            $hash = md5($resizedThumbnailImage->__toString());
-            $path = "app/public/tutorials/thumbnails/{$hash}.jpg";
-            $publicThumbnailsPath = "tutorials/thumbnails/{$hash}.jpg";
-
-            if (!is_dir(storage_path("app/public/tutorials/thumbnails"))) {
-                Storage::makeDirectory("public/tutorials/thumbnails");
-            }
-
-            $resizedThumbnailImage->save(storage_path($path));
-            $arrayToUpdate['thumbnail_picture'] = $publicThumbnailsPath;
+            $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
+            $arrayToUpdate['thumbnail_picture'] = $thumbnail;
         }
 
         if ($request->file('main_picture')) {
-            $resizedCoverImage = Image::make($request->file('main_picture'))->fit(750, 500)->encode('jpg');
-            // calculate md5 hash of encoded image
-            $hashCover = md5($resizedCoverImage->__toString());
-
-            if (!is_dir(storage_path("app/public/tutorials/covers"))) {
-                Storage::makeDirectory("public/tutorials/covers");
-            }
-
-            $pathCover = "app/public/tutorials/covers/{$hashCover}.jpg";
-            $publicCoversPath = "tutorials/covers/{$hashCover}.jpg";
-            $resizedCoverImage->save(storage_path($pathCover));
-            $arrayToUpdate['main_picture'] = $publicCoversPath;
+            $cover = $fileUploadService->upload($request, 'main_picture', 700, 500, 'tutorials/covers');
+            $arrayToUpdate['main_picture'] = $cover;
         }
 
         Tutorial::where('slug', '=', $slug)
