@@ -24,6 +24,10 @@ class Tutorial extends Model {
         return $this->morphMany(Document::class, 'documentable');
     }
 
+    public function tutorial_steps() {
+        return $this->morphMany(TutorialStep::class, 'tutorial_stepable');
+    }
+
     /**
      * @param $tutorial
      * @return void

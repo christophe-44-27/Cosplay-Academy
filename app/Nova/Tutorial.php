@@ -110,7 +110,8 @@ class Tutorial extends Resource
 
             Boolean::make('is_published'),
 
-            MorphMany::make('documents')
+            MorphMany::make('documents'),
+            MorphMany::make('tutorial_steps')
         ];
     }
 
