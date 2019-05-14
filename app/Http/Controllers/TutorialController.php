@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutorial;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
 
@@ -16,18 +16,18 @@ class TutorialController extends Controller {
 
         $lastTutorials = $tutorialService->getTutorials(3);
 
-        $categories = TutorialCategory::all();
+        $categories = Category::all();
 
         return view('tutorials.frontend.index', compact('tutorials', 'categories', 'lastTutorials'));
     }
 
     public function tutorialByCategorie(string $filterValue, TutorialService $tutorialService) {
-        $category = TutorialCategory::where('filter_value', '=', $filterValue)
+        $category = Category::where('filter_value', '=', $filterValue)
             ->firstOrFail();
 
-        $categories = TutorialCategory::all();
+        $categories = Category::all();
 
-        $tutorials = Tutorial::where('tutorial_category_id', '=', $category->id)
+        $tutorials = Tutorial::where('category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
@@ -48,7 +48,7 @@ class TutorialController extends Controller {
 
         $currentUrl = $request->url();
 
-        $relatedTutorials = Tutorial::where('tutorial_category_id', '=', $tutorial->tutorialCategory->id)
+        $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
                                 ->where('is_published', '=', true)
                                 ->orderBy('id', 'DESC')
                                 ->limit(4)

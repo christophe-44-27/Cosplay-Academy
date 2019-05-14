@@ -113,7 +113,7 @@
                                 </a>
                                 <br>
                                 <a href="#">
-                                    <p class="category primary">{{ $tutorial->tutorialCategory->name }}</p>
+                                    <p class="category primary">{{ ($tutorial->category) ? $tutorial->category->name : '-' }}</p>
                                 </a>
                             </div>
                             <!-- /PRODUCT INFO -->

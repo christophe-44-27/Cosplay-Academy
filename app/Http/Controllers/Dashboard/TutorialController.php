@@ -10,7 +10,7 @@ use App\Mail\TutorialCreatedMail;
 use App\Mail\TutorialPublishedMail;
 use App\Models\Document;
 use App\Models\Tutorial;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Services\ExtractYoutubeVideoIdService;
 use App\Services\FileUploadService;
@@ -43,7 +43,7 @@ class TutorialController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function newTutorial() {
-        $tutorialCategories = TutorialCategory::pluck('name', 'id');
+        $tutorialCategories = Category::pluck('name', 'id');
         $controller = 'tutorials';
         return view('dashboard/new_tutorial', compact('tutorialCategories', 'controller'));
     }
@@ -74,7 +74,7 @@ class TutorialController extends Controller {
 
         $arrayToCreate = [
             'title' => $validated['title'],
-            'tutorial_category_id' => $validated['tutorial_category_id'],
+            'category_id' => $validated['category_id'],
             'content' => $validated['content'],
             'thumbnail_picture' => $thumbnail,
             'main_picture' => $cover,
@@ -127,7 +127,7 @@ class TutorialController extends Controller {
 
         $arrayToUpdate = [
             'title' => $validated['title'],
-            'tutorial_category_id' => $validated['tutorial_category_id'],
+            'category_id' => $validated['category_id'],
             'content' => $validated['content'],
             'url_video' => $request->request->get('url_video'),
             'user_id' => Auth::id(),
@@ -179,7 +179,7 @@ class TutorialController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request, string $slug) {
-        $tutorialCategories = TutorialCategory::pluck('name', 'id');
+        $tutorialCategories = Category::pluck('name', 'id');
         $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
 
         if($tutorial->is_published) {

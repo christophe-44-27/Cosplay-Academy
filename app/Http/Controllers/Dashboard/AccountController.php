@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\AccountRequest;
 use App\Http\Controllers\Controller;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ class AccountController extends Controller {
 	public function index() {
 		$user = Auth::user();
 
-		$categories = TutorialCategory::pluck('name', 'id');
+		$categories = Category::pluck('name', 'id');
         $controller = 'account';
 		return view('dashboard/my_account', compact('user', 'categories', 'controller'));
 	}

@@ -25,9 +25,9 @@ class CreateTutorialsTable extends Migration {
 				$table->boolean('is_published')->default(0);
 				$table->integer('nb_views');
 				$table->integer('nb_likes');
-				$table->integer('tutorial_category_id')->unsigned();
+				$table->integer('category_id')->unsigned();
 				$table->integer('user_id')->unsigned();
-				$table->foreign('tutorial_category_id', 'fk_tutorial_category_id')->references('id')->on('tutorial_categories');
+				$table->foreign('category_id', 'fk_category_id')->references('id')->on('categories');
 				$table->foreign('user_id', 'fk_user_id')->references('id')->on('users');
 				$table->string('slug', 255);
 				$table->timestamps();

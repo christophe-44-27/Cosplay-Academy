@@ -36,7 +36,7 @@ class Commission extends Model {
     }
 
     public function category() {
-        return $this->belongsTo(TutorialCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function quotations() {

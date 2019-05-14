@@ -11,7 +11,7 @@ use App\Mail\CommissionQuotationAcceptedMail;
 use App\Models\Commission;
 use App\Http\Controllers\Controller;
 use App\Models\CommissionQuotation;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -29,7 +29,7 @@ class CommissionController extends Controller {
     }
 
     public function newRequest() {
-        $categories = TutorialCategory::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $controller = 'offers';
         return view('commissions.dashboard.new_commission_request', compact('categories', 'controller'));
     }
@@ -68,7 +68,7 @@ class CommissionController extends Controller {
     }
 
     public function edit(Commission $offer) {
-        $categories = TutorialCategory::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
         $controller = 'offers';
 
         return view('commissions.dashboard.edit_commission_request', compact('offer', 'categories', 'controller'));

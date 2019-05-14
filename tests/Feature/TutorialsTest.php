@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\User;
@@ -31,7 +31,7 @@ class TutorialsTest extends TestCase {
         $response->assertRedirect('/');
         $this->assertAuthenticatedAs($user);
 
-        $tutorialCategory = factory(TutorialCategory::class)->create();
+        $tutorialCategory = factory(Category::class)->create();
 
         $attributes = [
             'title' => $this->faker->sentence,

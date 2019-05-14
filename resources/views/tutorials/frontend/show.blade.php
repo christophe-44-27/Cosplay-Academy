@@ -133,7 +133,7 @@
                                         <div class="value pull-right"> {{ date('d/m/Y', strtotime($tutorial->created_at)) }} </div>
                                     </li>
                                     <li class="clearfix"> <span> Catégorie : </span>
-                                        <div class="value pull-right"> {{ $tutorial->tutorialCategory->name }} </div>
+                                        <div class="value pull-right"> {{ $tutorial->category->name }} </div>
                                     </li>
                                     <li class="clearfix"> <span> Nombre de vues : </span>
                                         <div class="value pull-right"> {{ $tutorial->nb_views }} </div>
@@ -187,7 +187,7 @@
                                 @foreach($relatedTutorials as $relatedTutorial)
                                     <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
                                         <div class="product">
-                                            <span class="tag-sale">{{ $relatedTutorial->tutorialCategory->name }}</span>
+                                            <span class="tag-sale">{{ $relatedTutorial->category->name }}</span>
                                             <div class="product-thumb">
                                                 <img alt="" src="{{ asset('storage/' . $relatedTutorial->thumbnail_picture) }}" class="img-responsive img-fullwidth">
                                                 <div class="overlay">

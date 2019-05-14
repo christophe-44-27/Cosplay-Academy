@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model {
     protected $table = 'address';
     public $timestamps = true;
-    protected $fillable = [
-        'street_name',
-        'apartment',
-        'zip_code',
-        'city',
-        'country_id',
-        'user_address_id',
-    ];
+    protected $guarded = [];
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($address) {
+            $address->user_address_id = auth()->user()->id;
+        });
+    }
 
     public function user() {
-        return $this->belongsTo('App\User', 'fk_user_id');
+        return $this->belongsTo(User::class, 'fk_user_id');
     }
 
     public function country() {

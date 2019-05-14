@@ -185,7 +185,7 @@
                                         <div class="products related">
                                             <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
                                                 <div class="product">
-                                                <span class="tag-sale">{{ $userTutorial->tutorialCategory->name }}</span>
+                                                <span class="tag-sale">{{ $userTutorial->category->name }}</span>
                                                 <div class="product-thumb">
                                                     <a href="{{ route('tutorial_show', $userTutorial->slug)}}">
                                                         @if($userTutorial->thumbnail_picture)

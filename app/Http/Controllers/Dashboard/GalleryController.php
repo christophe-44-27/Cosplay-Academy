@@ -16,7 +16,7 @@ use App\Models\Category;
 use App\Models\GalleryCategory;
 use App\Models\Photo;
 use App\Models\Tutorial;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Services\ExtractYoutubeVideoIdService;
 use Illuminate\Http\Request;

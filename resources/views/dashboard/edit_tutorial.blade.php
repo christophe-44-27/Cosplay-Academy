@@ -64,7 +64,7 @@
                             <!-- INPUT CONTAINER -->
                             <div class="input-container half">
                                 <label for="category" class="rl-label required">Catérogie</label>
-                                {{ Form::select('tutorial_category_id', $tutorialCategories, $tutorial->tutorial_category_id) }}
+                                {{ Form::select('category_id', $tutorialCategories, $tutorial->category_id) }}
                             </div>
                             <!-- /INPUT CONTAINER -->
 

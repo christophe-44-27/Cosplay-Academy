@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Address;
+use App\Models\Category;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,26 +18,7 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'description',
-        'password',
-        'public_pseudonym',
-        'firstname',
-        'lastname',
-        'profile_picture',
-        'cover_picture',
-        'stripe_id',
-        'card_brand',
-        'card_last_four',
-        'trial_ends_at',
-        'youtube_page',
-        'facebook_page',
-        'instagram_page',
-        'website',
-        'twitter_page',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -48,12 +30,15 @@ class User extends Authenticatable {
     ];
 
     /**
-     * The roles that belong to the user.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function categories() {
-        return $this->belongsToMany('App\Models\Category');
+        return $this->belongsToMany(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function address() {
         return $this->hasOne(Address::class, 'user_address_id');
     }

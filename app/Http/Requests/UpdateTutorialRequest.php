@@ -22,10 +22,9 @@ class UpdateTutorialRequest extends FormRequest {
 	public function rules() {
 		return [
 			'title' => 'required',
-			'tutorial_category_id' => 'required',
+			'category_id' => 'required',
 			'content' => 'required',
 			'thumbnail_picture' => 'dimensions:min_width=258,min_height=150',
-            'filename.*' => 'size:2048',
 			'main_picture' => 'dimensions:min_width=700,min_height=500'
 		];
 	}
@@ -41,7 +40,6 @@ class UpdateTutorialRequest extends FormRequest {
 			'title.required' => 'A title is required',
 			'content.required'  => 'A message is required',
 			'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
-            'filename.*.size' => "Le poids de votre fichier est trop volumineux (Maximum: 2mo)",
 			'main_picture.dimensions' => 'Minimum dimensions are 700x500px'
 		];
 	}

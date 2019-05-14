@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Carbon\Carbon;
 
 class TutorialCategoriesTableSeeder extends Seeder {
@@ -13,7 +13,7 @@ class TutorialCategoriesTableSeeder extends Seeder {
      */
     public function run() {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        TutorialCategory::truncate();
+        Category::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         DB::table('tutorial_categories')->insert(

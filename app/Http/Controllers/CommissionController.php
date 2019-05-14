@@ -8,7 +8,7 @@ use App\Mail\CommissionCreatedMail;
 use App\Mail\ReportCommissionMail;
 use App\Models\Commission;
 use App\Models\CommissionQuotation;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class CommissionController extends Controller {
             ->where('is_published', '=', true)
             ->orderBy('id', 'DESC')
             ->paginate(15);
-        $categories = TutorialCategory::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
 
         $currentUrl = $request->url();
 
@@ -36,7 +36,7 @@ class CommissionController extends Controller {
 
     public function newCommissionRequest(Request $request) {
         $currentUrl = $request->url();
-        $categories = TutorialCategory::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         return view('commissions.frontend.information_request', compact('categories', 'currentUrl'));
     }
 
@@ -94,7 +94,7 @@ class CommissionController extends Controller {
     }
 
     public function searchByCategory(Request $request, string $filterCategory) {
-        $category = TutorialCategory::where('filter_value', '=', $filterCategory)->firstOrFail();
+        $category = Category::where('filter_value', '=', $filterCategory)->firstOrFail();
         $currentUrl = $request->url();
 
         $commissions = Commission::where('in_review', '=', false)
@@ -108,7 +108,7 @@ class CommissionController extends Controller {
             ->limit(3)
             ->get();
 
-        $categories = TutorialCategory::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
 
         return view('commissions.frontend.index', compact('categories', 'commissions', 'lastCommissions', 'currentUrl'));
     }

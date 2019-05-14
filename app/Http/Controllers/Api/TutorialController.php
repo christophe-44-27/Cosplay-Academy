@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Mail\ReportTutorialMail;
 use App\Models\Tutorial;
 use App\Http\Controllers\Controller;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class TutorialController extends Controller {
@@ -20,7 +20,7 @@ class TutorialController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate($request->get('limit'));
 
-        $categories = TutorialCategory::all();
+        $categories = Category::all();
 
         return response()->json([
             'tutorials' => $tutorials,
@@ -36,7 +36,7 @@ class TutorialController extends Controller {
     public function search(Request $request) {
 
         if ($request->get('filter_value')){
-            $category = TutorialCategory::where('filter_value', '=', $request->get('filter_value'))
+            $category = Category::where('filter_value', '=', $request->get('filter_value'))
                 ->firstOrFail();
 
             $tutorials = Tutorial::where('tutorial_category_id', '=', $category->id)
@@ -68,7 +68,7 @@ class TutorialController extends Controller {
             ->paginate($request->get('limit'));
         }
 
-        $categories = TutorialCategory::all();
+        $categories = Category::all();
 
         return response()->json([
             'tutorials' => $tutorials,

@@ -16,12 +16,12 @@ class Tutorial extends Model {
         return $this->belongsTo(User::class);
     }
 
-    public function tutorialCategory() {
-        return $this->belongsTo(TutorialCategory::class);
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 
     public function documents() {
-        return $this->morphMany(Document::class, 'documentable')->orderBy('created_at', 'DESC');
+        return $this->morphMany(Document::class, 'documentable');
     }
 
     /**

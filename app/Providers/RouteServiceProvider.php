@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Commission;
 use App\Models\Tutorial;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

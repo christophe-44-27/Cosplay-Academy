@@ -73,7 +73,7 @@
                                                 <img src="{{ asset('images/structure/default-cover-cours-fr.png') }}"
                                                      alt="Course image" class="img-fullwidth">
                                             @endif
-                                            <h4 class="text-white mt-0 mb-0"><span class="price">{{ $tutorial->tutorialCategory->name }}</span></h4>
+                                            <h4 class="text-white mt-0 mb-0"><span class="price">{{ ($tutorial->category) ? $tutorial->category->name : '-' }}</span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
                                             <h4 class="line-bottom mb-10" data-toggle="tooltip" title="{{ $tutorial->title }}">

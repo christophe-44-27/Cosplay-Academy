@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use App\Models\Commission;
 use Carbon\Carbon;
 
@@ -39,7 +39,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior)")
             ]
         );
@@ -64,7 +64,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 1")
             ]
         );
@@ -89,7 +89,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 2")
             ]
         );
@@ -116,7 +116,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 3")
             ]
         );
@@ -141,7 +141,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 4")
             ]
         );
@@ -166,7 +166,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 5")
             ]
         );
@@ -191,7 +191,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 6")
             ]
         );
@@ -216,7 +216,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 7")
             ]
         );
@@ -241,7 +241,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 8")
             ]
         );
@@ -267,7 +267,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 9")
             ]
         );
@@ -292,7 +292,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 10")
             ]
         );
@@ -317,7 +317,7 @@ dignissim. Pellentesque efficitur at mi eu sagittis.</p>',
                 'desired_delivery_date' => Carbon::now()->format('Y-m-d H:i:s'),
                 'cover_path' => 'commissions/thumbnails/image_default.jpg',
                 'user_id' => User::where('email', "email@email.ca")->first()->id,
-                'category_id' => TutorialCategory::where('name', "Artisanat")->first()->id,
+                'category_id' => Category::where('name', "Artisanat")->first()->id,
                 'slug' => str_slug("Armure de Zelda (Warrior) 11")
             ]
         );

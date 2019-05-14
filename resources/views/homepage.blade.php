@@ -307,7 +307,7 @@
                                 <div class="campaign-bottom border-top clearfix mt-20">
                                     <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
                                         <li class="text-theme-color-2 pr-0 mr-5">
-                                            @lang($tutorial->tutorialCategory->name)
+                                            @lang(($tutorial->category) ? $tutorial->category->name : '-')
                                         </li>
                                     </ul>
                                     <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"
@@ -350,7 +350,7 @@
                                 <div class="campaign-bottom border-top clearfix mt-20">
                                     <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
                                         <li class="text-theme-color-2 pr-0 mr-5">
-                                            @lang($tutorial->tutorialCategory->name)
+                                            @lang(($tutorial->category) ? $tutorial->category->name : '-')
                                         </li>
                                     </ul>
                                     <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10"

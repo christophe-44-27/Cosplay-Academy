@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\TutorialCategory;
+use App\Models\Category;
 use Faker\Generator as Faker;
 
-$factory->define(TutorialCategory::class, function (Faker $faker) {
+$factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence,
         'filter_value' => $faker->slug,
