@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "add5703b7a3cf2212d97e943c4b333c5",
+    "content-hash": "45b30faa72f0510a61eaa4d51095d5b2",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -62,6 +62,40 @@
                 "time"
             ],
             "time": "2019-04-23T19:00:57+00:00"
+        },
+        {
+            "name": "cosplayschool/analytics",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/Analytics",
+                "reference": "a9d8ae9b1958c43b29702508aa9278f539264336",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cosplayschool\\Analytics\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cosplayschool\\Analytics\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova card.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "defuse/php-encryption",
@@ -1289,16 +1323,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.16",
+            "version": "v5.8.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "83d57f9f9162ab476c43b9ec00d463ff12c578fd"
+                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/83d57f9f9162ab476c43b9ec00d463ff12c578fd",
-                "reference": "83d57f9f9162ab476c43b9ec00d463ff12c578fd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/33c04dd2a431adeeb49926a4f2b20590cc033ca2",
+                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2",
                 "shasum": ""
             },
             "require": {
@@ -1432,21 +1466,21 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-05-07T14:37:11+00:00"
+            "time": "2019-05-14T16:02:41+00:00"
         },
         {
             "name": "laravel/nova",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/nova.git",
-                "reference": "84e25f8e3fa29cc441a1797af4d9bce733dec795"
+                "reference": "47830760ed024237c97fd14ad8910d4c0b8494d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-84e25f8e3fa29cc441a1797af4d9bce733dec795-zip-39f3de.zip",
-                "reference": "84e25f8e3fa29cc441a1797af4d9bce733dec795",
-                "shasum": "26b2d8c873cf1ff4b836965e9fc3029548af5dc8"
+                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-47830760ed024237c97fd14ad8910d4c0b8494d8-zip-a47cf8.zip",
+                "reference": "47830760ed024237c97fd14ad8910d4c0b8494d8",
+                "shasum": "977fb53e7312f0a59d7de1205128cbec27f7c872"
             },
             "require": {
                 "cakephp/chronos": "^1.0",
@@ -1501,7 +1535,7 @@
                 "admin",
                 "laravel"
             ],
-            "time": "2019-05-01T17:03:40+00:00"
+            "time": "2019-05-14T16:15:08+00:00"
         },
         {
             "name": "laravel/passport",
@@ -5773,16 +5807,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.10",
+            "version": "7.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d7d9cee051d03ed98df6023aad93f7902731a780"
+                "reference": "64cb33f5b520da490a7b13149d39b43cf3c890c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d7d9cee051d03ed98df6023aad93f7902731a780",
-                "reference": "d7d9cee051d03ed98df6023aad93f7902731a780",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/64cb33f5b520da490a7b13149d39b43cf3c890c6",
+                "reference": "64cb33f5b520da490a7b13149d39b43cf3c890c6",
                 "shasum": ""
             },
             "require": {
@@ -5853,7 +5887,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-05-09T05:06:47+00:00"
+            "time": "2019-05-14T04:53:02+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -2,20 +2,17 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\TotalTutorials;
+use Cosplayschool\Analytics\Analytics;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphMany;
-use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Support\Str;
-use Laravel\Nova\Panel;
 
 class Tutorial extends Resource
 {
@@ -123,7 +120,9 @@ class Tutorial extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new TotalTutorials
+        ];
     }
 
     /**
