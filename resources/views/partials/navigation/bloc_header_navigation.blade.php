@@ -75,23 +75,10 @@
                             <a href="{{ route('homepage') }}">@lang('messages.navigation.home')</a>
                         </li>
                         <li class="">
-                            <a href="#">Explorer</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('tutorials') }}">Les tutoriels</a></li>
-                                <li><a href="{{ route('teachers') }}">Les auteurs</a></li>
-                            </ul>
+                            <a href="{{ route('tutorials') }}">Les tutoriels</a>
                         </li>
                         <li class="">
-                            <a href="{{ route('forums') }}">Forum</a>
-                        </li>
-                        <li class="">
-                            <a href="{{ route('premium_index') }}">Premium</a>
-                        </li>
-                        <li class="">
-                            <a href="{{ route('community') }}">Découvrir</a>
-                        </li>
-                        <li class="#">
-                            <a href="{{ route('page_about') }}">Récompenses d'auteur</a>
+                            <a href="{{ route('teachers') }}">Les auteurs</a>
                         </li>
                         <li class="">
                             <a href="https://shop.cosplayschool.ca" target="_blank">Cosplay Shop</a>

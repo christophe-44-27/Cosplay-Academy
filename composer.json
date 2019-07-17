@@ -14,13 +14,9 @@
         "intervention/image": "^2.4",
         "laravel/cashier": "^8.0",
         "laravel/framework": "5.8.*",
-        "laravel/passport": "^7.0",
-        "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
-        "stevebauman/purify": "^2.0",
-        "laravel/nova": "*",
-        "cosplayschool/analytics": "*"
+        "stevebauman/purify": "^2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -71,10 +67,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Analytics"
         }
     ],
     "minimum-stability": "dev",
