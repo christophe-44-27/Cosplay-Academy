@@ -16,61 +16,61 @@ class TutorialCategoriesTableSeeder extends Seeder {
         Category::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Couture",
                 'filter_value' => "sewing",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Artisanat",
                 'filter_value' => "crafting",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Conception 3D",
                 'filter_value' => "three_d",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Photographie",
                 'filter_value' => "photography",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Electronique",
                 'filter_value' => "electronic",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Patronnage",
                 'filter_value' => "pattern",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Création d'accessoires",
                 'filter_value' => "props",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Guide",
                 'filter_value' => "guide",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Divers",
                 'filter_value' => "misc",
             ]
         );
-        DB::table('tutorial_categories')->insert(
+        DB::table('categories')->insert(
             [
                 'name' => "Maquillage",
                 'filter_value' => "makeup",

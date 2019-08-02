@@ -27,7 +27,7 @@ class TutorialController extends Controller {
 
         $categories = Category::all();
 
-        $tutorials = Tutorial::where('tutorial_category_id', '=', $category->id)
+        $tutorials = Tutorial::where('category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
@@ -48,7 +48,7 @@ class TutorialController extends Controller {
 
         $currentUrl = $request->url();
 
-        $relatedTutorials = Tutorial::where('tutorial_category_id', '=', $tutorial->category->id)
+        $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
                                 ->where('is_published', '=', true)
                                 ->orderBy('id', 'DESC')
                                 ->limit(4)

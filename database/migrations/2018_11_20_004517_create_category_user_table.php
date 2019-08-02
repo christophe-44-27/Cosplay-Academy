@@ -15,11 +15,11 @@ class CreateCategoryUserTable extends Migration {
 			Schema::create('category_user', function (Blueprint $table) {
 				$table->increments('id');
 
-				$table->integer('user_id')->unsigned();
-				$table->integer('category_id')->unsigned();
+				$table->unsignedInteger('user_id');
+				$table->unsignedInteger('category_id');
 
-				$table->foreign('user_id', 'fk_user_categorie_id')->references('id')->on('users');
-				$table->foreign('category_id', 'fk_category_id')->references('id')->on('categories');
+				$table->foreign('user_id', 'fk_category_user_id')->references('id')->on('users');
+				$table->foreign('category_id', 'fk_user_category_id')->references('id')->on('categories');
 				$table->timestamps();
 			});
 		}
