@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('dashboard')->middleware('auth')->group(function () {
+//Route::prefix('dashboard')->middleware('auth')->group(function () {
+Route::prefix('dashboard')->group(function () {
     Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
 
     Route::post('/commissions/create', 'CommissionController@create')->name('commission_create');

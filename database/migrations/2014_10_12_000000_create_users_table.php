@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration {
 	public function up() {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -22,7 +21,6 @@ class CreateUsersTable extends Migration {
             $table->text('description')->nullable();
             $table->string('stripe_customer_id', 255)->nullable();
             $table->dateTime('last_login')->nullable();
-            $table->boolean('is_teacher')->default(1);
             $table->boolean('enabled')->default(0);
             $table->boolean('blocked')->default(0);
             $table->string('public_pseudonym', 255)->nullable();
@@ -32,8 +30,7 @@ class CreateUsersTable extends Migration {
             $table->string('youtube_page', 255)->nullable();
             $table->string('website', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
-            $table->string('cover_picture', 255)->nullable();
-            $table->boolean('is_admin', 255)->default(0);
+            $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder {
 
         DB::table('users')->insert(
             [
-                'name' => "Silverblack props",
+                'public_pseudonym' => "Silverblack props",
                 'email' => "email@email.ca",
                 'password' => \Illuminate\Support\Facades\Hash::make("123"),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
