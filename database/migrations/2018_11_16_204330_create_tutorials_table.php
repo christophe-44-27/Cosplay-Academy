@@ -15,21 +15,23 @@ class CreateTutorialsTable extends Migration
     {
         Schema::create('tutorials', function (Blueprint $table)
         {
-            $table->increments('id');
-            $table->string('title', 255);
+            $table->bigIncrements('id');
+            $table->string('title');
             $table->longText('content');
-            $table->string('url_video', 255)->nullable();
-            $table->string('video_id', 255)->nullable();
-            $table->string('thumbnail_picture', 255);
-            $table->string('main_picture', 255);
+            $table->string('video_id');
+            $table->string('thumbnail_picture');
             $table->boolean('is_published')->default(0);
-            $table->integer('nb_views');
-            $table->integer('nb_likes');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('user_id');
+            $table->integer('nb_views')->default(0);
+            $table->integer('nb_likes')->default(0);
+            $table->text('keywords')->nullable();
+            $table->integer('price')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('type_id');
             $table->foreign('category_id', 'fk_tutorial_category_id')->references('id')->on('categories');
-            $table->foreign('user_id', 'fk_user_id')->references('id')->on('users');
-            $table->string('slug', 255);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('type_id')->references('id')->on('tutorial_types');
+            $table->string('slug');
             $table->boolean('is_reported')->default(false);
             $table->timestamps();
         });

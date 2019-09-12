@@ -10,7 +10,7 @@ namespace App\Forum\Models;
 
 use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\Models\User;
 
 class ThreadSubscription extends Model {
     /**

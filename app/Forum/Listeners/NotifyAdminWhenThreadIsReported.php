@@ -4,7 +4,7 @@ namespace App\Forum\Listeners;
 
 use App\Forum\Events\ThreadIsReported;
 use App\Notifications\ThreadWasReported;
-use App\User;
+use App\Models\User;
 
 class NotifyAdminWhenThreadIsReported {
     /**

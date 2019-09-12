@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Dashboard;
 use App\Exceptions\YoutubeVideoIdNotFoundException;
 use App\Http\Requests\TutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
-use App\Mail\TutorialCreatedAdminMail;
-use App\Mail\TutorialCreatedMail;
 use App\Mail\TutorialPublishedMail;
 use App\Models\Document;
 use App\Models\Tutorial;
 use App\Models\Category;
+use App\Models\TutorialType;
 use App\Http\Controllers\Controller;
 use App\Services\ExtractYoutubeVideoIdService;
 use App\Services\FileUploadService;
@@ -33,19 +32,22 @@ class TutorialController extends Controller {
      */
     public function index() {
         $tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
+            ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
-            ->paginate(15);
+            ->paginate(6);
         $controller = 'tutorials';
-        return view('dashboard/list_tutorials', compact('tutorials', 'controller'));
+        return view('dashboard.tutorials.index', compact('tutorials', 'controller'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function newTutorial() {
-        $tutorialCategories = Category::pluck('name', 'id');
+        $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
         $controller = 'tutorials';
-        return view('dashboard/new_tutorial', compact('tutorialCategories', 'controller'));
+        $tutorial = new Tutorial();
+        return view('dashboard.tutorials.new', compact('tutorialCategories', 'controller', 'tutorial', 'types'));
     }
 
     /**
@@ -70,16 +72,22 @@ class TutorialController extends Controller {
         }
 
         $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
-        $cover = $fileUploadService->upload($request, 'main_picture', 700, 500, 'tutorials/covers');
+
+        if ($request->hasFile('video_tutorial')) {
+            $file = $request->file('video_tutorial');
+            $filename = time() . $file->getClientOriginalName();
+            $filePath = 'tutorials/videos/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($file), ['ACL' => 'public-read']);
+        }
 
         $arrayToCreate = [
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
+            'type_id' => $validated['type_id'],
             'content' => $validated['content'],
             'thumbnail_picture' => $thumbnail,
-            'main_picture' => $cover,
             'url_video' => $request->request->get('url_video'),
-            'video_id' => ($videoId != null) ? $videoId : null,
+            'video_id' => ($filename != null) ? $filename : null,
             'nb_views' => 0,
             'nb_likes' => 0,
             'user_id' => Auth::id(),
@@ -109,11 +117,45 @@ class TutorialController extends Controller {
             }
         }
 
-        Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
-        Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
+//        Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
+//        Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
 
         $request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
         return redirect(route('dashboard_tutorials_list'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Tutorial $tutorial
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function edit(Request $request, Tutorial $tutorial) {
+        $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
+
+//        if($tutorial->is_published) {
+//            $request->session()->flash('error', 'Veuillez dépublier le tutoriel avant de le modifier.');
+//            return redirect(route('dashboard_tutorials_list'));
+//        }
+        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
+            'Bucket' => env('AWS_BUCKET'),
+            'Key' => 'tutorials/videos/' . $tutorial->video_id,
+            'SaveAs' => $tutorial->video_id
+        ]);
+
+        $url_video = $object['@metadata']['effectiveUri'];
+
+        $currentUrl = $request->url();
+        $controller = 'tutorials';
+
+        return view('dashboard.tutorials.edit', compact(
+            'tutorial',
+            'tutorialCategories',
+            'types',
+            'currentUrl',
+            'controller',
+            'url_video'
+        ));
     }
 
     /**
@@ -129,7 +171,8 @@ class TutorialController extends Controller {
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
             'content' => $validated['content'],
-            'url_video' => $request->request->get('url_video'),
+            'video_id' => $request->request->get('video_tutorial'),
+            'price' => $request->request->get('price'),
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
         ];
@@ -137,11 +180,6 @@ class TutorialController extends Controller {
         if ($request->file('thumbnail_picture')) {
             $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
             $arrayToUpdate['thumbnail_picture'] = $thumbnail;
-        }
-
-        if ($request->file('main_picture')) {
-            $cover = $fileUploadService->upload($request, 'main_picture', 700, 500, 'tutorials/covers');
-            $arrayToUpdate['main_picture'] = $cover;
         }
 
         Tutorial::where('slug', '=', $slug)
@@ -172,29 +210,6 @@ class TutorialController extends Controller {
 
         $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
         return redirect(route('dashboard_tutorials_list'));
-    }
-
-    /**
-     * @param string $slug
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(Request $request, string $slug) {
-        $tutorialCategories = Category::pluck('name', 'id');
-        $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
-
-        if($tutorial->is_published) {
-            $request->session()->flash('error', 'Veuillez dépublier le tutoriel avant de le modifier.');
-            return redirect(route('dashboard_tutorials_list'));
-        }
-        $currentUrl = $request->url();
-        $controller = 'tutorials';
-
-        return view('dashboard/edit_tutorial', compact(
-            'tutorial',
-            'tutorialCategories',
-            'currentUrl',
-            'controller'
-        ));
     }
 
     /**

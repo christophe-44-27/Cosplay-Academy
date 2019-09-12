@@ -24,11 +24,12 @@ class TutorialRequest extends FormRequest {
     public function rules() {
         return [
             'title' => 'required',
-            'tutorial_category_id' => 'required',
+            'category_id' => 'required',
+            'type_id' => 'required',
             'content' => 'required',
-            'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
-            'main_picture' => 'required|dimensions:min_width=700,min_height=500',
-            'filename.*' => 'mimes:doc,pdf,docx,zip|size:2048',
+//            'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
+//            'main_picture' => 'required|dimensions:min_width=700,min_height=500',
+//            'filename.*' => 'mimes:doc,pdf,docx,zip|size:2048',
         ];
     }
 
@@ -42,11 +43,11 @@ class TutorialRequest extends FormRequest {
         return [
             'title.required' => 'A title is required',
             'content.required'  => 'A message is required',
-            'thumbnail_picture.required' => 'Vous devez mettre une image de "miniature"',
-            'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
-            'main_picture.required' => 'Vous devez mettre une image de couverture',
-            'filename.*.size' => "Le poids de votre fichier est trop volumineux (Maximum: 2mo)",
-            'main_picture.dimensions' => 'Minimum dimensions are 700x500px'
+//            'thumbnail_picture.required' => 'Vous devez mettre une image de "miniature"',
+//            'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
+//            'main_picture.required' => 'Vous devez mettre une image de couverture',
+//            'filename.*.size' => "Le poids de votre fichier est trop volumineux (Maximum: 2mo)",
+//            'main_picture.dimensions' => 'Minimum dimensions are 700x500px'
         ];
     }
 

@@ -17,7 +17,7 @@ class CreateVideoStepTable extends Migration
             $table->bigIncrements('id');
             $table->string('url_video');
             $table->text('content');
-            $table->unsignedInteger('tutorial_id');
+            $table->unsignedBigInteger('tutorial_id');
             $table->foreign('tutorial_id')->references('id')->on('tutorials');
         });
     }

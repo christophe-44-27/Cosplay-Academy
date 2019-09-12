@@ -12784,6 +12784,7 @@ input:checked + .slider:before {
 #add-listing h5.fb-input { color: #3b5998; }
 #add-listing h5.twitter-input { color: #1da1f2; }
 #add-listing h5.gplus-input { color: #dd4b39; }
+#add-listing h5.youtube-input { color: #FF0000; }
 
 
 /* Tips */

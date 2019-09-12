@@ -4,7 +4,7 @@ namespace App\Tutorial\Listeners;
 
 use App\Notifications\TutorialWasReported;
 use App\Tutorial\Events\TutorialIsReported;
-use App\User;
+use App\Models\User;
 
 class NotifyAdminWhenTutorialIsReported {
     /**

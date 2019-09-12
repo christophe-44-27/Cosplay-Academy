@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
@@ -38,7 +38,7 @@ $factory->define(App\Models\ForumTopic::class, function(Faker $faker) {
         'content' => $faker->paragraph,
         'slug' => str_slug($title),
         'user_id' => function() {
-            return factory(App\User::class)->create()->id;
+            return factory(App\Models\User::class)->create()->id;
         },
         'forum_id' => function() {
             return factory(App\Models\Forum::class)->create()->id;
@@ -51,7 +51,7 @@ $factory->define(App\Models\ForumTopicAnswer::class, function(Faker $faker) {
     return [
         'content' => $faker->paragraph,
         'user_id' => function() {
-            return factory(App\User::class)->create()->id;
+            return factory(App\Models\User::class)->create()->id;
         },
         'forum_topic_id' => function() {
             return factory(App\Models\ForumTopic::class)->create()->id;

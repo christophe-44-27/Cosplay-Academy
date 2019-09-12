@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Tutorial;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TutorialPolicy
@@ -23,7 +23,7 @@ class TutorialPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\Tutorial  $tutorial
      * @return mixed
      */
@@ -35,7 +35,7 @@ class TutorialPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\Tutorial  $tutorial
      * @return mixed
      */
@@ -47,7 +47,7 @@ class TutorialPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\Tutorial  $tutorial
      * @return mixed
      */
@@ -59,7 +59,7 @@ class TutorialPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @param  \App\Models\Tutorial  $tutorial
      * @return mixed
      */

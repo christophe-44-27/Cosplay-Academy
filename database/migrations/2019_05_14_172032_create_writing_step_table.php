@@ -16,7 +16,7 @@ class CreateWritingStepTable extends Migration
         Schema::create('writing_steps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('content');
-            $table->unsignedInteger('tutorial_id');
+            $table->unsignedBigInteger('tutorial_id');
             $table->foreign('tutorial_id')->references('id')->on('tutorials');
         });
     }

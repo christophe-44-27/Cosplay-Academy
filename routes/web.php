@@ -12,9 +12,12 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'GuestHomepageController@index')->name('homepage');
 Route::get('/tutorials', 'Tutorials\TutorialCategoryController@index')->name('list_tutorials');
+
+Auth::routes();
 
 /** Routes for Login / Logout */
 Auth::routes(['verify' => true]);
@@ -41,3 +44,6 @@ include ('ConnectedUser/dashboard_routes.php');
 include ('ConnectedUser/subscriptions.php');
 include ('ConnectedUser/forums.php');
 include ('ConnectedUser/tutorials.php');
+
+
+Route::get('/home', 'HomeController@index')->name('home');

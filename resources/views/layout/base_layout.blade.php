@@ -25,7 +25,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    @include('partials.navigation.bloc_header_navigation')
+    @include('elements.navigation.bloc_header_navigation')
 
     <main class="container" role="main">
         <nav aria-label="breadcrumb">

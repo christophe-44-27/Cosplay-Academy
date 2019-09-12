@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutorial;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class GuestHomepageController extends Controller {
@@ -19,25 +19,17 @@ class GuestHomepageController extends Controller {
             ->limit(8)
             ->get();
 
-        $teachers = User::where('is_teacher', '=', true)
-            ->where('profile_picture', '!=', null)
-            ->where('cover_picture', '!=', null)
-            ->orderBy('id', 'desc')
-            ->limit(4)
-            ->get();
-
-        $teacherCount = User::where('is_teacher', '=', true)->count();
-        $members = User::count();
+        $memberCount = User::count();
+        $users = User::orderBy('id', 'DESC')->limit(8)->get();
         $tutorialCount = Tutorial::where('is_published', '=', true)->count();
         $tutorialNbViews = Tutorial::where('is_published', '=', true)->sum('nb_views');
 
-        return view('homepage', compact(
+        return view('pages.homepage', compact(
             'promotedTutorials',
             'famousTutorials',
-            'teachers',
+            'users',
             'tutorialNbViews',
-            'members',
-            'teacherCount',
+            'memberCount',
             'tutorialCount'
         ));
     }

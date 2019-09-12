@@ -5,7 +5,7 @@ namespace App\Forum\Models;
 use App\Forum\Events\ReplyIsReported;
 use App\Forum\Traits\Favoritable;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 
 class Reply extends Model {

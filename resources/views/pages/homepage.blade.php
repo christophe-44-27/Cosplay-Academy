@@ -378,19 +378,19 @@
             </div>
             <div class="section-content">
                 <div class="row multi-row-clearfix">
-                    @foreach($teachers as $teacher)
+                    @foreach($users as $user)
                     <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30 margin-bot-20px">
                         <div class="team maxwidth400">
                             <div class="thumb">
-                                @if($teacher->profile_picture)
-                                    <img class="img-fullwidth" src="{{ asset('storage/' . $teacher->profile_picture) }}" alt="">
+                                @if($user->profile_picture)
+                                    <img class="img-fullwidth" src="{{ asset('storage/' . $user->profile_picture) }}" alt="">
                                 @else
                                     <img class="img-fullwidth" src="{{ asset('images/default-thumbnails.png') }}" alt="">
                                 @endif
                             </div>
                             <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                                <h4 class="name text-theme-color-2 mt-0" data-toggle="tooltip" title="{{ $teacher->public_pseudonym }}">
-                                    {{ str_limit($teacher->public_pseudonym, $limit = 12, $end = '...') }}
+                                <h4 class="name text-theme-color-2 mt-0" data-toggle="tooltip" title="{{ $user->public_pseudonym }}">
+                                    {{ str_limit($user->public_pseudonym, $limit = 12, $end = '...') }}
                                     <small>@lang('Professeur')</small>
                                 </h4>
                                 <p class="mb-20"></p>
@@ -400,7 +400,7 @@
                                     <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
                                 </ul>
                                 <a class="btn btn-theme-colored btn-sm pull-right flip"
-                                   href="{{ route('teacher_profile', $teacher->id) }}">@lang('Voir plus')</a>
+                                   href="{{ route('community_show_member', $user->id) }}">@lang('Voir plus')</a>
                             </div>
                         </div>
                     </div>
@@ -415,15 +415,15 @@
              data-parallax-ratio="0.7">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $members }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $members }}</h2>
+                        <h2 data-animation-duration="1000" data-value="{{ $memberCount }}"
+                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $memberCount }}</h2>
                         <h5 class="text-white text-uppercase mb-0">Nos membres</h5>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-md-50">
                     <div class="funfact text-center">
                         <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
                         <h2 data-animation-duration="1000" data-value="{{ $tutorialCount }}"
@@ -431,15 +431,7 @@
                         <h5 class="text-white text-uppercase mb-0">Nos tutoriels</h5>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-                    <div class="funfact text-center">
-                        <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-                        <h2 data-animation-duration="1000" data-value="{{ $teacherCount }}"
-                            class="animate-number text-white mt-0 font-38 font-weight-500">{{ $teacherCount }}</h2>
-                        <h5 class="text-white text-uppercase mb-0">Les auteurs</h5>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                <div class="col-xs-12 col-sm-6 col-md-4 mb-md-0">
                     <div class="funfact text-center">
                         <i class="pe-7s-look mt-5 text-theme-color-2"></i>
                         <h2 data-animation-duration="1000" data-value="{{ $tutorialNbViews }}"

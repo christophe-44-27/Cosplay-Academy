@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Tutorial;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -13,7 +13,7 @@ class UserPolicy
     /**
      * Determine whether the user can update the post.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)

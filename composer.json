@@ -16,6 +16,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "stevebauman/purify": "^2.0"
     },
     "require-dev": {

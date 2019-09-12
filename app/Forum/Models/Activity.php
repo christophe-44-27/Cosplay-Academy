@@ -8,7 +8,7 @@
 
 namespace App\Forum\Models;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model {

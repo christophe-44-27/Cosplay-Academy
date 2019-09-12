@@ -13,7 +13,7 @@
         <ul data-submenu-title="Enseigner">
             <li><a><i class="sl sl-icon-layers"></i> Mes tutoriels</a>
                 <ul>
-                    <li><a href="#">Actifs <span class="nav-tag green">6</span></a>
+                    <li><a href="{{ route('dashboard_tutorials_list') }}">Actifs <span class="nav-tag green">6</span></a>
                     </li>
                     <li><a href="#">En cours de modération <span class="nav-tag yellow">1</span></a>
                     </li>
@@ -21,7 +21,7 @@
             </li>
             <li><a href="#"><i class="sl sl-icon-star"></i> Mes avis</a></li>
             <li><a href="#"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
-            <li><a href="#"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
+            <li><a href="{{ route('tutorial_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">

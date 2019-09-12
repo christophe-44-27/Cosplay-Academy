@@ -15,12 +15,12 @@ Route::prefix('dashboard')->group(function () {
     Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
     Route::get('tutorials/new', 'Dashboard\TutorialController@newTutorial')->name('tutorial_new');
     Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
-    Route::get('tutorials/edit/{slug}', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
-    Route::post('tutorials/update/{slug}', 'Dashboard\TutorialController@update')->name('tutorial_update');
-    Route::get('tutorials/delete/{slug}', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
+    Route::get('tutorials/edit/{tutorial}', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
+    Route::post('tutorials/update/{tutorial}', 'Dashboard\TutorialController@update')->name('tutorial_update');
+    Route::get('tutorials/delete/{tutorial}', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
     Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
-    Route::get('tutorials/publish/{id}', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
-    Route::get('tutorials/unpublish/{id}', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
+    Route::get('tutorials/publish/{tutorial}', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
+    Route::get('tutorials/unpublish/{tutorial}', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
     Route::get('tutorials/document/delete/{id}/{tutorialId}', 'Dashboard\TutorialController@deleteDocument', function(string $id, string $tutorialId){})
         ->name('delete_tutorial_document');
     /** ADRESSES **/

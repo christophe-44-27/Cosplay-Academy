@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +16,13 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('homepage');
+            $user = Auth::user();
+
+            if($user->isCosplayer()) {
+                return route('dashboard_homepage');
+            }
+
+            return route('dashboard_homepage');
         }
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder {
@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder {
 
         DB::table('users')->insert(
             [
-                'public_pseudonym' => "Silverblack props",
+                'name' => "Silverblack props",
                 'email' => "email@email.ca",
                 'password' => \Illuminate\Support\Facades\Hash::make("123"),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

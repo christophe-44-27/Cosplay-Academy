@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\GalleryCategory;
 use App\Models\Photo;
 use App\Models\Tutorial;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommunityController extends Controller

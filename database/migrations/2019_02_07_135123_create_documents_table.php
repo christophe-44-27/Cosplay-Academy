@@ -12,11 +12,11 @@ class CreateDocumentsTable extends Migration {
      */
     public function up() {
         Schema::create('documents', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('filename');
             $table->string('path');
             $table->string('type');
-            $table->unsignedInteger('documentable_id');
+            $table->unsignedBigInteger('documentable_id');
             $table->string('documentable_type');
             $table->timestamps();
         });

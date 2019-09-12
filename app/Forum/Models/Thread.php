@@ -8,7 +8,7 @@ use App\Forum\Events\ThreadReceivedNewReply;
 use App\Forum\Filters\ThreadFilters;
 use Illuminate\Database\Eloquent\Builder;
 use App\Forum\Traits\RecordsActivity;
-use App\User;
+use App\Models\User;
 
 class Thread extends Model {
     use RecordsActivity;

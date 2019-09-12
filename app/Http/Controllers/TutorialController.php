@@ -6,11 +6,12 @@ use App\Models\Tutorial;
 use App\Models\Category;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TutorialController extends Controller {
 
     public function index(TutorialService $tutorialService) {
-        $tutorials = Tutorial::where('is_published', '=', '1')
+        $tutorials = Tutorial::where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
 
@@ -43,6 +44,14 @@ class TutorialController extends Controller {
             ->where('is_published', '=', true)
             ->firstOrFail();
 
+        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
+            'Bucket' => env('AWS_BUCKET'),
+            'Key' => 'tutorials/videos/' . $tutorial->video_id,
+            'SaveAs' => $tutorial->video_id
+        ]);
+
+        $url_video = $object['@metadata']['effectiveUri'];
+
         $tutorial->nb_views = $tutorial->nb_views + 1;
         $tutorial->save();
 
@@ -54,7 +63,7 @@ class TutorialController extends Controller {
                                 ->limit(4)
                                 ->get();
 
-        return view('tutorials.frontend.show', compact('tutorial', 'currentUrl', 'relatedTutorials'));
+        return view('frontend.tutorials.show', compact('tutorial', 'currentUrl', 'relatedTutorials', 'url_video'));
     }
 
     /**

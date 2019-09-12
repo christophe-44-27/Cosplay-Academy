@@ -1,15 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Address;
-use App\Models\Category;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements MustVerifyEmail
+{
     use Notifiable, Billable;
 
     /**
@@ -31,14 +30,16 @@ class User extends Authenticatable {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function address() {
-        return $this->hasOne(Address::class, 'user_address_id');
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'roles_users', 'user_id');
     }
 }

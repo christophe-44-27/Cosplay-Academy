@@ -4,7 +4,7 @@ namespace App\Forum\Listeners;
 
 use App\Forum\Events\ThreadReceivedNewReply;
 use App\Forum\Notifications\YouWereMentioned;
-use App\User;
+use App\Models\User;
 
 class NotifyMentionedUsers {
     /**

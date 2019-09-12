@@ -17,7 +17,7 @@ class CreateTutorialStepsTable extends Migration
             $table->bigIncrements('id');
             $table->string('url_video');
             $table->text('content');
-            $table->unsignedInteger('tutorial_stepable_id');
+            $table->unsignedBigInteger('tutorial_stepable_id');
             $table->string('tutorial_stepable_type');
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ namespace App\Forum\Listeners;
 
 use App\Forum\Events\ReplyIsReported;
 use App\Notifications\ReplyWasReported;
-use App\User;
+use App\Models\User;
 
 class NotifyAdminWhenReplyIsReported {
     /**

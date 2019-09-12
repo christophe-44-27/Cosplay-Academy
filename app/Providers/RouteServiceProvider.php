@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
         Route::model('commission', Commission::class);
-        Route::model('tutorials', Tutorial::class);
+        Route::model('tutorial', Tutorial::class);
     }
 
     /**
