@@ -16,6 +16,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('content');
+            $table->boolean('free_preview')->default(false);
         });
     }
 
