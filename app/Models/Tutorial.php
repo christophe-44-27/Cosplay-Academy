@@ -37,7 +37,7 @@ class Tutorial extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function tutorial_steps() {
-        return $this->morphMany(TutorialStep::class, 'tutorial_stepable');
+        return $this->morphMany(TutorialSession::class, 'tutorial_stepable');
     }
 
     /**

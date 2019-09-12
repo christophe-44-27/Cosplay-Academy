@@ -24,7 +24,7 @@ class VideoStep extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Models\VideoStep';
+    public static $model = 'App\Models\Video';
 
     /**
      * Resource group displayed on the sidebar

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTutorialStepsTable extends Migration
+class CreateArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateTutorialStepsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tutorial_steps', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('url_video');
             $table->text('content');
-            $table->unsignedBigInteger('tutorial_stepable_id');
-            $table->string('tutorial_stepable_type');
-            $table->timestamps();
         });
     }
 
@@ -30,6 +26,6 @@ class CreateTutorialStepsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tutorial_steps');
+        Schema::dropIfExists('articles');
     }
 }

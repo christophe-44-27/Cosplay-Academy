@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWritingStepTable extends Migration
+class CreateSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWritingStepTable extends Migration
      */
     public function up()
     {
-        Schema::create('writing_steps', function (Blueprint $table) {
+        Schema::create('sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('content');
+            $table->string('name');
             $table->unsignedBigInteger('tutorial_id');
             $table->foreign('tutorial_id')->references('id')->on('tutorials');
         });
@@ -28,6 +28,6 @@ class CreateWritingStepTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('writing_steps');
+        Schema::dropIfExists('sessions');
     }
 }
