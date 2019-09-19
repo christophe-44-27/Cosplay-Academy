@@ -22,6 +22,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('tutorials/document/delete/{id}/{tutorialId}', 'Dashboard\TutorialController@deleteDocument', function(string $id, string $tutorialId){})
         ->name('delete_tutorial_document');
     /** TUTORIELS SESSIONS */
+    Route::get('tutorials/{tutorial}/sessions/new', 'Dashboard\TutorialSessionController@newSession')->name('tutorial_session_new');
+    Route::get('tutorials/{tutorial}/sessions/{session}/edit', 'Dashboard\TutorialSessionController@edit')->name('tutorial_session_edit');
     Route::post('tutorials/{tutorial}/sessions/store', 'Dashboard\TutorialSessionController@store')->name('tutorial_session_store');
     Route::put('tutorials/{tutorial}/sessions/update/{session}', 'Dashboard\TutorialSessionController@update')->name('tutorial_session_update');
     Route::get('tutorials/{tutorial}/sessions/{session}/remove', 'Dashboard\TutorialSessionController@remove')->name('dashboard_tutorial_remove_session');
@@ -41,4 +43,8 @@ Route::prefix('dashboard')->group(function () {
     /** MON COMPTE **/
     Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
+
+    Route::get('dynamic-field', 'Dashboard\DynamicFieldController@index');
+
+    Route::post('dynamic-field/insert/{tutorial}', 'Dashboard\DynamicFieldController@insert')->name('dynamic-field.insert');
 });

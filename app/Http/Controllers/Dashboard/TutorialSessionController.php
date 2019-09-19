@@ -15,6 +15,11 @@ class TutorialSessionController extends Controller {
         $this->middleware('auth');
     }
 
+    public function newSession(Tutorial $tutorial)
+    {
+        return view('dashboard.tutorials.add_sessions', compact('tutorial'));
+    }
+
     /**
      * @param Tutorial $tutorial
      * @param Request $request
@@ -28,6 +33,16 @@ class TutorialSessionController extends Controller {
         $session->save();
 
         return redirect(route('tutorial_edit', $tutorial))->with('success', "La session a bien été ajoutée.");
+    }
+
+    /**
+     * @param Tutorial $tutorial
+     * @param Session $session
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Tutorial $tutorial, Session $session)
+    {
+        return view('dashboard.tutorials.edit_session', compact('tutorial', 'session'));
     }
 
     /**

@@ -2,7 +2,6 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-
             <div id="add-listing">
             {!! Form::model($tutorial, ['method' => 'put', 'url' => route('tutorial_update', $tutorial), 'enctype' => 'multipart/form-data']) !!}
                 <!-- Section -->
@@ -71,23 +70,23 @@
                 <div class="add-listing-section margin-top-45">
                     <!-- Headline -->
                     <div class="add-listing-headline">
-                        <h3><i class="sl sl-icon-docs"></i> Programme du cours</h3>
+                        <h3>
+                            <i class="sl sl-icon-docs"></i> Programme du cours -
+                            <span><a href="{{ route('tutorial_session_new', $tutorial) }}" style="color: #f91942; !important;">Ajouter une session</a></span>
+                        </h3>
                     </div>
-                    <div id="sessions">
+                    @if($tutorial->sessions)
                         @if(@isset($tutorial->id))
                             <div id="list-sessions">
                                 @if(count($tutorial->sessions) > 0)
                                     @foreach($tutorial->sessions as $session)
                                         <div class="row pattern">
-                                            {!! Form::model($session, ['method' => 'put', 'url' => route('tutorial_session_update', ['tutorial' => $tutorial, 'session' => $session])]) !!}
                                             <div class="col-md-6">
                                                 <div class="fm-input pricing-name">
-                                                    {!! Form::text('name', $session->name) !!}
+                                                    {!! Form::text('name', $session->name, ['disabled' => 'true']) !!}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                {!! Form::submit('Modifier', ['class' => 'button preview', 'style' => 'overflow: unset; margin-top: unset;  background-color: #FD460D']) !!}
-                                                {{--<button type="submit" class="button preview" style="overflow: unset; margin-top: unset;  background-color: #FD460D">Modifier</button>--}}
                                                 @if(!$session->content)
                                                     <a href="{{ route('dashboard_tutorial_new_content', ['tutorial' => $tutorial, 'session' => $session]) }}"
                                                        class="button preview" style="overflow: unset; margin-top: unset; background-color: #E30B9F">
@@ -99,75 +98,36 @@
                                                         Modifier le contenu
                                                     </a>
                                                 @endif
+                                                <a href="{{ route('tutorial_session_edit', ['tutorial' => $tutorial, 'session' => $session]) }}"
+                                                   class="button preview" style="overflow: unset; margin-top: unset;background-color: #FB8628">
+                                                    Modifier
+                                                </a>
                                                 <a href="{{ route('dashboard_tutorial_remove_session', ['tutorial' => $tutorial, 'session' => $session]) }}"
-                                                   class="button preview" style="overflow: unset; margin-top: unset">
+                                                   class="button preview" style="overflow: unset; margin-top: unset;">
                                                     Supprimer
                                                 </a>
                                             </div>
-                                            {!! Form::close() !!}
-                                            {{--<div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>--}}
                                         </div>
                                     @endforeach
                                 @endif
-                                <div class="row pattern">
-                                    {!! Form::model('', ['method' => 'post', 'url' => route('tutorial_session_store', $tutorial)]) !!}
-                                    <div class="col-md-6">
-                                        <div class="fm-input pricing-name">
-                                            {!! Form::text('name') !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        {!! Form::submit('Enregistrer', ['class' => 'button preview', 'style' => 'overflow: unset; margin-top: unset;  background-color: #5FC700']) !!}
-                                    </div>
-                                    {!! Form::close() !!}
-                                </div>
                             </div>
                         @endif
-                    </div>
-                </div>
-                <!-- Section / End -->
-
-
-                <!-- Section -->
-                <div class="add-listing-section margin-top-45">
-
-                    <!-- Headline -->
-                    <div class="add-listing-headline">
-                        <h3><i class="sl sl-icon-book-open"></i> Documents joints</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="notification warning margin-bottom-30">
-                                <p>Vous devez enregistrer votre tutoriel avant de pouvoir ajouter des documents joints.</p>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="notification warning margin-bottom-30">
+                                    <p>Vous n'avez encore créé aucune session pour ce cours.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <!-- Section / End -->
 
-                <button type="submit" class="button preview">Enregistrer <i class="fa fa-arrow-circle-right"></i></button>
-                {!! Form::close() !!}
+                {!! Form::submit('Enregistrer', ['class' => 'button preview']) !!}
+            {!! Form::close() !!}
             </div>
         </div>
-
         @include('elements.blocs.dashboard-footer')
-
     </div>
 @endsection
-
-@push('javascripts')
-    <script>
-        $('.item-type').change(function(){
-            if(this.value === 'article') {
-                $('.title-item').hide();
-                $('.file-item').hide();
-                $('.content-item').show();
-            }
-            if(this.value === 'video') {
-                $('.title-item').show();
-                $('.file-item').show();
-                $('.content-item').hide();
-            }
-        });
-    </script>
-@endpush

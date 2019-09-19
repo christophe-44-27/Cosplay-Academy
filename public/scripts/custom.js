@@ -1104,7 +1104,7 @@ $(document).ready(function(){
 	function newMenuItem() {
 		var newElem = $('#to-clone').first().clone();
 		newElem.find('input').val('');
-		newElem.appendTo('#list-sessions');
+		newElem.appendTo('#sessions');
 	}
 
 	if ($("#sessions").is('*')) {
