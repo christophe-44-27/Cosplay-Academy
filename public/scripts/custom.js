@@ -1102,12 +1102,12 @@ $(document).ready(function(){
 	/* Pricing List
 	/*----------------------------------------------------*/
 	function newMenuItem() {
-		var newElem = $('tr.pricing-list-item.pattern').first().clone();
+		var newElem = $('#to-clone').first().clone();
 		newElem.find('input').val('');
-		newElem.appendTo('table#pricing-list-container');
+		newElem.appendTo('#list-sessions');
 	}
 
-	if ($("table#pricing-list-container").is('*')) {
+	if ($("#sessions").is('*')) {
 		$('.add-pricing-list-item').on('click', function(e) {
 			e.preventDefault();
 			newMenuItem();
@@ -1125,11 +1125,16 @@ $(document).ready(function(){
 
 			var newElem = $(''+
 				'<tr class="pricing-list-item pricing-submenu">'+
-					'<td>'+
-						'<div class="fm-move"><i class="sl sl-icon-cursor-move"></i></div>'+
-						'<div class="fm-input"><input type="text" placeholder="Category Title" /></div>'+
-						'<div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>'+
-					'</td>'+
+                    '<td>'+
+                        '<div class="fm-input"><input type="text" name="sessions[name][]" placeholder="Title" /></div>'+
+                        '<div class="fm-input"><textarea name="sessions[content][]"></textarea></div>'+
+                        '<div class="fm-input"><input type="file" name="sessions[video_file][]" /></div>'+
+                        '<div class="fm-input"><select name="sessions[type][]">\n' +
+                '                                                            <option value="video">Vidéo</option>\n' +
+                '                                                            <option value="article">Article</option>\n' +
+                '                                                        </select></div>'+
+                        '<div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>'+
+                    '</td>'+
 				'</tr>');
 
 			newElem.appendTo('table#pricing-list-container');

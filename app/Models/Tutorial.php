@@ -6,7 +6,8 @@ use App\Tutorial\Events\TutorialIsReported;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Tutorial extends Model {
+class Tutorial extends Model
+{
 
     protected $table = 'tutorials';
     public $timestamps = true;
@@ -15,29 +16,25 @@ class Tutorial extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function documents() {
+    public function documents()
+    {
         return $this->morphMany(Document::class, 'documentable');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function tutorial_steps() {
-        return $this->morphMany(TutorialSession::class, 'tutorial_stepable');
     }
 
     /**
@@ -49,10 +46,19 @@ class Tutorial extends Model {
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
+
+    /**
      * @param $tutorial
      * @return void
      */
-    public function report($tutorial) {
+    public function report($tutorial)
+    {
         event(new TutorialIsReported($tutorial));
     }
 }

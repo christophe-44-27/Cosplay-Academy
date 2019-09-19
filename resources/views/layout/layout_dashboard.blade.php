@@ -11,6 +11,7 @@
     ================================================== -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
+    @stack('stylesheets')
 </head>
 <body>
 
@@ -157,6 +158,7 @@
 <script type="text/javascript" src="{{ asset('scripts/tooltips.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('scripts/custom.js') }}"></script>
 
+@stack('javascripts')
 
 </body>
 </html>

@@ -27,22 +27,15 @@ Route::get('login/facebook', 'Auth\LoginFacebookController@redirectToProvider')-
 Route::get('login/facebook/callback', 'Auth\LoginFacebookController@handleProviderCallback');
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
-    include('Admin/admin_routes.php');
+//    include('Admin/admin_routes.php');
 });
 
 /*** GUEST Section ***/
 include ('Guest/tutorials.php');
-include ('Guest/commissions.php');
-include ('Guest/community.php');
-include ('Guest/pages.php');
-include ('Guest/teachers.php');
-include ('Guest/forum.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/
 include ('ConnectedUser/dashboard_routes.php');
-include ('ConnectedUser/subscriptions.php');
-include ('ConnectedUser/forums.php');
 include ('ConnectedUser/tutorials.php');
 
 

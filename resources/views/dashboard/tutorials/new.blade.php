@@ -16,86 +16,76 @@
 
                     <!-- Title -->
                     <div class="row with-forms">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Titre <i class="tip" data-tip-content="Exemple : Création d'une armure en worbla"></i></h5>
                             {!! Form::text('title', $tutorial->title, ['class' => 'search-field'])!!}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Type de tutoriel </h5>
                             {!! Form::select('type_id', $types, $tutorial->type_id, ['class' => 'chosen-select-no-single']) !!}
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Pix du cours <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
+                            {!! Form::text('price', $tutorial->price) !!}
+                        </div>
+                        <div class="col-md-12">
+                            <h5>Description</h5>
+                            {!! Form::textarea('content', $tutorial->content)!!}
                         </div>
                     </div>
 
                     <!-- Row -->
                     <div class="row with-forms">
+                        <div class="col-md-4">
+                            <h5>Langue</h5>
+                            {!! Form::select('language_id', $languages, $tutorial->language_id, ['class' => 'chosen-select-no-single']) !!}
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Niveau</h5>
+                            {!! Form::select('difficulty', ['1' => 'Débutant', '2' => "Intermédiaire", '3' => "Expert"]) !!}
+                        </div>
                         <!-- Status -->
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Catégorie</h5>
                             {!! Form::select('category_id', $tutorialCategories, $tutorial->category_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
 
-                        <!-- Type -->
+                        <!-- Type --><!-- Status -->
+                        <div class="col-md-6">
+                            <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
+                            {!! Form::file('thumbnail_picture') !!}
+                        </div>
                         <div class="col-md-6">
                             <h5>Mots clés <i class="tip" data-tip-content="Afin d'améliorer le référencement de vos tutoriels, vous pouvez ajouter 10 mots clés différents."></i></h5>
-                            <input type="text" placeholder="Les mots clés doivent être séparés par des virgules.">
+                            <input name="keywords" type="text" placeholder="Les mots clés doivent être séparés par des virgules.">
                         </div>
                     </div>
                     <!-- Row / End -->
-
-                    <!-- Row -->
-                    <div class="row with-forms">
-                        <!-- Status -->
-                        <div class="col-md-6">
-                            <h5>Vidéo du tutoriel</h5>
-                            {!! Form::file('video_tutorial') !!}
-                        </div>
-                    </div>
-                    <!-- Row / End -->
-
                 </div>
                 <!-- Section / End -->
 
                 <!-- Section -->
                 <div class="add-listing-section margin-top-45">
-
                     <!-- Headline -->
                     <div class="add-listing-headline">
-                        <h3><i class="sl sl-icon-docs"></i> Details</h3>
+                        <h3><i class="sl sl-icon-pencil"></i> Programme</h3>
                     </div>
-
-                    <!-- Description -->
-                    <div class="form">
-                        <h5>Description</h5>
-                        <!-- Row -->
-                        <div class="row with-forms">
-                            <!-- Youtube -->
-                            <div class="col-md-6">
-                                <h5 class="youtube-input"><i class="fa fa-youtube-square"></i> Miniature</h5>
-                                {!! Form::file('thumbnail_picture', $tutorial->thumbnail_picture)!!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="notification warning margin-bottom-30">
+                                <p>Vous devez enregistrer votre tutoriel avant de pouvoir créer votre programme.</p>
                             </div>
                         </div>
-                        <!-- Row / End -->
                     </div>
-
-                    <!-- Row -->
-                    <div class="row with-forms">
-                        <!-- Youtube -->
-                        <div class="col-md-4">
-                            <h5 class="youtube-input"><i class="fa fa-youtube-square"></i> Vidéo du tutoriel <span>(Youtube)</span></h5>
-                            {!! Form::text('url_video', $tutorial->url_video, ['placeholder' => 'https://www.youtube.com'])!!}
-                        </div>
-                    </div>
-                    <!-- Row / End -->
                 </div>
                 <!-- Section / End -->
-
 
                 <!-- Section -->
                 <div class="add-listing-section margin-top-45">
 
                     <!-- Headline -->
                     <div class="add-listing-headline">
-                        <h3><i class="sl sl-icon-book-open"></i> Documents joints</h3>
+                        <h3><i class="sl sl-icon-docs"></i> Documents joints</h3>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -106,23 +96,6 @@
                     </div>
                 </div>
                 <!-- Section / End -->
-
-                <!-- Section -->
-                <div class="add-listing-section margin-top-45">
-                    <!-- Headline -->
-                    <div class="add-listing-headline">
-                        <h3><i class="sl sl-icon-picture"></i> Gallery</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="notification warning margin-bottom-30">
-                                <p>Vous devez enregistrer votre tutoriel avant de pouvoir ajouter des images.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Section / End -->
-
                 <button type="submit" class="button preview">Enregistrer <i class="fa fa-arrow-circle-right"></i></button>
                 {!! Form::close() !!}
             </div>

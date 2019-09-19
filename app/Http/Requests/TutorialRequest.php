@@ -27,6 +27,8 @@ class TutorialRequest extends FormRequest {
             'category_id' => 'required',
             'type_id' => 'required',
             'content' => 'required',
+            'language_id' => 'required',
+            'difficulty' => 'required',
 //            'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
 //            'main_picture' => 'required|dimensions:min_width=700,min_height=500',
 //            'filename.*' => 'mimes:doc,pdf,docx,zip|size:2048',
@@ -51,12 +53,12 @@ class TutorialRequest extends FormRequest {
         ];
     }
 
-    /**
-     * This function display a better error message.
-     * @param Validator $validator
-     */
-    protected function failedValidation(Validator $validator) {
-        $message = $validator->errors()->all();
-        throw new HttpResponseException(response()->json(['status' => 0,'messages' => $message]));
-    }
+//    /**
+//     * This function display a better error message.
+//     * @param Validator $validator
+//     */
+//    protected function failedValidation(Validator $validator) {
+//        $message = $validator->errors()->all();
+//        throw new HttpResponseException(response()->json(['status' => 0,'messages' => $message]));
+//    }
 }

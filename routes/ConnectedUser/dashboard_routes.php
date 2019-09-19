@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('dashboard')->group(function () {
     Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
 
-    Route::post('/commissions/create', 'CommissionController@create')->name('commission_create');
-    Route::post('/commissions/quotation/create', 'CommissionQuotationController@submitQuotation')->name('commission_quotation_submit');
     Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
     Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
 
@@ -15,14 +13,25 @@ Route::prefix('dashboard')->group(function () {
     Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
     Route::get('tutorials/new', 'Dashboard\TutorialController@newTutorial')->name('tutorial_new');
     Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
-    Route::get('tutorials/edit/{tutorial}', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
-    Route::post('tutorials/update/{tutorial}', 'Dashboard\TutorialController@update')->name('tutorial_update');
-    Route::get('tutorials/delete/{tutorial}', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
-    Route::post('/tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
-    Route::get('tutorials/publish/{tutorial}', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
-    Route::get('tutorials/unpublish/{tutorial}', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
+    Route::get('tutorials/{tutorial}/edit', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
+    Route::put('tutorials/{tutorial}/update', 'Dashboard\TutorialController@update')->name('tutorial_update');
+    Route::get('tutorials/{tutorial}/delete', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
+    Route::post('tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
+    Route::get('tutorials/{tutorial}/publish', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
+    Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
     Route::get('tutorials/document/delete/{id}/{tutorialId}', 'Dashboard\TutorialController@deleteDocument', function(string $id, string $tutorialId){})
         ->name('delete_tutorial_document');
+    /** TUTORIELS SESSIONS */
+    Route::post('tutorials/{tutorial}/sessions/store', 'Dashboard\TutorialSessionController@store')->name('tutorial_session_store');
+    Route::put('tutorials/{tutorial}/sessions/update/{session}', 'Dashboard\TutorialSessionController@update')->name('tutorial_session_update');
+    Route::get('tutorials/{tutorial}/sessions/{session}/remove', 'Dashboard\TutorialSessionController@remove')->name('dashboard_tutorial_remove_session');
+
+    /** TUTORIELS CONTENUS **/
+    Route::get('tutorials/{tutorial}/sessions/{session}/new-content', 'Dashboard\TutorialContentController@newContent')->name('dashboard_tutorial_new_content');
+    Route::post('tutorials/{tutorial}/sessions/{session}/store', 'Dashboard\TutorialContentController@store')->name('dashboard_tutorial_content_store');
+    Route::get('tutorials/{tutorial}/content/{content}/edit', 'Dashboard\TutorialContentController@edit')->name('dashboard_tutorial_edit_content');
+    Route::post('tutorials/{tutorial}/content/{content}/update', 'Dashboard\TutorialContentController@update')->name('dashboard_tutorial_update_content');
+    Route::get('tutorials/{tutorial}/content/{content}/remove', 'Dashboard\TutorialContentController@remove')->name('dashboard_tutorial_remove_content');
     /** ADRESSES **/
     Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
     Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');
@@ -32,32 +41,4 @@ Route::prefix('dashboard')->group(function () {
     /** MON COMPTE **/
     Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
-    /** MON ABONNEMENT **/
-    Route::get('subscriptions', 'Dashboard\SubscriptionController@index')->name('my_subscriptions');
-    Route::get('subscriptions/cancel', 'Dashboard\SubscriptionController@cancel')->name('subscription_cancel');
-    Route::get('subscriptions/resume', 'Dashboard\SubscriptionController@resume')->name('subscription_resume');
-    /** GALERIE PHOTOS */
-    Route::get('gallery', 'Dashboard\GalleryController@index')->name('gallery');
-    Route::get('gallery/new', 'Dashboard\GalleryController@newGallery')->name('gallery_new');
-    Route::post('gallery/create', 'Dashboard\GalleryController@create')->name('gallery_create');
-    Route::get('gallery/edit/{slug}', 'Dashboard\GalleryController@edit')->name('gallery_edit');
-    Route::post('gallery/update/{slug}', 'Dashboard\GalleryController@update')->name('gallery_update');
-    Route::get('gallery/delete/{slug}', 'Dashboard\GalleryController@delete')->name('gallery_delete');
-    Route::get('gallery/{slug}/photos', 'Dashboard\GalleryController@displayGalleryContent')->name('gallery_display_photos');
-    Route::post('gallery/{slug}/photos/add', 'Dashboard\GalleryController@addPhotoToGallery')->name('gallery_add_photo');
-    Route::get('gallery/{slug}/photo/delete/{id}', 'Dashboard\GalleryController@deletePhotoFromGallery')
-        ->name('community_gallery_delete_photo');
-    /** Commissions */
-    Route::get('/commissions/received', 'Dashboard\CommissionController@index')->name('commission_received');
-    Route::get('/commissions/sended', 'Dashboard\CommissionQuotationController@index')->name('commission_sended');
-    Route::get('/commission/new', 'Dashboard\CommissionController@newRequest')->name('commission_request_new');
-    Route::post('/commission/create', 'Dashboard\CommissionController@create')->name('commission_request_create');
-    Route::get('/commission/edit/{commission}', 'Dashboard\CommissionController@edit', function(\App\Models\Commission $commission){})
-        ->name('commission_request_edit');
-    Route::post('/commission/update/{commission}', 'Dashboard\CommissionController@update', function(\App\Models\Commission $commission){})
-        ->name('commission_request_update');
-    Route::get('/commission/offers', 'Dashboard\CommissionController@offerList')->name('dashboard_commissions_offer');
-    Route::get('/commissions/quotations/{id}', 'Dashboard\CommissionController@displayQuotations')->name('commission_quotations');
-    Route::post('/commissions/quotations/accept', 'Dashboard\CommissionController@accept')->name('commission_quotation_accept');
-    Route::get('/commissions/quotations/{id}/decline', 'Dashboard\CommissionController@decline')->name('commission_quotation_decline');
 });

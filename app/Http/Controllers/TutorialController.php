@@ -47,7 +47,6 @@ class TutorialController extends Controller {
         $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
             'Bucket' => env('AWS_BUCKET'),
             'Key' => 'tutorials/videos/' . $tutorial->video_id,
-            'SaveAs' => $tutorial->video_id
         ]);
 
         $url_video = $object['@metadata']['effectiveUri'];

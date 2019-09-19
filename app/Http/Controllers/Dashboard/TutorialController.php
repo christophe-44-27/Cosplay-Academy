@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Exceptions\YoutubeVideoIdNotFoundException;
 use App\Http\Requests\TutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
+use App\Http\Services\SessionService;
 use App\Mail\TutorialPublishedMail;
 use App\Models\Document;
+use App\Models\Language;
 use App\Models\Tutorial;
 use App\Models\Category;
 use App\Models\TutorialType;
 use App\Http\Controllers\Controller;
-use App\Services\ExtractYoutubeVideoIdService;
 use App\Services\FileUploadService;
+use App\Services\TutorialService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TutorialController extends Controller {
@@ -45,40 +45,30 @@ class TutorialController extends Controller {
     public function newTutorial() {
         $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
+        $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
+
         $controller = 'tutorials';
         $tutorial = new Tutorial();
-        return view('dashboard.tutorials.new', compact('tutorialCategories', 'controller', 'tutorial', 'types'));
+        return view('dashboard.tutorials.new', compact('tutorialCategories', 'controller',
+            'tutorial', 'types', 'languages'));
     }
 
     /**
      * @param TutorialRequest $request
-     * @param ExtractYoutubeVideoIdService $videoIdService
+     * @param TutorialService $tutorialService
      * @param FileUploadService $fileUploadService
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function create(TutorialRequest $request, ExtractYoutubeVideoIdService $videoIdService, FileUploadService $fileUploadService) {
+    public function create(
+        TutorialRequest $request,
+        FileUploadService $fileUploadService,
+        TutorialService $tutorialService
+    )
+    {
         $validated = $request->validated();
         $videoId = null;
 
-        /**
-         * If there is a video url, just check if we can retrieve the video ID.
-         */
-        if($request->request->get('url_video')) {
-            try{
-                $videoId = $videoIdService->retrieveYoutubeVideoId($request->request->get('url_video'));
-            } catch(YoutubeVideoIdNotFoundException $idNotFoundException) {
-                return back()->withErrors($idNotFoundException->getMessage())->withInput();
-            }
-        }
-
         $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
-
-        if ($request->hasFile('video_tutorial')) {
-            $file = $request->file('video_tutorial');
-            $filename = time() . $file->getClientOriginalName();
-            $filePath = 'tutorials/videos/' . $filename;
-            Storage::disk('s3')->put($filePath, file_get_contents($file), ['ACL' => 'public-read']);
-        }
 
         $arrayToCreate = [
             'title' => $validated['title'],
@@ -86,35 +76,20 @@ class TutorialController extends Controller {
             'type_id' => $validated['type_id'],
             'content' => $validated['content'],
             'thumbnail_picture' => $thumbnail,
-            'url_video' => $request->request->get('url_video'),
-            'video_id' => ($filename != null) ? $filename : null,
+            'difficulty' => $validated['difficulty'],
+            'video_id' => 'prout.jpb',
             'nb_views' => 0,
             'nb_likes' => 0,
+            'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
         ];
 
         $tutorial = Tutorial::create($arrayToCreate);
 
-        if ($request->hasfile('filename')) {
-            foreach ($request->file('filename') as $file) {
-                $name = $file->getClientOriginalName();
-
-                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
-                    Storage::makeDirectory("public/documents/tutorials");
-                }
-
-                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
-
-                $document = new Document();
-                $document->filename = $name;
-                $document->type = $file->getClientOriginalExtension();
-                $document->documentable_id = $tutorial->id;
-                $document->documentable_type = 'App\Models\Tutorial';
-                $document->path = 'documents/tutorials/' . $name;
-
-                $document->save();
-            }
+        if ($request->hasfile('documents'))
+        {
+            $tutorialService->uploadDocuments($request->get('documents'), $tutorial);
         }
 
 //        Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
@@ -132,18 +107,12 @@ class TutorialController extends Controller {
     public function edit(Request $request, Tutorial $tutorial) {
         $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
+        $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
 
 //        if($tutorial->is_published) {
 //            $request->session()->flash('error', 'Veuillez dépublier le tutoriel avant de le modifier.');
 //            return redirect(route('dashboard_tutorials_list'));
 //        }
-        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
-            'Bucket' => env('AWS_BUCKET'),
-            'Key' => 'tutorials/videos/' . $tutorial->video_id,
-            'SaveAs' => $tutorial->video_id
-        ]);
-
-        $url_video = $object['@metadata']['effectiveUri'];
 
         $currentUrl = $request->url();
         $controller = 'tutorials';
@@ -153,6 +122,7 @@ class TutorialController extends Controller {
             'tutorialCategories',
             'types',
             'currentUrl',
+            'languages',
             'controller',
             'url_video'
         ));
@@ -161,18 +131,19 @@ class TutorialController extends Controller {
     /**
      * @param UpdateTutorialRequest $request
      * @param FileUploadService $fileUploadService
-     * @param string $slug
+     * @param Tutorial $tutorial
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, string $slug) {
+    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, Tutorial $tutorial, SessionService $sessionService)
+    {
         $validated = $request->validated();
 
         $arrayToUpdate = [
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
             'content' => $validated['content'],
-            'video_id' => $request->request->get('video_tutorial'),
             'price' => $request->request->get('price'),
+            'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
         ];
@@ -182,31 +153,33 @@ class TutorialController extends Controller {
             $arrayToUpdate['thumbnail_picture'] = $thumbnail;
         }
 
-        Tutorial::where('slug', '=', $slug)
-            ->update($arrayToUpdate);
+        $tutorial->update($arrayToUpdate);
 
-        $tutorial = Tutorial::where('slug', '=', $slug)->firstOrFail();
-
-        if ($request->hasfile('filename')) {
-            foreach ($request->file('filename') as $file) {
-                $name = $file->getClientOriginalName();
-
-                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
-                    Storage::makeDirectory("public/documents/tutorials");
-                }
-
-                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
-
-                $document = new Document();
-                $document->filename = $name;
-                $document->type = $file->getClientOriginalExtension();
-                $document->documentable_id = $tutorial->id;
-                $document->documentable_type = 'App\Models\Tutorial';
-                $document->path = 'documents/tutorials/' . $name;
-
-                $document->save();
-            }
+        if($request->has('sessions'))
+        {
+            $sessionService->saveSessions($request->get('sessions'), $tutorial);
         }
+
+//        if ($request->hasfile('filename')) {
+//            foreach ($request->file('filename') as $file) {
+//                $name = $file->getClientOriginalName();
+//
+//                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
+//                    Storage::makeDirectory("public/documents/tutorials");
+//                }
+//
+//                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
+//
+//                $document = new Document();
+//                $document->filename = $name;
+//                $document->type = $file->getClientOriginalExtension();
+//                $document->documentable_id = $tutorial->id;
+//                $document->documentable_type = 'App\Models\Tutorial';
+//                $document->path = 'documents/tutorials/' . $name;
+//
+//                $document->save();
+//            }
+//        }
 
         $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
         return redirect(route('dashboard_tutorials_list'));

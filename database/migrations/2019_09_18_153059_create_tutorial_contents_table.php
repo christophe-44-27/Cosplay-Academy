@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTutorialSessionsTable extends Migration
+class CreateTutorialContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTutorialSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tutorial_sessions', function (Blueprint $table) {
+        Schema::create('tutorial_contents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('tutorial_sessionable_id');
-            $table->string('tutorial_sessionable_type');
+            $table->string('name');
+            $table->string('type');
+            $table->string('content_article')->nullable(true);
+            $table->string('video_name')->nullable(true);
             $table->unsignedBigInteger('session_id');
             $table->foreign('session_id')->references('id')->on('sessions');
         });
@@ -29,6 +31,6 @@ class CreateTutorialSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tutorial_sessions');
+        Schema::dropIfExists('tutorial_contents');
     }
 }

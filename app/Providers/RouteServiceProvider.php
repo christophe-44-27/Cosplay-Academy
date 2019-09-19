@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Commission;
+use App\Models\Session;
 use App\Models\Tutorial;
-use App\Models\Category;
+use App\Models\TutorialContent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -27,8 +27,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        Route::model('commission', Commission::class);
         Route::model('tutorial', Tutorial::class);
+        Route::model('session', Session::class);
+        Route::model('content', TutorialContent::class);
     }
 
     /**
