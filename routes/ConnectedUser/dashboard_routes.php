@@ -11,16 +11,14 @@ Route::prefix('dashboard')->group(function () {
 
     /** TUTORIELS **/
     Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
+    Route::get('tutorials/unpublished', 'Dashboard\TutorialController@unpublishedTutorials')->name('dashboard_tutorials_unpublished_list');
     Route::get('tutorials/new', 'Dashboard\TutorialController@newTutorial')->name('tutorial_new');
     Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
     Route::get('tutorials/{tutorial}/edit', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
     Route::put('tutorials/{tutorial}/update', 'Dashboard\TutorialController@update')->name('tutorial_update');
     Route::get('tutorials/{tutorial}/delete', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
     Route::post('tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
-    Route::get('tutorials/{tutorial}/publish', 'Dashboard\TutorialController@publish')->name('tutorial_publish');
     Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
-    Route::get('tutorials/document/delete/{id}/{tutorialId}', 'Dashboard\TutorialController@deleteDocument', function(string $id, string $tutorialId){})
-        ->name('delete_tutorial_document');
     /** TUTORIELS SESSIONS */
     Route::get('tutorials/{tutorial}/sessions/new', 'Dashboard\TutorialSessionController@newSession')->name('tutorial_session_new');
     Route::get('tutorials/{tutorial}/sessions/{session}/edit', 'Dashboard\TutorialSessionController@edit')->name('tutorial_session_edit');

@@ -5,7 +5,7 @@
         <!-- Listings -->
         <div class="col-lg-12 col-md-12">
             <div class="dashboard-list-box margin-top-0">
-                <h4>Mes tutoriels</h4>
+                <h4>Mes tutoriels non publiés</h4>
                 @if(count($tutorials) > 0)
                     <ul>
                         @foreach($tutorials as $tutorial)
@@ -18,8 +18,8 @@
                                     <div class="inner">
                                         <h3><a href="#">{{ $tutorial->title }}</a></h3>
                                         <span>{{ $tutorial->category->name }}</span>
-                                        <div class="star-rating" data-rating="{{ $tutorial->reviews->avg('nb_stars') }}">
-                                            <div class="rating-counter">({{ $tutorial->reviews->count() }})</div>
+                                        <div class="star-rating" data-rating="3.5">
+                                            <div class="rating-counter">(12 reviews)</div>
                                         </div>
                                     </div>
                                 </div>

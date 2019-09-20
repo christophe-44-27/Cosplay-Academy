@@ -16,7 +16,7 @@
                     <div class="row with-forms">
                         <div class="col-md-4">
                             <h5>Titre <i class="tip" data-tip-content="Nom de la session. Ce nom sera visible de tous."></i></h5>
-                            {!! Form::text('name', ['class' => 'search-field'])!!}
+                            {!! Form::text('name', null, ['class' => 'search-field'])!!}
                         </div>
                     </div>
                 </div>

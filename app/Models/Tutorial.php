@@ -54,6 +54,14 @@ class Tutorial extends Model
     }
 
     /**
+     * Get all of the tutorial's reviews.
+     */
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
      * @param $tutorial
      * @return void
      */

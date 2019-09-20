@@ -42,6 +42,19 @@ class TutorialController extends Controller {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function unpublishedTutorials()
+    {
+        $tutorials = Tutorial::where('user_id', '=', Auth::user()->id)
+            ->where('is_published', '=', false)
+            ->orderBy('id', 'desc')
+            ->paginate(6);
+        $controller = 'tutorials';
+        return view('dashboard.tutorials.unpublished_tutorials', compact('tutorials', 'controller'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function newTutorial() {
         $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
@@ -92,9 +105,6 @@ class TutorialController extends Controller {
             $tutorialService->uploadDocuments($request->get('documents'), $tutorial);
         }
 
-//        Mail::to($tutorial->user->email)->send(new TutorialCreatedMail($tutorial));
-//        Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedAdminMail($tutorial));
-
         $request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
         return redirect(route('dashboard_tutorials_list'));
     }
@@ -108,11 +118,6 @@ class TutorialController extends Controller {
         $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = TutorialType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
-
-//        if($tutorial->is_published) {
-//            $request->session()->flash('error', 'Veuillez dépublier le tutoriel avant de le modifier.');
-//            return redirect(route('dashboard_tutorials_list'));
-//        }
 
         $currentUrl = $request->url();
         $controller = 'tutorials';
@@ -160,27 +165,6 @@ class TutorialController extends Controller {
             $sessionService->saveSessions($request->get('sessions'), $tutorial);
         }
 
-//        if ($request->hasfile('filename')) {
-//            foreach ($request->file('filename') as $file) {
-//                $name = $file->getClientOriginalName();
-//
-//                if (!is_dir(storage_path("app/public/documents/tutorials"))) {
-//                    Storage::makeDirectory("public/documents/tutorials");
-//                }
-//
-//                $file->move(storage_path('app/public/documents') . '/tutorials/', $name);
-//
-//                $document = new Document();
-//                $document->filename = $name;
-//                $document->type = $file->getClientOriginalExtension();
-//                $document->documentable_id = $tutorial->id;
-//                $document->documentable_type = 'App\Models\Tutorial';
-//                $document->path = 'documents/tutorials/' . $name;
-//
-//                $document->save();
-//            }
-//        }
-
         $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
         return redirect(route('dashboard_tutorials_list'));
     }
@@ -195,17 +179,11 @@ class TutorialController extends Controller {
         return redirect(route('dashboard_tutorials_list'));
     }
 
-    public function publish(Request $request, $id) {
-        $tutorial = Tutorial::findOrFail($id);
-        $tutorial->is_published = true;
-        $tutorial->save();
-
-        Mail::to($tutorial->user->email)->send(new TutorialPublishedMail($tutorial));
-
-        $request->session()->flash('success', 'Le tutoriel a été publié !');
-        return redirect(route('dashboard_tutorials_list'));
-    }
-
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function unpublish(Request $request, $id) {
         $tutorial = Tutorial::findOrFail($id);
         $tutorial->is_published = false;
@@ -213,15 +191,5 @@ class TutorialController extends Controller {
 
         $request->session()->flash('success', 'Le tutoriel a été dépublié !');
         return redirect(route('dashboard_tutorials_list'));
-    }
-
-    public function deleteDocument(Request $request, int $id, int $tutorialId) {
-        $tutorial = Tutorial::where('id', '=', $tutorialId)->firstOrFail();
-
-        $document = Document::findOrFail($id);
-        $document->delete();
-
-        $request->session()->flash('success', 'Le document a bien été supprimé !');
-        return redirect(route('tutorial_edit', $tutorial->slug));
     }
 }
