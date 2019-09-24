@@ -20,8 +20,14 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="sl sl-icon-star"></i> Mes avis</a>
+            <li class="{{ ($controller == 'reviews') ? 'active' : '' }}">
+                <a><i class="sl sl-icon-star"></i> Avis</a>
+                <ul>
+                    <li><a href="{{ route('dashboard_tutorials_list') }}">Mes avis <span class="nav-tag green">6</span></a>
+                    </li>
+                    <li><a href="{{ route('dashboard_tutorials_unpublished_list') }}">Avis de mes fans <span class="nav-tag yellow">1</span></a>
+                    </li>
+                </ul>
             </li>
             <li><a href="#"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
             <li><a href="{{ route('tutorial_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>

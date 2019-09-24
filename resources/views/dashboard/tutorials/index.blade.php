@@ -20,6 +20,9 @@
                                         <span>{{ $tutorial->category->name }}</span>
                                         <div class="star-rating" data-rating="{{ $tutorial->reviews->avg('nb_stars') }}">
                                             <div class="rating-counter">({{ $tutorial->reviews->count() }})</div>
+                                            <a href="#small-dialog" class="popup-with-zoom-anim">
+                                                Voir les avis
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -29,6 +32,16 @@
                                 <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
                             </div>
                         </li>
+                        <!-- Reply to review popup -->
+                        <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                            <div class="small-dialog-header">
+                                <h3>Send Message</h3>
+                            </div>
+                            <div class="message-reply margin-top-0">
+                                <textarea cols="40" rows="3" placeholder="Your Message to Kathy"></textarea>
+                                <button class="button">Send</button>
+                            </div>
+                        </div>
                         @endforeach
                     </ul>
                 @else

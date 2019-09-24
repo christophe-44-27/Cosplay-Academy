@@ -25,7 +25,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('tutorials/{tutorial}/sessions/store', 'Dashboard\TutorialSessionController@store')->name('tutorial_session_store');
     Route::put('tutorials/{tutorial}/sessions/update/{session}', 'Dashboard\TutorialSessionController@update')->name('tutorial_session_update');
     Route::get('tutorials/{tutorial}/sessions/{session}/remove', 'Dashboard\TutorialSessionController@remove')->name('dashboard_tutorial_remove_session');
-
+    /** REVIEWS **/
+    Route::get('reviews', 'Dashboard\ReviewController@index')->name('reviews');
     /** TUTORIELS CONTENUS **/
     Route::get('tutorials/{tutorial}/sessions/{session}/new-content', 'Dashboard\TutorialContentController@newContent')->name('dashboard_tutorial_new_content');
     Route::post('tutorials/{tutorial}/sessions/{session}/store', 'Dashboard\TutorialContentController@store')->name('dashboard_tutorial_content_store');

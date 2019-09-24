@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\TutorialRequest;
 use App\Http\Requests\UpdateTutorialRequest;
 use App\Http\Services\SessionService;
-use App\Mail\TutorialPublishedMail;
-use App\Models\Document;
 use App\Models\Language;
 use App\Models\Tutorial;
 use App\Models\Category;
@@ -16,7 +14,6 @@ use App\Services\FileUploadService;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class TutorialController extends Controller {
