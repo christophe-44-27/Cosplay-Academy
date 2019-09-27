@@ -15,7 +15,7 @@
                         @foreach($categories as $category)
                             <div class="col-lg-2 col-md-4 col-sm-6">
                                 <div class="item-all-card text-dark text-center">
-                                    <a href="sss"></a>
+                                    <a href="{{ route('courses_by_category', $category->filter_value) }}"></a>
                                     <div class="iteam-all-icon">
                                         <i class="{{ $category->icon_name }} gradient-icon"></i>
                                     </div>

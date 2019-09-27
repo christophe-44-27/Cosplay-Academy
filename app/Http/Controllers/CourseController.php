@@ -23,27 +23,31 @@ class CourseController extends Controller {
         return view('frontend.courses.index', compact('courses', 'categories'));
     }
 
-    public function tutorialByCategorie(string $filterValue, TutorialService $tutorialService) {
+    /**
+     * @param string $filterValue
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function coursesByCategorie(string $filterValue) {
         $category = Category::where('filter_value', '=', $filterValue)
             ->firstOrFail();
 
         $categories = Category::all();
 
-        $tutorials = Course::where('category_id', '=', $category->id)
+        $courses = Course::where('category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
 
-        $lastTutorials = $tutorialService->getTutorials(3);
+        $selectedCategory = $category->filter_value;
 
-        return view('frontend.courses.index', compact('tutorials', 'category', 'categories', 'lastTutorials'));
+        return view('frontend.courses.index', compact('courses', 'category', 'categories', 'selectedCategory'));
     }
 
     public function show(Request $request, Course $course) {
 
         $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
-            'Bucket' => env('AWS_BUCKET'),
-            'Key' => 'tutorials/videos/' . $course->video_id,
+            'Bucket' => getenv('AWS_BUCKET'),
+            'Key' => 'tutorials/videos/' . $course->video_path,
         ]);
 
         $url_video = $object['@metadata']['effectiveUri'];

@@ -18,11 +18,12 @@ class CreateCoursesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->longText('content');
-            $table->string('thumbnail_picture');
+            $table->string('thumbnail_picture')->nullable();
             $table->boolean('is_published')->default(0);
             $table->integer('nb_views')->default(0);
             $table->integer('nb_likes')->default(0);
             $table->integer('difficulty')->default(1);
+            $table->string('video_path')->nullable();
             $table->text('keywords')->nullable();
             $table->integer('price')->nullable();
             $table->unsignedBigInteger('category_id');
