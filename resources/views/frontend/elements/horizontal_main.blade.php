@@ -2,9 +2,9 @@
     <div class="horizontal-mainwrapper container clearfix">
         <nav class="horizontalMenu clearfix d-md-flex">
             <ul class="horizontalMenu-list">
-                <li><a href="#">Accueil</a></li>
+                <li><a href="{{ route('homepage') }}">Accueil</a></li>
                 <li><a href="#">A propos</a></li>
-                <li><a href="#">Cours</a></li>
+                <li><a href="{{ route('courses') }}">Cours</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="mb-0">

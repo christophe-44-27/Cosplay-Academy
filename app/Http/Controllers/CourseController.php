@@ -8,18 +8,19 @@ use App\Services\TutorialService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class TutorialController extends Controller {
+class CourseController extends Controller {
 
-    public function index(TutorialService $tutorialService) {
-        $tutorials = Course::where('is_published', '=', true)
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index() {
+        $courses = Course::where('is_published', '=', true)
             ->orderBy('id', 'desc')
-            ->paginate(15);
+            ->paginate(6);
 
-        $lastTutorials = $tutorialService->getTutorials(3);
+        $categories = Category::orderBy('name', 'ASC')->get();
 
-        $categories = Category::all();
-
-        return view('tutorials.frontend.index', compact('tutorials', 'categories', 'lastTutorials'));
+        return view('frontend.courses.index', compact('courses', 'categories'));
     }
 
     public function tutorialByCategorie(string $filterValue, TutorialService $tutorialService) {
@@ -35,34 +36,30 @@ class TutorialController extends Controller {
 
         $lastTutorials = $tutorialService->getTutorials(3);
 
-        return view('tutorials.frontend.index', compact('tutorials', 'category', 'categories', 'lastTutorials'));
+        return view('frontend.courses.index', compact('tutorials', 'category', 'categories', 'lastTutorials'));
     }
 
-    public function show(Request $request, string $slug) {
-
-        $tutorial = Course::where('slug', '=', $slug)
-            ->where('is_published', '=', true)
-            ->firstOrFail();
+    public function show(Request $request, Course $course) {
 
         $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
             'Bucket' => env('AWS_BUCKET'),
-            'Key' => 'tutorials/videos/' . $tutorial->video_id,
+            'Key' => 'tutorials/videos/' . $course->video_id,
         ]);
 
         $url_video = $object['@metadata']['effectiveUri'];
 
-        $tutorial->nb_views = $tutorial->nb_views + 1;
-        $tutorial->save();
+        $course->nb_views = $course->nb_views + 1;
+        $course->save();
 
         $currentUrl = $request->url();
 
-        $relatedTutorials = Course::where('category_id', '=', $tutorial->category->id)
+        $relatedTutorials = Course::where('category_id', '=', $course->category->id)
                                 ->where('is_published', '=', true)
                                 ->orderBy('id', 'DESC')
                                 ->limit(4)
                                 ->get();
 
-        return view('frontend.tutorials.show', compact('tutorial', 'currentUrl', 'relatedTutorials', 'url_video'));
+        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedTutorials', 'url_video'));
     }
 
     /**

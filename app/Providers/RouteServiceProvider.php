@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        Route::model('tutorial', Course::class);
+        Route::model('course', Course::class);
         Route::model('session', Session::class);
         Route::model('content', CourseContent::class);
     }

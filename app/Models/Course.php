@@ -74,4 +74,13 @@ class Course extends Model
     {
         return $this->morphMany(Transaction::class, 'transactionable');
     }
+
+    /**
+     * Method used to customise the model binding key name inside RouteServiceProvider.
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

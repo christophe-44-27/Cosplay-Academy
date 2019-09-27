@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'tutorials'], function() {
-    Route::get('/', 'TutorialController@index')->name('tutorials');
-    Route::get('/{slug}', 'TutorialController@show')->name('tutorial_show');
-    Route::get('/category/{filterValue}', 'TutorialController@tutorialByCategorie')->name('tutorials_by_category');
+Route::group(['prefix' => 'courses'], function() {
+    Route::get('/', 'CourseController@index')->name('courses');
+    Route::get('/{course}', 'CourseController@show')->name('course_details');
+    Route::get('/category/{filterValue}', 'CourseController@tutorialByCategorie')->name('tutorials_by_category');
 });

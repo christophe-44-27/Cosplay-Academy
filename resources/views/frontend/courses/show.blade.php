@@ -1,7 +1,7 @@
 @extends('layout.base_layout')
 
 @section('content')
-    Tutorial : {{ $tutorial->title }}
+    Course : {{ $course->title }}
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <video controls>
         <source src="{{ $url_video }}" type="video/mp4">
