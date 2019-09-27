@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -24,7 +24,7 @@ class TutorialPolicy
      * Determine whether the user can update the post.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutorial  $tutorial
+     * @param  \App\Models\Course  $tutorial
      * @return mixed
      */
     public function create()
@@ -36,10 +36,10 @@ class TutorialPolicy
      * Determine whether the user can update the post.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutorial  $tutorial
+     * @param  \App\Models\Course  $tutorial
      * @return mixed
      */
-    public function view(User $user, Tutorial $tutorial)
+    public function view(User $user, Course $tutorial)
     {
         return $user->id == $tutorial->user->id;
     }
@@ -48,10 +48,10 @@ class TutorialPolicy
      * Determine whether the user can update the post.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutorial  $tutorial
+     * @param  \App\Models\Course  $tutorial
      * @return mixed
      */
-    public function update(User $user, Tutorial $tutorial)
+    public function update(User $user, Course $tutorial)
     {
         return $user->id == $tutorial->user->id;
     }
@@ -60,10 +60,10 @@ class TutorialPolicy
      * Determine whether the user can update the post.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutorial  $tutorial
+     * @param  \App\Models\Course  $tutorial
      * @return mixed
      */
-    public function delete(User $user, Tutorial $tutorial)
+    public function delete(User $user, Course $tutorial)
     {
         return $user->id == $tutorial->user->id;
     }

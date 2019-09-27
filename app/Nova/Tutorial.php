@@ -21,7 +21,7 @@ class Tutorial extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Models\Tutorial';
+    public static $model = 'App\Models\Course';
 
     /**
      * Resource group displayed on the sidebar

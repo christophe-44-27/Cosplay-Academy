@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\Session;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +15,7 @@ class DynamicFieldController extends Controller
         return view('dynamic_field');
     }
 
-    public function insert(Tutorial $tutorial, Request $request)
+    public function insert(Course $course, Request $request)
     {
         if($request->ajax())
         {
@@ -35,7 +35,7 @@ class DynamicFieldController extends Controller
             {
                 $data = array(
                     'name' => $name[$count],
-                    'tutorial_id' => $tutorial->id
+                    'tutorial_id' => $course->id
                 );
                 $insert_data[] = $data;
             }

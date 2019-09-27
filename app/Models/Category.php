@@ -13,7 +13,7 @@ class Category extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tutorials() {
-        return $this->hasMany(Tutorial::class);
+        return $this->hasMany(Course::class);
     }
 
     /**

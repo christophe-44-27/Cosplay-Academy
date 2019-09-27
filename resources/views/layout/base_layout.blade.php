@@ -1,106 +1,196 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+<head>
+    <!-- Meta data -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!-- favicon -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
-    <title>Plateforme en ligne d'apprentissage du cosplay</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-    <!-- Zone SEO classique -->
-    <meta name="google" content="notranslate"/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content=" Eudica - Online Education & Learning Courses HTML CSS Responsive Template" name="description">
+    <meta content="Spruko Technologies Private Limited" name="author">
+    <meta name="keywords" content="academy training course css template, classes online training website templates, courses training html5 template design, education training rwd simple template, educational learning management jquery html, elearning bootstrap education template, professional training center bootstrap html, institute coaching mobile responsive template, marketplace html template premium, learning management system jquery html, clean online course teaching directory template, online learning course management system, online course website template css html, premium lms training web template, training course responsive website"/>
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2&appId=526252497733390&autoLogAppEvents=1';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    @stack('google_analytic')
-    @stack('stylesheets')
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/brand/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico" />
+
+    <!-- Title -->
+    <title> Eudica - Online Education & Learning Courses HTML CSS Responsive Template</title>
+
+    <!-- Bootstrap css -->
+    <link href="{{ asset('themes/frontend/plugins/bootstrap-4.3.1/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!-- Style css -->
+    <link href="{{ asset('themes/frontend/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('themes/frontend/css/skin-modes.css') }}" rel="stylesheet" />
+
+    <!-- Font-awesome  css -->
+    <link href="{{ asset('themes/frontend/css/icons.css') }}" rel="stylesheet" />
+
+    <!--Horizontal Menu css-->
+    <link href="{{ asset('themes/frontend/plugins/horizontal-menu/horizontal-menu.css') }}" rel="stylesheet" />
+
+    <!--Select2 css -->
+    <link href="{{ asset('themes/frontend/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+
+    <!-- Cookie css -->
+    <link href="{{ asset('themes/frontend/plugins/cookie/cookie.css') }}" rel="stylesheet">
+
+    <!-- Owl Theme css-->
+    <link href="{{ asset('themes/frontend/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+
+    <!-- Custom scroll bar css-->
+    <link href="{{ asset('themes/frontend/plugins/scroll-bar/jquery.mCustomScrollbar.css') }}" rel="stylesheet" />
+
+    <!-- Pscroll bar css-->
+    <link href="{{ asset('themes/frontend/plugins/pscrollbar/pscrollbar.css') }}" rel="stylesheet" />
+
+    <!-- Switcher css -->
+    <link  href="{{ asset('themes/frontend/switcher/css/switcher.css') }}" rel="stylesheet" id="switcher-css" type="text/css" media="all"/>
+
+    <!-- Color Skin css -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('themes/frontend/color-skins/color6.css') }}" />
+
 </head>
 <body>
-    <!-- Navbar -->
-    @include('elements.navigation.bloc_header_navigation')
+<!--Section-->
+<div class="banner-1 cover-image  bg-background2" data-image-src="../assets/images/banners/banner1.jpg">
+    <div class="header-main">
+        <!--Topbar-->
+        @include('frontend.elements.top_bar')
+        <!--/Topbar-->
 
-    <main class="container" role="main">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Page en cours</li>
-            </ol>
-        </nav>
-        @yield('content')
-    </main>
-    <!-- end main-content -->
-    <footer class="footer mt-auto py-3">
-        <div class="container">
-            <div class="row border-bottom">
-                <div class="col-s-6 col-m-2">
-                    <div class="widget dark">
-                        <h5 class="widget-title mb-10">Restons en contact !</h5>
-                        <ul class="styled-icons icon-bordered icon-sm">
-                            <li><a href="https://www.facebook.com/cosplayschoolqc" target="_blank"><i
-                                        class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/cosplay_school"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="https://www.youtube.com/channel/UC6z6mnYwoyjHhJ3GlJYyESg"><i
-                                        class="fa fa-youtube"></i></a></li>
-                            <li><a href="https://www.instagram.com/cosplayschool/"><i class="fa fa-instagram"></i></a>
-                            </li>
-                        </ul>
+        <!--Header-->
+        @include('frontend.elements.header')
+        <!--/Header-->
+
+        <!-- Mobile Header -->
+        <div class="horizontal-header clearfix ">
+            <div class="container">
+                <a id="horizontal-navtoggle" class="animated-arrow"><span></span></a>
+                <span class="smllogo"><img src="../assets/images/brand/logo1.png" width="120" alt="img"/></span>
+                <span class="smllogo-white"><img src="../assets/images/brand/logo.png" width="120" alt="img"/></span>
+                <a href="tel:245-6325-3256" class="callusbtn"><i class="fa fa-phone" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <!-- /Mobile Header -->
+
+        <!--Horizontal-main -->
+        @include('frontend.elements.horizontal_main')
+        <!--/Horizontal-main -->
+    </div>
+    <!--Section-->
+    <section>
+        <div class="sptb-2 sptb-tab">
+            <div class="header-text mb-0">
+                <div class="container">
+                    <div class="text-center text-white mb-7">
+                        <h1 class="mb-1">Find The Best Trainers and Build Your Future</h1>
+                        <p>It is a long established fact that a reader will be distracted by the readable.</p>
                     </div>
-                </div>
-                <div class="col-s-6 col-m-3">
-                    <div class="widget dark">
-                        <h4 class="widget-title">L'entreprise</h4>
-                        <ul class="list angle-double-right list-border">
-                            <li><a href="{{ route('page_about') }}">Qui sommes-nous ?</a></li>
-                            <li><a href="{{ route('page_policy') }}">Politique de confidentialité</a></li>
-                            <li><a href="{{ route('page_cgu') }}">Conditions générales d'utilisation</a></li>
-                            <li><a href="{{ route('page_contact') }}">Contactez-nous !</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-s-6 col-m-3">
-                    <div class="widget dark">
-                        <h4 class="widget-title">La communauté</h4>
-                        <ul class="list angle-double-right list-border">
-                            <li><a href="{{ route('page_program_author') }}">Publier un tutoriel</a></li>
-                            <li><a href="{{ route('teachers') }}">Les auteurs de tutoriel</a></li>
-                            <li><a href="#">Nos événements</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-s-6 col-m-4">
-                    <div class="widget-dark">
-                        <div class="fb-page" data-href="https://www.facebook.com/cosplayschoolqc/"
-                             data-tabs="timeline" data-height="400" data-small-header="false" data-adapt-container-width="true"
-                             data-hide-cover="false" data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/cosplayschoolqc/" class="fb-xfbml-parse-ignore">
-                                <a href="https://www.facebook.com/cosplayschoolqc/">Cosplay School</a>
-                            </blockquote>
+                    <div class="row">
+                        <div class="col-xl-10 col-lg-12 col-md-12 d-block mx-auto">
+                            <div class="search-background bg-transparent">
+                                <div class="form row no-gutters ">
+                                    <div class="form-group  col-xl-4 col-lg-3 col-md-12 mb-0 bg-white ">
+                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="text4" placeholder="Search Courses.....">
+                                    </div>
+                                    <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
+                                        <input type="text" class="form-control input-lg br-md-0" id="text5" placeholder="Enter Location">
+                                        <span><i class="fa fa-map-marker location-gps mr-1"></i></span>
+                                    </div>
+                                    <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
+                                        <select class="form-control select2-show-search  border-bottom-0" data-placeholder="Select Category">
+                                            <optgroup label="Categories">
+                                                <option>Select</option>
+                                                <option value="1">IT</option>
+                                                <option value="2">Language</option>
+                                                <option value="3">Science</option>
+                                                <option value="4">Health</option>
+                                                <option value="5">Humanities</option>
+                                                <option value="6">Business</option>
+                                                <option value="7">Math</option>
+                                                <option value="8">Marketing</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-12 mb-0">
+                                        <a href="#" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">Search Here</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <span class="text-muted">Copyright &copy;2018 L'école du costume | Cosplay School.
-                            Tous droits réservés</span>
-        </div>
-    </footer>
-    <!-- Footer -->
-    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-</body>
-<!-- end wrapper -->
+    </section><!--/Section-->
+</div><!--/Section-->
 
-<!-- external javascripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-@stack('javascripts')
+@yield('content')
+
+<!--Footer Section-->
+@include('frontend.elements.footer')
+<!--/Footer Section-->
+
+<!-- Back to top -->
+<a href="#top" id="back-to-top" ><i class="fa fa-long-arrow-up"></i></a>
+
+<!-- JQuery js-->
+<script src="{{ asset('themes/frontend/js/jquery-3.2.1.min.js') }}"></script>
+
+<!-- Bootstrap js -->
+<script src="{{ asset('themes/frontend/plugins/bootstrap-4.3.1/js/popper.min.js') }}"></script>
+<script src="{{ asset('themes/frontend/plugins/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
+
+<!--JQuery Sparkline js-->
+<script src="../assets/js/jquery.sparkline.min.js"></script>
+
+<!-- Circle Progress js-->
+<script src="../assets/js/circle-progress.min.js"></script>
+
+<!-- Star Rating js-->
+<script src="../assets/plugins/rating/jquery.rating-stars.js"></script>
+
+<!--Counters js-->
+<script src="../assets/plugins/counters/counterup.min.js"></script>
+<script src="../assets/plugins/counters/waypoints.min.js"></script>
+<script src="../assets/plugins/counters/numeric-counter.js"></script>
+
+<!--Owl Carousel js -->
+<script src="{{ asset('themes/frontend/plugins/owl-carousel/owl.carousel.js') }}"></script>
+
+<!--Horizontal Menu js-->
+<script src="../assets/plugins/horizontal-menu/horizontal-menu.js"></script>
+
+<!--JQuery TouchSwipe js-->
+<script src="../assets/js/jquery.touchSwipe.min.js"></script>
+
+<!--Select2 js -->
+<script src="../assets/plugins/select2/select2.full.min.js"></script>
+<script src="../assets/js/select2.js"></script>
+
+<!-- sticky js-->
+<script src="../assets/js/sticky.js"></script>
+
+<!-- Pscrollbar js -->
+<script src="../assets/plugins/pscrollbar/pscrollbar.js"></script>
+<script src="../assets/plugins/pscrollbar/pscroll.js"></script>
+
+<!-- Cookie js -->
+<script src="../assets/plugins/cookie/jquery.ihavecookies.js"></script>
+<script src="../assets/plugins/cookie/cookie.js"></script>
+
+<!-- Custom scroll bar js-->
+<script src="../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<!-- Swipe js-->
+<script src="{{ asset('themes/frontend/js/swipe.js') }}"></script>
+
+<!-- Scripts js-->
+<script src="{{ asset('themes/frontend/js/owl-carousel.js') }}"></script>
+
+<!-- Custom js-->
+<script src="{{ asset('themes/frontend/js/custom.js') }}"></script>
+
+</body>
 </html>

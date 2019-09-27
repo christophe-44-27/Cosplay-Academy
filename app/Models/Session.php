@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
@@ -16,7 +16,7 @@ class Session extends Model
      */
     public function tutorial()
     {
-        return $this->belongsTo(Tutorial::class);
+        return $this->belongsTo(Course::class);
     }
 
     /**
@@ -24,7 +24,7 @@ class Session extends Model
      */
     public function content()
     {
-        return $this->hasOne(TutorialContent::class);
+        return $this->hasOne(CourseContent::class);
     }
 
     // this is a recommended way to declare event handlers

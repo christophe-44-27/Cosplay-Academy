@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -18,9 +18,9 @@ class TutorialCreatedAdminMail extends Mailable {
     /**
      * TutorialCreatedAdminMail constructor.
      *
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      */
-    public function __construct(Tutorial $tutorial) {
+    public function __construct(Course $tutorial) {
         $this->tutorial = $tutorial;
     }
 

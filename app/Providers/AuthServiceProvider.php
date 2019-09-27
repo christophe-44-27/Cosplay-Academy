@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Country;
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Policies\CategoryPolicy;
 use App\Policies\CountryPolicy;
 use App\Policies\TutorialPolicy;
@@ -21,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        Tutorial::class => TutorialPolicy::class,
+        Course::class => TutorialPolicy::class,
         Category::class => CategoryPolicy::class,
         Country::class => CountryPolicy::class
     ];

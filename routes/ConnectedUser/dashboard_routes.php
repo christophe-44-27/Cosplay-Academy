@@ -10,15 +10,15 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
 
     /** TUTORIELS **/
-    Route::get('tutorials', 'Dashboard\TutorialController@index')->name('dashboard_tutorials_list');
-    Route::get('tutorials/unpublished', 'Dashboard\TutorialController@unpublishedTutorials')->name('dashboard_tutorials_unpublished_list');
-    Route::get('tutorials/new', 'Dashboard\TutorialController@newTutorial')->name('tutorial_new');
-    Route::post('tutorials/create', 'Dashboard\TutorialController@create')->name('tutorial_create');
-    Route::get('tutorials/{tutorial}/edit', 'Dashboard\TutorialController@edit')->name('tutorial_edit');
-    Route::put('tutorials/{tutorial}/update', 'Dashboard\TutorialController@update')->name('tutorial_update');
-    Route::get('tutorials/{tutorial}/delete', 'Dashboard\TutorialController@delete')->name('tutorial_remove');
+    Route::get('tutorials', 'Dashboard\CourseController@index')->name('dashboard_tutorials_list');
+    Route::get('tutorials/unpublished', 'Dashboard\CourseController@unpublishedTutorials')->name('dashboard_tutorials_unpublished_list');
+    Route::get('tutorials/new', 'Dashboard\CourseController@newTutorial')->name('tutorial_new');
+    Route::post('tutorials/create', 'Dashboard\CourseController@create')->name('tutorial_create');
+    Route::get('tutorials/{tutorial}/edit', 'Dashboard\CourseController@edit')->name('tutorial_edit');
+    Route::put('tutorials/{tutorial}/update', 'Dashboard\CourseController@update')->name('tutorial_update');
+    Route::get('tutorials/{tutorial}/delete', 'Dashboard\CourseController@delete')->name('tutorial_remove');
     Route::post('tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
-    Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\TutorialController@unpublish')->name('tutorial_unpublish');
+    Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\CourseController@unpublish')->name('tutorial_unpublish');
     /** TUTORIELS SESSIONS */
     Route::get('tutorials/{tutorial}/sessions/new', 'Dashboard\TutorialSessionController@newSession')->name('tutorial_session_new');
     Route::get('tutorials/{tutorial}/sessions/{session}/edit', 'Dashboard\TutorialSessionController@edit')->name('tutorial_session_edit');
@@ -42,7 +42,8 @@ Route::prefix('dashboard')->group(function () {
     /** MON COMPTE **/
     Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
     Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
-
+    /** WALLET **/
+    Route::get('wallet', 'Dashboard\WalletController@index')->name('wallet');
     Route::get('dynamic-field', 'Dashboard\DynamicFieldController@index');
 
     Route::post('dynamic-field/insert/{tutorial}', 'Dashboard\DynamicFieldController@insert')->name('dynamic-field.insert');

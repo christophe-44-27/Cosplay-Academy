@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,7 @@ class PageController extends Controller {
 	public function about() {
 		$teacherCount = User::where('is_teacher', '=', true)->count();
 		$studentCount = User::where('is_teacher', '=', false)->count();
-		$tutorialCount = Tutorial::where('is_published', '=', true)->count();
+		$tutorialCount = Course::where('is_published', '=', true)->count();
 		$tutorialNbViews = DB::table('tutorials')
 			->where('is_published', '=', true)
 			->sum('nb_views');

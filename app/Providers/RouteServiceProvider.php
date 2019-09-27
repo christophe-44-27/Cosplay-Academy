@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Session;
-use App\Models\Tutorial;
-use App\Models\TutorialContent;
+use App\Models\Course;
+use App\Models\CourseContent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -27,9 +27,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        Route::model('tutorial', Tutorial::class);
+        Route::model('tutorial', Course::class);
         Route::model('session', Session::class);
-        Route::model('content', TutorialContent::class);
+        Route::model('content', CourseContent::class);
     }
 
     /**

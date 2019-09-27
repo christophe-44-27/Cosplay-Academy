@@ -9,14 +9,14 @@ class TutorialWasReported extends Notification {
     /**
      * The thread that was updated.
      *
-     * @var \App\Models\Tutorial
+     * @var \App\Models\Course
      */
     protected $tutorial;
 
     /**
      * Create a new notification instance.
      *
-     * @param \App\Models\Tutorial $tutorial
+     * @param \App\Models\Course $tutorial
      */
     public function __construct($tutorial) {
         $this->tutorial = $tutorial;

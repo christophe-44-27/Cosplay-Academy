@@ -2,7 +2,7 @@
 namespace App\Services;
 
 use App\Models\Document;
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
 
 class TutorialService {
@@ -12,7 +12,7 @@ class TutorialService {
      * @return mixed
      */
     public function getTutorials(int $limit) {
-        return Tutorial::where('is_published', '=', true)
+        return Course::where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->limit($limit)
             ->get();
@@ -21,10 +21,10 @@ class TutorialService {
 
     /**
      * @param array $documents
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @return bool
      */
-    public function uploadDocuments(array $documents, Tutorial $tutorial): bool
+    public function uploadDocuments(array $documents, Course $tutorial): bool
     {
         foreach ($documents as $file) {
             $name = $file->getClientOriginalName();
@@ -39,7 +39,7 @@ class TutorialService {
             $document->filename = $name;
             $document->type = $file->getClientOriginalExtension();
             $document->documentable_id = $tutorial->id;
-            $document->documentable_type = 'App\Models\Tutorial';
+            $document->documentable_type = 'App\Models\Course';
             $document->path = 'documents/tutorials/' . $name;
 
             $document->save();

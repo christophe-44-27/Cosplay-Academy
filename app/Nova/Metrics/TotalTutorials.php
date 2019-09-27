@@ -2,7 +2,7 @@
 
 namespace App\Nova\Metrics;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Laravel\Nova\Metrics\Value;
 
@@ -16,7 +16,7 @@ class TotalTutorials extends Value
      */
     public function calculate(Request $request)
     {
-        return $this->count($request, Tutorial::class);
+        return $this->count($request, Course::class);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Models\Category;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class TutorialController extends Controller {
 
     public function index(TutorialService $tutorialService) {
-        $tutorials = Tutorial::where('is_published', '=', true)
+        $tutorials = Course::where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
 
@@ -28,7 +28,7 @@ class TutorialController extends Controller {
 
         $categories = Category::all();
 
-        $tutorials = Tutorial::where('category_id', '=', $category->id)
+        $tutorials = Course::where('category_id', '=', $category->id)
             ->where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->paginate(15);
@@ -40,7 +40,7 @@ class TutorialController extends Controller {
 
     public function show(Request $request, string $slug) {
 
-        $tutorial = Tutorial::where('slug', '=', $slug)
+        $tutorial = Course::where('slug', '=', $slug)
             ->where('is_published', '=', true)
             ->firstOrFail();
 
@@ -56,7 +56,7 @@ class TutorialController extends Controller {
 
         $currentUrl = $request->url();
 
-        $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
+        $relatedTutorials = Course::where('category_id', '=', $tutorial->category->id)
                                 ->where('is_published', '=', true)
                                 ->orderBy('id', 'DESC')
                                 ->limit(4)
@@ -69,10 +69,10 @@ class TutorialController extends Controller {
      * This method is used to report some tutorial that are not in some good quality or
      * no allowed by the CGU.
      * @param Request $request
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function reportTutorial(Request $request, Tutorial $tutorial){
+    public function reportTutorial(Request $request, Course $tutorial){
         $tutorial->is_reported = true;
         $tutorial->save();
 

@@ -10,7 +10,7 @@ namespace App\Http\Services;
 
 use App\Models\Article;
 use App\Models\Session;
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
 

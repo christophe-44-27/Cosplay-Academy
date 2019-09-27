@@ -34,7 +34,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Clablancherie\\StripeConnect\\": "packages/clablancherie/stripe-connect/src/"
         }
     },
     "autoload-dev": {

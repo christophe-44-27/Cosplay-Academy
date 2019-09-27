@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Tutorial;
+use App\Models\Course;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,16 +11,16 @@ class TutorialAskedForReview extends Mailable {
     use Queueable, SerializesModels;
 
     /**
-     * @var Tutorial
+     * @var Course
      */
     public $tutorial;
 
     /**
      * TutorialAskedForReview constructor.
      *
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      */
-    public function __construct(Tutorial $tutorial) {
+    public function __construct(Course $tutorial) {
         $this->tutorial = $tutorial;
     }
 

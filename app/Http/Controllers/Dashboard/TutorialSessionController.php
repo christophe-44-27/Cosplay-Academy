@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Session;
-use App\Models\Tutorial;
+use App\Models\Course;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,17 +15,17 @@ class TutorialSessionController extends Controller {
         $this->middleware('auth');
     }
 
-    public function newSession(Tutorial $tutorial)
+    public function newSession(Course $tutorial)
     {
         return view('dashboard.tutorials.add_sessions', compact('tutorial'));
     }
 
     /**
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Tutorial $tutorial, Request $request)
+    public function store(Course $tutorial, Request $request)
     {
         $session = new Session();
         $session->name = $request->get('name');
@@ -36,22 +36,22 @@ class TutorialSessionController extends Controller {
     }
 
     /**
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @param Session $session
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Tutorial $tutorial, Session $session)
+    public function edit(Course $tutorial, Session $session)
     {
         return view('dashboard.tutorials.edit_session', compact('tutorial', 'session'));
     }
 
     /**
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @param Session $session
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Tutorial $tutorial, Session $session, Request $request)
+    public function update(Course $tutorial, Session $session, Request $request)
     {
         $datas = [
             'name' => $request->get('name'),
@@ -63,12 +63,12 @@ class TutorialSessionController extends Controller {
     }
 
     /**
-     * @param Tutorial $tutorial
+     * @param Course $tutorial
      * @param Session $session
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function remove(Tutorial $tutorial, Session $session)
+    public function remove(Course $tutorial, Session $session)
     {
         $session->delete();
 
