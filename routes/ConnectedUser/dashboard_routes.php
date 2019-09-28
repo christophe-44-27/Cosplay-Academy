@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 //Route::prefix('dashboard')->middleware('auth')->group(function () {
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', 'Dashboard\DashboardHomepageController@index')->name('dashboard_homepage');
-
     Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
     Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
 
@@ -40,8 +38,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('address/update/{id}', 'Dashboard\AddressController@update')->name('my_address_update');
     Route::get('address/delete/{id}', 'Dashboard\AddressController@delete')->name('my_address_delete');
     /** MON COMPTE **/
-    Route::get('account', 'Dashboard\AccountController@index')->name('my_account');
-    Route::post('account/update', 'Dashboard\AccountController@update')->name('my_account_update');
+    Route::get('profile/edit', 'Dashboard\ProfileController@edit')->name('profile');
+    Route::put('profile/update', 'Dashboard\ProfileController@update')->name('edit_profile');
     /** WALLET **/
     Route::get('wallet', 'Dashboard\WalletController@index')->name('wallet');
     Route::get('dynamic-field', 'Dashboard\DynamicFieldController@index');

@@ -21,7 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('firstname', 255)->nullable();
             $table->string('lastname', 255)->nullable();
+            $table->longText('description')->nullable();
+            $table->string('facebook_profile', 255)->nullable();
+            $table->string('youtube_profile', 255)->nullable();
+            $table->string('instagram_profile', 255)->nullable();
+            $table->string('pinterest_profile', 255)->nullable();
             $table->string('stripe_customer_id', 255)->nullable();
+            $table->string('country')->nullable();
             $table->boolean('enabled')->default(0);
             $table->boolean('blocked')->default(0);
             $table->string('avatar', 255)->nullable();

@@ -48,7 +48,7 @@
                                 <a href="#" class="text-dark" data-toggle="dropdown"><i class="fa fa-home mr-1"></i><span> Bienvenue, {{ \Illuminate\Support\Facades\Auth::user()->name }}<i
                                             class="fa fa-caret-down text-white ml-1"></i></span></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a href="mydash.html" class="dropdown-item">
+                                    <a href="{{ route('profile') }}" class="dropdown-item">
                                         <i class="dropdown-icon icon icon-user"></i> Mon profil
                                     </a>
                                     <a class="dropdown-item" href="#">
