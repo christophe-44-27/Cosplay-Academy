@@ -196,8 +196,9 @@
                                                                 <div class="rating-stars block">
                                                                     <input type="number" readonly="readonly"
                                                                            class="rating-value star"
-                                                                           name="rating-stars-value" value="{{ $course->reviews->avg('nb_stars') }}">
+                                                                           name="rating-stars-value" value="{{ round($course->reviews->avg('nb_stars'), PHP_ROUND_HALF_UP) }}">
                                                                     <div class="rating-stars-container">
+
                                                                         @if($course->reviews->count() > 0)
                                                                             @include('frontend.elements.blocs.rating')
                                                                         @else
