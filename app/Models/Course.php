@@ -68,11 +68,11 @@ class Course extends Model
     }
 
     /**
-     * Get all of the course's transactions.
+     * Get all of the course's payments.
      */
-    public function transactions()
+    public function payments()
     {
-        return $this->morphMany(Transaction::class, 'transactionable');
+        return $this->morphMany(Payment::class, 'paymentable');
     }
 
     /**

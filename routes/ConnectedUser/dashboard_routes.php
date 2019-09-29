@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 //Route::prefix('dashboard')->middleware('auth')->group(function () {
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
     Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
 
@@ -17,6 +17,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('tutorials/{tutorial}/delete', 'Dashboard\CourseController@delete')->name('tutorial_remove');
     Route::post('tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
     Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\CourseController@unpublish')->name('tutorial_unpublish');
+    /** ORDERS */
+    Route::get('purchased-history', 'Customer\PaymentController@index')->name('payment_history');
     /** TUTORIELS SESSIONS */
     Route::get('tutorials/{tutorial}/sessions/new', 'Dashboard\TutorialSessionController@newSession')->name('tutorial_session_new');
     Route::get('tutorials/{tutorial}/sessions/{session}/edit', 'Dashboard\TutorialSessionController@edit')->name('tutorial_session_edit');

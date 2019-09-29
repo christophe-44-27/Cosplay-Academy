@@ -16,13 +16,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            $user = Auth::user();
 
-            if($user->isCosplayer()) {
-                return route('dashboard_homepage');
-            }
-
-            return route('dashboard_homepage');
+            return route('login');
         }
     }
 }
