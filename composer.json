@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "lukepolo/laracart": "^1.8",
         "stevebauman/purify": "^2.0"
     },
     "require-dev": {

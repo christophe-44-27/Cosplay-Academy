@@ -142,6 +142,7 @@ return [
         /*
 		 * Package Service Providers...
 		 */
+        LukePOLO\LaraCart\LaraCartServiceProvider::class,
 
 
         /*
@@ -204,5 +205,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'LaraCart' => LukePOLO\LaraCart\Facades\LaraCart::class,
     ],
 ];

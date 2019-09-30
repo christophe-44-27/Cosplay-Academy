@@ -19,8 +19,8 @@
                             <a href="#" class="header-icons-link1"><i class="fa fa-user"></i></a>
                         </li>
                         <li class="">
-                            <a href="#" class="header-icons-link1"><i class="fa fa-cart-plus"></i>
-                                <span class="main-badge1 badge badge-danger badge-pill">3</span></a>
+                            <a href="{{ route('cart') }}" class="header-icons-link1"><i class="fa fa-cart-plus"></i>
+                                <span class="main-badge1 badge badge-danger badge-pill"> 3</span></a>
                         </li>
                     </ul>
                 </div>
