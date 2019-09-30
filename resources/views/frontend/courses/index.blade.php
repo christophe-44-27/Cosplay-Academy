@@ -45,7 +45,7 @@
                                         @foreach($categories as $category)
                                             <label class="custom-control custom-checkbox mb-3">
                                                 <input type="checkbox" class="custom-control-input" name="checkbox1"
-                                                       value="option1" {{ ($selectedCategory == $category->filter_value) ? 'checked' : '' }}>
+                                                       value="option1" {{ (isset($selectedCategory) && $selectedCategory == $category->filter_value) ? 'checked' : '' }}>
                                                 <span class="custom-control-label">
                                                     <a href="#" class="text-dark">@lang($category->name) <span
                                                             class="label label-secondary float-right">14</span></a>
