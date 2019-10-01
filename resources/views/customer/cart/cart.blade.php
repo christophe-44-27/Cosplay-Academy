@@ -21,6 +21,7 @@
                                             <tr>
                                                 <th>@lang('Désignation')</th>
                                                 <th>@lang("Prix")</th>
+                                                <th>@lang("Quantité")</th>
                                                 <th>@lang("Action")</th>
                                             </tr>
                                         </thead>
@@ -28,7 +29,15 @@
                                             @foreach($items as $item)
                                                 <tr>
                                                     <td>{{ $item->name }}</td>
-                                                    <td><span>{{ $item->price }}</span></td>
+                                                    <td>
+                                                        <span>
+                                                            @if($item->price == 0)
+                                                                @lang('Gratuit')
+                                                            @else
+                                                                {{ $item->price }}
+                                                            @endif
+                                                        </span>
+                                                    </td>
                                                     <td><span>{{ $item->qty }}</span></td>
                                                     <td>
                                                         <a href="{{ route('cart_item_remove', ['itemHash' => $item->getHash()]) }}" class="btn btn-danger btn-sm text-white"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Support\Facades\Lang;
 use LukePOLO\LaraCart\Facades\LaraCart;
 
@@ -31,6 +32,17 @@ class CartController extends Controller
         {
             return redirect('cart')->with('error', Lang::get("Ce produit n'existe pas dans votre panier."));
         }
+    }
+
+    /**
+     * @param Course $course
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function addItem(Course $course)
+    {
+        LaraCart::add($course->id, $course->title, 1, $course->amount);
+
+        return redirect('cart')->with('success', Lang::get("Votre cours a bien été ajouté à votre panier."));
     }
 
 }
