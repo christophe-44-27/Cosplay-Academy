@@ -76,6 +76,14 @@ class Course extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function userFavorites()
+    {
+        return $this->belongsToMany(User::class, 'course_user_favorites', 'course_id');
+    }
+
+    /**
      * Method used to customise the model binding key name inside RouteServiceProvider.
      * @return string
      */

@@ -28,7 +28,7 @@
                                             <div class="rating-star sm">
                                                 <i class="fa fa-heart"></i>
                                             </div>
-                                        </div> 135
+                                        </div> {{ $course->userFavorites->count() }}
                                     </div>
                                 </div>
                             </div>
