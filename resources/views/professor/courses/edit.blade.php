@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div id="add-listing">
-            {!! Form::model($tutorial, ['method' => 'put', 'url' => route('tutorial_update', $tutorial), 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::model($course, ['method' => 'put', 'url' => route('professor_course_update', $course), 'enctype' => 'multipart/form-data']) !!}
                 <!-- Section -->
                 <div class="add-listing-section">
 
@@ -16,19 +16,19 @@
                     <div class="row with-forms">
                         <div class="col-md-4">
                             <h5>Titre <i class="tip" data-tip-content="Exemple : Création d'une armure en worbla"></i></h5>
-                            {!! Form::text('title', $tutorial->title, ['class' => 'search-field'])!!}
+                            {!! Form::text('title', $course->title, ['class' => 'search-field'])!!}
                         </div>
                         <div class="col-md-4">
                             <h5>Type de tutoriel </h5>
-                            {!! Form::select('type_id', $types, $tutorial->type_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('type_id', $types, $course->type_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                         <div class="col-md-4">
                             <h5>Pix du cours <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
-                            {!! Form::text('price', $tutorial->price) !!}
+                            {!! Form::text('price', $course->price) !!}
                         </div>
                         <div class="col-md-12">
                             <h5>Description</h5>
-                            {!! Form::textarea('content', $tutorial->content)!!}
+                            {!! Form::textarea('content', $course->content)!!}
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                     <div class="row with-forms">
                         <div class="col-md-4">
                             <h5>Langue</h5>
-                            {!! Form::select('language_id', $languages, $tutorial->language_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('language_id', $languages, $course->language_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                         <div class="col-md-4">
                             <h5>Niveau</h5>
@@ -49,17 +49,21 @@
                         <!-- Status -->
                         <div class="col-md-4">
                             <h5>Catégorie</h5>
-                            {!! Form::select('category_id', $tutorialCategories, $tutorial->category_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('category_id', $categories, $course->category_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
 
                         <!-- Type -->
                         <div class="col-md-6">
                             <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
                             {!! Form::file('thumbnail_picture') !!}
+                            @if($course->thumbnail_picture)
+                                @lang("Miniature actuelle")
+                                <img src="{{ asset('storage/' . $course->thumbnail_picture) }}">
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <h5>Mots clés <i class="tip" data-tip-content="Afin d'améliorer le référencement de vos tutoriels, vous pouvez ajouter 10 mots clés différents."></i></h5>
-                            <input name="keywords" type="text" placeholder="Les mots clés doivent être séparés par des virgules.">
+                            {!! Form::text('keywords', $course->keywords, ['placeholder' => "Les mots clés doivent être séparés par des virgules."]) !!}
                         </div>
                     </div>
                     <!-- Row / End -->
@@ -72,14 +76,14 @@
                     <div class="add-listing-headline">
                         <h3>
                             <i class="sl sl-icon-docs"></i> Programme du cours -
-                            <span><a href="{{ route('tutorial_session_new', $tutorial) }}" style="color: #f91942; !important;">Ajouter une session</a></span>
+                            <span><a href="{{ route('tutorial_session_new', $course) }}" style="color: #f91942; !important;">Ajouter une session</a></span>
                         </h3>
                     </div>
-                    @if($tutorial->sessions)
-                        @if(@isset($tutorial->id))
+                    @if($course->sessions)
+                        @if(@isset($course->id))
                             <div id="list-sessions">
-                                @if(count($tutorial->sessions) > 0)
-                                    @foreach($tutorial->sessions as $session)
+                                @if(count($course->sessions) > 0)
+                                    @foreach($course->sessions as $session)
                                         <div class="row pattern">
                                             <div class="col-md-6">
                                                 <div class="fm-input pricing-name">
@@ -88,21 +92,21 @@
                                             </div>
                                             <div class="col-md-6">
                                                 @if(!$session->content)
-                                                    <a href="{{ route('dashboard_tutorial_new_content', ['tutorial' => $tutorial, 'session' => $session]) }}"
+                                                    <a href="{{ route('dashboard_tutorial_new_content', ['course' => $course, 'session' => $session]) }}"
                                                        class="button preview" style="overflow: unset; margin-top: unset; background-color: #E30B9F">
                                                         Ajouter du contenu
                                                     </a>
                                                 @else
-                                                    <a href="{{ route('dashboard_tutorial_edit_content', ['tutorial' => $tutorial, 'content' => $session->content]) }}"
+                                                    <a href="{{ route('dashboard_tutorial_edit_content', ['course' => $course, 'content' => $session->content]) }}"
                                                        class="button preview" style="overflow: unset; margin-top: unset; background-color: #008DC7">
                                                         Modifier le contenu
                                                     </a>
                                                 @endif
-                                                <a href="{{ route('tutorial_session_edit', ['tutorial' => $tutorial, 'session' => $session]) }}"
+                                                <a href="{{ route('tutorial_session_edit', ['course' => $course, 'session' => $session]) }}"
                                                    class="button preview" style="overflow: unset; margin-top: unset;background-color: #FB8628">
                                                     Modifier
                                                 </a>
-                                                <a href="{{ route('dashboard_tutorial_remove_session', ['tutorial' => $tutorial, 'session' => $session]) }}"
+                                                <a href="{{ route('dashboard_tutorial_remove_session', ['course' => $course, 'session' => $session]) }}"
                                                    class="button preview" style="overflow: unset; margin-top: unset;">
                                                     Supprimer
                                                 </a>

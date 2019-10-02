@@ -154,9 +154,11 @@
                                                     <div class="d-md-flex">
                                                 <div class="item-card9-img">
                                                     <div class="item-card9-imgs">
-                                                        <a href="page-details.html"></a>
-                                                        <img src="{{ asset('themes/frontend/images/media/11.jpg') }}" alt="img"
+                                                        <a href="{{ route('course_details', $course) }}"></a>
+                                                        @if($course->thumbnail_picture)
+                                                            <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
                                                              class="cover-image">
+                                                        @endif
                                                     </div>
                                                     <div class="item-card9-icons">
                                                         <a href="#" class="item-card9-icons1 bg-primary"> <i

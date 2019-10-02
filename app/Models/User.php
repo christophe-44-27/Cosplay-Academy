@@ -50,4 +50,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Payment::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function courseFavorites()
+    {
+        return $this->belongsToMany(Course::class, 'course_user_favorites', 'user_id');
+    }
 }

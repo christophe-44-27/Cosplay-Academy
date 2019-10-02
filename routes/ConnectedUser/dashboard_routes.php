@@ -7,16 +7,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password');
     Route::post('/change-password', 'Auth\ChangePasswordController@changePassword')->name('changePassword');
 
-    /** TUTORIELS **/
-    Route::get('tutorials', 'Dashboard\CourseController@index')->name('dashboard_tutorials_list');
-    Route::get('tutorials/unpublished', 'Dashboard\CourseController@unpublishedTutorials')->name('dashboard_tutorials_unpublished_list');
-    Route::get('tutorials/new', 'Dashboard\CourseController@newTutorial')->name('tutorial_new');
-    Route::post('tutorials/create', 'Dashboard\CourseController@create')->name('tutorial_create');
-    Route::get('tutorials/{tutorial}/edit', 'Dashboard\CourseController@edit')->name('tutorial_edit');
-    Route::put('tutorials/{tutorial}/update', 'Dashboard\CourseController@update')->name('tutorial_update');
-    Route::get('tutorials/{tutorial}/delete', 'Dashboard\CourseController@delete')->name('tutorial_remove');
-    Route::post('tutorials/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
-    Route::get('tutorials/{tutorial}/unpublish', 'Dashboard\CourseController@unpublish')->name('tutorial_unpublish');
     /** ORDERS */
     Route::get('purchased-history', 'Customer\PaymentController@index')->name('payment_history');
     /** TUTORIELS SESSIONS */
@@ -47,4 +37,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('dynamic-field', 'Dashboard\DynamicFieldController@index');
 
     Route::post('dynamic-field/insert/{tutorial}', 'Dashboard\DynamicFieldController@insert')->name('dynamic-field.insert');
+    /** FAVORITES */
+    Route::get('courses/favorites', 'Course\FavoriteController@getCourseFavorites')->name('course_favorite');
+    Route::get('courses/favorites/add/{course}', 'Course\FavoriteController@addToFavorite')->name('course_add_to_favorites');
+    Route::get('courses/favorites/remove/{course}', 'Course\FavoriteController@removeFromFavorites')->name('course_favorite_remove');
 });

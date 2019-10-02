@@ -20,22 +20,8 @@
                                     <div class="rating-stars d-flex mr-5">
                                         <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" id="rating-stars-value" value="4">
                                         <div class="rating-stars-container mr-2">
-                                            <div class="rating-star sm">
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="rating-star sm">
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="rating-star sm">
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="rating-star sm">
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="rating-star sm">
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div> 4.0
+                                            @include('frontend.elements.blocs.rating')
+                                        </div> {{ round($course->reviews->avg('nb_stars')) }}
                                     </div>
                                     <div class="rating-stars d-flex">
                                         <div class="rating-stars-container mr-2">
@@ -65,59 +51,13 @@
                         </div>
                         <div class="card-body">
                             <div class="mb-4">
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atcorrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoraliz the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble thena bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain.</p>
-                            </div>
-                            <h4 class="mb-4 font-weight-bold">Specifications</h4>
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered border-top mb-0">
-                                            <tbody>
-                                            <tr>
-                                                <td>Exam Required </td>
-                                                <td><span class="font-weight-bold">NA</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Duration</td>
-                                                <td><span class="font-weight-bold">24 Months</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fee</td>
-                                                <td><span class="font-weight-bold">$35,000</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Affilication</td>
-                                                <td><span class="font-weight-bold">Beguiled University</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Classtype</td>
-                                                <td><span class="font-weight-bold"> Online</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Certification</td>
-                                                <td><span class="font-weight-bold">Yes</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Daily</td>
-                                                <td><span class="font-weight-bold">2 Hrs</span></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-4 pb-4 pl-5 pr-5 border-top border-top">
-                            <div class="list-id">
-                                <div class="row">
-                                    <div class="col">
-                                        <a class="mb-0">Classified ID : #8256358</a>
-                                    </div>
-                                    <div class="col col-auto">
-                                        Posted By <a class="mb-0 font-weight-bold">Individual</a> / 21st Aug 2019
-                                    </div>
-                                </div>
+                                @if(isset($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)
+                                    @foreach($course->sessions as $session)
+                                        {{ $session->title }}
+                                    @endforeach
+                                @else
+                                    {{ $course->sessions->first()->name }}
+                                @endif
                             </div>
                         </div>
                         <div class="card-footer">
@@ -528,46 +468,53 @@
                                 @endif
                             </div>
                             <div class="">
+                                <a href="{{ route('course_add_to_favorites', $course )}}" class="btn btn-primary btn-lg btn-block">@lang("Ajouter au favoris")</a>
                                 @if($course->price > 0)
-                                    <a href="#" class="btn btn-primary btn-lg btn-block">@lang("Acheter")</a>
-                                    <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Ajouter au panier")</a>
+                                    <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
                                 @else
-                                    <a href="#" class="btn btn-primary btn-lg btn-block">@lang("S'inscrire")</a>
+                                    <a href="#" class="btn btn-azure btn-lg btn-block">@lang("S'inscrire")</a>
                                 @endif
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Course Instructor</h3>
+                            <h3 class="card-title">@lang("Formateur")</h3>
                         </div>
                         <div class="card-body  item-user">
                             <div class="profile-pic mb-0">
-                                <img src="../assets/images/users/female/25.jpg" class="brround avatar-xxl" alt="user">
+                                <img src="{{ asset('storage/' . $course->user->avatar) }}" class="brround avatar-xxl" alt="user">
                                 <div >
-                                    <a href="userprofile.html" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">Jacob Smith</h4></a>
-                                    <span class="text-muted">Member Since November 2008</span>
+                                    <a href="userprofile.html" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">{{ $course->user->name }}</h4></a>
+                                    <span class="text-muted">@lang("Membre depuis ") {{ \Illuminate\Support\Carbon::createFromTimeString($course->user->created_at)->format('M Y') }}</span>
                                 </div>
                                 <h6 class="mt-2 mb-0">
-                                    <a href="profile.html" class="btn btn-primary btn-sm">See All Course</a>
+                                    <a href="#" class="btn btn-primary btn-sm">@lang("Voir ses cours")</a>
                                     <a href="#" class="btn btn-secondary btn-sm">1245 Views</a>
                                     <a href="#" class="btn btn-info btn-sm">850 Courses</a>
                                 </h6>
                             </div>
                         </div>
                         <div class="card-body item-user">
-                            <h4 class="mb-4">Contact Info</h4>
-                            <div>
-                                <h6><span class="font-weight-semibold"><i class="fa fa-map-marker mr-2 mb-2"></i></span><a href="#" class="text-body"> 7981 Aspen Ave. Hammonton,  USA</a></h6>
-                                <h6><span class="font-weight-semibold"><i class="fa fa-envelope mr-2 mb-2"></i></span><a href="#" class="text-body"> smith@gmail.com</a></h6>
-                                <h6><span class="font-weight-semibold"><i class="fa fa-phone mr-2  mb-2"></i></span><a href="#" class="text-body"> 0-235-657-24587</a></h6>
-                                <h6><span class="font-weight-semibold"><i class="fa fa-link mr-2 "></i></span><a href="#" class="text-body">http://abcd.com/</a></h6>
-                            </div>
+                            <h4 class="mb-4">@lang("Informations")</h4>
+                            @if($course->user->website)
+                                <div>
+                                    <h6><span class="font-weight-semibold"><i class="fa fa-link mr-2 "></i></span><a href="#" class="text-body">{{ $course->user->website }}</a></h6>
+                                </div>
+                            @endif
                             <div class=" item-user-icons mt-4">
-                                <a href="#" class="facebook-bg mt-0"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                                <a href="#" class="dribbble-bg"><i class="fa fa-dribbble"></i></a>
+                                @if(!empty($course->user->facebook_profile))
+                                    <a href="{{ $course->user->facebook_profile }}" target="_blank" class="facebook-bg mt-0"><i class="fa fa-facebook"></i></a>
+                                @endif
+                                @if(!empty($course->user->youtube_profile))
+                                    <a href="{{ $course->user->youtube_profile }}" target="_blank" class="youtube-bg mt-0"><i class="fa fa-youtube"></i></a>
+                                @endif
+                                @if(!empty($course->user->instagram_profile))
+                                    <a href="{{ $course->user->youtube_profile }}" target="_blank" class="instagram-bg mt-0"><i class="fa fa-instagram"></i></a>
+                                @endif
+                                @if(!empty($course->user->pinterest_profile))
+                                    <a href="{{ $course->user->pinterest_profile }}" target="_blank" class="pinterest-bg mt-0"><i class="fa fa-pinterest"></i></a>
+                                @endif
                             </div>
                         </div>
                         <div class="card-footer">
@@ -580,28 +527,13 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Keywords</h3>
-                        </div>
-                        <div class="card-body product-filter-desc">
-                            <div class="product-tags clearfix">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#">Study</a></li>
-                                    <li><a href="#">Online-classes </a></li>
-                                    <li><a href="#"> Education</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Shares</h3>
+                            <h3 class="card-title">@lang("Partager sur les réseaux sociaux")</h3>
                         </div>
                         <div class="card-body product-filter-desc">
                             <div class="product-filter-icons text-center">
                                 <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
                                 <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
                                 <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                                <a href="#" class="dribbble-bg"><i class="fa fa-dribbble"></i></a>
                                 <a href="#" class="pinterest-bg"><i class="fa fa-pinterest"></i></a>
                             </div>
                         </div>
@@ -695,113 +627,6 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Map location</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="map-header">
-                                <div class="map-header-layer" id="map2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Search Classes</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="search-text" placeholder="What are you looking for?">
-                            </div>
-                            <div class="form-group">
-                                <select name="country" id="select-countries" class="form-control custom-select select2-show-search">
-                                    <option value="1" selected>All Categories</option>
-                                    <option value="2">Web Security</option>
-                                    <option value="3">Unix</option>
-                                    <option value="4">Business</option>
-                                    <option value="5">.Net</option>
-                                    <option value="6">Data Science</option>
-                                    <option value="7">Salesforce</option>
-                                    <option value="8">Education</option>
-                                    <option value="9">Electronics</option>
-                                    <option value="10">Digital Marketing</option>
-                                    <option value="11">Computer</option>
-                                    <option value="12">Mobile Computing</option>
-                                    <option value="13">Coding</option>
-                                    <option value="14">Python</option>
-                                    <option value="15">Security Hacking</option>
-                                </select>
-                            </div>
-                            <div >
-                                <a href="#" class="btn  btn-primary">Search</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-0">
-                        <div class="card-header">
-                            <h3 class="card-title">Latest Classes</h3>
-                        </div>
-                        <div class="card-body ">
-                            <ul class="vertical-scroll">
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/1.png" alt="image" class="w-8 border mr-2"/></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">Coding</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/2.png" alt="image" class="w-8 border mr-2"/></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">UNIX</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/3.png" alt="image" class="w-8 border mr-2" /></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">Salesforce</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/4.png" alt="image" class="w-8 border mr-2" /></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">.Net</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/5.png" alt="image" class="w-8 border mr-2" /></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">Digital Marketing</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/6.png" alt="image" class="w-8 border mr-2" /></td>
-                                            <td class="pl-3"><h4 class="mb-1 font-weight-semibold">Data Science</h4><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                <li class="news-item">
-                                    <table>
-                                        <tr>
-                                            <td><img src="../assets/images/png/8.png" alt="image" class="w-8 border mr-2" /></td>
-                                            <td class="pl-3"><h5 class="mb-1 ">SQL</h5><a href="#" class="btn-link">View Details</a><span class="float-right font-weight-bold">$17</span></td>
-                                        </tr>
-                                    </table>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

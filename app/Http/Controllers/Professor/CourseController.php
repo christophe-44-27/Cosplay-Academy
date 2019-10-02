@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Professor;
 
 use App\Http\Requests\TutorialRequest;
-use App\Http\Requests\UpdateTutorialRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Services\SessionService;
 use App\Models\Language;
 use App\Models\Course;
@@ -14,6 +14,7 @@ use App\Services\FileUploadService;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller {
@@ -28,25 +29,11 @@ class CourseController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        $tutorials = Course::where('user_id', '=', Auth::user()->id)
-            ->where('is_published', '=', true)
+        $courses = Course::where('user_id', '=', Auth::user()->id)
             ->orderBy('id', 'desc')
             ->paginate(6);
-        $controller = 'tutorials';
-        return view('dashboard.tutorials.index', compact('tutorials', 'controller'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function unpublishedTutorials()
-    {
-        $tutorials = Course::where('user_id', '=', Auth::user()->id)
-            ->where('is_published', '=', false)
-            ->orderBy('id', 'desc')
-            ->paginate(6);
-        $controller = 'tutorials';
-        return view('dashboard.tutorials.unpublished_tutorials', compact('tutorials', 'controller'));
+        $controller = 'courses';
+        return view('professor.courses.index', compact('courses', 'controller'));
     }
 
     /**
@@ -108,20 +95,20 @@ class CourseController extends Controller {
 
     /**
      * @param Request $request
-     * @param Course $tutorial
+     * @param Course $course
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
-    public function edit(Request $request, Course $tutorial) {
-        $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+    public function edit(Request $request, Course $course) {
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
 
         $currentUrl = $request->url();
         $controller = 'tutorials';
 
-        return view('dashboard.tutorials.edit', compact(
-            'tutorial',
-            'tutorialCategories',
+        return view('professor.courses.edit', compact(
+            'course',
+            'categories',
             'types',
             'currentUrl',
             'languages',
@@ -131,12 +118,12 @@ class CourseController extends Controller {
     }
 
     /**
-     * @param UpdateTutorialRequest $request
+     * @param UpdateCourseRequest $request
      * @param FileUploadService $fileUploadService
      * @param Course $tutorial
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, Course $tutorial, SessionService $sessionService)
+    public function update(UpdateCourseRequest $request, FileUploadService $fileUploadService, Course $tutorial, SessionService $sessionService)
     {
         $validated = $request->validated();
 
@@ -148,6 +135,9 @@ class CourseController extends Controller {
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
+            'type_id' => $validated['type_id'],
+            'difficulty' => $validated['difficulty'],
+            'keywords' => $validated['keywords']
         ];
 
         if ($request->file('thumbnail_picture')) {
@@ -162,8 +152,8 @@ class CourseController extends Controller {
             $sessionService->saveSessions($request->get('sessions'), $tutorial);
         }
 
-        $request->session()->flash('success', 'Le tutoriel a été mis à jour avec succès !');
-        return redirect(route('dashboard_tutorials_list'));
+        $request->session()->flash('success', Lang::get("Le cours a bien été mis à jour, merci !"));
+        return redirect(route('professor_course_list'));
     }
 
     /**

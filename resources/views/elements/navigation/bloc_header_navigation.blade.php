@@ -7,7 +7,7 @@
         <a class="p-2 text-dark" href="#">Contact</a>
     </nav>
     @auth
-        <a class="btn btn-outline-primary" href="{{ route('dashboard_homepage') }}">
+        <a class="btn btn-outline-primary" href="{{ route('professor_dashboard') }}">
             @lang('messages.my_account')
         </a>
         <a class="btn btn-outline-primary" href="{{ route('logout') }}" onclick="event.preventDefault();

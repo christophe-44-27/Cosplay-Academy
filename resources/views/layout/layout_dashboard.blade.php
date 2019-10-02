@@ -28,8 +28,8 @@
                 <div class="left-side">
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="{{ route('dashboard_homepage') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
-                        <a href="{{ route('dashboard_homepage') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
+                        <a href="{{ route('professor_dashboard') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
+                        <a href="{{ route('professor_dashboard') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
                     </div>
 
                     <!-- Mobile Navigation -->
@@ -66,7 +66,7 @@
                             <div class="user-name"><span><img src="images/dashboard-avatar.jpg" alt=""></span>Mon compte
                             </div>
                             <ul>
-                                <li><a href="{{ route('dashboard_homepage') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
+                                <li><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
                                 <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a>
                                 </li>
                                 <li><a href="#"><i class="fa fa-calendar-check-o"></i>
@@ -75,7 +75,7 @@
                             </ul>
                         </div>
 
-                        <a href="{{ route('tutorial_new') }}" class="button border with-icon">Ajouter un tutoriel <i
+                        <a href="{{ route('professor_course_new') }}" class="button border with-icon">Ajouter un tutoriel <i
                                 class="sl sl-icon-plus"></i></a>
                     </div>
                     <!-- Header Widget / End -->

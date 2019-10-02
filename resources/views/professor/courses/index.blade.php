@@ -5,31 +5,37 @@
         <!-- Listings -->
         <div class="col-lg-12 col-md-12">
             <div class="dashboard-list-box margin-top-0">
-                <h4>Mes tutoriels</h4>
-                @if(count($tutorials) > 0)
+                <h4>@lang("Mes cours")</h4>
+                @if(count($courses) > 0)
                     <ul>
-                        @foreach($tutorials as $tutorial)
+                        @foreach($courses as $course)
                         <li>
                             <div class="list-box-listing">
-                                <div class="list-box-listing-img"><a href="#">
-                                        <img src="images/listing-item-01.jpg"  alt=""></a>
+                                <div class="list-box-listing-img">
+                                    <a href="#">
+                                        @if($course->thumbnail_picture)
+                                            <img src="{{ asset('storage/' . $course->thumbnail_picture) }}"  alt="">
+                                        @else
+                                            <img src="{{ asset('images/default-thumbnails.png') }}>">
+                                        @endif
+                                    </a>
                                 </div>
                                 <div class="list-box-listing-content">
                                     <div class="inner">
-                                        <h3><a href="#">{{ $tutorial->title }}</a></h3>
-                                        <span>{{ $tutorial->category->name }}</span>
-                                        <div class="star-rating" data-rating="{{ $tutorial->reviews->avg('nb_stars') }}">
-                                            <div class="rating-counter">({{ $tutorial->reviews->count() }})</div>
+                                        <h3><a href="#">{{ $course->title }}</a></h3>
+                                        <span>{{ $course->category->name }}</span>
+                                        <div class="star-rating" data-rating="{{ $course->reviews->avg('nb_stars') }}">
+                                            <div class="rating-counter">({{ $course->reviews->count() }})</div>
                                             <a href="#small-dialog" class="popup-with-zoom-anim">
-                                                Voir les avis
+                                                @lang("Voir les avis")
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="buttons-to-right">
-                                <a href="{{ route('tutorial_edit', $tutorial) }}" class="button gray"><i class="sl sl-icon-note"></i> Edit</a>
-                                <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
+                                <a href="{{ route('professor_course_edit', $course) }}" class="button gray"><i class="sl sl-icon-note"></i> @lang("Modifier")</a>
+                                <a href="#" class="button gray"><i class="sl sl-icon-close"></i> @lang("Supprimer")</a>
                             </div>
                         </li>
                         <!-- Reply to review popup -->
@@ -46,14 +52,14 @@
                     </ul>
                 @else
                     <div class="notification closeable margin-bottom-30">
-                        <p>Vous n'avez encore créé aucun tutoriel. <b><a href="#">Ajoutez un tutoriel !</a></b> </p>
+                        <p>@lang("Vous n'avez encore créé aucun cours, lancez-vous !"). <b><a href="#">@lang("Créer un cours")</a></b> </p>
                     </div>
                 @endif
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <nav>
-                        {{ $tutorials->links('vendor.pagination.default') }}
+                        {{ $courses->links('vendor.pagination.default') }}
                     </nav>
                 </div>
             </div>

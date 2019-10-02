@@ -4,7 +4,7 @@
 <div class="dashboard-nav">
     <div class="dashboard-nav-inner">
         <ul data-submenu-title="Main">
-            <li><a href="{{ route('dashboard_homepage') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
+            <li><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
             <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages <span
                         class="nav-tag messages">2</span></a></li>
             <li><a href="#"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
@@ -12,25 +12,23 @@
 
         <ul data-submenu-title="Enseigner">
             <li class="{{ ($controller == 'tutorials') ? 'active' : '' }}">
-                <a><i class="sl sl-icon-layers"></i> Mes tutoriels</a>
+                <a><i class="sl sl-icon-layers"></i> @lang('Mes cours')</a>
                 <ul>
-                    <li><a href="{{ route('dashboard_tutorials_list') }}">Publiés <span class="nav-tag green">6</span></a>
-                    </li>
-                    <li><a href="{{ route('dashboard_tutorials_unpublished_list') }}">En cours de modération <span class="nav-tag yellow">1</span></a>
+                    <li><a href="{{ route('professor_course_list') }}">Publiés <span class="nav-tag green">6</span></a>
                     </li>
                 </ul>
             </li>
             <li class="{{ ($controller == 'reviews') ? 'active' : '' }}">
                 <a><i class="sl sl-icon-star"></i> Avis</a>
                 <ul>
-                    <li><a href="{{ route('dashboard_tutorials_list') }}">Mes avis <span class="nav-tag green">6</span></a>
+                    <li><a href="#">Mes avis <span class="nav-tag green">6</span></a>
                     </li>
-                    <li><a href="{{ route('dashboard_tutorials_unpublished_list') }}">Avis de mes fans <span class="nav-tag yellow">1</span></a>
+                    <li><a href="#">Avis de mes fans <span class="nav-tag yellow">1</span></a>
                     </li>
                 </ul>
             </li>
             <li><a href="#"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
-            <li><a href="{{ route('tutorial_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
+            <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">
