@@ -45,12 +45,12 @@ class CourseController extends Controller {
 
     public function show(Request $request, Course $course) {
 
-        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
-            'Bucket' => getenv('AWS_BUCKET'),
-            'Key' => 'tutorials/videos/' . $course->video_path,
-        ]);
-
-        $url_video = $object['@metadata']['effectiveUri'];
+//        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
+//            'Bucket' => getenv('AWS_BUCKET'),
+//            'Key' => 'tutorials/videos/' . $course->video_path,
+//        ]);
+//
+//        $url_video = $object['@metadata']['effectiveUri'];
 
         $course->nb_views = $course->nb_views + 1;
         $course->save();
@@ -63,7 +63,7 @@ class CourseController extends Controller {
                                 ->limit(4)
                                 ->get();
 
-        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedTutorials', 'url_video'));
+        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedTutorials'));
     }
 
     /**

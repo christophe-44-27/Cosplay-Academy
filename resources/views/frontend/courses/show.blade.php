@@ -7,14 +7,29 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-12">
                     <div class="card overflow-hidden">
-                        <div class="ribbon ribbon-top-right text-danger"><span class="bg-danger">BestSeller</span></div>
                         <div class="card-body">
                             <div class="item-det mb-4">
                                 <a href="#" class="text-dark"><h3>Online Training Classes Available For You</h3></a>
                                 <div class=" d-flex">
                                     <ul class="d-flex mb-0">
-
-                                        <li class="mr-5"><a href="#" class="icons"><i class="icon icon-calendar text-muted mr-1"></i> 5 hours</a></li>
+                                        <li class="mr-5">
+                                            <a href="#" class="icons">
+                                                <i class="pe-7s-medal text-muted mr-1"></i>
+                                                @switch($course->difficulty)
+                                                    @case(1)
+                                                        @lang("Novice")
+                                                        @break
+                                                    @case(2)
+                                                        @lang("Intermédiaire")
+                                                        @break
+                                                    @case(3)
+                                                        @lang("Expert")
+                                                        @break
+                                                    @default
+                                                        @lang('Grand public')
+                                                @endswitch
+                                            </a>
+                                        </li>
                                         <li class="mr-5"><a href="#" class="icons"><i class="icon icon-people text-muted mr-1"></i> 765 Enrolled</a></li>
                                     </ul>
                                     <div class="rating-stars d-flex mr-5">
@@ -36,8 +51,8 @@
                                 <ul class="list-unstyled video-list-thumbs">
                                     <li class="mb-0">
                                         <a data-toggle="modal" data-target="#homeVideo" class="class-video p-0">
-                                            <div class="arrow-ribbon bg-primary">20% off</div>
-                                            <img src="../assets/images/media/pictures/17.jpg" alt="img" class="img-responsive br-3">
+                                            {{--<div class="arrow-ribbon bg-primary">20% off</div>--}}
+                                            <img src="{{ asset('storage/' . $course->main_picture) }}" alt="img" class="img-responsive br-3">
                                             <span class="fe fe-play-circle text-white class-icon"></span>
                                         </a>
                                     </li>
@@ -50,15 +65,15 @@
                             <h3 class="card-title mb-3 font-weight-bold">Description</h3>
                         </div>
                         <div class="card-body">
-                            <div class="mb-4">
-                                @if(isset($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)
-                                    @foreach($course->sessions as $session)
-                                        {{ $session->title }}
-                                    @endforeach
-                                @else
-                                    {{ $course->sessions->first()->name }}
-                                @endif
-                            </div>
+                            {{--<div class="mb-4">--}}
+                                {{--@if(!empty($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)--}}
+                                    {{--@foreach($course->sessions as $session)--}}
+                                        {{--{{ $session->title }}--}}
+                                    {{--@endforeach--}}
+                                {{--@else--}}
+                                    {{--{{ $course->sessions->first()->name }}--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
                         </div>
                         <div class="card-footer">
                             <div class="btn-list">

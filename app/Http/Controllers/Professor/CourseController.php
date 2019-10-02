@@ -40,14 +40,14 @@ class CourseController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function newTutorial() {
-        $tutorialCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+        $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
 
         $controller = 'tutorials';
-        $tutorial = new Course();
-        return view('dashboard.tutorials.new', compact('tutorialCategories', 'controller',
-            'tutorial', 'types', 'languages'));
+        $course = new Course();
+        return view('professor.courses.new', compact('categories', 'controller',
+            'course', 'types', 'languages'));
     }
 
     /**
@@ -65,7 +65,8 @@ class CourseController extends Controller {
         $validated = $request->validated();
         $videoId = null;
 
-        $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
+        $thumbnail = $fileUploadService->upload($request, 'course_image', 258, 150, 'courses/thumbnails');
+        $main_picture = $fileUploadService->upload($request, 'course_image', 740, 440, 'courses/main-picture');
 
         $arrayToCreate = [
             'title' => $validated['title'],
@@ -73,8 +74,8 @@ class CourseController extends Controller {
             'type_id' => $validated['type_id'],
             'content' => $validated['content'],
             'thumbnail_picture' => $thumbnail,
+            'main_picture' => $main_picture,
             'difficulty' => $validated['difficulty'],
-            'video_id' => 'prout.jpb',
             'nb_views' => 0,
             'nb_likes' => 0,
             'language_id' => $validated['language_id'],
@@ -89,8 +90,7 @@ class CourseController extends Controller {
             $tutorialService->uploadDocuments($request->get('documents'), $tutorial);
         }
 
-        $request->session()->flash('success', 'Le tutoriel a été créé avec succès !');
-        return redirect(route('dashboard_tutorials_list'));
+        return redirect(route('professor_course_list'))->with('success', Lang::get("Le cours a été créé avec succès !"));
     }
 
     /**

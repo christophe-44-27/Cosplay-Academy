@@ -5,7 +5,7 @@
         <div class="col-lg-12">
 
             <div id="add-listing">
-            {!! Form::model($tutorial, ['method' => 'post', 'url' => route('tutorial_create', $tutorial), 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::model($course, ['method' => 'post', 'url' => route('professor_course_create', $course), 'enctype' => 'multipart/form-data']) !!}
                 <!-- Section -->
                 <div class="add-listing-section">
 
@@ -18,19 +18,19 @@
                     <div class="row with-forms">
                         <div class="col-md-4">
                             <h5>Titre <i class="tip" data-tip-content="Exemple : Création d'une armure en worbla"></i></h5>
-                            {!! Form::text('title', $tutorial->title, ['class' => 'search-field'])!!}
+                            {!! Form::text('title', $course->title, ['class' => 'search-field'])!!}
                         </div>
                         <div class="col-md-4">
                             <h5>Type de tutoriel </h5>
-                            {!! Form::select('type_id', $types, $tutorial->type_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('type_id', $types, $course->type_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                         <div class="col-md-4">
                             <h5>Pix du cours <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
-                            {!! Form::text('price', $tutorial->price) !!}
+                            {!! Form::text('price', $course->price) !!}
                         </div>
                         <div class="col-md-12">
                             <h5>Description</h5>
-                            {!! Form::textarea('content', $tutorial->content)!!}
+                            {!! Form::textarea('content', $course->content)!!}
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                     <div class="row with-forms">
                         <div class="col-md-4">
                             <h5>Langue</h5>
-                            {!! Form::select('language_id', $languages, $tutorial->language_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('language_id', $languages, $course->language_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                         <div class="col-md-4">
                             <h5>Niveau</h5>
@@ -47,13 +47,13 @@
                         <!-- Status -->
                         <div class="col-md-4">
                             <h5>Catégorie</h5>
-                            {!! Form::select('category_id', $tutorialCategories, $tutorial->category_id, ['class' => 'chosen-select-no-single']) !!}
+                            {!! Form::select('category_id', $categories, $course->category_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
 
                         <!-- Type --><!-- Status -->
                         <div class="col-md-6">
                             <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
-                            {!! Form::file('thumbnail_picture') !!}
+                            {!! Form::file('course_image') !!}
                         </div>
                         <div class="col-md-6">
                             <h5>Mots clés <i class="tip" data-tip-content="Afin d'améliorer le référencement de vos tutoriels, vous pouvez ajouter 10 mots clés différents."></i></h5>
