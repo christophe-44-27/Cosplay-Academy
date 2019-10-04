@@ -62,7 +62,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-3 font-weight-bold">Description</h3>
+                            <h3 class="card-title mb-3 font-weight-bold">@lang("Contenu du cours")</h3>
                         </div>
                         <div class="card-body">
                             {{--<div class="mb-4">--}}
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="mb-5 mt-4">Related Posts</h3>
+                    <h3 class="mb-5 mt-4">@lang("Dans la même catégorie")</h3>
                     <!--Related Posts-->
                     <div id="myCarousel5" class="owl-carousel owl-carousel-icons3">
                         <!-- Wrapper for carousel items -->
@@ -121,334 +121,79 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="ribbon ribbon-top-left text-primary"><span class="bg-primary">featured</span></div>
-                                <div class="item-card7-imgs">
-                                    <a href="page-details.html"></a>
-                                    <img src="../assets/images/media/pictures/12.jpg" alt="img" class="cover-image">
-                                </div>
-                                <div class="item-card7-overlaytext">
-                                    <a href="page-details.html" class="text-white"> Online</a>
-                                    <h4  class=" mb-0">$854</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">Digital Marketing</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/7.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white">Online</a>
-                                        <h4  class="font-weight-semibold mb-0">$786</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">Web Designing</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/11.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white"> Online</a>
-                                        <h4  class="font-weight-semibold mb-0">$539</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="rpage-details.html" class="text-dark"><h3 class="font-weight-semibold">Data Science</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/10.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white">  Offline</a>
-                                        <h4  class="font-weight-semibold mb-0">$925</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">Mobile Computing</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/5.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white">Offline</a>
-                                        <h4  class="font-weight-semibold mb-0">$925</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold"> Guitar Classes</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/18.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white"> Online</a>
-                                        <h4  class="font-weight-semibold mb-0">$378</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">3D Animation Classes </h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="ribbon ribbon-top-left text-primary"><span class="bg-primary">featured</span></div>
-                                <div class="item-card7-img">
-                                    <div class="item-card7-imgs">
-                                        <a href="page-details.html"></a>
-                                        <img src="../assets/images/media/pictures/9.jpg" alt="img" class="cover-image">
-                                    </div>
-                                    <div class="item-card7-overlaytext">
-                                        <a href="page-details.html" class="text-white">Online</a>
-                                        <h4  class="font-weight-semibold mb-0">$836</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">Networking Courses</h3></a>
-                                    </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!--/Related Posts-->
 
                     <!--Comments-->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Comments</h3>
+                            <h3 class="card-title">@lang("Commentaires")</h3>
                         </div>
                         <div class="card-body p-0">
-                            <div class="media mt-0 p-5">
-                                <div class="d-flex mr-3">
-                                    <a href="#"><img class="media-object brround" alt="64x64" src="../assets/images/users/male/1.jpg"> </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="mt-0 mb-1 font-weight-bold">Joanne Scott
-                                        <span class="fs-14 ml-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="verified"><i class="fa fa-check-circle-o text-success"></i></span>
-                                        <span class="fs-14 ml-2"> 4.5
-												<i class="fa fa-star text-yellow"></i>
-												<i class="fa fa-star text-yellow"></i>
-												<i class="fa fa-star text-yellow"></i>
-												<i class="fa fa-star text-yellow"></i>
-												<i class="fa fa-star-half-o text-yellow"></i>
-											</span>
-                                    </h4>
-                                    <small class="text-muted"><i class="fa fa-calendar"></i> Dec 21st  <i class=" ml-3 fa fa-clock-o"></i> 13.00  <i class=" ml-3 fa fa-map-marker"></i> Brezil</small>
-                                    <p class="fs-15  mb-2 mt-2">
-                                        Ut enim ad minim veniam, quis Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et  nostrud exercitation ullamco laboris   commodo consequat.
-                                    </p>
-                                    <a href="#" class="mr-2"><span class="badge badge-primary">Helpful</span></a>
-                                    <a href="" class="mr-2 text-muted" data-toggle="modal" data-target="#Comment"><span class="badge badge-default">Comment</span></a>
-                                    <a href="" class="mr-2 text-muted" data-toggle="modal" data-target="#report"><span class="badge badge-default">Report</span></a>
-                                    <div class="media mt-5">
+                            @if($course->reviews->count() > 0)
+                                @foreach($course->reviews as $review)
+                                    <div class="media mt-0 p-5">
                                         <div class="d-flex mr-3">
-                                            <a href="#"> <img class="media-object brround" alt="64x64" src="../assets/images/users/female/2.jpg"> </a>
+                                            <a href="#">
+                                                @if($review->author->avatar)
+                                                    <img class="media-object brround" alt="64x64" src="{{ asset('storage/' . $review->author->avatar) }}">
+                                                @else
+                                                    <img class="media-object brround" alt="64x64" src="{{ asset('themes/frontend/images/users/default.jpg') }}">
+                                                @endif
+                                            </a>
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="mt-0 mb-1 font-weight-bold">Rose Slater <span class="fs-14 ml-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="verified"><i class="fa fa-check-circle-o text-success"></i></span></h4>
-                                            <small class="text-muted"><i class="fa fa-calendar"></i> Dec 22st  <i class=" ml-3 fa fa-clock-o"></i> 6.00  <i class=" ml-3 fa fa-map-marker"></i> Brezil</small>
+                                            <h4 class="mt-0 mb-1 font-weight-bold">{{ $review->author->name }}
+                                                <span class="fs-14 ml-2">
+                                                    @include('frontend.elements.blocs.comment_rating')
+                                                </span>
+                                            </h4>
+                                            <small class="text-muted">
+                                                <i class="fa fa-calendar"></i>
+                                                {{ \Illuminate\Support\Carbon::createFromTimeString($review->created_at)->format('M Y') }}
+                                            </small>
                                             <p class="fs-15  mb-2 mt-2">
-                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris   commodo Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam, nisi ut aliquid ex ea commodi consequatur consequat.
+                                                {{ $review->content }}
                                             </p>
-                                            <a href="" data-toggle="modal" data-target="#Comment"><span class="badge badge-default">Comment</span></a>
                                         </div>
                                     </div>
+                                @endforeach
+                            @else
+                                <div class="media mt-0 p-5">
+                                    <div class="alert alert-info">
+                                        @lang("Ce cours n'a pas encore reçu de commentaires.")
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media p-5 border-top mt-0">
-                                <div class="d-flex mr-3">
-                                    <a href="#"> <img class="media-object brround" alt="64x64" src="../assets/images/users/male/3.jpg"> </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="mt-0 mb-1 font-weight-bold">Edward
-                                        <span class="fs-14 ml-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="verified"><i class="fa fa-check-circle-o text-success"></i></span>
-                                        <span class="fs-14 ml-2"> 4
-											<i class="fa fa-star text-yellow"></i>
-											<i class="fa fa-star text-yellow"></i>
-											<i class="fa fa-star text-yellow"></i>
-											<i class="fa fa-star text-yellow"></i>
-											<i class="fa fa-star-o text-yellow"></i>
-										</span>
-                                    </h4>
-                                    <small class="text-muted"><i class="fa fa-calendar"></i> Dec 21st  <i class=" ml-3 fa fa-clock-o"></i> 16.35  <i class=" ml-3 fa fa-map-marker"></i> UK</small>
-                                    <p class="fs-15  mb-2 mt-2">
-                                        Ut enim ad minim veniam, quis Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et  nostrud exercitation ullamco laboris   commodo consequat.
-                                    </p>
-                                    <a href="#" class="mr-2"><span class="badge badge-primary">Helpful</span></a>
-                                    <a href="" class="mr-2 text-muted" data-toggle="modal" data-target="#Comment"><span class="badge badge-default">Comment</span></a>
-                                    <a href="" class="mr-2 text-muted" data-toggle="modal" data-target="#report"><span class="badge badge-default">Report</span></a>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <!--/Comments-->
                     <div class="card mb-lg-0">
                         <div class="card-header">
-                            <h3 class="card-title">Leave a reply</h3>
+                            <h3 class="card-title">@lang("Laisser un commentaire")</h3>
                         </div>
                         <div class="card-body">
+                            @auth()
+                            {!! Form::open(['url' => route('course_store_review', $course)]) !!}
                             <div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name1" placeholder="Your Name">
+                                    <label class="form-label" for="nb_stars">@lang("Votre note de 1 à 5")</label>
+                                    {!! Form::text('nb_stars', null, ['class' => 'form-control'])!!}
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Email Coursedress">
+                                    <label class="form-label" for="content">@lang("Votre commentaire")</label>
+                                    {!! Form::textarea('content', null, ['class' => 'form-control'])!!}
                                 </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Comment"></textarea>
-                                </div>
-                                <a href="#" class="btn btn-primary">Send Reply</a>
+                                <button type="submit" class="btn btn-primary">@lang("Ajouter un commentaire")</button>
                             </div>
+                            {!! Form::close() !!}
+                            @endauth
+
+                            @guest()
+                                <div class="alert alert-info">
+                                    @lang("Vous devez vous connecter afin de laisser un commentaire sur ce cours.")
+                                </div>
+                            @endguest
                         </div>
                     </div>
                 </div>

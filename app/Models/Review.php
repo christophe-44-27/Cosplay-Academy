@@ -19,6 +19,14 @@ class Review extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'reviewable_id');
+    }
+
+    /**
      * Get the owning reviewable model.
      */
     public function reviewable()

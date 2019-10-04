@@ -58,10 +58,10 @@ class CourseController extends Controller {
         $currentUrl = $request->url();
 
         $relatedTutorials = Course::where('category_id', '=', $course->category->id)
-                                ->where('is_published', '=', true)
-                                ->orderBy('id', 'DESC')
-                                ->limit(4)
-                                ->get();
+                ->where('is_published', '=', true)
+                ->orderBy('id', 'DESC')
+                ->limit(4)
+                ->get();
 
         return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedTutorials'));
     }

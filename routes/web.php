@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'GuestHomepageController@index')->name('homepage');
-Route::get('/tutorials', 'Tutorials\TutorialCategoryController@index')->name('list_tutorials');
 
 Auth::routes();
 
@@ -37,7 +36,7 @@ include ('Guest/cart.php');
 
 /*** Connected User Section ***/
 include ('ConnectedUser/dashboard_routes.php');
-include ('ConnectedUser/tutorials.php');
+include ('ConnectedUser/courses.php');
 include ('Professor/dashboard.php');
 
 

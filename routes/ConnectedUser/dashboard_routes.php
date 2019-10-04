@@ -18,11 +18,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     /** REVIEWS **/
     Route::get('reviews', 'Dashboard\ReviewController@index')->name('reviews');
     /** TUTORIELS CONTENUS **/
-    Route::get('tutorials/{tutorial}/sessions/{session}/new-content', 'Dashboard\TutorialContentController@newContent')->name('dashboard_tutorial_new_content');
-    Route::post('tutorials/{tutorial}/sessions/{session}/store', 'Dashboard\TutorialContentController@store')->name('dashboard_tutorial_content_store');
-    Route::get('tutorials/{tutorial}/content/{content}/edit', 'Dashboard\TutorialContentController@edit')->name('dashboard_tutorial_edit_content');
-    Route::post('tutorials/{tutorial}/content/{content}/update', 'Dashboard\TutorialContentController@update')->name('dashboard_tutorial_update_content');
-    Route::get('tutorials/{tutorial}/content/{content}/remove', 'Dashboard\TutorialContentController@remove')->name('dashboard_tutorial_remove_content');
+    Route::get('courses/{course}/sessions/{session}/new-content', 'Dashboard\CourseContentController@newContent')->name('dashboard_tutorial_new_content');
+    Route::post('courses/{course}/sessions/{session}/store', 'Dashboard\CourseContentController@store')->name('dashboard_tutorial_content_store');
+    Route::get('courses/{course}/content/{content}/edit', 'Dashboard\CourseContentController@edit')->name('dashboard_tutorial_edit_content');
+    Route::post('courses/{course}/content/{content}/update', 'Dashboard\CourseContentController@update')->name('dashboard_tutorial_update_content');
+    Route::get('courses/{course}/content/{content}/remove', 'Dashboard\CourseContentController@remove')->name('dashboard_tutorial_remove_content');
     /** ADRESSES **/
     Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
     Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');
