@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Customer;
 
 use App\Models\Course;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 
 class CourseController extends Controller
 {
@@ -17,20 +18,28 @@ class CourseController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Course $course
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function index()
+    public function participateToFreeCourse(Course $course)
     {
-        $courses = Course::where('user_id', '=', Auth::user()->id)
-            ->where('is_published', '=', true)
-            ->orderBy('id', 'desc')
-            ->paginate(6);
-        $controller = 'tutorials';
-        return view('dashboard.tutorials.index', compact('tutorials', 'controller'));
+        $user = Auth::user();
+        $user->courses()->attach([$course->id]);
+
+        return redirect(route('course_details', $course))
+            ->with('success', Lang::get("Félicitations, vous êtes inscrit(e) au cours " . $course->title . " ! Bon apprentissage !"));
     }
 
-    public function favoritesCourse()
+    /**
+     * @param Course $course
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function cancelParticipationCourse(Course $course)
     {
+        $user = Auth::user();
+        $user->courses()->detach($course->id);
 
+        return redirect(route('course_details', $course))
+            ->with('success', Lang::get("Vous vous êtes bien désinscrit(e) du cours " . $course->title . " ."));
     }
 }

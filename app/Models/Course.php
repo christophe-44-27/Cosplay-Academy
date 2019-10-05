@@ -91,4 +91,12 @@ class Course extends Model
     {
         return 'slug';
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'course_participations', 'course_id');
+    }
 }

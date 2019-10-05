@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Category;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller {
@@ -45,25 +46,20 @@ class CourseController extends Controller {
 
     public function show(Request $request, Course $course) {
 
-//        $object = Storage::disk('s3')->getAdapter()->getClient()->getObject([
-//            'Bucket' => getenv('AWS_BUCKET'),
-//            'Key' => 'tutorials/videos/' . $course->video_path,
-//        ]);
-//
-//        $url_video = $object['@metadata']['effectiveUri'];
-
         $course->nb_views = $course->nb_views + 1;
         $course->save();
 
         $currentUrl = $request->url();
 
-        $relatedTutorials = Course::where('category_id', '=', $course->category->id)
+        $relatedCourses = Course::where('category_id', '=', $course->category->id)
                 ->where('is_published', '=', true)
                 ->orderBy('id', 'DESC')
                 ->limit(4)
                 ->get();
 
-        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedTutorials'));
+        $userAlreadyParticipate = Auth::user()->courses()->where('course_id', $course->id)->exists();
+
+        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate'));
     }
 
     /**

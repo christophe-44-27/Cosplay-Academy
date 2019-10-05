@@ -9,7 +9,11 @@
                     <div class="card overflow-hidden">
                         <div class="card-body">
                             <div class="item-det mb-4">
-                                <a href="#" class="text-dark"><h3>Online Training Classes Available For You</h3></a>
+                                <a href="#" class="text-dark">
+                                    <h3>
+                                        {{ $course->title }}
+                                    </h3>
+                                </a>
                                 <div class=" d-flex">
                                     <ul class="d-flex mb-0">
                                         <li class="mr-5">
@@ -30,20 +34,24 @@
                                                 @endswitch
                                             </a>
                                         </li>
-                                        <li class="mr-5"><a href="#" class="icons"><i class="icon icon-people text-muted mr-1"></i> 765 Enrolled</a></li>
+                                        <li class="mr-5">
+                                            <a href="#" class="icons">
+                                                <i class="icon icon-people text-muted mr-1"></i> {{ $course->participants->count() }} @lang('participants')
+                                            </a>
+                                        </li>
                                     </ul>
                                     <div class="rating-stars d-flex mr-5">
                                         <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" id="rating-stars-value" value="4">
                                         <div class="rating-stars-container mr-2">
                                             @include('frontend.elements.blocs.rating')
-                                        </div> {{ round($course->reviews->avg('nb_stars')) }}
+                                        </div>
                                     </div>
                                     <div class="rating-stars d-flex">
                                         <div class="rating-stars-container mr-2">
                                             <div class="rating-star sm">
                                                 <i class="fa fa-heart"></i>
                                             </div>
-                                        </div> {{ $course->userFavorites->count() }}
+                                        </div> {{ $course->userFavorites->count() }} @lang('favoris')
                                     </div>
                                 </div>
                             </div>
@@ -85,44 +93,50 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="mb-5 mt-4">@lang("Dans la même catégorie")</h3>
-                    <!--Related Posts-->
-                    <div id="myCarousel5" class="owl-carousel owl-carousel-icons3">
-                        <!-- Wrapper for carousel items -->
-                        <div class="item">
-                            <div class="card">
-                                <div class="item-card7-imgs">
-                                    <a href="page-details.html"></a>
-                                    <img src="../assets/images/media/pictures/2.jpg" alt="img" class="cover-image">
-                                </div>
-                                <div class="item-card7-overlaytext">
-                                    <a href="page-details.html" class="text-white">Offline</a>
-                                    <h4  class="font-weight-semibold mb-0">$389</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="item-card7-desc mb-3">
-                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold">Coding Classes</h3></a>
+                    @if($relatedCourses->count() > 0)
+                        <h3 class="mb-5 mt-4">@lang("Dans la même catégorie")</h3>
+                        <!--Related Posts-->
+                        <div id="myCarousel5" class="owl-carousel owl-carousel-icons3">
+                            <!-- Wrapper for carousel items -->
+                            @foreach($relatedCourses as $relatedCours)
+                                <div class="item">
+                                <div class="card">
+                                    <div class="item-card7-imgs">
+                                        <a href="{{ route('course_details', $relatedCours) }}"></a>
+                                        <img src="{{ asset('storage/' . $relatedCours->thumbnail_picture) }}" alt="img" class="cover-image">
                                     </div>
-                                    <div class="item-card7-text">
-                                        <ul class="icon-card mb-0">
-                                            <li ><a href="#" class="icons"><i class="icon icon-location-pin  mr-1"></i>  Los Angles</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> 5 hours ago</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-user mr-1"></i> Sally Peake</a></li>
-                                            <li class="mb-0"><a href="#" class="icons"><i class="icon icon-phone mr-1"></i> 5-67987608</a></li>
-                                        </ul>
-                                        <p class="mb-0 mt-2 fs-16">Sed ut perspiciatis unde omnis iste natus error sit voluptatem....</p>
+                                    <div class="card-body">
+                                        <div class="item-card7-desc mb-3">
+                                            <a href="{{ route('course_details', $relatedCours) }}" class="text-dark">
+                                                <h3 class="font-weight-semibold">{{ $relatedCours->title }}</h3>
+                                            </a>
+                                        </div>
+                                        <div class="item-card7-text">
+                                            <ul class="icon-card mb-0">
+                                                <li ><a href="#" class="icons"><i class="icon icon-user  mr-1"></i> {{ $relatedCours->user->name }}</a></li>
+                                                <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $relatedCours->created_at->diffForHumans() }}</a></li>
+                                            </ul>
+                                            <p class="mb-0 mt-2 fs-16">
+                                                {{ \Illuminate\Support\Str::limit($relatedCours->content, 62) }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="item-card2-footer">
-                                        <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-calendar"></i> :</span> 9 Months</a>
-                                        <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-clock-o"></i> :</span> 4 Hours</a>
+                                    <div class="card-footer">
+                                        <div class="item-card2-footer">
+                                            <a href="{{ route('course_details', $relatedCours) }}" class="btn btn-secondary">
+                                                <span class="font-weight-bold"><i class="fa fa-eye"></i> </span> @lang("Voir")
+                                            </a>
+                                            <a href="{{ route('course_add_to_favorites', $relatedCours) }}" class="btn btn-primary text-white float-right">
+                                                <span class="font-weight-bold"><i class="fa fa-heart"></i> </span> @lang("Ajouter aux favoris")
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                    </div>
-                    <!--/Related Posts-->
+                        <!--/Related Posts-->
+                    @endif
 
                     <!--Comments-->
                     <div class="card">
@@ -232,7 +246,11 @@
                                 @if($course->price > 0)
                                     <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
                                 @else
-                                    <a href="#" class="btn btn-azure btn-lg btn-block">@lang("S'inscrire")</a>
+                                    @if(!$userAlreadyParticipate)
+                                        <a href="{{ route('course_user_participate', $course) }}" class="btn btn-azure btn-lg btn-block">@lang("S'inscrire")</a>
+                                    @else
+                                        <a href="{{ route('course_user_cancel_participation', $course) }}" class="btn btn-success btn-lg btn-block disabled">@lang("Vous suivez ce cours")</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -255,6 +273,8 @@
                                 </h6>
                             </div>
                         </div>
+                        @if($course->user->facebook_profile or $course->user->youtube_profile or $course->user->website or $course->user->instagram_profile
+                        or $course->user->pinterest_profile)
                         <div class="card-body item-user">
                             <h4 class="mb-4">@lang("Informations")</h4>
                             @if($course->user->website)
@@ -277,11 +297,11 @@
                                 @endif
                             </div>
                         </div>
+                        @endif
                         <div class="card-footer">
-                            <div class="text-left">
+                            <div class="text-center">
                                 <a href="#" class="btn  btn-primary"><i class="fa fa-envelope"></i> Chat</a>
                                 <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#contact"><i class="fa fa-user"></i> Contact Me</a>
-                                <a href="#" class="btn  btn-danger"><i class="fa fa-share"></i> Share</a>
                             </div>
                         </div>
                     </div>
