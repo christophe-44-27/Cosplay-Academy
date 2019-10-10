@@ -50,6 +50,7 @@ class CourseController extends Controller {
         $course->save();
 
         $currentUrl = $request->url();
+        $userAlreadyParticipate = false;
 
         $relatedCourses = Course::where('category_id', '=', $course->category->id)
                 ->where('is_published', '=', true)
@@ -57,7 +58,10 @@ class CourseController extends Controller {
                 ->limit(4)
                 ->get();
 
-        $userAlreadyParticipate = Auth::user()->courses()->where('course_id', $course->id)->exists();
+        if(Auth::user() && Auth::user()->courses)
+        {
+            $userAlreadyParticipate = Auth::user()->courses()->where('course_id', $course->id)->exists();
+        }
 
         return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate'));
     }

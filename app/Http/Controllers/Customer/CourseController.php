@@ -18,6 +18,18 @@ class CourseController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function myCourses()
+    {
+        $user = Auth::user();
+        $courses = $user->courses;
+        $action = 'my_courses';
+
+        return view('courses.course_liste', compact('user', 'courses', 'action'));
+    }
+
+    /**
      * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

@@ -97,54 +97,30 @@
 <script src="{{ asset('themes/frontend/plugins/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
 
 <!--JQuery Sparkline js-->
-<script src="../assets/js/jquery.sparkline.min.js"></script>
+<script src="{{ asset('themes/frontend/js/jquery.sparkline.min.js') }}"></script>
 
 <!-- Circle Progress js-->
-<script src="../assets/js/circle-progress.min.js"></script>
+<script src="{{ asset('themes/frontend/js/circle-progress.min.js') }}"></script>
 
 <!-- Star Rating js-->
-<script src="../assets/plugins/rating/jquery.rating-stars.js"></script>
-
-<!--Counters js-->
-<script src="../assets/plugins/counters/counterup.min.js"></script>
-<script src="../assets/plugins/counters/waypoints.min.js"></script>
-<script src="../assets/plugins/counters/numeric-counter.js"></script>
+<script src="{{ asset('themes/frontend/plugins/rating/jquery.rating-stars.min.js') }}"></script>
 
 <!--Owl Carousel js -->
 <script src="{{ asset('themes/frontend/plugins/owl-carousel/owl.carousel.js') }}"></script>
 
 <!--Horizontal Menu js-->
-<script src="../assets/plugins/horizontal-menu/horizontal-menu.js"></script>
-
-<!--JQuery TouchSwipe js-->
-<script src="../assets/js/jquery.touchSwipe.min.js"></script>
-
-<!--Select2 js -->
-<script src="../assets/plugins/select2/select2.full.min.js"></script>
-<script src="../assets/js/select2.js"></script>
-
-<!-- sticky js-->
-<script src="../assets/js/sticky.js"></script>
-
-<!-- Pscrollbar js -->
-<script src="../assets/plugins/pscrollbar/pscrollbar.js"></script>
-<script src="../assets/plugins/pscrollbar/pscroll.js"></script>
-
-<!-- Cookie js -->
-<script src="../assets/plugins/cookie/jquery.ihavecookies.js"></script>
-<script src="../assets/plugins/cookie/cookie.js"></script>
+<script src="{{ asset('themes/frontend/plugins/horizontal-menu/horizontal-menu.js') }}"></script>
 
 <!-- Custom scroll bar js-->
-<script src="../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
-
-<!-- Swipe js-->
-<script src="{{ asset('themes/frontend/js/swipe.js') }}"></script>
+<script src="{{ asset('themes/frontend/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 
 <!-- Scripts js-->
 <script src="{{ asset('themes/frontend/js/owl-carousel.js') }}"></script>
 
 <!-- Custom js-->
 <script src="{{ asset('themes/frontend/js/custom.js') }}"></script>
+
+@stack('javascripts')
 
 </body>
 </html>

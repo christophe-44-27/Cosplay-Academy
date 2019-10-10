@@ -38,6 +38,7 @@ include ('Guest/cart.php');
 include ('ConnectedUser/dashboard_routes.php');
 include ('ConnectedUser/courses.php');
 include ('Professor/dashboard.php');
+include ('ConnectedUser/cart.php');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

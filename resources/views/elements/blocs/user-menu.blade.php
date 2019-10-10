@@ -2,7 +2,7 @@
     <a href="{{ route('profile') }}" class="{{ ($action == 'edit_profile') ? 'active' : '' }} d-flex border-bottom">
         <span class="icon1 mr-3"><i class="icon icon-user"></i></span> @lang('Modifier mon profil')
     </a>
-    <a href="myads.html" class=" d-flex  border-bottom">
+    <a href="{{ route('course_users_registered') }}" class=" d-flex  border-bottom">
         <span class="icon1 mr-3"><i class="icon icon-diamond"></i></span> Mes cours
     </a>
     <a href="{{ route('course_favorite') }}" class="{{ ($action == 'course_favorites') ? 'active' : '' }} d-flex border-bottom">
@@ -12,9 +12,9 @@
         <span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Historique de paiement
     </a>
     <a href="settings.html" class="d-flex border-bottom">
-        <span class="icon1 mr-3"><i class="icon icon-settings"></i></span> Paramètres
+        <span class="icon1 mr-3"><i class="icon icon-lock"></i></span> Sécurité
     </a>
-    <a href="#" class="d-flex">
+    <a href="{{ route('logout') }}" class="d-flex">
         <span class="icon1 mr-3"><i class="icon icon-power"></i></span> Déconnexion
     </a>
 </div>

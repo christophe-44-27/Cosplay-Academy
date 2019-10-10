@@ -7,7 +7,7 @@
             <li><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
             <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages <span
                         class="nav-tag messages">2</span></a></li>
-            <li><a href="#"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
+            <li><a href="{{ route('stripe_overview') }}"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
         </ul>
 
         <ul data-submenu-title="Enseigner">
@@ -32,7 +32,7 @@
         </ul>
 
         <ul data-submenu-title="Mon compte">
-            <li><a href="#"><i class="sl sl-icon-user"></i> Mon profil</a></li>
+            <li><a href="{{ route('profile_professor') }}"><i class="sl sl-icon-user"></i> Mon profil de formateur</a></li>
             <li><a href="#"><i class="sl sl-icon-power"></i> Déconnexion</a></li>
         </ul>
 

@@ -12,7 +12,7 @@ class CartController extends Controller
 
     public function index()
     {
-        $items = LaraCart::getItems();
+        $items = LaraCart::get()->cart->items;
 
         return view('customer.cart.cart', compact('items'));
     }
@@ -40,7 +40,7 @@ class CartController extends Controller
      */
     public function addItem(Course $course)
     {
-        LaraCart::add($course->id, $course->title, 1, $course->amount);
+        LaraCart::add($course->id, $course->title, 1, $course->price);
 
         return redirect('cart')->with('success', Lang::get("Votre cours a bien été ajouté à votre panier."));
     }

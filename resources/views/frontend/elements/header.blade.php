@@ -12,15 +12,15 @@
             <div class="col-lg-4 col-md-12">
                 <div class="header-icons float-right">
                     <ul class="header-icons-link">
-                        <li class="">
-                            <a href="#" class="header-icons-link1"><i class="fa fa-cog"></i></a>
-                        </li>
-                        <li class="">
-                            <a href="#" class="header-icons-link1"><i class="fa fa-user"></i></a>
-                        </li>
+                        @auth()
+                            <li class="">
+                                <a href="{{ route('professor_dashboard') }}" class="header-icons-link1"><i class="fa fa-briefcase" data-toggle="tooltip"
+                                                                          data-placement="bottom" title="" data-original-title="@lang('Section formateur')"></i></a>
+                            </li>
+                        @endauth
                         <li class="">
                             <a href="{{ route('cart') }}" class="header-icons-link1"><i class="fa fa-cart-plus"></i>
-                                <span class="main-badge1 badge badge-danger badge-pill"> 3</span></a>
+                                <span class="main-badge1 badge badge-danger badge-pill"> {{ $cart_items }}</span></a>
                         </li>
                     </ul>
                 </div>

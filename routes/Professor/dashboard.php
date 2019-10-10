@@ -15,4 +15,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::post('courses/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
     Route::get('courses/{course}/unpublish', 'Professor\CourseController@unpublish')->name('professor_course_unpublish');
+
+    /** PROFILE PROFESSOR **/
+    Route::get('profile', 'Professor\ProfileController@index')->name('profile_professor');
+    Route::put('profile/{professor}/update', 'Professor\ProfileController@update')->name('profile_professor_update');
+    Route::post('profile/store', 'Professor\ProfileController@store')->name('profile_professor_store');
+
+    /** STRIPE WEBHOOK PROFESSOR */
+    Route::get('stripe/overview', 'Professor\StripeController@overview')->name('stripe_overview');
+    Route::get('stripe/profile/registration/success', 'Professor\ProfileController@registrationStripeSuccess');
+    Route::get('stripe/account/create/{professor}', 'Professor\ProfileController@createStripePaymentAccount')->name('stripe_create_account');
 });

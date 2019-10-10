@@ -35,6 +35,7 @@ class ProfileRequest extends FormRequest
             'facebook_profile' => 'nullable',
             'instagram_profile' => 'nullable',
             'pinterest_profile' => 'nullable',
+            'twitter_profile' => 'nullable',
             'website' => 'nullable',
             'twitter_page' => 'nullable',
 

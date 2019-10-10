@@ -26,7 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('youtube_profile', 255)->nullable();
             $table->string('instagram_profile', 255)->nullable();
             $table->string('pinterest_profile', 255)->nullable();
-            $table->string('stripe_customer_id', 255)->nullable();
+            $table->string('twitter_profile', 255)->nullable();
+            $table->string('website', 255)->nullable();
+            $table->string('stripe_cconect_account_id', 255)->nullable();
             $table->string('country')->nullable();
             $table->boolean('enabled')->default(0);
             $table->boolean('blocked')->default(0);

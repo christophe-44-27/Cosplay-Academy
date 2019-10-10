@@ -44,9 +44,11 @@ class ProfileController extends Controller
             'description' => $validated['description'],
             'country' => $validated['country'],
             'youtube_profile' => $validated['youtube_profile'],
+            'twitter_profile' => $validated['twitter_profile'],
             'facebook_profile' => $validated['facebook_profile'],
             'instagram_profile' => $validated['instagram_profile'],
             'pinterest_profile' => $validated['pinterest_profile'],
+            'website' => $validated['website'],
         ];
 
         //Mise à jour de la photo de profil

@@ -6,25 +6,17 @@
     <div class="row">
 
         <!-- Item -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="dashboard-stat color-1">
-                <div class="dashboard-stat-content wallet-totals"><h4>84.50</h4> <span>Withdrawable Balance <strong class="wallet-currency">USD</strong></span></div>
+                <div class="dashboard-stat-content wallet-totals"><h4>84.50</h4> <span>@lang("Vos gains de la semaine") <strong class="wallet-currency">CAD</strong></span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Money-2"></i></div>
             </div>
         </div>
         <!-- Item -->
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="dashboard-stat color-3">
-                <div class="dashboard-stat-content wallet-totals"><h4>245.15</h4> <span>Total Earnings <strong class="wallet-currency">USD</strong></span></div>
+                <div class="dashboard-stat-content wallet-totals"><h4>245.15</h4> <span>@lang("Vos gains de l'année (2019)") <strong class="wallet-currency">CAD</strong></span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Money-Bag"></i></div>
-            </div>
-        </div>
-
-        <!-- Item -->
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-stat color-2">
-                <div class="dashboard-stat-content"><h4>3</h4> <span>Total Orders</span></div>
-                <div class="dashboard-stat-icon"><i class="im im-icon-Shopping-Cart"></i></div>
             </div>
         </div>
 

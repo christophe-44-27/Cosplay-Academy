@@ -41,4 +41,5 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('courses/favorites', 'Course\FavoriteController@getCourseFavorites')->name('course_favorite');
     Route::get('courses/favorites/add/{course}', 'Course\FavoriteController@addToFavorite')->name('course_add_to_favorites');
     Route::get('courses/favorites/remove/{course}', 'Course\FavoriteController@removeFromFavorites')->name('course_favorite_remove');
+    Route::get('registered', 'Customer\CourseController@myCourses')->name('course_users_registered');
 });
