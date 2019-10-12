@@ -14,7 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico" />
 
     <!-- Title -->
-    <title> Eudica - Online Education & Learning Courses HTML CSS Responsive Template</title>
+    <title> Cosplay Academy - @lang("Plateforme d'apprentissage du cosplay")</title>
 
     <!-- Bootstrap css -->
     <link href="{{ asset('themes/frontend/plugins/bootstrap-4.3.1/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -166,7 +166,7 @@
 <!-- Custom js-->
 <script src="{{ asset('themes/frontend/js/custom.js') }}"></script>
 
-@stack('javascripts')
+    @stack('javascripts')
 
 </body>
 </html>

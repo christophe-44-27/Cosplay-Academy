@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Services\CourseService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -31,30 +32,30 @@ class FavoriteController extends Controller
     }
 
     /**
+     * @param CourseService $courseService
      * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function addToFavorite(Course $course) {
+    public function addToFavorite(CourseService $courseService, Course $course) {
         $user = Auth::user();
 
-        $user->courseFavorites()->attach([$course->id]);
-
+        $status = $courseService->addCourseToFavorite($user, $course);
 
         return redirect(route('course_favorite'))
-            ->with('success', Lang::get("Le cours a bien été ajouté à vos favoris"));
+            ->with('success', Lang::get($status));
     }
 
     /**
+     * @param CourseService $courseService
      * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function removeFromFavorites(Course $course) {
+    public function removeFromFavorites(CourseService $courseService, Course $course) {
         $user = Auth::user();
 
-        $user->courseFavorites()->detach($course->id);
-
+        $status = $courseService->removeCourseToFavorite($user, $course);
 
         return redirect(route('course_favorite'))
-            ->with('success', Lang::get("Le cours a bien été supprimé de vos favoris"));
+            ->with('success', Lang::get($status));
     }
 }

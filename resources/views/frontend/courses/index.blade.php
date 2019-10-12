@@ -239,12 +239,12 @@
                                                         <div class="card overflow-hidden">
                                                             <div class="item-card9-img">
                                                                 <div class="item-card9-imgs">
-                                                                    <a href="page-details.html"></a>
+                                                                    <a href="{{ route('course_details', $course) }}"></a>
                                                                     <img src="../assets/images/media/11.jpg" alt="img"
                                                                          class="cover-image">
                                                                 </div>
                                                                 <div class="item-card9-icons">
-                                                                    <a href="#" class="item-card9-icons1 bg-primary"> <i
+                                                                    <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card9-icons1 bg-primary"> <i
                                                                             class="fa fa fa-heart-o"></i></a>
                                                                     <a href="#" class="item-card9-icons1 bg-black-trasparant">
                                                                         <i class="fa fa fa-share-alt"></i></a>

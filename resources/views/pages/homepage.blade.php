@@ -1,6 +1,55 @@
 @extends('layout.base_layout')
 
 @section('content')
+    <section class="sptb pt-6 pb-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 col-sm-12 d-catmb mb-4 mb-xl-0">
+                    <div class="d-flex">
+                        <div>
+                            <span class="icon-service1 icon-primary fs-35">
+                                <i class="fe fe-layers"></i>
+                            </span></div>
+                        <div class="ml-4">
+                            <h3 class="mb-2 font-weight-bold">@lang("Diversifiez-vous")</h3>
+                            <p class="text-muted mb-0">@lang("Découvrez de nouvelles compétences enseignées par les meilleurs cosplayeurs")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 col-sm-12 d-catmb mb-4 mb-xl-0">
+                    <div class="d-flex">
+                        <div>
+                            <span class="icon-service1 icon-secondary fs-35">
+                                <i class="fe fe-book"></i>
+                            </span>
+                        </div>
+                        <div class="ml-4 mt-1">
+                            <h3 class=" mb-2 font-weight-bold">@lang("Nos cours")</h3>
+                            <p class="text-muted mb-0">@lang("Littéralement les meilleurs cours de cosplay, lancez-vous dans ce vaste monde")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 col-sm-12 d-catmb mb-4 mb-md-0">
+                    <div class="d-flex">
+                        <div>
+                            <span class="icon-service1 icon-success fs-35">
+                                <i class="fe fe-users"></i> </span></div>
+                        <div class="ml-4 mt-1"><h3 class=" mb-2 font-weight-bold">@lang("Nos experts")</h3>
+                            <p class="text-muted mb-0">@lang("Demandez de l'aide aux professeurs afin de vous débloquez sur leurs cours")</p></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 col-sm-12">
+                    <div class="d-flex">
+                        <div><span class="icon-service1 icon-warning fs-35"> <i class="fe fe-file-text"></i> </span>
+                        </div>
+                        <div class="ml-4 mt-1"><h3 class=" mb-2 font-weight-bold">@lang("Certification") </h3>
+                            <p class="text-muted mb-0">@lang("Obtenez une certification de réussite à l'issu du cours")</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!--Section-->
     <section class="sptb bg-white">
         <div class="container">
@@ -46,7 +95,13 @@
                         <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
                         <div class="item-card2-img">
                             <a href="page-details.html"></a>
-                            <img src="{{ asset('themes/frontend/images/media/pictures/6.jpg') }}" alt="img" class="cover-image">
+                            @if($course->thumbnail_picture)
+                                <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
+                                     class="cover-image">
+                            @else
+                                <img src="{{ asset('themes/frontend/images/media/pictures/6.jpg') }}" alt="img"
+                                     class="cover-image">
+                            @endif
                             <div class="item-tag">
                                 <h4  class="mb-0">
                                     @if($course->price and $course->price > 0)
@@ -102,8 +157,11 @@
                         </div>
                         <div class="card-footer">
                             <div class="item-card2-footer">
-                                <a class="btn btn-outline-light"><span class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
-                                <a class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i class="fa fa-heart"></i></span> Favoris</a>
+                                <a href="{{ route('course_details', $course) }}" class="btn btn-outline-dark"><span
+                                        class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
+                                <a href="{{ route('course_add_to_favorites', $course) }}"
+                                   class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i
+                                            class="fa fa-heart"></i></span> Favoris</a>
                             </div>
                         </div>
                     </div>
@@ -111,7 +169,120 @@
                 @endforeach
             </div>
         </div>
-    </section><!--/Section-->
+    </section>
+    <!--/Section-->
+
+    <section>
+        <div class="cover-image sptb bg-background">
+            <div class="header-text1 mb-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-7 col-md-12">
+                            <div class="text-white mt-xl-7 mb-5"><h1 class="mb-3 display-3">@lang("Devenir un")
+                                    <span class="font-weight-bold"> @lang("Professeur")</span>
+                                </h1>
+                                <p class="fs-18 mb-6">@lang("Vous êtes un ou une passionné(e) de cosplay et vous
+                                avez envie de transmettre vos compétences à d'autres cosplayeur ? Inscrivez-vous et mettez vos
+                                cours en ligne sur la Cosplay Academy ! Vous avez aussi envie de gagner de l'argent ? Aucun
+                                problème, vous pouvez créer des cours gratuits ou payants. A vous de voir !")</p>
+                                <a href="#" class="btn btn-primary btn-lg mr-2">@lang("Je m'inscris !")</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-12">
+                            <div class="card mb-0 shadow-none">
+                                <div class="card-body"><h3 class="mb-4">@lang("Je m'inscris!")</h3>
+                                    <form method="POST" action="{{route('register')}}">
+                                        @csrf
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fe fe-user fs-16 lh-0 op-6"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="@lang('Nom de cosplayeur')">
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fe fe-mail fs-16 lh-0 op-6"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="@lang("Courriel")">
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="fe fe-unlock fs-16 lh-0 op-6"></i>
+                                                </div>
+                                            </div>
+                                            <input type="password" class="form-control" placeholder="@lang("Mot de passe")">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">@lang("S'inscrire")</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /header-text -->
+        </div>
+    </section>
+
+    <section class="sptb">
+        <div class="container">
+            <div class="section-title center-block text-center"><h2>@lang("Comment ça marche ?")</h2> <span
+                    class="sectiontitle-design"><span class="icons"></span></span>
+                <p>@lang("Vous voulez donner des cours de cosplay ? Rien de plus simple !")</p></div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="">
+                        <div class="mb-lg-0 mb-4">
+                            <div class="service-card text-center">
+                                <div class="bg-white icon-bg  icon-service text-purple about"><img
+                                        src="{{ asset('themes/frontend/images/png/about/checklist.png') }}" alt="img"></div>
+                                <div class="servic-data mt-3"><h4 class="font-weight-semibold mb-2">@lang("Inscrivez-vous")</h4>
+                                    <p class="text-muted mb-0">@lang("L'inscription ne dure que 2min top chrono")</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="">
+                        <div class="mb-lg-0 mb-4">
+                            <div class="service-card text-center">
+                                <div class="bg-white icon-bg  icon-service text-purple about"><img
+                                        src="{{ asset('themes/frontend/images/png/about/pencil.png') }}" alt="img"></div>
+                                <div class="servic-data mt-3"><h4 class="font-weight-semibold mb-2">@lang("Rédigez vos cours")</h4>
+                                    <p class="text-muted mb-0">@lang("N'hésitez pas à demander de l'aide à nos conseillers !")</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="">
+                        <div class="mb-sm-0 mb-4">
+                            <div class="service-card text-center">
+                                <div class="bg-white icon-bg  icon-service text-purple about"><img
+                                        src="{{ asset('themes/frontend/images/png/about/employees.png') }}" alt="img"></div>
+                                <div class="servic-data mt-3"><h4 class="font-weight-semibold mb-2">@lang("Soumettez-le")</h4>
+                                    <p class="text-muted mb-0">@lang("Nous allons vérifier que votre cours correspond à nos standards")</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="">
+                        <div class="">
+                            <div class="service-card text-center">
+                                <div class="bg-white icon-bg  icon-service text-purple about"><img
+                                        src="{{ asset('themes/frontend/images/png/about/coins.png') }}" alt="img"></div>
+                                <div class="servic-data mt-3"><h4 class="font-weight-semibold mb-2">@lang("Gagnez de l'argent !")</h4>
+                                    <p class="text-muted mb-0">@lang("Si votre cours est payant, commencez à percevoir des revenus !")</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection
 
 @push('javascripts')

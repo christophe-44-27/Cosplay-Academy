@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Category;
+use App\Providers\AppServiceProvider;
+use App\Services\CourseService;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller {
@@ -67,19 +70,18 @@ class CourseController extends Controller {
     }
 
     /**
-     * This method is used to report some tutorial that are not in some good quality or
+     * This method is used to report some course that are not in some good quality or
      * no allowed by the CGU.
+     * @param CourseService $courseService
      * @param Request $request
-     * @param Course $tutorial
+     * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function reportTutorial(Request $request, Course $tutorial){
-        $tutorial->is_reported = true;
-        $tutorial->save();
+    public function reportTutorial(CourseService $courseService, Request $request, Course $course){
 
-        $tutorial->report($tutorial);
+        $courseService->reportCourse($course);
 
-        $request->session()->flash('success', 'Le tutoriel a bien été signalé !');
-        return redirect(route('tutorials'));
+        $request->session()->flash('success', Lang::get("Le cours a bien été signalé, un administrateur va vérifier le contenu du cours, merci de votre vigilance !"));
+        return redirect(route('course_details', $course));
     }
 }
