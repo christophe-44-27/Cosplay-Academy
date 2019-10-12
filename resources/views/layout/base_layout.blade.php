@@ -90,33 +90,19 @@
                     <div class="row">
                         <div class="col-xl-10 col-lg-12 col-md-12 d-block mx-auto">
                             <div class="search-background bg-transparent">
+                                {!! Form::open(['method' => 'get', 'url' => route('search_courses_homepage')]) !!}
                                 <div class="form row no-gutters ">
-                                    <div class="form-group  col-xl-4 col-lg-3 col-md-12 mb-0 bg-white ">
-                                        <input type="text" class="form-control input-lg br-tr-md-0 br-br-md-0" id="text4" placeholder="Search Courses.....">
-                                    </div>
-                                    <div class="form-group  col-xl-3 col-lg-3 col-md-12 mb-0 bg-white">
-                                        <input type="text" class="form-control input-lg br-md-0" id="text5" placeholder="Enter Location">
-                                        <span><i class="fa fa-map-marker location-gps mr-1"></i></span>
+                                    <div class="form-group  col-xl-6 col-lg-6 col-md-12 mb-0 bg-white ">
+                                        {!! Form::text('keywords', null, ['class' => 'form-control input-lg br-tr-md-0 br-br-md-0', 'placeholder' => \Illuminate\Support\Facades\Lang::get("Rechercher un cours....")])!!}
                                     </div>
                                     <div class="form-group col-xl-3 col-lg-3 col-md-12 select2-lg  mb-0 bg-white">
-                                        <select class="form-control select2-show-search  border-bottom-0" data-placeholder="Select Category">
-                                            <optgroup label="Categories">
-                                                <option>Select</option>
-                                                <option value="1">IT</option>
-                                                <option value="2">Language</option>
-                                                <option value="3">Science</option>
-                                                <option value="4">Health</option>
-                                                <option value="5">Humanities</option>
-                                                <option value="6">Business</option>
-                                                <option value="7">Math</option>
-                                                <option value="8">Marketing</option>
-                                            </optgroup>
-                                        </select>
+                                        {!! Form::select('category_id', [\Illuminate\Support\Facades\Lang::get("Catégories") => $listCategories], null, ['class' => 'form-control select2-show-search  border-bottom-0']) !!}
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-12 mb-0">
-                                        <a href="#" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">Search Here</a>
+                                        <button type="submit" class="btn btn-lg btn-block btn-primary br-tl-md-0 br-bl-md-0">@lang("Rechercher")</button>
                                     </div>
                                 </div>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>

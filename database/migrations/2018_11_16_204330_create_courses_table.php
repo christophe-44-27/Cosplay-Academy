@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -39,6 +40,8 @@ class CreateCoursesTable extends Migration
             $table->boolean('is_reported')->default(false);
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE courses ADD FULLTEXT title(title)');
     }
 
     /**

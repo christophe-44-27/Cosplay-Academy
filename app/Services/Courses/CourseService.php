@@ -62,4 +62,39 @@ class CourseService {
             return Lang::get("Ce cours ne fait pas partie de vos favoris.");
         }
     }
+
+    /**
+     * @param $keywords
+     * @param int $categoryId
+     * @return mixed
+     */
+    public function searchFromHomepage($keywords, int $categoryId)
+    {
+        $results = Course::select([
+            'id',
+            'title',
+            'category_id',
+            'user_id',
+            'content',
+            'thumbnail_picture',
+            'nb_views',
+            'nb_likes',
+            'created_at',
+            'updated_at',
+            'type_id',
+            'difficulty',
+            'price',
+            'slug',
+            'language_id'
+        ])
+        ->where('is_published', '=', true)
+        ->whereRaw("MATCH(title) AGAINST('" . $keywords . "*' IN BOOLEAN MODE)");
+
+        if(!empty($categoryId))
+        {
+            $results->where('category_id', '=', $categoryId);
+        }
+
+        return $results->paginate(15);
+    }
 }
