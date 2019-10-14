@@ -63,24 +63,6 @@
                                         {!! Form::text('lastname', $user->lastname, ['class' => 'form-control'])!!}
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label">@lang('Adresse')</label>
-                                        {!! Form::text('street_address', $user->street_address, ['class' => 'form-control'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-label">@lang('Ville')</label>
-                                        {!! Form::text('city', $user->city, ['class' => 'form-control'])!!}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
-                                        <label class="form-label">@lang('Code postal')</label>
-                                        {!! Form::text('zip_code', $user->zip_code, ['class' => 'form-control'])!!}
-                                    </div>
-                                </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="form-label">@lang('Pays')</label>
@@ -106,6 +88,12 @@
                                 </div>
                                 <div class="col-sm-6 col-md-6">
                                     <div class="form-group">
+                                        <label class="form-label">Twitter</label>
+                                        {!! Form::text('twitter_profile', $user->twitter_profile, ['class' => 'form-control'])!!}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
                                         <label class="form-label">Pinterest</label>
                                         {!! Form::text('pinterest_profile', $user->pinterest_profile, ['class' => 'form-control'])!!}
                                     </div>
@@ -114,6 +102,12 @@
                                     <div class="form-group">
                                         <label class="form-label">Instagram</label>
                                         {!! Form::text('instagram_profile', $user->instagram_profile, ['class' => 'form-control'])!!}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">@lang("Site web")</label>
+                                        {!! Form::text('website', $user->website, ['class' => 'form-control'])!!}
                                     </div>
                                 </div>
                                 <div class="col-md-12">

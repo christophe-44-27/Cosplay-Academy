@@ -11,7 +11,7 @@
     <a href="{{ route('payment_history') }}" class="{{ ($action == 'orders') ? 'active' : '' }} d-flex  border-bottom">
         <span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Historique de paiement
     </a>
-    <a href="settings.html" class="d-flex border-bottom">
+    <a href="{{ route('change-password') }}" class="{{ ($action == 'security') ? 'active' : '' }} d-flex border-bottom">
         <span class="icon1 mr-3"><i class="icon icon-lock"></i></span> Sécurité
     </a>
     <a href="{{ route('logout') }}" class="d-flex">

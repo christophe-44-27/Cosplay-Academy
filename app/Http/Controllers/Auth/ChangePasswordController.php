@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 
 class ChangePasswordController extends Controller {
 
@@ -19,19 +20,21 @@ class ChangePasswordController extends Controller {
     }
 
     public function showChangePasswordForm() {
-        $controller = 'security';
-        return view('dashboard.change-password', compact('controller'));
+        $user = Auth::user();
+
+        $action = 'security';
+        return view('dashboard.security.change_password', compact('action', 'user'));
     }
 
     public function changePassword(Request $request) {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error", "Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error", Lang::get("Votre mot de passe actuel ne correspond pas. Veuillez recommencer."));
         }
 
         if (strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error", "New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error", Lang::get('messages_flashs.password.same.error'));
         }
 
         $request->validate([
@@ -43,6 +46,6 @@ class ChangePasswordController extends Controller {
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
-        return redirect()->back()->with("success", "Password changed successfully !");
+        return redirect()->back()->with("success", Lang::get('messages_flashs.password.changed'));
     }
 }
