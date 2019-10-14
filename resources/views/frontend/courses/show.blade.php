@@ -263,7 +263,7 @@
                             <div class="profile-pic mb-0">
                                 <img src="{{ asset('storage/' . $course->user->avatar) }}" class="brround avatar-xxl" alt="user">
                                 <div >
-                                    <a href="userprofile.html" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">{{ $course->user->name }}</h4></a>
+                                    <a href="{{ route('user_profile', $course->user) }}" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">{{ $course->user->name }}</h4></a>
                                     <span class="text-muted">@lang("Membre depuis ") {{ \Illuminate\Support\Carbon::createFromTimeString($course->user->created_at)->format('M Y') }}</span>
                                 </div>
                                 <h6 class="mt-2 mb-0">

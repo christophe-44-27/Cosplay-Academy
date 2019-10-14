@@ -66,11 +66,11 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="form-label">@lang('Pays')</label>
-                                        <select name="country" class="form-control select2-show-search border-bottom-0 w-100 select2-show-search" data-placeholder="Select">
-                                            <option>@lang('Choisissez un pays')</option>
-                                            <option value="ca">Canada</option>
-                                            <option value="be">Belgique</option>
-                                            <option value="fr">France</option>
+                                        <select name="country_id" class="form-control select2-show-search border-bottom-0 w-100 select2-show-search" data-placeholder="Select">
+                                            <option value="">@lang('Choisissez un pays')</option>
+                                            @foreach($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

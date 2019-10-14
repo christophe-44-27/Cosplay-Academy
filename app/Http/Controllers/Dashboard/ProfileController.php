@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,9 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        return view('dashboard.profile.edit', compact('controller', 'user', 'action'));
+        $countries = Country::orderBy('name', 'ASC')->get();
+
+        return view('dashboard.profile.edit', compact('controller', 'user', 'action', 'countries'));
     }
 
     public function update(ProfileRequest $request)
@@ -42,7 +45,7 @@ class ProfileController extends Controller
             'lastname' => $validated['lastname'],
             'email' => $validated['email'],
             'description' => $validated['description'],
-            'country' => $validated['country'],
+            'country_id' => $validated['country_id'],
             'youtube_profile' => $validated['youtube_profile'],
             'twitter_profile' => $validated['twitter_profile'],
             'facebook_profile' => $validated['facebook_profile'],

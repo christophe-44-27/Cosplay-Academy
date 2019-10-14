@@ -29,7 +29,7 @@ class ProfileRequest extends FormRequest
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required',
-            'country' => 'required',
+            'country_id' => 'required',
             'description' => 'required',
             'youtube_profile' => 'nullable',
             'facebook_profile' => 'nullable',

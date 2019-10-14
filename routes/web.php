@@ -33,6 +33,7 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 /*** GUEST Section ***/
 include ('Guest/tutorials.php');
 include ('Guest/cart.php');
+include ('Guest/users.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/
