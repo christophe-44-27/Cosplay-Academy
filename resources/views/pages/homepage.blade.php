@@ -94,12 +94,12 @@
                     <div class="card mb-0">
                         <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
                         <div class="item-card2-img">
-                            <a href="page-details.html"></a>
+                            <a href="{{ route('course_details', $course) }}"></a>
                             @if($course->thumbnail_picture)
                                 <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
                                      class="cover-image">
                             @else
-                                <img src="{{ asset('themes/frontend/images/media/pictures/6.jpg') }}" alt="img"
+                                <img src="https://via.placeholder.com/740x440" alt="img"
                                      class="cover-image">
                             @endif
                             <div class="item-tag">
@@ -136,14 +136,14 @@
                             </div>
                         </div>
                         <div class="item-card2-icons">
-                            <a href="page-details.html" class="item-card2-icons-l"> <i class="fa fa-share-alt"></i></a>
-                            <a href="page-details.html" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                            <a href="{{ route('course_details', $course) }}" class="item-card2-icons-l"> <i class="fa fa-share-alt"></i></a>
+                            <a href="{{ route('course_details', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="item-card2">
                                 <div class="item-card2-desc">
                                     <div class="item-card2-text mb-3">
-                                        <a href="page-details.html" class="text-dark"><h4 class="mb-2">{{ $course->title }}</h4></a>
+                                        <a href="{{ route('course_details', $course) }}" class="text-dark"><h4 class="mb-2">{{ $course->title }}</h4></a>
                                     </div>
                                     <p class="">{{ \Illuminate\Support\Str::limit($course->content, 20) }} </p>
                                     <ul class="mb-0">

@@ -60,7 +60,7 @@
                                     <li class="mb-0">
                                         <a data-toggle="modal" data-target="#homeVideo" class="class-video p-0">
                                             {{--<div class="arrow-ribbon bg-primary">20% off</div>--}}
-                                            <img src="{{ asset('storage/' . $course->main_picture) }}" alt="img" class="img-responsive br-3">
+                                            <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img" class="img-responsive br-3">
                                             <span class="fe fe-play-circle text-white class-icon"></span>
                                         </a>
                                     </li>
