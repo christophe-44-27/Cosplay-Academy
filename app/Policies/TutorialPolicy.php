@@ -33,7 +33,7 @@ class TutorialPolicy
     }
 
     /**
-     * Determine whether the user can update the post.
+     * Determine whether the user can view the post.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Course  $tutorial
@@ -57,7 +57,7 @@ class TutorialPolicy
     }
 
     /**
-     * Determine whether the user can update the post.
+     * Determine whether the user can delete the post.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Course  $tutorial
