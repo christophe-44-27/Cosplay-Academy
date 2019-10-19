@@ -7,3 +7,9 @@ Route::group(['prefix' => 'courses'], function() {
     Route::get('/{course}', 'CourseController@show')->name('course_details');
     Route::get('/category/{filterValue}', 'CourseController@coursesByCategorie')->name('courses_by_category');
 });
+
+Route::group(['prefix' => 'tutorials'], function() {
+    Route::get('/', 'TutorialController@index')->name('tutorials');
+    Route::get('/{tutorial}', 'TutorialController@show')->name('tutorial_details');
+    Route::get('/category/{filterValue}', 'TutorialController@tutorialsByCategorie')->name('tutorials_by_category');
+});

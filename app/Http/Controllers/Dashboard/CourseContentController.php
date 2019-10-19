@@ -18,7 +18,8 @@ class CourseContentController extends Controller {
     }
     public function newContent(Course $tutorial, Session $session)
     {
-        return view('dashboard.tutorial-contents.new_content', compact('tutorial', 'session'));
+        $controller = 'courses';
+        return view('dashboard.tutorial-contents.new_content', compact('tutorial', 'session', 'controller'));
     }
 
     public function store(Course $tutorial, Session $session, Request $request)
@@ -34,7 +35,7 @@ class CourseContentController extends Controller {
                 $tutorialContent->session_id = $session->id;
                 $tutorialContent->save();
 
-                return redirect(route('tutorial_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
+                return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
                 break;
 
             case 'video':
@@ -55,6 +56,8 @@ class CourseContentController extends Controller {
         $url_video = null;
         $video = null;
 
+        $controller = 'courses';
+
         if($content->video_name)
         {
             $video = Storage::disk('s3')->getAdapter()->getClient()->getObject([
@@ -65,7 +68,7 @@ class CourseContentController extends Controller {
 
         $url_video = $video['@metadata']['effectiveUri'];
 
-        return view('dashboard.tutorial-contents.edit_content', compact('tutorial', 'content', 'types', 'url_video'));
+        return view('dashboard.tutorial-contents.edit_content', compact('tutorial', 'content', 'types', 'url_video', 'controller'));
     }
 
     /**
@@ -117,7 +120,7 @@ class CourseContentController extends Controller {
 
         $content->update($datas);
 
-        return redirect(route('tutorial_edit', $tutorial))->with('success', "Le contenu a bien été mis à jour.");
+        return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été mis à jour.");
     }
 
     /**
@@ -130,6 +133,6 @@ class CourseContentController extends Controller {
     {
         $content->delete($content);
 
-        return redirect(route('tutorial_edit', $tutorial))->with('success', "La session et son contenu ont bien été supprimés");
+        return redirect(route('professor_course_edit', $tutorial))->with('success', "La session et son contenu ont bien été supprimés");
     }
 }

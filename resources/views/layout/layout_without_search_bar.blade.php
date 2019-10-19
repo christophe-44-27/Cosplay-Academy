@@ -49,6 +49,7 @@
 
     <!-- Color Skin css -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('themes/frontend/color-skins/color6.css') }}" />
+    @stack('stylesheets')
 
 </head>
 <body>

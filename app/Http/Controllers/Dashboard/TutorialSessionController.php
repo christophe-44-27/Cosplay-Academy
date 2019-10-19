@@ -17,7 +17,8 @@ class TutorialSessionController extends Controller {
 
     public function newSession(Course $tutorial)
     {
-        return view('dashboard.tutorials.add_sessions', compact('tutorial'));
+        $controller = 'courses';
+        return view('professor.courses.add_sessions', compact('tutorial', 'controller'));
     }
 
     /**
@@ -29,10 +30,10 @@ class TutorialSessionController extends Controller {
     {
         $session = new Session();
         $session->name = $request->get('name');
-        $session->tutorial_id = $tutorial->id;
+        $session->course_id = $tutorial->id;
         $session->save();
 
-        return redirect(route('tutorial_edit', $tutorial))->with('success', "La session a bien été ajoutée.");
+        return redirect(route('professor_course_edit', $tutorial))->with('success', "La session a bien été ajoutée.");
     }
 
     /**
@@ -42,16 +43,16 @@ class TutorialSessionController extends Controller {
      */
     public function edit(Course $tutorial, Session $session)
     {
-        return view('dashboard.tutorials.edit_session', compact('tutorial', 'session'));
+        return view('professor.courses.edit_session', compact('tutorial', 'session'));
     }
 
     /**
-     * @param Course $tutorial
+     * @param Course $course
      * @param Session $session
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Course $tutorial, Session $session, Request $request)
+    public function update(Course $course, Session $session, Request $request)
     {
         $datas = [
             'name' => $request->get('name'),
@@ -59,19 +60,19 @@ class TutorialSessionController extends Controller {
 
         $session->update($datas);
 
-        return redirect(route('tutorial_edit', $tutorial))->with('success', "La session a bien été modifiée.");
+        return redirect(route('professor_course_edit', $course))->with('success', "La session a bien été modifiée.");
     }
 
     /**
-     * @param Course $tutorial
+     * @param Course $course
      * @param Session $session
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function remove(Course $tutorial, Session $session)
+    public function remove(Course $course, Session $session)
     {
         $session->delete();
 
-        return redirect(route('tutorial_edit', $tutorial))->with('success', "La session et son contenu ont bien été supprimés");
+        return redirect(route('professor_course_edit', $course))->with('success', "La session et son contenu ont bien été supprimés");
     }
 }

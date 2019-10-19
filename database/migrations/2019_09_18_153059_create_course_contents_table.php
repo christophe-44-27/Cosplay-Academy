@@ -17,7 +17,7 @@ class CreateCourseContentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type');
-            $table->string('content_article')->nullable(true);
+            $table->longText('content_article')->nullable(true);
             $table->string('video_name')->nullable(true);
             $table->unsignedBigInteger('session_id');
             $table->foreign('session_id')->references('id')->on('sessions');

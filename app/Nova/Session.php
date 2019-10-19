@@ -1,31 +1,35 @@
 <?php
 
 namespace App\Nova;
-
+use App\Models\Article;
+use App\Models\Video;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Security extends Resource
+class Session extends Resource
 {
+    /**
+     * @var string
+     */
+    public static $group = 'Apprentissage';
+
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\User';
+    public static $model = 'App\Models\Session';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = "Changer mon mot de passe";
-
-    /**
-     * Resource group displayed on the sidebar
-     * @var string
-     */
-    public static $group = 'Mon compte';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -45,15 +49,13 @@ class Security extends Resource
     public function fields(Request $request)
     {
         return [
-            Password::make('Password', 'password')
-                ->rules('string', 'min:6', 'confirmed')
-                ->creationRules('required')
-                ->updateRules('nullable'),
-
-            Password::make('Password Confirmation')
-                ->onlyOnForms()
-                ->rules('string', 'required_with:password')
-                ->fillUsing(function() {}),
+            ID::make()->sortable(),
+            Text::make('name'),
+            BelongsTo::make('Course'),
+            MorphTo::make('CourseContent')->types([
+                Article::class,
+                Video::class,
+            ])
         ];
     }
 

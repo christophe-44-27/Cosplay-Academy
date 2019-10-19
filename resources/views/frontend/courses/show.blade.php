@@ -1,5 +1,7 @@
 @extends('layout.layout_without_search_bar')
-
+@push('stylesheets')
+    <link href="{{ asset('themes/frontend/plugins/accordion/accordion.css') }}" rel="stylesheet" />
+@endpush
 @section('content')
     <!--Section-->
     <section class="sptb">
@@ -70,26 +72,42 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title mb-3 font-weight-bold">@lang("Contenu du cours")</h3>
+                            <h3 class="card-title">@lang("Contenu du cours")</h3>
                         </div>
                         <div class="card-body">
-                            {{--<div class="mb-4">--}}
-                                {{--@if(!empty($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)--}}
-                                    {{--@foreach($course->sessions as $session)--}}
-                                        {{--{{ $session->title }}--}}
-                                    {{--@endforeach--}}
-                                {{--@else--}}
-                                    {{--{{ $course->sessions->first()->name }}--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
+                            <ul class="accordionjs m-0">
+                                @if(!empty($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)
+                                    @foreach($course->sessions as $session)
+                                        <li class="acc_section {{ ($userAlreadyParticipate == true) ? 'acc_active' : '' }}">
+                                            <div class="acc_head"><h3>{{ $session->name }}</h3></div>
+                                            @if($userAlreadyParticipate == true)
+                                                <div class="acc_content">
+                                                    @if($session->content->type == 'article')
+                                                        {!! $session->content->content_article !!}
+                                                    @else
+                                                        URL VIDEO
+                                                    @endif
+                                                    <!-- Your text here. For this demo, the content is generated automatically. -->
+                                                </div>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li class="acc_section acc_active">
+                                        <div class="acc_head"><h3>{{ $course->sessions->first()->name }}</h3></div>
+                                        <div class="acc_content">
+                                            LOL
+                                            <!-- Your text here. For this demo, the content is generated automatically. -->
+                                        </div>
+                                    </li>
+                                @endif
+                            </ul>
                         </div>
                         <div class="card-footer">
                             <div class="btn-list">
-                                <a href="#" class="btn btn-primary"><i class="fe fe-credit-card mr-1"></i>Buy This Course</a>
-                                <a href="#" class="btn btn-secondary icons"><i class="fe fe-share-2 mr-1"></i> Share</a>
-                                <a href="#" class="btn btn-danger icons" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> Report Abuse</a>
-                                <a href="#" class="btn btn-success icons"><i class="icon icon-heart  mr-1"></i> 678</a>
-                                <a href="#" class="btn btn-warning icons"><i class="icon icon-printer  mr-1"></i> Print</a>
+                                <a href="#" class="btn btn-secondary icons"><i class="fe fe-share-2 mr-1"></i> @lang("Partager")</a>
+                                <a href="#" class="btn btn-danger icons" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> @lang("Signaler")</a>
+                                <a href="#" class="btn btn-primary icons"><i class="icon icon-heart  mr-1"></i> {{ $course->userFavorites->count() }}</a>
                             </div>
                         </div>
                     </div>
@@ -440,3 +458,6 @@
     </section>
     <!--/Onlinesletter-->
 @endsection
+@push('javascripts')
+    <script src="{{ asset('themes/frontend/plugins/accordion/accordion.min.js') }}"></script>
+@endpush

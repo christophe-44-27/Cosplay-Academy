@@ -14,7 +14,7 @@ class Session extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tutorial()
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }
