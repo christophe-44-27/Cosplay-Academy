@@ -20,11 +20,11 @@ class Session extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function content()
+    public function coursecontent()
     {
-        return $this->hasOne(CourseContent::class);
+        return $this->belongsToMany(CourseContent::class, 'content_sessions');
     }
 
     // this is a recommended way to declare event handlers

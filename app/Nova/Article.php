@@ -1,29 +1,21 @@
 <?php
 
 namespace App\Nova;
-use App\Models\Article;
-use App\Models\Video;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
+
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\MorphTo;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Session extends Resource
+class Article extends Resource
 {
-    /**
-     * @var string
-     */
-    public static $group = 'Apprentissage';
-
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Session';
+    public static $model = 'App\Models\Article';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,7 +30,7 @@ class Session extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'content',
     ];
 
     /**
@@ -51,9 +43,8 @@ class Session extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('name'),
-            BelongsTo::make('Course'),
-            BelongsToMany::make('CourseContent')
+            Trix::make('content'),
+            Boolean::make('free_preview')
         ];
     }
 
