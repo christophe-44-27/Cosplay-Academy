@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div id="add-listing">
-            {!! Form::model('', ['method' => 'post', 'url' => route('tutorial_session_store', $tutorial)]) !!}
+            {!! Form::model('', ['method' => 'post', 'url' => route('course_session_store', $course)]) !!}
             <!-- Section -->
                 <div class="add-listing-section">
 

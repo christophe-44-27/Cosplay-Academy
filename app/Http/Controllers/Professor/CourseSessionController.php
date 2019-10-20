@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Professor;
 
 use App\Models\Session;
 use App\Models\Course;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TutorialSessionController extends Controller {
+class CourseSessionController extends Controller {
     /**
      * TutorialController constructor.
      */
@@ -15,35 +15,44 @@ class TutorialSessionController extends Controller {
         $this->middleware('auth');
     }
 
-    public function newSession(Course $tutorial)
+    /**
+     * @param Course $course
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function newSession(Course $course)
     {
         $controller = 'courses';
-        return view('professor.courses.add_sessions', compact('tutorial', 'controller'));
+        return view('professor.courses.add_sessions', compact('course', 'controller'));
     }
 
     /**
-     * @param Course $tutorial
+     * @param Course $course
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Course $tutorial, Request $request)
+    public function store(Course $course, Request $request)
     {
+        $lastSavedSession = Session::where('course_id', '=', $course->id)->get()->last();
+
         $session = new Session();
         $session->name = $request->get('name');
-        $session->course_id = $tutorial->id;
+        $session->course_id = $course->id;
+        $session->order = ($lastSavedSession) ? $lastSavedSession->order + 1 : 1;
         $session->save();
 
-        return redirect(route('professor_course_edit', $tutorial))->with('success', "La session a bien été ajoutée.");
+        return redirect(route('professor_course_edit', $course))->with('success', "La session a bien été ajoutée.");
     }
 
     /**
-     * @param Course $tutorial
+     * @param Course $course
      * @param Session $session
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Course $tutorial, Session $session)
+    public function edit(Course $course, Session $session)
     {
-        return view('professor.courses.edit_session', compact('tutorial', 'session'));
+        $controller = 'courses';
+
+        return view('professor.courses.edit_session', compact('course', 'session', 'controller'));
     }
 
     /**
@@ -71,6 +80,19 @@ class TutorialSessionController extends Controller {
      */
     public function remove(Course $course, Session $session)
     {
+
+        $sessionsToRearrange = Session::where('course_id', '=', $course->id)->where('order', '>', $session->order)->get();
+
+        foreach ($sessionsToRearrange as $sessionToReorder)
+        {
+            $sessionToReorder->order = $sessionToReorder->order - 1;
+            $datas = [
+                'order' => $sessionToReorder->order
+            ];
+
+            $sessionToReorder->update($datas);
+        }
+
         $session->delete();
 
         return redirect(route('professor_course_edit', $course))->with('success', "La session et son contenu ont bien été supprimés");

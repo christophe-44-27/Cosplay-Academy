@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-12">
                             <h5>Description</h5>
-                            {!! Form::textarea('content', $course->content)!!}
+                            {!! Form::textarea('content', $course->introduction)!!}
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                     <div class="add-listing-headline">
                         <h3>
                             <i class="sl sl-icon-docs"></i> Programme du cours -
-                            <span><a href="{{ route('tutorial_session_new', $course) }}" style="color: #f91942; !important;">Ajouter une session</a></span>
+                            <span><a href="{{ route('course_session_new', $course) }}" style="color: #f91942; !important;">Ajouter une session</a></span>
                         </h3>
                     </div>
                     @if($course->sessions)
@@ -102,11 +102,11 @@
                                                         Modifier le contenu
                                                     </a>
                                                 @endif
-                                                <a href="{{ route('tutorial_session_edit', ['course' => $course, 'session' => $session]) }}"
+                                                <a href="{{ route('course_session_edit', ['course' => $course, 'session' => $session]) }}"
                                                    class="button preview" style="overflow: unset; margin-top: unset;background-color: #FB8628">
                                                     Modifier
                                                 </a>
-                                                <a href="{{ route('dashboard_tutorial_remove_session', ['course' => $course, 'session' => $session]) }}"
+                                                <a href="{{ route('dashboard_course_remove_session', ['course' => $course, 'session' => $session]) }}"
                                                    class="button preview" style="overflow: unset; margin-top: unset;">
                                                     Supprimer
                                                 </a>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-
+            @include('elements.blocs.listeo_notifications');
             <div id="add-listing">
             {!! Form::model($course, ['method' => 'post', 'url' => route('professor_course_create', $course), 'enctype' => 'multipart/form-data']) !!}
                 <!-- Section -->
@@ -29,8 +29,8 @@
                             {!! Form::text('price', $course->price) !!}
                         </div>
                         <div class="col-md-12">
-                            <h5>Description</h5>
-                            {!! Form::textarea('content', $course->content)!!}
+                            <h5>@lang("Introduction")</h5>
+                            {!! Form::textarea('introduction', $course->introduction)!!}
                         </div>
                     </div>
 
@@ -54,10 +54,6 @@
                         <div class="col-md-6">
                             <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
                             {!! Form::file('course_image') !!}
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Mots clés <i class="tip" data-tip-content="Afin d'améliorer le référencement de vos tutoriels, vous pouvez ajouter 10 mots clés différents."></i></h5>
-                            <input name="keywords" type="text" placeholder="Les mots clés doivent être séparés par des virgules.">
                         </div>
                     </div>
                     <!-- Row / End -->

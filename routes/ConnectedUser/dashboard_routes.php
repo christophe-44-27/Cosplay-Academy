@@ -10,11 +10,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     /** ORDERS */
     Route::get('purchased-history', 'Customer\PaymentController@index')->name('payment_history');
     /** TUTORIELS SESSIONS */
-    Route::get('tutorials/{tutorial}/sessions/new', 'Dashboard\TutorialSessionController@newSession')->name('tutorial_session_new');
-    Route::get('tutorials/{tutorial}/sessions/{session}/edit', 'Dashboard\TutorialSessionController@edit')->name('tutorial_session_edit');
-    Route::post('tutorials/{tutorial}/sessions/store', 'Dashboard\TutorialSessionController@store')->name('tutorial_session_store');
-    Route::put('tutorials/{tutorial}/sessions/update/{session}', 'Dashboard\TutorialSessionController@update')->name('tutorial_session_update');
-    Route::get('tutorials/{tutorial}/sessions/{session}/remove', 'Dashboard\TutorialSessionController@remove')->name('dashboard_tutorial_remove_session');
+    Route::get('courses/{course}/sessions/new', 'Professor\CourseSessionController@newSession')->name('course_session_new');
+    Route::get('courses/{course}/sessions/{session}/edit', 'Professor\CourseSessionController@edit')->name('course_session_edit');
+    Route::post('courses/{course}/sessions/store', 'Professor\CourseSessionController@store')->name('course_session_store');
+    Route::put('courses/{course}/sessions/update/{session}', 'Professor\CourseSessionController@update')->name('course_session_update');
+    Route::get('courses/{course}/sessions/{session}/remove', 'Professor\CourseSessionController@remove')->name('dashboard_course_remove_session');
     /** REVIEWS **/
     Route::get('reviews', 'Dashboard\ReviewController@index')->name('reviews');
     /** TUTORIELS CONTENUS **/

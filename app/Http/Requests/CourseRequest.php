@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class TutorialRequest extends FormRequest {
+class CourseRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +26,7 @@ class TutorialRequest extends FormRequest {
             'title' => 'required',
             'category_id' => 'required',
             'type_id' => 'required',
-            'content' => 'required',
+            'introduction' => 'required',
             'language_id' => 'required',
             'difficulty' => 'required',
 //            'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
@@ -44,7 +44,7 @@ class TutorialRequest extends FormRequest {
     {
         return [
             'title.required' => 'A title is required',
-            'content.required'  => 'A message is required',
+            'introduction.required'  => 'A message is required',
 //            'thumbnail_picture.required' => 'Vous devez mettre une image de "miniature"',
 //            'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
 //            'main_picture.required' => 'Vous devez mettre une image de couverture',

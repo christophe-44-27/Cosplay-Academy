@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSessionsTable extends Migration
+class CreateCourseFavoriteUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->unique();
+        Schema::create('course_favorite_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->integer('order')->default(0);
         });
     }
 
@@ -29,6 +28,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('course_favorite_user');
     }
 }

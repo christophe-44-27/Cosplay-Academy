@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Professor;
 
-use App\Http\Requests\TutorialRequest;
+use App\Http\Requests\CourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Services\SessionService;
 use App\Models\Language;
@@ -51,13 +51,13 @@ class CourseController extends Controller {
     }
 
     /**
-     * @param TutorialRequest $request
+     * @param CourseRequest $request
      * @param TutorialService $tutorialService
      * @param FileUploadService $fileUploadService
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create(
-        TutorialRequest $request,
+        CourseRequest $request,
         FileUploadService $fileUploadService,
         TutorialService $tutorialService
     )
@@ -72,12 +72,10 @@ class CourseController extends Controller {
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
             'type_id' => $validated['type_id'],
-            'content' => $validated['content'],
+            'introduction' => $validated['introduction'],
             'thumbnail_picture' => $thumbnail,
             'main_picture' => $main_picture,
             'difficulty' => $validated['difficulty'],
-            'nb_views' => 0,
-            'nb_likes' => 0,
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
@@ -130,14 +128,13 @@ class CourseController extends Controller {
         $arrayToUpdate = [
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
-            'content' => $validated['content'],
+            'introduction' => $validated['introduction'],
             'price' => $request->request->get('price'),
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
             'type_id' => $validated['type_id'],
-            'difficulty' => $validated['difficulty'],
-            'keywords' => $validated['keywords']
+            'difficulty' => $validated['difficulty']
         ];
 
         if ($request->file('thumbnail_picture')) {

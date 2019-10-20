@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div id="add-listing">
-            {!! Form::model($session, ['method' => 'put', 'url' => route('tutorial_session_update', ['tutorial' => $tutorial, 'session' => $session])]) !!}
+            {!! Form::model($session, ['method' => 'put', 'url' => route('course_session_update', ['course' => $course, 'session' => $session])]) !!}
             <!-- Section -->
                 <div class="add-listing-section">
 
