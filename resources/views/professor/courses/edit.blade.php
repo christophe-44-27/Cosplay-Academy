@@ -2,6 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
+            @include('elements.blocs.listeo_notifications')
             <div id="add-listing">
             {!! Form::model($course, ['method' => 'put', 'url' => route('professor_course_update', $course), 'enctype' => 'multipart/form-data']) !!}
                 <!-- Section -->
@@ -28,7 +29,7 @@
                         </div>
                         <div class="col-md-12">
                             <h5>Description</h5>
-                            {!! Form::textarea('content', $course->introduction)!!}
+                            {!! Form::textarea('introduction', $course->introduction)!!}
                         </div>
                     </div>
 
@@ -60,10 +61,6 @@
                                 @lang("Miniature actuelle")
                                 <img src="{{ asset('storage/' . $course->thumbnail_picture) }}">
                             @endif
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Mots clés <i class="tip" data-tip-content="Afin d'améliorer le référencement de vos tutoriels, vous pouvez ajouter 10 mots clés différents."></i></h5>
-                            {!! Form::text('keywords', $course->keywords, ['placeholder' => "Les mots clés doivent être séparés par des virgules."]) !!}
                         </div>
                     </div>
                     <!-- Row / End -->
@@ -111,6 +108,34 @@
                                                     Supprimer
                                                 </a>
                                             </div>
+                                            @if(count($session->contents) > 0)
+                                                <div class="col-md-12">
+                                                    <table class="basic-table border">
+                                                        <tr>
+                                                            <th>@lang("Nom du contenu")</th>
+                                                            <th>@lang("Type de contenu")</th>
+                                                            <th>@lang("Actions")</th>
+                                                        </tr>
+                                                        @foreach($session->contents as $content)
+                                                            <tr>
+                                                                <td data-label="@lang("Nom du contenu")">{{ $content->name  }}</td>
+                                                                <td data-label="@lang("Type du contenu")">{{ $content->type }}</td>
+                                                                <td data-label="@lang("Action sur le contenu")">
+                                                                    <a href="{{ route('dashboard_tutorial_edit_content', ['course' => $course, 'content' => $content]) }}"
+                                                                       class="button preview" style="overflow: unset; margin-top: unset;background-color: #FB8628">
+                                                                        Modifier
+                                                                    </a>
+                                                                    <a href="{{ route('professor_course_content_delete', ['course' => $course, 'content' => $content]) }}"
+                                                                       class="button preview" style="overflow: unset; margin-top: unset;">
+                                                                        Supprimer
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
+                                                    <hr>
+                                                </div>
+                                            @endif
                                         </div>
                                     @endforeach
                                 @endif

@@ -26,7 +26,7 @@ class UpdateCourseRequest extends FormRequest
         return [
             'title' => 'required',
             'category_id' => 'required',
-            'content' => 'required',
+            'introduction' => 'required',
             'language_id' => 'required',
             'difficulty' => 'required',
             'type_id' => 'required',
@@ -45,7 +45,7 @@ class UpdateCourseRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required',
-            'content.required' => 'A message is required',
+            'introduction.required' => 'A message is required',
             'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
             'main_picture.dimensions' => 'Minimum dimensions are 700x500px',
         ];

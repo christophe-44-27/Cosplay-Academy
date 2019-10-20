@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Session;
 use App\Models\Course;
-use App\Models\CourseContent;
+use App\Models\Content;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +28,7 @@ class CourseContentController extends Controller {
         {
             case 'article':
 
-                $tutorialContent = new CourseContent();
+                $tutorialContent = new Content();
                 $tutorialContent->name = $request->get('name');
                 $tutorialContent->type = $request->get('content_type');
                 $tutorialContent->content_article = $request->get('article_content');
@@ -47,10 +47,10 @@ class CourseContentController extends Controller {
 
     /**
      * @param Course $tutorial
-     * @param CourseContent $content
+     * @param Content $content
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Course $tutorial, CourseContent $content)
+    public function edit(Course $tutorial, Content $content)
     {
         $types = ['article' => 'Articles', 'video' => 'Vidéo'];
         $url_video = null;
@@ -73,11 +73,11 @@ class CourseContentController extends Controller {
 
     /**
      * @param Course $tutorial
-     * @param CourseContent $content
+     * @param Content $content
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Course $tutorial, CourseContent $content, Request $request)
+    public function update(Course $tutorial, Content $content, Request $request)
     {
         $datas = [];
 
@@ -125,11 +125,11 @@ class CourseContentController extends Controller {
 
     /**
      * @param Course $tutorial
-     * @param CourseContent $content
+     * @param Content $content
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
-    public function remove(Course $tutorial, CourseContent $content)
+    public function remove(Course $tutorial, Content $content)
     {
         $content->delete($content);
 

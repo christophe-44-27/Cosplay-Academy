@@ -20,10 +20,10 @@ class Session extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function coursecontent()
+    public function contents()
     {
-        return $this->belongsToMany(CourseContent::class, 'content_sessions');
+        return $this->hasMany(Content::class);
     }
 }

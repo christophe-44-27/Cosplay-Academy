@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseContentsTable extends Migration
+class CreateContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCourseContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_contents', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type');
@@ -31,6 +31,6 @@ class CreateCourseContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_contents');
+        Schema::dropIfExists('contents');
     }
 }

@@ -5,6 +5,7 @@
         <!-- Listings -->
         <div class="col-lg-12 col-md-12">
             <div class="dashboard-list-box margin-top-0">
+                @include('elements.blocs.listeo_notifications')
                 <h4>@lang("Mes cours")</h4>
                 @if(count($courses) > 0)
                     <ul>

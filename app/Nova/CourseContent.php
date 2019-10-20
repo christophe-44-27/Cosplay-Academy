@@ -13,7 +13,7 @@ class CourseContent extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Models\CourseContent';
+    public static $model = 'App\Models\Content';
 
     /**
      * The single value that should be used to represent the resource when being displayed.

@@ -11,7 +11,7 @@
 
 @if(Session::has('success'))
     <div class="notification success closeable">
-        <p><span>Success!</span> {{ Session::get('success') }}</p>
+        <p>{{ Session::get('success') }}</p>
         <a class="close" href="#"></a>
     </div>
     <div class="alert alert-success"></div>

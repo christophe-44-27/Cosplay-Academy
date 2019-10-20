@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\ProfessorProfile;
 use App\Models\Session;
 use App\Models\Course;
-use App\Models\CourseContent;
+use App\Models\Content;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
         Route::model('course', Course::class);
         Route::model('session', Session::class);
-        Route::model('content', CourseContent::class);
+        Route::model('content', Content::class);
         Route::model('professor', ProfessorProfile::class);
         Route::model('user', User::class);
     }
