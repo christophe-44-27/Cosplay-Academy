@@ -11,10 +11,20 @@
         </ul>
 
         <ul data-submenu-title="Enseigner">
-            <li class="{{ ($controller == 'tutorials') ? 'active' : '' }}">
+            <li class="{{ ($controller == 'courses') ? 'active' : '' }}">
                 <a><i class="sl sl-icon-layers"></i> @lang('Mes cours')</a>
                 <ul>
-                    <li><a href="{{ route('professor_course_list') }}">Publiés <span class="nav-tag green">6</span></a>
+                    <li>
+                        <a href="{{ route('professor_course_list') }}">
+                            @lang("Tous mes cours")
+                            <span class="nav-tag green">{{ $published_courses }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('professor_course_waiting_moderation_list') }}">
+                            @lang("En attente de modération")
+                            <span class="nav-tag green">{{ $to_moderate_courses }}</span>
+                        </a>
                     </li>
                 </ul>
             </li>

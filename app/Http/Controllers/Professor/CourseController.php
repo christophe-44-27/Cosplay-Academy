@@ -33,6 +33,21 @@ class CourseController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate(6);
         $controller = 'courses';
+
+        return view('professor.courses.index', compact('courses', 'controller'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function waitingForModeration() {
+        $courses = Course::where('user_id', '=', Auth::user()->id)
+            ->where('is_published', '=', false)
+            ->where('is_reported', '=', false)
+            ->orderBy('id', 'desc')
+            ->paginate(6);
+        $controller = 'courses';
+
         return view('professor.courses.index', compact('courses', 'controller'));
     }
 
@@ -159,6 +174,21 @@ class CourseController extends Controller {
      * @throws \Exception
      */
     public function delete(Course $course) {
+
+        if($course->sessions()) {
+            foreach ($course->sessions as $session)
+            {
+                if($session->contents)
+                {
+                    foreach ($session->contents as $content)
+                    {
+                        $content->delete();
+                    }
+                }
+                $session->delete();
+            }
+        }
+
         $course->delete();
 
         return redirect(route('professor_course_list'))->with('success', Lang::get("Le cours a bien été supprimé !"));

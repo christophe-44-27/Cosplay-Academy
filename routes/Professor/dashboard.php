@@ -7,6 +7,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     /** COURSES **/
     Route::get('courses', 'Professor\CourseController@index')->name('professor_course_list');
+    Route::get('courses/to-moderate', 'Professor\CourseController@waitingForModeration')->name('professor_course_waiting_moderation_list');
     Route::get('courses/new', 'Professor\CourseController@newTutorial')->name('professor_course_new');
     Route::post('courses/create', 'Professor\CourseController@create')->name('professor_course_create');
     Route::get('courses/{course}/edit', 'Professor\CourseController@edit')->name('professor_course_edit');
