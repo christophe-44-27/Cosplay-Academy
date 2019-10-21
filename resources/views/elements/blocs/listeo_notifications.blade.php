@@ -10,9 +10,14 @@
 @endif
 
 @if(Session::has('success'))
-    <div class="notification success closeable">
-        <p>{{ Session::get('success') }}</p>
-        <a class="close" href="#"></a>
+    <!-- Notice -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="notification success closeable">
+                <p>{{ Session::get('success') }}</p>
+                <a class="close" href="#"></a>
+            </div>
+            <div class="alert alert-success"></div>
+        </div>
     </div>
-    <div class="alert alert-success"></div>
 @endif

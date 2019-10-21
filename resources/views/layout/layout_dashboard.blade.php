@@ -107,7 +107,6 @@
             <div id="titlebar">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Howdy, Tom!</h2>
                         <!-- Breadcrumbs -->
                         <nav id="breadcrumbs">
                             <ul>
@@ -119,15 +118,7 @@
                 </div>
             </div>
 
-            <!-- Notice -->
-            {{--<div class="row">--}}
-                {{--<div class="col-md-12">--}}
-                    {{--<div class="notification success closeable margin-bottom-30">--}}
-                        {{--<p>Your listing <strong>Hotel Govendor</strong> has been approved!</p>--}}
-                        {{--<a class="close" href="#"></a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+
 
             @yield('content')
 
