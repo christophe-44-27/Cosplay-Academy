@@ -5,7 +5,7 @@
     <div class="dashboard-nav-inner">
         <ul data-submenu-title="Main">
             <li class="{{ ($controller == 'dashboard') ? 'active' : '' }}"><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
-            <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages <span
+            <li class="{{ ($controller == 'inbox') ? 'active' : '' }}"><a href="{{ route('inbox') }}"><i class="sl sl-icon-envelope-open"></i> Messages <span
                         class="nav-tag messages">2</span></a></li>
             <li><a href="{{ route('stripe_overview') }}"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
         </ul>

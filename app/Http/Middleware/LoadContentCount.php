@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\Tutorial;
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use LukePOLO\LaraCart\Facades\LaraCart;
 
 class LoadContentCount {
     /**
