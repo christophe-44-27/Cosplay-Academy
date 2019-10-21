@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\AuthorScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
@@ -11,6 +10,23 @@ class Course extends Model
     protected $table = 'courses';
     public $timestamps = true;
     protected $guarded = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($course){
+            $course->recordFeed('created');
+        });
+
+        static::updated(function($course){
+            $course->recordFeed('updated');
+        });
+
+        static::deleted(function($course){
+            $course->recordFeed('deleted');
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -99,5 +115,24 @@ class Course extends Model
     public function participants()
     {
         return $this->belongsToMany(User::class, 'course_participations', 'course_id');
+    }
+
+    /**
+     * @param $event
+     */
+    public function recordFeed($event)
+    {
+        $this->feeds()->create([
+            'user_id' => auth()->id(),
+            'type' => $event . '_' . strtolower(class_basename($this)),
+        ]);
+    }
+
+    /**
+     * Get all of the course's feeds.
+     */
+    public function feeds()
+    {
+        return $this->morphMany(Feed::class, 'feedable');
     }
 }

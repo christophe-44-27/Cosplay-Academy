@@ -36,7 +36,7 @@
                             </div>
                             <div class="buttons-to-right">
                                 <a href="{{ route('professor_course_edit', $course) }}" class="button gray"><i class="sl sl-icon-note"></i> @lang("Modifier")</a>
-                                <a href="#" class="button gray"><i class="sl sl-icon-close"></i> @lang("Supprimer")</a>
+                                <a href="{{ route('professor_course_remove', $course) }}" class="button gray"><i class="sl sl-icon-close"></i> @lang("Supprimer")</a>
                             </div>
                         </li>
                         <!-- Reply to review popup -->

@@ -44,43 +44,62 @@
         <!-- Recent Activity -->
         <div class="col-lg-6 col-md-12">
             <div class="dashboard-list-box with-icons margin-top-20">
-                <h4>Recent Activities</h4>
-                <ul>
-                    <li>
-                        <i class="list-box-icon sl sl-icon-layers"></i> Your listing <strong><a href="#">Hotel Govendor</a></strong> has been approved!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="5.0"></div> on <strong><a href="#">Burger House</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="3.0"></div> on <strong><a href="#">Airport</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> John Doe left a review <div class="numerical-rating" data-rating="4.0"></div> on <strong><a href="#">Burger House</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Jack Perry left a review <div class="numerical-rating" data-rating="2.5"></div> on <strong><a href="#">Tom's Restaurant</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h4>@lang("Vos dernières activités")</h4>
+                @if(count($userFeeds) > 0)
+                    <ul>
+                        @foreach($userFeeds as $feed)
+                            @switch($feed->type)
+                                @case('created_course')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-doc"></i>
+                                        Vous avez créé le cours
+                                        <strong><a href="#"> {{ ($feed->feedable) ? $feed->feedable->title : ' (cours supprimé)' }}</a></strong> !
+                                    </li>
+                                    @break
+                                @case('updated_course')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-pencil"></i>
+                                        Vous avez modifié le cours
+                                        <strong><a href="#"> {{ ($feed->feedable) ? $feed->feedable->title : ' (cours supprimé)' }}</a></strong> .
+                                    </li>
+                                    @break
+                                @case('deleted_course')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-trash"></i> Vous avez supprimé un cours.
+                                    </li>
+                                    @break
+                                @case('created_tutorial')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-doc"></i>
+                                        Vous avez créé le tutoriel
+                                        <strong><a href="#"> {{ ($feed->feedable) ? $feed->feedable->title : ' (tutoriel supprimé)' }}</a></strong> !
+                                    </li>
+                                    @break
+                                @case('updated_tutorial')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-pencil"></i>
+                                        Vous avez modifié le tutoriel
+                                        <strong><a href="#"> {{ ($feed->feedable) ? $feed->feedable->title : ' (tutoriel supprimé)' }}</a></strong> .
+                                    </li>
+                                    @break
+                                @case('deleted_tutorial')
+                                    <li>
+                                        <i class="list-box-icon sl sl-icon-trash"></i> Vous avez supprimé un tutoriel.
+                                    </li>
+                                    @break
+                            @endswitch
+                        @endforeach
+                    </ul>
+                @else
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="notification warning closeable">
+                                <p>@lang("Vous n'avez aucune activité récente sur votre compte.")</p>
+                            </div>
+                            <div class="alert alert-success"></div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 

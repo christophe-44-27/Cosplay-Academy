@@ -154,13 +154,14 @@ class CourseController extends Controller {
     }
 
     /**
-     * @param string $slug
+     * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
-    public function delete(string $slug) {
-        $tutorial = Course::where('slug', '=', $slug)->firstOrFail();
-        $tutorial->delete();
-        return redirect(route('dashboard_tutorials_list'));
+    public function delete(Course $course) {
+        $course->delete();
+
+        return redirect(route('professor_course_list'))->with('success', Lang::get("Le cours a bien été supprimé !"));
     }
 
     /**

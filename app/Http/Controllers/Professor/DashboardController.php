@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Professor;
 
 use App\Models\Course;
 use App\Http\Controllers\Controller;
+use App\Models\Feed;
 use App\Models\Tutorial;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,8 @@ class DashboardController extends Controller
         $nbCours = Course::where('user_id', '=', $user->id)->count();
         $nbTutorials = Tutorial::where('user_id', '=', $user->id)->count();
 
-        return view('professor.dashboard', compact('controller', 'nbCours', 'nbTutorials'));
+        $userFeeds = Feed::where('user_id', '=', $user->id)->limit(6)->orderBy('id', 'DESC')->get();
+
+        return view('professor.dashboard', compact('controller', 'nbCours', 'nbTutorials', 'userFeeds'));
     }
 }
