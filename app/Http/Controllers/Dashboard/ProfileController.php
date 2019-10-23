@@ -28,11 +28,9 @@ class ProfileController extends Controller
         $controller = 'dashboard';
         $action = 'edit_profile';
 
-        $user = Auth::user();
-
         $countries = Country::orderBy('name', 'ASC')->get();
 
-        return view('dashboard.profile.edit', compact('controller', 'user', 'action', 'countries'));
+        return view('dashboard.profile.edit', compact('controller', 'action', 'countries'));
     }
 
     public function update(ProfileRequest $request)

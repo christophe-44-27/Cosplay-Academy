@@ -26,7 +26,7 @@ class CourseController extends Controller
         $courses = $user->courses;
         $action = 'my_courses';
 
-        return view('courses.course_liste', compact('user', 'courses', 'action'));
+        return view('courses.course_liste', compact('courses', 'action'));
     }
 
     /**

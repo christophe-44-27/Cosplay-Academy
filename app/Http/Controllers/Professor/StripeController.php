@@ -33,8 +33,7 @@ class StripeController extends Controller
             ->paginate(6);
 
         $controller = 'wallet';
-        $user = Auth::user();
 
-        return view('dashboard.wallet.index', compact('user', 'controller', 'lastTransactions'));
+        return view('dashboard.wallet.index', compact('controller', 'lastTransactions'));
     }
 }

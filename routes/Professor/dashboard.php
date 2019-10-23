@@ -29,4 +29,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('stripe/overview', 'Professor\StripeController@overview')->name('stripe_overview');
     Route::get('stripe/profile/registration/success', 'Professor\ProfileController@registrationStripeSuccess');
     Route::get('stripe/account/create/{professor}', 'Professor\ProfileController@createStripePaymentAccount')->name('stripe_create_account');
+
+    /** REVIEWS **/
+    Route::get('reviews', 'Professor\ReviewController@index')->name('reviews');
+    Route::get('received-reviews', 'Professor\ReviewController@receivedReviews')->name('received_reviews');
 });

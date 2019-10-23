@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller {
@@ -23,6 +22,6 @@ class PaymentController extends Controller {
 
         $action = 'orders';
 
-        return view('customer.payments.index', compact('payments', 'user', 'action'));
+        return view('customer.payments.index', compact('payments', 'action'));
     }
 }

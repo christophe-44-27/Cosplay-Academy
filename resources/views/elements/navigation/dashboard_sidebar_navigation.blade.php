@@ -31,9 +31,9 @@
             <li class="{{ ($controller == 'reviews') ? 'active' : '' }}">
                 <a><i class="sl sl-icon-star"></i> Avis</a>
                 <ul>
-                    <li><a href="#">Mes avis <span class="nav-tag green">6</span></a>
+                    <li><a href="{{ route('reviews') }}">Mes avis <span class="nav-tag green">6</span></a>
                     </li>
-                    <li><a href="#">Avis de mes fans <span class="nav-tag yellow">1</span></a>
+                    <li><a href="{{ route('received_reviews') }}">Avis de mes fans <span class="nav-tag yellow">1</span></a>
                     </li>
                 </ul>
             </li>

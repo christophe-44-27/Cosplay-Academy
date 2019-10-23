@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            @include('elements.blocs.listeo_notifications');
+            @include('elements.blocs.listeo_notifications')
             <div id="add-listing">
                 @if(isset($professor->id))
                     {!! Form::model($professor, ['method' => 'put', 'url' => route('profile_professor_update', $professor)]) !!}

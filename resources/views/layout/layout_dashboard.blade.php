@@ -40,19 +40,6 @@
                         </span>
                         </button>
                     </div>
-
-                    <!-- Main Navigation -->
-                    <nav id="navigation" class="style-1">
-                        <ul id="responsive">
-
-                            <li><a href="#">Accueil</a></li>
-                            <li><a href="#">Les tutoriels</a></li>
-                            <li><a href="#">La communauté</a></li>
-                        </ul>
-                    </nav>
-                    <div class="clearfix"></div>
-                    <!-- Main Navigation / End -->
-
                 </div>
                 <!-- Left Side Content / End -->
 
@@ -63,7 +50,15 @@
 
                         <!-- User Menu -->
                         <div class="user-menu">
-                            <div class="user-name"><span><img src="images/dashboard-avatar.jpg" alt=""></span>Mon compte
+                            <div class="user-name">
+                                <span>
+                                    @if($user->avatar)
+                                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="">
+                                    @else
+                                        <img src="{{ asset('themes/frontend/images/users/default.jpg') }}" alt="">
+                                    @endif
+                                </span>
+                                Mon compte
                             </div>
                             <ul>
                                 <li><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
@@ -102,34 +97,11 @@
         <!-- Content
         ================================================== -->
         <div class="dashboard-content">
-
-            <!-- Titlebar -->
-            <div id="titlebar">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Breadcrumbs -->
-                        <nav id="breadcrumbs">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Dashboard</li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
-
-
             @yield('content')
-
         </div>
         <!-- Content / End -->
-
-
     </div>
     <!-- Dashboard / End -->
-
-
 </div>
 <!-- Wrapper / End -->
 

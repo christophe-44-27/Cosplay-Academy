@@ -20,10 +20,8 @@ class ChangePasswordController extends Controller {
     }
 
     public function showChangePasswordForm() {
-        $user = Auth::user();
-
         $action = 'security';
-        return view('dashboard.security.change_password', compact('action', 'user'));
+        return view('dashboard.security.change_password', compact('action'));
     }
 
     public function changePassword(Request $request) {

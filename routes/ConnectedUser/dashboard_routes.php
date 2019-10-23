@@ -15,8 +15,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::post('courses/{course}/sessions/store', 'Professor\CourseSessionController@store')->name('course_session_store');
     Route::put('courses/{course}/sessions/update/{session}', 'Professor\CourseSessionController@update')->name('course_session_update');
     Route::get('courses/{course}/sessions/{session}/remove', 'Professor\CourseSessionController@remove')->name('dashboard_course_remove_session');
-    /** REVIEWS **/
-    Route::get('reviews', 'Dashboard\ReviewController@index')->name('reviews');
     /** TUTORIELS CONTENUS **/
     Route::get('courses/{course}/sessions/{session}/new-content', 'Dashboard\CourseContentController@newContent')->name('dashboard_tutorial_new_content');
     Route::post('courses/{course}/sessions/{session}/store', 'Dashboard\CourseContentController@store')->name('dashboard_tutorial_content_store');

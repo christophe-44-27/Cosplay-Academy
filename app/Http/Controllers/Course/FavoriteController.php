@@ -28,7 +28,7 @@ class FavoriteController extends Controller
 
         $action = 'course_favorites';
 
-        return view('courses.connected_user_favorites', compact('favorites', 'user', 'action'));
+        return view('courses.connected_user_favorites', compact('favorites', 'action'));
     }
 
     /**
