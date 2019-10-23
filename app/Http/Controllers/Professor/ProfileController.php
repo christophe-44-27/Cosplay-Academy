@@ -87,7 +87,7 @@ class ProfileController extends Controller
         $datas = json_decode($request->getBody()->getContents(), true);
 
         $user = User::where('id', '=', Auth::user()->id)->get()->first();
-        $user->update(['stripe_cconect_account_id' => $datas['stripe_user_id']]);
+        $user->update(['stripe_connect_account_id' => $datas['stripe_user_id']]);
 
         return redirect(route('stripe_overview'))->with('success', Lang::get("Votre compte de paiement a bien été configuré !"));
     }

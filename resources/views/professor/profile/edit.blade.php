@@ -59,10 +59,8 @@
                     <!-- Section / End -->
                     {!! Form::submit(\Illuminate\Support\Facades\Lang::get('Enregistrer & continuer'), ['class' => 'button preview']) !!}
                 {!! Form::close() !!}
-                @if(isset(\Illuminate\Support\Facades\Auth::user()->stripe_cconect_account_id))
+                @if(isset($user->stripe_connect_account_id))
                     <a href="#" class="button medium"><i class="fa fa-money"></i> Modifier mes informations de paiement</a> <br>
-                @else
-                    <a href="{{ route('stripe_create_account', $professor) }}" class="button medium"><i class="fa fa-money"></i> Enregistrer mes informations de paiement</a> <br>
                 @endif
             </div>
         </div>
