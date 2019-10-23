@@ -66,7 +66,14 @@
                                 </li>
                                 <li><a href="#"><i class="fa fa-calendar-check-o"></i>
                                         Mes tutoriels</a></li>
-                                <li><a href="{{ route('logout') }}"><i class="sl sl-icon-power"></i> Déconnexion</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="sl sl-icon-power"></i> Déconnexion
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 

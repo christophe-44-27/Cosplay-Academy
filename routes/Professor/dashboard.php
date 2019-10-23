@@ -33,4 +33,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     /** REVIEWS **/
     Route::get('reviews', 'Professor\ReviewController@index')->name('reviews');
     Route::get('received-reviews', 'Professor\ReviewController@receivedReviews')->name('received_reviews');
+
+    /** COURSES FAVORITES */
+    Route::get('courses/favorites', 'Professor\CourseFavoriteController@index')->name('professor_course_favorites');
+    Route::get('courses/favorites/remove/{course}', 'Professor\CourseFavoriteController@removeFromFavorites')->name('professor_course_favorites_remove');
 });

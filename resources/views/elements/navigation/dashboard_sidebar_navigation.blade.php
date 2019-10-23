@@ -37,13 +37,20 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
+            <li><a href="{{ route('professor_course_favorites') }}"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
             <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">
             <li><a href="{{ route('profile_professor') }}"><i class="sl sl-icon-user"></i> Mon profil de formateur</a></li>
-            <li><a href="#"><i class="sl sl-icon-power"></i> Déconnexion</a></li>
+            <li>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="sl sl-icon-power"></i> Déconnexion
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </a>
+            </li>
         </ul>
 
     </div>
