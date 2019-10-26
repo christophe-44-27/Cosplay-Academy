@@ -94,6 +94,7 @@ class CourseController extends Controller {
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
+            'is_published' => false,
         ];
 
         $tutorial = Course::create($arrayToCreate);
