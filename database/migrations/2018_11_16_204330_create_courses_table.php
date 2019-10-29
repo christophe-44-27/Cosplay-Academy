@@ -39,7 +39,7 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE courses ADD FULLTEXT title(title)');
+        DB::statement('ALTER TABLE courses ADD FULLTEXT title(title, introduction)');
     }
 
     /**

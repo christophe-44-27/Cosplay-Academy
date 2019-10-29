@@ -34,22 +34,35 @@ class GuestHomepageController extends Controller {
      */
     public function search(Request $request, CourseService $courseService)
     {
-        if (!empty($request->get('keywords')))
+        if (!empty($request->get('keywords')) && $request->get('category_id') === null)
+        {
+            $courses = $courseService->searchFromHomepage($request->get('keywords'));
+            $keywords = $request->get('keywords');
+        } elseif (!empty($request->get('keywords')) && $request->get('category_id') !== null)
         {
             $courses = $courseService->searchFromHomepage($request->get('keywords'), $request->get('category_id'));
-        } else
+            $keywords = $request->get('keywords');
+        } elseif ($request->get('keywords') === null && $request->get('category_id') !== null)
         {
             $courses = Course::where('is_published', '=', true)
                 ->where('category_id', '=', $request->get('category_id'))
-                ->orderBy('id', 'DESC')->paginate(15);
+                ->orderBy('id', 'DESC')->paginate(10);
+        } else
+        {
+            $courses = Course::where('is_published', '=', true)
+                ->orderBy('id', 'DESC')->paginate(10);
         }
 
         $categories = Category::orderBy('name', 'ASC')->get();
 
-        $givenCategory = Category::where('id', '=', $request->get('category_id'))->first();
+        if ($request->get('category_id'))
+        {
+            $givenCategory = Category::where('id', '=', $request->get('category_id'))->first();
 
-        $selectedCategory = $givenCategory->filter_value;
+            $selectedCategory = $givenCategory->filter_value;
+        }
 
-        return view('frontend.courses.index', compact('courses', 'categories', 'selectedCategory'));
+
+        return view('frontend.courses.index', compact('courses', 'categories', 'selectedCategory', 'keywords'));
     }
 }

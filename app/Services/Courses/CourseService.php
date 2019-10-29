@@ -68,17 +68,15 @@ class CourseService {
      * @param int $categoryId
      * @return mixed
      */
-    public function searchFromHomepage($keywords, int $categoryId)
+    public function searchFromHomepage($keywords, int $categoryId = null)
     {
         $results = Course::select([
             'id',
             'title',
             'category_id',
             'user_id',
-            'content',
+            'introduction',
             'thumbnail_picture',
-            'nb_views',
-            'nb_likes',
             'created_at',
             'updated_at',
             'type_id',
@@ -88,9 +86,9 @@ class CourseService {
             'language_id'
         ])
         ->where('is_published', '=', true)
-        ->whereRaw("MATCH(title) AGAINST('" . $keywords . "*' IN BOOLEAN MODE)");
+        ->whereRaw("MATCH(title, introduction) AGAINST('" . $keywords . "*' IN BOOLEAN MODE)");
 
-        if(!empty($categoryId))
+        if(!is_null($categoryId))
         {
             $results->where('category_id', '=', $categoryId);
         }
