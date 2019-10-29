@@ -43,7 +43,6 @@
                                         </li>
                                     </ul>
                                     <div class="rating-stars d-flex mr-5">
-                                        <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" id="rating-stars-value" value="4">
                                         <div class="rating-stars-container mr-2">
                                             @include('frontend.elements.blocs.rating')
                                         </div>
@@ -54,6 +53,13 @@
                                                 <i class="fa fa-heart"></i>
                                             </div>
                                         </div> {{ $course->userFavorites->count() }} @lang('favoris')
+                                    </div>
+                                    <div class="rating-stars d-flex ml-5">
+                                        <div class="rating-stars-container mr-2">
+                                            <div class="rating-star sm">
+                                                <i class="fa fa-eye"></i>
+                                            </div>
+                                        </div> {{ $course->userViews->count() }} @lang('vues')
                                     </div>
                                 </div>
                             </div>
@@ -279,15 +285,18 @@
                         </div>
                         <div class="card-body  item-user">
                             <div class="profile-pic mb-0">
-                                <img src="{{ asset('storage/' . $course->user->avatar) }}" class="brround avatar-xxl" alt="user">
+                                @if($course->user->avatar)
+                                    <img src="{{ asset('storage/' . $course->user->avatar) }}" class="brround avatar-xxl" alt="user">
+                                @else
+                                    <img src="{{ asset('themes/frontend/images/users/default.jpg') }}" class="brround avatar-xxl" alt="user">
+                                @endif
                                 <div >
                                     <a href="{{ route('user_profile', $course->user) }}" class="text-dark"><h4 class="mt-3 mb-1 font-weight-semibold">{{ $course->user->name }}</h4></a>
                                     <span class="text-muted">@lang("Membre depuis ") {{ \Illuminate\Support\Carbon::createFromTimeString($course->user->created_at)->format('M Y') }}</span>
                                 </div>
                                 <h6 class="mt-2 mb-0">
                                     <a href="#" class="btn btn-primary btn-sm">@lang("Voir ses cours")</a>
-                                    <a href="#" class="btn btn-secondary btn-sm">1245 Views</a>
-                                    <a href="#" class="btn btn-info btn-sm">850 Courses</a>
+                                    <a href="#" class="btn btn-secondary btn-sm">{{ $course->user->courses()->count() }} @lang("Cours")</a>
                                 </h6>
                             </div>
                         </div>
@@ -318,8 +327,7 @@
                         @endif
                         <div class="card-footer">
                             <div class="text-center">
-                                <a href="#" class="btn  btn-primary"><i class="fa fa-envelope"></i> Chat</a>
-                                <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#contact"><i class="fa fa-user"></i> Contact Me</a>
+                                <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#contact"><i class="fa fa-user"></i> @lang("Contactez-moi")</a>
                             </div>
                         </div>
                     </div>
@@ -336,127 +344,46 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Feature Classes </h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="rated-products">
-                                <ul class="vertical-scroll">
-                                    <li class="item">
-                                        <div class="media m-0 mt-0 p-5">
-                                            <img class="mr-4" src="../assets/images/png/11.png" alt="img">
-                                            <div class="media-body">
-                                                <h4 class="mt-2 mb-1">AutoCAD</h4>
-                                                <span class="rated-products-ratings">
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-													</span>
-                                                <div class="h5 mb-0 font-weight-semibold mt-1">$17 - $29</div>
+                    @if($featuredCourses)
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@lang("Mis en avant") </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="rated-products">
+                                    <ul class="vertical-scroll">
+                                        @foreach($featuredCourses as $featuredCourse)
+                                            <li class="item">
+                                            <div class="media m-0 mt-0 p-5">
+                                                <img class="mr-4" src="../assets/images/png/11.png" alt="img">
+                                                <div class="media-body">
+                                                    <h4 class="mt-2 mb-1">{{ $featuredCourse->title }}</h4>
+                                                    <span class="rated-products-ratings">
+                                                            <i class="fa fa-star text-warning"> </i>
+                                                            <i class="fa fa-star text-warning"> </i>
+                                                            <i class="fa fa-star text-warning"> </i>
+                                                            <i class="fa fa-star text-warning"> </i>
+                                                            <i class="fa fa-star text-warning"> </i>
+                                                        </span>
+                                                    @if($featuredCourse->type->id == 2)
+                                                        <div class="h5 mb-0 font-weight-semibold mt-1">{{ $featuredCourse->price }} $</div>
+                                                    @else
+                                                        <div class="h5 mb-0 font-weight-semibold mt-1">@lang("Gratuit !")</div>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="media p-5 mt-0">
-                                            <img class="mr-4" src="../assets/images/png/1.png" alt="img">
-                                            <div class="media-body">
-                                                <h4 class="mt-2 mb-1">Digital Marketing</h4>
-                                                <span class="rated-products-ratings">
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star-o text-warning"> </i>
-													</span>
-                                                <div class="h5 mb-0 font-weight-semibold mt-1">$22 - $45</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="media p-5 mt-0">
-                                            <img class=" mr-4" src="../assets/images/png/4.png" alt="img">
-                                            <div class="media-body">
-                                                <h4 class="mt-2 mb-1">Mobile Computing</h4>
-                                                <span class="rated-products-ratings">
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star-half-o text-warning"> </i>
-													</span>
-                                                <div class="h5 mb-0 font-weight-semibold mt-1">$35 - $72</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="media p-5 mt-0">
-                                            <img class=" mr-4" src="../assets/images/png/6.png" alt="img">
-                                            <div class="media-body">
-                                                <h4 class="mt-2 mb-1"> Data Science</h4>
-                                                <span class="rated-products-ratings">
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star-half-o text-warning"> </i>
-														<i class="fa fa-star-o text-warning"> </i>
-													</span>
-                                                <div class="h5 mb-0 font-weight-semibold mt-1">$12 - $21</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item">
-                                        <div class="media  mb-0 p-5 mt-0">
-                                            <img class=" mr-4" src="../assets/images/png/8.png" alt="img">
-                                            <div class="media-body">
-                                                <h4 class="mt-2 mb-1"> UNIX</h4>
-                                                <span class="rated-products-ratings">
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star text-warning"> </i>
-														<i class="fa fa-star-o text-warning"> </i>
-														<i class="fa fa-star-o text-warning"> </i>
-													</span>
-                                                <div class="h5 mb-0 font-weight-semibold mt-1">$89 - $97</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <!--/Right Side Content-->
             </div>
         </div>
     </section><!--/Section-->
-
-    <!-- Onlinesletter-->
-    <section class="sptb bg-white border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-xl-6 col-md-12">
-                    <div class="sub-newsletter">
-                        <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Onlinesletter</h3>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-xl-6 col-md-12">
-                    <div class="input-group sub-input mt-1">
-                        <input type="text" class="form-control input-lg " placeholder="Enter your Email">
-                        <div class="input-group-append ">
-                            <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3">
-                                Subscribe
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/Onlinesletter-->
 @endsection
 @push('javascripts')
     <script src="{{ asset('themes/frontend/plugins/accordion/accordion.min.js') }}"></script>

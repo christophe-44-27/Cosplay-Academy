@@ -41,8 +41,7 @@ class FavoriteController extends Controller
 
         $status = $courseService->addCourseToFavorite($user, $course);
 
-        return redirect(route('course_favorite'))
-            ->with('success', Lang::get($status));
+        return redirect(route('course_favorite'))->with('success', Lang::get($status));
     }
 
     /**

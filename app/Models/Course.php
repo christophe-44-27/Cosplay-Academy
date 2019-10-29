@@ -101,6 +101,14 @@ class Course extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function userViews()
+    {
+        return $this->belongsToMany(User::class, 'course_view_users');
+    }
+
+    /**
      * Method used to customise the model binding key name inside RouteServiceProvider.
      * @return string
      */

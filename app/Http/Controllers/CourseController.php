@@ -47,10 +47,8 @@ class CourseController extends Controller {
         return view('frontend.courses.index', compact('courses', 'category', 'categories', 'selectedCategory'));
     }
 
-    public function show(Request $request, Course $course) {
-
-        $course->nb_views = $course->nb_views + 1;
-        $course->save();
+    public function show(Request $request, Course $course, CourseService $courseService)
+    {
 
         $currentUrl = $request->url();
         $userAlreadyParticipate = false;
@@ -61,12 +59,15 @@ class CourseController extends Controller {
                 ->limit(4)
                 ->get();
 
+        $featuredCourses = Course::where('featured', '=', true)->limit(5)->get();
+
         if(Auth::user() && Auth::user()->courses)
         {
-            $userAlreadyParticipate = Auth::user()->courses()->where('course_id', $course->id)->exists();
+            $courseService->incrementeViewCounter($course);
+            $userAlreadyParticipate = Auth::user()->courseParticipations()->where('course_id', $course->id)->exists();
         }
 
-        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate'));
+        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses'));
     }
 
     /**

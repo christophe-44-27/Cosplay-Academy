@@ -36,7 +36,7 @@ class CourseController extends Controller
     public function participateToFreeCourse(Course $course)
     {
         $user = Auth::user();
-        $user->courses()->attach([$course->id]);
+        $user->courseParticipations()->attach([$course->id]);
 
         return redirect(route('course_details', $course))
             ->with('success', Lang::get("Félicitations, vous êtes inscrit(e) au cours " . $course->title . " ! Bon apprentissage !"));
@@ -49,7 +49,7 @@ class CourseController extends Controller
     public function cancelParticipationCourse(Course $course)
     {
         $user = Auth::user();
-        $user->courses()->detach($course->id);
+        $user->courseParticipations()->detach($course->id);
 
         return redirect(route('course_details', $course))
             ->with('success', Lang::get("Vous vous êtes bien désinscrit(e) du cours " . $course->title . " ."));

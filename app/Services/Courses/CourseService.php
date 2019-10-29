@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 
 class CourseService {
@@ -14,8 +15,7 @@ class CourseService {
      */
     public function incrementeViewCounter(Course $course)
     {
-        $course->nb_views = $course->nb_views + 1;
-        $course->save();
+        $course->userViews()->sync([Auth::id()]);
     }
 
     /**

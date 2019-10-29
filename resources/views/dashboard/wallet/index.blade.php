@@ -27,7 +27,7 @@
         <!-- Invoices -->
         <div class="col-lg-6 col-md-12">
             <div class="dashboard-list-box invoices with-icons margin-top-20">
-                <h4>Derniers gains <div class="comission-taken">Commission: <strong>{{ getenv('FEE_PERCENTAGE') }} %</strong></div></h4>
+                <h4><a href="{{ route('transactions') }}">Derniers gains</a> <div class="comission-taken">Commission: <strong>{{ getenv('FEE_PERCENTAGE') }} %</strong></div></h4>
                 @if(count($lastTransactions) > 0)
                     <ul>
                         @foreach($lastTransactions as $transaction)

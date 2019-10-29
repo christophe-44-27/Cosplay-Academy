@@ -41,7 +41,7 @@ include ('ConnectedUser/dashboard_routes.php');
 include ('ConnectedUser/courses.php');
 include ('Professor/dashboard.php');
 include ('ConnectedUser/cart.php');
-include('ConnectedUser/messagerie.php');
+include ('ConnectedUser/messagerie.php');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

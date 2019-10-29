@@ -53,7 +53,7 @@
 </head>
 <body>
 <!--Section-->
-<div class="banner-1 cover-image  bg-background2" data-image-src="../assets/images/banners/banner1.jpg">
+<div class="banner-1 cover-image  bg-background2" data-image-src="{{ asset('themes/frontend/images/banners/banner-cosplay.jpg') }}">
     <div class="header-main">
         <!--Topbar-->
         @include('frontend.elements.top_bar')
@@ -84,8 +84,8 @@
             <div class="header-text mb-0">
                 <div class="container">
                     <div class="text-center text-white mb-7">
-                        <h1 class="mb-1">Find The Best Trainers and Build Your Future</h1>
-                        <p>It is a long established fact that a reader will be distracted by the readable.</p>
+                        <h1 class="mb-1">@lang("Améliorez vos compétences en cosplay")</h1>
+                        <p>@lang("Parcourez les cours et formations disponibles pour améliorer vos compétences dans plusieurs domaines !")</p>
                     </div>
                     <div class="row">
                         <div class="col-xl-10 col-lg-12 col-md-12 d-block mx-auto">

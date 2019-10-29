@@ -7,7 +7,7 @@
             <li class="{{ ($controller == 'dashboard') ? 'active' : '' }}"><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
             <li class="{{ ($controller == 'inbox') ? 'active' : '' }}"><a href="{{ route('inbox') }}"><i class="sl sl-icon-envelope-open"></i> Messages <span
                         class="nav-tag messages">2</span></a></li>
-            <li><a href="{{ route('stripe_overview') }}"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
+            <li class="{{ ($controller == 'transactions') ? 'active' : '' }}"><a href="{{ route('stripe_overview') }}"><i class="sl sl-icon-wallet"></i> Transactions</a></li>
         </ul>
 
         <ul data-submenu-title="Enseigner">

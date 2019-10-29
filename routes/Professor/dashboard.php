@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('dashboard')->middleware('auth')->group(function () {
+Route::prefix('dashboard/teachers')->middleware('auth')->group(function () {
     Route::get('/', 'Professor\DashboardController@index')->name('professor_dashboard');
 
     /** COURSES **/
@@ -37,4 +37,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     /** COURSES FAVORITES */
     Route::get('courses/favorites', 'Professor\CourseFavoriteController@index')->name('professor_course_favorites');
     Route::get('courses/favorites/remove/{course}', 'Professor\CourseFavoriteController@removeFromFavorites')->name('professor_course_favorites_remove');
+
+    /** TRANSACTIONS */
+    Route::get('transactions', 'Professor\TransactionController@index')->name('transactions');
 });

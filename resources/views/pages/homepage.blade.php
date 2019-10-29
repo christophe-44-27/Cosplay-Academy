@@ -54,9 +54,9 @@
     <section class="sptb bg-white">
         <div class="container">
             <div class="section-title center-block text-center">
-                <h2>Catégories les plus populaires</h2>
+                <h2>@lang("Catégories les plus populaires")</h2>
                 <span class="sectiontitle-design"><span class="icons"></span></span>
-                <p>Explorez les catégories préférées de nos visiteurs</p>
+                <p>@lang("Explorez les catégories préférées de nos visiteurs")</p>
             </div>
             <div class="item-all-cat center-block text-center education-categories">
                 <div class="row">
@@ -92,7 +92,6 @@
                 @foreach($courses as $course)
                     <div class="item">
                     <div class="card mb-0">
-                        <div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
                         <div class="item-card2-img">
                             <a href="{{ route('course_details', $course) }}"></a>
                             @if($course->thumbnail_picture)
@@ -136,8 +135,7 @@
                             </div>
                         </div>
                         <div class="item-card2-icons">
-                            <a href="{{ route('course_details', $course) }}" class="item-card2-icons-l"> <i class="fa fa-share-alt"></i></a>
-                            <a href="{{ route('course_details', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                            <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="item-card2">

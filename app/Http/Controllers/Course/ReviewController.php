@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Course;
 
 use App\Http\Requests\ReviewRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ReviewUpdateRequest;
 use App\Models\Course;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;

@@ -3,7 +3,7 @@ a:hover {
   text-decoration: none;
 }
 .bg-background2:before {
-	background:linear-gradient(-225deg,rgba(23, 13, 177, 0.7) 35%,rgba(236, 50, 87, 0.7) 100%) !important;
+	background:linear-gradient(-225deg,rgba(170, 23, 83, 0.7) 35%,rgba(239, 152, 86, 0.7) 100%) !important;
 }
 .owl-controls .owl-page.active, .owl-controls .owl-page.active:hover {
 	border-color: #ec296b;
@@ -27,8 +27,8 @@ a.bg-secondary:hover, a.bg-secondary:focus, button.bg-secondary:hover, button.bg
 }
 .btn-primary {
 	color: #fff;
-	background-color: #ec296b;
-	border-color: #ec296b;
+	background-color: #AA1753;
+	border-color: #AA1753;
 }
 .btn-primary:hover {
 	color: #fff;
@@ -611,7 +611,7 @@ a.chip:hover {
 	color: #fff;
 }
 .gradient-icon {
-    background:linear-gradient( 111.7deg,  #1c0fe0 19.9%, #f3335a 95% );
+    background:linear-gradient( 111.7deg,  rgba(170, 23, 83, 0.7) 35%, rgba(239, 152, 86, 0.7) 100% );
 	-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -628,6 +628,7 @@ a.chip:hover {
 }
 .horizontalMenu>.horizontalMenu-list>li>a.active {
 	color: #ec296b;
+    font-weight: bolder;
 }
 .horizontalMenu>.horizontalMenu-list>li:hover>a {
 	color: #ec296b ;
@@ -811,12 +812,11 @@ form.convFormDynamic button.submit:hover {
 	background: #0c295a !important;
 }
 .bg-background:before {
-	background: linear-gradient(-225deg,rgba(28, 15, 224, 0.7) 35%,rgba(243, 51, 90, 0.8) 100%);
+    background:linear-gradient(-225deg,rgba(170, 23, 83, 0.7) 35%,rgba(239, 152, 86, 0.7) 100%);
 	
 }
 .bg-background2:before {
-	background:linear-gradient(-225deg,rgba(23, 13, 177, 0.7) 35%,rgba(236, 50, 87, 0.7) 100%) !important;
-	
+    background:linear-gradient(-225deg,rgba(170, 23, 83, 0.7) 35%,rgba(239, 152, 86, 0.7) 100%) !important;
 }
 .bg-background-color:before {
 	background:linear-gradient(-225deg,rgba(23, 13, 177, 0.7) 35%,rgba(236, 50, 87, 0.7) 100%) !important;
@@ -874,9 +874,9 @@ form.convFormDynamic button.submit:hover {
 .item-card7-imgs:hover a {
 	background:linear-gradient(-225deg,rgba(23, 13, 177, 0.7) 35%,rgba(236, 50, 87, 0.7) 100%) !important;
 }
-.item-card2-img:hover a {
-	background:linear-gradient(-225deg,rgba(28, 15, 224, 0.7) 35%,rgba(243, 51, 90, 0.8) 100%) !important;
-}
+/*.item-card2-img:hover a {*/
+	/*background:linear-gradient(-225deg,rgba(28, 15, 224, 0.7) 35%,rgba(243, 51, 90, 0.8) 100%) !important;*/
+/*}*/
 .countdown li .number{
 	color: #ec296b;
 }
@@ -1171,7 +1171,7 @@ a.bg-secondary:hover, a.bg-secondary:focus, button.bg-secondary:hover, button.bg
 	background-color: #ec296b;
 }
 .horizontal-main {
-	background:#1a0267;
+	background:#EF9856;
 }
 .animated-arrow span, .animated-arrow span:before, .animated-arrow span:after{
 	background:#fff;
@@ -1258,5 +1258,5 @@ a.bg-secondary:hover, a.bg-secondary:focus, button.bg-secondary:hover, button.bg
     border-color: #3c2ff1!important;
 }
 .bg-dark {
-    background-color: #170944 !important;
+    background-color: #EF9856 !important;
 }

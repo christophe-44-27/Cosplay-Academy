@@ -24,7 +24,7 @@ class CreateCoursesTable extends Migration
             $table->boolean('is_published')->default(0);
             $table->integer('difficulty')->default(1);
             $table->string('video_path')->nullable();
-            $table->integer('price')->nullable();
+            $table->float('price')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('type_id');
@@ -35,6 +35,7 @@ class CreateCoursesTable extends Migration
             $table->foreign('language_id')->references('id')->on('languages');
             $table->string('slug');
             $table->boolean('is_reported')->default(false);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
 
