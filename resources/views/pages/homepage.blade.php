@@ -78,24 +78,26 @@
                 </div>
             </div>
         </div>
-    </section><!--/Section-->
+    </section>
+    <!--/Section-->
 
     <!--Section-->
     <section class="sptb ">
         <div class="container">
             <div class="section-title center-block text-center">
-                <h2>Derniers contenus</h2>
+                <h2>@lang("Nos coups de coeur")</h2>
                 <span class="sectiontitle-design"><span class="icons"></span></span>
-                <p>Améliorez-vous et apprenez de nouvelles choses grâce aux contenus que nous vous proposons</p>
+                <p>Nous avons sélectionné pour vous nos cours préférés <3</p>
             </div>
             <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
-                @foreach($courses as $course)
+                @foreach($featuredCourses as $featuredCours)
                     <div class="item">
-                    <div class="card mb-0">
+                        <div class="ribbon ribbon-top-left text-danger"><span class="bg-danger">@lang("Coup de coeur")</span></div>
+                        <div class="card mb-0">
                         <div class="item-card2-img">
-                            <a href="{{ route('course_details', $course) }}"></a>
-                            @if($course->thumbnail_picture)
-                                <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
+                            <a href="{{ route('course_details', $featuredCours) }}"></a>
+                            @if($featuredCours->thumbnail_picture)
+                                <img src="{{ asset('storage/' . $featuredCours->thumbnail_picture) }}" alt="img"
                                      class="cover-image">
                             @else
                                 <img src="https://via.placeholder.com/740x440" alt="img"
@@ -103,8 +105,8 @@
                             @endif
                             <div class="item-tag">
                                 <h4  class="mb-0">
-                                    @if($course->price and $course->price > 0)
-                                        {{ $course->price }} $
+                                    @if($featuredCours->price and $featuredCours->price > 0)
+                                        {{ $featuredCours->price }} $
                                     @else
                                         Gratuit
                                     @endif
@@ -135,19 +137,19 @@
                             </div>
                         </div>
                         <div class="item-card2-icons">
-                            <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                            <a href="{{ route('course_add_to_favorites', $featuredCours) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="item-card2">
                                 <div class="item-card2-desc">
                                     <div class="item-card2-text mb-3">
-                                        <a href="{{ route('course_details', $course) }}" class="text-dark"><h4 class="mb-2">{{ $course->title }}</h4></a>
+                                        <a href="{{ route('course_details', $featuredCours) }}" class="text-dark"><h4 class="mb-2">{{ $featuredCours->title }}</h4></a>
                                     </div>
-                                    <p class="">{{ \Illuminate\Support\Str::limit($course->content, 20) }} </p>
+                                    <p class="">{{ \Illuminate\Support\Str::limit($featuredCours->content, 20) }} </p>
                                     <ul class="mb-0">
-                                        <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $course->language->name }}</a></li>
-                                        <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $course->created_at->diffForHumans() }}</a></li>
-                                        <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $course->user->name }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $featuredCours->language->name }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $featuredCours->created_at->diffForHumans() }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $featuredCours->user->name }}</a></li>
                                         <li><a href="#" class="icons"></a></li>
                                     </ul>
                                 </div>
@@ -155,15 +157,15 @@
                         </div>
                         <div class="card-footer">
                             <div class="item-card2-footer">
-                                <a href="{{ route('course_details', $course) }}" class="btn btn-outline-dark"><span
+                                <a href="{{ route('course_details', $featuredCours) }}" class="btn btn-outline-dark"><span
                                         class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
-                                <a href="{{ route('course_add_to_favorites', $course) }}"
+                                <a href="{{ route('course_add_to_favorites', $featuredCours) }}"
                                    class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i
                                             class="fa fa-heart"></i></span> Favoris</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -280,6 +282,96 @@
             </div>
         </div>
     </section>
+
+    <!--Section-->
+    <section class="sptb bg-white">
+        <div class="container">
+            <div class="section-title center-block text-center">
+                <h2>Derniers contenus</h2>
+                <span class="sectiontitle-design"><span class="icons"></span></span>
+                <p>Améliorez-vous et apprenez de nouvelles choses grâce aux contenus que nous vous proposons</p>
+            </div>
+            <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
+                @foreach($courses as $course)
+                    <div class="item">
+                        <div class="card mb-0">
+                            <div class="item-card2-img">
+                                <a href="{{ route('course_details', $course) }}"></a>
+                                @if($course->thumbnail_picture)
+                                    <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
+                                         class="cover-image">
+                                @else
+                                    <img src="https://via.placeholder.com/740x440" alt="img"
+                                         class="cover-image">
+                                @endif
+                                <div class="item-tag">
+                                    <h4  class="mb-0">
+                                        @if($course->price and $course->price > 0)
+                                            {{ $course->price }} $
+                                        @else
+                                            Gratuit
+                                        @endif
+                                    </h4>
+                                </div>
+                                <div class="item-overly-trans">
+                                    <div class="rating-stars d-flex">
+                                        <span class="text-white mr-1 pl-1">5.0</span>
+                                        <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="5">
+                                        <div class="rating-stars-container">
+                                            <div class="rating-star sm is--active">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-star sm is--active">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-star sm is--active">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-star sm">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-star sm">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-card2-icons">
+                                <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                            </div>
+                            <div class="card-body">
+                                <div class="item-card2">
+                                    <div class="item-card2-desc">
+                                        <div class="item-card2-text mb-3">
+                                            <a href="{{ route('course_details', $course) }}" class="text-dark"><h4 class="mb-2">{{ $course->title }}</h4></a>
+                                        </div>
+                                        <p class="">{{ \Illuminate\Support\Str::limit($course->content, 20) }} </p>
+                                        <ul class="mb-0">
+                                            <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $course->language->name }}</a></li>
+                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $course->created_at->diffForHumans() }}</a></li>
+                                            <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $course->user->name }}</a></li>
+                                            <li><a href="#" class="icons"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="item-card2-footer">
+                                    <a href="{{ route('course_details', $course) }}" class="btn btn-outline-dark"><span
+                                            class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
+                                    <a href="{{ route('course_add_to_favorites', $course) }}"
+                                       class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i
+                                                class="fa fa-heart"></i></span> Favoris</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!--/Section-->
 
 @endsection
 

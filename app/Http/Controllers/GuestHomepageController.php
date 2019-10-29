@@ -15,6 +15,12 @@ class GuestHomepageController extends Controller {
             ->limit(8)
             ->get();
 
+        $featuredCourses = Course::where('is_published', '=', true)
+            ->where('featured', '=', true)
+            ->orderBy('id', 'desc')
+            ->limit(8)
+            ->get();
+
         $categories = Category::orderBy('name', 'ASC')
             ->where('featured', '=', true)
             ->get();
@@ -23,7 +29,7 @@ class GuestHomepageController extends Controller {
 
         return view('pages.homepage', compact(
             'courses',
-            'categories', 'listCategories'
+            'categories', 'listCategories', 'featuredCourses'
         ));
     }
 
