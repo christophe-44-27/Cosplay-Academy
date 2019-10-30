@@ -3,25 +3,32 @@
 namespace App\Http\Controllers\Contact;
 
 use App\Http\Requests\ContactRequest;
-use App\Mail\ConfirmContactEmail;
 use App\Mail\ContactEmail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 
-class ContactController extends Controller {
+class ContactController extends Controller
+{
 
-	/**
-	 * Send contact form to admin
-	 */
-	public function contact(ContactRequest $request) {
-		$validated = $request->validated();
+    public function index()
+    {
+        return view('pages.contact');
+    }
 
-		Mail::to('contact@cosplayschool.ca')
-			->send(new ContactEmail($validated));
+    /**
+     * Send contact form to admin
+     */
+    public function contact(ContactRequest $request)
+    {
+        $validated = $request->validated();
 
-		Mail::to($validated['email'])->send(new ConfirmContactEmail());
+        Mail::to(getenv('CONTACT_EMAIL'))
+            ->send(new ContactEmail($validated));
 
-		$request->session()->flash('success', 'Votre message a bien été envoyé !');
-		return redirect(route('homepage'));
-	}
+        notify()->success(Lang::get("Votre message a bien été envoyé, nous vous contacterons sous peu, merci de votre confiance !"));
+
+        return redirect(route('homepage'));
+    }
 }

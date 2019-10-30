@@ -143,7 +143,7 @@ return [
 		 * Package Service Providers...
 		 */
         LukePOLO\LaraCart\LaraCartServiceProvider::class,
-
+        Yoeunes\Notify\NotifyServiceProvider::class,
 
         /*
 		 * Application Service Providers...
@@ -157,8 +157,6 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TutorialServiceProvider::class,
-
-        Clablancherie\StripeConnect\StripeConnectServiceProvider::class,
     ],
     /*
 	|--------------------------------------------------------------------------

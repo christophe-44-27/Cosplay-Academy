@@ -25,7 +25,7 @@ class ConfirmContactEmail extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
-		return $this->from('contact@cosplayschool.ca')
+		return $this->from('contact@cosplay-academy.ca')
 			->view('emails.confirm_contact_email');
 	}
 }

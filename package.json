@@ -12,15 +12,19 @@
         "build-analytics-prod": "cd nova-components/Analytics && npm run prod"
     },
     "devDependencies": {
-        "axios": "^0.18",
-        "bootstrap": "^4.0.0",
+        "axios": "^0.18.1",
+        "bootstrap": "^4.3.1",
         "cross-env": "^5.1",
         "gulp": "^4.0.0",
         "gulp-clean-css": "^4.0.0",
-        "jquery": "^3.2",
+        "jquery": "^3.4.1",
         "laravel-mix": "^2.0",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.15",
         "popper.js": "^1.12",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "@deveodk/vue-toastr": "^1.1.0",
+        "toastr": "^2.1.4"
     }
 }

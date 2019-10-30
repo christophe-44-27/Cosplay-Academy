@@ -46,9 +46,9 @@
 
     <!-- Switcher css -->
     <link  href="{{ asset('themes/frontend/switcher/css/switcher.css') }}" rel="stylesheet" id="switcher-css" type="text/css" media="all"/>
-
     <!-- Color Skin css -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('themes/frontend/color-skins/color6.css') }}" />
+    @notify_css
     @stack('stylesheets')
 
 </head>
@@ -68,8 +68,8 @@
         <div class="horizontal-header clearfix ">
             <div class="container">
                 <a id="horizontal-navtoggle" class="animated-arrow"><span></span></a>
-                <span class="smllogo"><img src="../assets/images/brand/logo1.png" width="120" alt="img"/></span>
-                <span class="smllogo-white"><img src="../assets/images/brand/logo.png" width="120" alt="img"/></span>
+                <span class="smllogo"><img src="{{ asset('themes/frontend/images/brand/logo1.png') }}" width="120" alt="img"/></span>
+                <span class="smllogo-white"><img src="{{ asset('themes/frontend/images/brand/logo.png') }}" width="120" alt="img"/></span>
                 <a href="tel:245-6325-3256" class="callusbtn"><i class="fa fa-phone" aria-hidden="true"></i></a>
             </div>
         </div>
@@ -120,7 +120,8 @@
 
 <!-- Custom js-->
 <script src="{{ asset('themes/frontend/js/custom.js') }}"></script>
-
+@notify_js
+@notify_render
 @stack('javascripts')
 
 </body>

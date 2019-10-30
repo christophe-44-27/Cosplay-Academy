@@ -1,6 +1,7 @@
 @extends('layout.base_layout')
 
 @section('content')
+    @include('elements.blocs.notifications')
     <section class="sptb pt-6 pb-6">
         <div class="container">
             <div class="row">

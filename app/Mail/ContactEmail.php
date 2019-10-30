@@ -30,14 +30,12 @@ class ContactEmail extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
-		return $this->from('contact@cosplayschool.ca')
+		return $this->from($this->datas['email'])
 			->view('emails.contact_email')
 			->with([
-				'exp_name' => $this->datas['name'],
-				'exp_subject' => $this->datas['subject'],
-				'exp_phone' => (isset($this->datas['phone'])) ? $this->datas['phone'] : 'n/a',
-				'exp_message' => $this->datas['message'],
-				'exp_mail' => $this->datas['email'],
+				'fullname' => $this->datas['fullname'],
+				'message' => $this->datas['message'],
+				'email' => $this->datas['email'],
 			]);
 	}
 }
