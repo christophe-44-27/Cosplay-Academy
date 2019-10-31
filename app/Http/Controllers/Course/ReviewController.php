@@ -29,7 +29,9 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect(route('course_details', $course))->with('success', Lang::get("Votre commentaire a bien été ajouté !"));
+        notify()->success(Lang::get("Votre commentaire a bien été ajouté !"));
+
+        return redirect(route('course_details', $course));
     }
 
     /**
@@ -42,7 +44,9 @@ class ReviewController extends Controller
     {
         $review->delete();
 
-        return redirect(route('course_details', $course))->with('success', Lang::get("Votre commentaire a bien été supprimé !"));
+        notify()->success(Lang::get("Votre commentaire a bien été supprimé !"));
+
+        return redirect(route('course_details', $course));
     }
 
     /**
@@ -55,6 +59,8 @@ class ReviewController extends Controller
     {
         $review->update($request->all());
 
-        return redirect(route('course_details', $course))->with('success', Lang::get("Votre commentaire a bien été modifié !"));
+        notify()->success(Lang::get("Votre commentaire a bien été modifié !"));
+
+        return redirect(route('course_details', $course));
     }
 }

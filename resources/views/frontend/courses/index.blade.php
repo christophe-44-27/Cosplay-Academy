@@ -166,11 +166,8 @@
                                                                 @endif
                                                             </div>
                                                             <div class="item-card9-icons">
-                                                                <a href="#" class="item-card9-icons1 bg-primary"> <i
+                                                                <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card9-icons1 bg-primary"> <i
                                                                         class="fa fa fa-heart"></i></a>
-                                                                <a href="#"
-                                                                   class="item-card9-icons1 bg-black-trasparant"> <i
-                                                                        class="fa fa fa-share-alt"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="card border-0 mb-0">
@@ -263,9 +260,6 @@
                                                                     <a href="{{ route('course_add_to_favorites', $course) }}"
                                                                        class="item-card9-icons1 bg-primary"> <i
                                                                             class="fa fa fa-heart-o"></i></a>
-                                                                    <a href="#"
-                                                                       class="item-card9-icons1 bg-black-trasparant">
-                                                                        <i class="fa fa fa-share-alt"></i></a>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">

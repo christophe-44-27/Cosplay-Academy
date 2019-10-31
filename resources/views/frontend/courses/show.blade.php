@@ -266,14 +266,19 @@
                                 @endif
                             </div>
                             <div class="">
-                                <a href="{{ route('course_add_to_favorites', $course )}}" class="btn btn-primary btn-lg btn-block">@lang("Ajouter au favoris")</a>
+                                @if(!$userAlreadyFavorite)
+                                    <a href="{{ route('course_add_to_favorites', $course )}}" class="btn btn-primary btn-lg btn-block">@lang("Ajouter aux favoris")</a>
+                                @else
+                                    <a href="{{ route('course_favorite_remove', $course )}}" class="btn btn-azure btn-lg btn-block">@lang("Retirer des favoris")</a>
+                                @endif
+
                                 @if($course->price > 0)
                                     <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
                                 @else
                                     @if(!$userAlreadyParticipate)
                                         <a href="{{ route('course_user_participate', $course) }}" class="btn btn-azure btn-lg btn-block">@lang("S'inscrire")</a>
                                     @else
-                                        <a href="{{ route('course_user_cancel_participation', $course) }}" class="btn btn-success btn-lg btn-block disabled">@lang("Vous suivez ce cours")</a>
+                                        <a href="{{ route('course_user_cancel_participation', $course) }}" class="btn btn-warning btn-lg btn-block">@lang("Se désincrire")</a>
                                     @endif
                                 @endif
                             </div>

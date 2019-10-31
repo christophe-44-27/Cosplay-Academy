@@ -57,7 +57,7 @@ class CourseService {
         if($user->courseFavorites->contains($course->id))
         {
             $user->courseFavorites()->detach([$course->id]);
-            return Lang::get("Ce cours a bien été retiré à vos favoris.");
+            return Lang::get("Ce cours a bien été retiré de vos favoris.");
         } else {
             return Lang::get("Ce cours ne fait pas partie de vos favoris.");
         }

@@ -65,9 +65,10 @@ class CourseController extends Controller {
         {
             $courseService->incrementeViewCounter($course);
             $userAlreadyParticipate = Auth::user()->courseParticipations()->where('course_id', $course->id)->exists();
+            $userAlreadyFavorite = Auth::user()->courseFavorites()->where('course_id', $course->id)->exists();
         }
 
-        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses'));
+        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses', 'userAlreadyFavorite'));
     }
 
     /**

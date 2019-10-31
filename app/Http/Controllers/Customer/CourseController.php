@@ -38,8 +38,9 @@ class CourseController extends Controller
         $user = Auth::user();
         $user->courseParticipations()->attach([$course->id]);
 
-        return redirect(route('course_details', $course))
-            ->with('success', Lang::get("Félicitations, vous êtes inscrit(e) au cours " . $course->title . " ! Bon apprentissage !"));
+        notify()->success(Lang::get("Félicitations, vous êtes inscrit(e) au cours " . $course->title . " ! Bon apprentissage !"));
+
+        return redirect(route('course_details', $course));
     }
 
     /**
@@ -51,7 +52,8 @@ class CourseController extends Controller
         $user = Auth::user();
         $user->courseParticipations()->detach($course->id);
 
-        return redirect(route('course_details', $course))
-            ->with('success', Lang::get("Vous vous êtes bien désinscrit(e) du cours " . $course->title . " ."));
+        notify()->success(Lang::get("Vous vous êtes bien désinscrit(e) du cours " . $course->title . " ."));
+
+        return redirect(route('course_details', $course));
     }
 }
