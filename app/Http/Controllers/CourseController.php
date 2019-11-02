@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
 use App\Models\Course;
 use App\Models\Category;
 use App\Providers\AppServiceProvider;
@@ -49,9 +50,9 @@ class CourseController extends Controller {
 
     public function show(Request $request, Course $course, CourseService $courseService)
     {
-
         $currentUrl = $request->url();
         $userAlreadyParticipate = false;
+        $userAlreadyFavorite = false;
 
         $relatedCourses = Course::where('category_id', '=', $course->category->id)
                 ->where('is_published', '=', true)
@@ -69,6 +70,11 @@ class CourseController extends Controller {
         }
 
         return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses', 'userAlreadyFavorite'));
+    }
+
+    public function showContent(Course $course, Content $content)
+    {
+        return view('frontend.courses.show_content', compact('course', 'content'));
     }
 
     /**

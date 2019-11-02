@@ -93,7 +93,6 @@
                                                     @else
                                                         URL VIDEO
                                                     @endif
-                                                    <!-- Your text here. For this demo, the content is generated automatically. -->
                                                 </div>
                                             @endif
                                         </li>
@@ -102,8 +101,10 @@
                                     <li class="acc_section acc_active">
                                         <div class="acc_head"><h3>{{ $course->sessions->first()->name }}</h3></div>
                                         <div class="acc_content">
-                                            LOL
-                                            <!-- Your text here. For this demo, the content is generated automatically. -->
+                                            @foreach($course->sessions->first()->contents as $content)
+                                                {!! $content->content_article !!}
+                                                {!! $content->video_name !!}
+                                            @endforeach
                                         </div>
                                     </li>
                                 @endif

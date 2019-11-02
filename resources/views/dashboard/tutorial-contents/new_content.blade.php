@@ -29,7 +29,7 @@
                         <!-- Address -->
                         <div class="col-md-6" id="videoSession">
                             <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
-                            <input type="file" name="video_sesssion">
+                            <input type="file" name="video_session">
                         </div>
 
                         <!-- City -->

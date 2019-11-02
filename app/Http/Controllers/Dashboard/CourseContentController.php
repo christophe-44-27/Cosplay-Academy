@@ -8,6 +8,7 @@ use App\Models\Content;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CourseContentController extends Controller {
     /**
@@ -39,6 +40,28 @@ class CourseContentController extends Controller {
                 break;
 
             case 'video':
+
+                $content = new Content();
+                $path = $content->video_name;
+
+                if($request->file('video_session'))
+                {
+                    $path = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
+                }
+
+                if($path) {
+                    $datas = [
+                        'name' => $request->get('name'),
+                        'type' => $request->get('content_type'),
+                        'session_id' => $session->id,
+                        'content_article' => null,
+                        'video_name' => $path
+                    ];
+                }
+
+                Content::create($datas);
+
+                return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
                 break;
             default:
                 break;
