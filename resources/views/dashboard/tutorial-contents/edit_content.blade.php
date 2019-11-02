@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div id="add-listing">
                 <!-- Section -->
-                {!! Form::open(['url' => route('dashboard_tutorial_update_content', ['tutorial' => $tutorial, 'content' => $content]), 'enctype' => "multipart/form-data"]) !!}
+                {!! Form::open(['method' => 'post', 'url' => route('dashboard_tutorial_update_content', ['tutorial' => $tutorial, 'content' => $content]), 'enctype' => "multipart/form-data"]) !!}
                 <div class="add-listing-section">
                     <!-- Headline -->
                     <div class="add-listing-headline">
@@ -31,6 +31,13 @@
                                     >{{ $value }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>@lang('Aperçu gratuit') <i class="tip" data-tip-content="@lang("Ce contenu sera accessible gratuitement même si votre cours est payant. Il permettra à vos clients d'avoir un aperçu de votre cours.")"></i></h5>
+                            <input type="checkbox" name="free" class="form-control" {{ ($content->free == '1') ? 'checked' : '' }} />
                         </div>
                     </div>
                     <!-- Row -->

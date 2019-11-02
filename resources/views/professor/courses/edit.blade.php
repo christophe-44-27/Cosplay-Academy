@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-12">
                             <h5>Description</h5>
-                            {!! Form::textarea('introduction', $course->introduction)!!}
+                            {!! Form::textarea('introduction', $course->introduction, ['id' => 'introduction'])!!}
                         </div>
                     </div>
 
@@ -114,12 +114,14 @@
                                                         <tr>
                                                             <th>@lang("Nom du contenu")</th>
                                                             <th>@lang("Type de contenu")</th>
+                                                            <th>@lang("Aperçu gratuit")</th>
                                                             <th>@lang("Actions")</th>
                                                         </tr>
                                                         @foreach($session->contents as $content)
                                                             <tr>
                                                                 <td data-label="@lang("Nom du contenu")">{{ $content->name  }}</td>
-                                                                <td data-label="@lang("Type du contenu")">{{ $content->type }}</td>
+                                                                <td data-label="@lang("Type du contenu")"><i class="fa-2x fa {{ ($content->type == 'article') ? 'fa-edit' : 'fa-video-camera'}}"></i></td>
+                                                                <td data-label="@lang("Aperçu gratuit")">{{ ($content->free == '1') ? \Illuminate\Support\Facades\Lang::get('Oui') : \Illuminate\Support\Facades\Lang::get('Non') }}</td>
                                                                 <td data-label="@lang("Action sur le contenu")">
                                                                     <a href="{{ route('dashboard_tutorial_edit_content', ['course' => $course, 'content' => $content]) }}"
                                                                        class="button preview" style="overflow: unset; margin-top: unset;background-color: #FB8628">
@@ -160,3 +162,12 @@
         @include('elements.blocs.dashboard-footer')
     </div>
 @endsection
+
+@push('javascripts')
+    <script src="https://cdn.tiny.cloud/1/flzw58mwpgikw2obj84uuxz5pxn4uceuiubyadhqpcensib0/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#introduction',
+        });
+    </script>
+@endpush

@@ -72,11 +72,6 @@ class CourseController extends Controller {
         return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses', 'userAlreadyFavorite'));
     }
 
-    public function showContent(Course $course, Content $content)
-    {
-        return view('frontend.courses.show_content', compact('course', 'content'));
-    }
-
     /**
      * This method is used to report some course that are not in some good quality or
      * no allowed by the CGU.

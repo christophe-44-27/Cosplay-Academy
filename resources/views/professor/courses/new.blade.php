@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-12">
                             <h5>@lang("Introduction")</h5>
-                            {!! Form::textarea('introduction', $course->introduction)!!}
+                            {!! Form::textarea('introduction', $course->introduction, ['id' => 'introduction'])!!}
                         </div>
                     </div>
 
@@ -104,3 +104,12 @@
 
     </div>
 @endsection
+
+@push('javascripts')
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#introduction'
+        });
+    </script>
+@endpush

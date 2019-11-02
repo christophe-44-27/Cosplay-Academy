@@ -8,6 +8,7 @@ Route::prefix('reviews')->middleware('auth')->group(function () {
 
 
 Route::prefix('courses')->middleware('auth')->group(function () {
+    Route::get('/{course}/content/{content}', 'Customer\CourseController@showContent')->name('course_show_content');
     Route::get('free/participate/{course}', 'Customer\CourseController@participateToFreeCourse')->name('course_user_participate');
     Route::get('free/cancel-participation/{course}', 'Customer\CourseController@cancelParticipationCourse')->name('course_user_cancel_participation');
 });

@@ -34,6 +34,7 @@ class CourseContentController extends Controller {
                 $tutorialContent->type = $request->get('content_type');
                 $tutorialContent->content_article = $request->get('article_content');
                 $tutorialContent->session_id = $session->id;
+                $tutorialContent->free = ($request->get('free') == 'on') ? true : false;
                 $tutorialContent->save();
 
                 return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
@@ -54,6 +55,7 @@ class CourseContentController extends Controller {
                         'name' => $request->get('name'),
                         'type' => $request->get('content_type'),
                         'session_id' => $session->id,
+                        'free' => ($request->get('free') == 'on') ? true : false,
                         'content_article' => null,
                         'video_name' => $path
                     ];
@@ -110,6 +112,7 @@ class CourseContentController extends Controller {
                 $datas = [
                     'name' => $request->get('name'),
                     'type' => $request->get('content_type'),
+                    'free' => ($request->get('free') == 'on') ? true : false,
                     'content_article' => $request->get('article_content'),
                     'video_name' => null
                 ];
@@ -131,6 +134,7 @@ class CourseContentController extends Controller {
                     $datas = [
                         'name' => $request->get('name'),
                         'type' => $request->get('content_type'),
+                        'free' => ($request->get('free') == 'on') ? true : false,
                         'content_article' => null,
                         'video_name' => $path
                     ];

@@ -1,0 +1,28 @@
+.section-content {
+    list-style: none;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+
+.section-content .course-item {
+    padding: 17px 0;
+    font-size: 15px;
+}
+
+.section-content .course-item .section-item-link {
+    padding: 0 30px;
+    color: #7e7e7e;
+}
+
+.section-content .course-item .item-name {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.section-content .course-item .course-item-lp_lesson .section-item-link:before {
+    content: "\f0f6"; }
+.section-content .course-item .course-item-lp_lesson.course-item-type-video .section-item-link:before {
+    content: "\f03d"; }
+.section-content .course-item .course-item-lp_lesson.course-item-type-audio .section-item-link:before {
+    content: "\f027"; }

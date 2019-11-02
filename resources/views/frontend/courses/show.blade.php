@@ -1,6 +1,7 @@
 @extends('layout.layout_without_search_bar')
 @push('stylesheets')
     <link href="{{ asset('themes/frontend/plugins/accordion/accordion.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/courses.css') }}" rel="stylesheet" />
 @endpush
 @section('content')
     <!--Section-->
@@ -77,38 +78,11 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">@lang("Contenu du cours")</h3>
-                        </div>
+                        <div class="card-header"><h3 class="card-title">@lang("Introduction")</h3></div>
                         <div class="card-body">
-                            <ul class="accordionjs m-0">
-                                @if(!empty($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)
-                                    @foreach($course->sessions as $session)
-                                        <li class="acc_section {{ ($userAlreadyParticipate == true) ? 'acc_active' : '' }}">
-                                            <div class="acc_head"><h3>{{ $session->name }}</h3></div>
-                                            @if($userAlreadyParticipate == true)
-                                                <div class="acc_content">
-                                                    @if($session->content->type == 'article')
-                                                        {!! $session->content->content_article !!}
-                                                    @else
-                                                        URL VIDEO
-                                                    @endif
-                                                </div>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                @else
-                                    <li class="acc_section acc_active">
-                                        <div class="acc_head"><h3>{{ $course->sessions->first()->name }}</h3></div>
-                                        <div class="acc_content">
-                                            @foreach($course->sessions->first()->contents as $content)
-                                                {!! $content->content_article !!}
-                                                {!! $content->video_name !!}
-                                            @endforeach
-                                        </div>
-                                    </li>
-                                @endif
-                            </ul>
+                            <div class="mb-4 description">
+                                {!! $course->introduction !!}
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="btn-list">
@@ -116,6 +90,74 @@
                                 <a href="#" class="btn btn-danger icons" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> @lang("Signaler")</a>
                                 <a href="#" class="btn btn-primary icons"><i class="icon icon-heart  mr-1"></i> {{ $course->userFavorites->count() }}</a>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@lang("Contenu du cours")</h3>
+                        </div>
+                        <div class="card-body">
+                            @if(!empty($course->sessions) and $course->sessions->count() > 0 and $course->sessions->count() > 1)
+                                @foreach($course->sessions as $session)
+                                    <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-default active">
+                                            <div class="panel-heading " role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                        Collapsible Group Item #1
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" style="">
+                                                <div class="panel-body">
+                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default active">
+                                        <div class="panel-heading " role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                                    {{ $course->sessions->first()->name }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" style="">
+                                            <div class="panel-body">
+                                                <table class="table table-hover">
+                                                    @foreach($course->sessions->first()->contents as $content)
+                                                        <tr>
+                                                            <td width="30px"><i class="fa {{ ($content->type == 'video') ? 'fa-video-camera' : 'fa-edit' }} " style="font-size: 30px"></i> </td>
+                                                            <td style="line-height: 30px">{{ $content->name }}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                @if($content->free == '1')
+                                                                    @if(!$userAlreadyParticipate)
+                                                                        <a href="#" target="_blank" style="font-weight: bold">@lang("Aperçu")</a>
+                                                                    @else
+                                                                        <a href="{{ route('course_show_content', ['course' => $course, 'content' => $content]) }}" style="font-weight: bold">@lang("Accéder à la leçon")</a>
+                                                                    @endif
+                                                                @else
+                                                                    @if(!$userAlreadyParticipate)
+                                                                        <i class="fa-2x fa fa-lock"></i>
+                                                                    @else
+                                                                        <a href="{{ route('course_show_content', ['course' => $course, 'content' => $content]) }}" style="font-weight: bold">@lang("Accéder à la leçon")</a>
+                                                                    @endif
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     @if($relatedCourses->count() > 0)
@@ -213,19 +255,25 @@
                         </div>
                         <div class="card-body">
                             @auth()
-                            {!! Form::open(['url' => route('course_store_review', $course)]) !!}
-                            <div>
-                                <div class="form-group">
-                                    <label class="form-label" for="nb_stars">@lang("Votre note de 1 à 5")</label>
-                                    {!! Form::text('nb_stars', null, ['class' => 'form-control'])!!}
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="content">@lang("Votre commentaire")</label>
-                                    {!! Form::textarea('content', null, ['class' => 'form-control'])!!}
-                                </div>
-                                <button type="submit" class="btn btn-primary">@lang("Ajouter un commentaire")</button>
-                            </div>
-                            {!! Form::close() !!}
+                                @if(!$userAlreadyParticipate)
+                                    <div class="alert alert-info">
+                                        @lang("Vous devez vous inscrire au cours pour pouvoir le commenter lui attribuer une note.")
+                                    </div>
+                                @else
+                                    {!! Form::open(['url' => route('course_store_review', $course)]) !!}
+                                        <div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="nb_stars">@lang("Votre note de 1 à 5")</label>
+                                                {!! Form::text('nb_stars', null, ['class' => 'form-control'])!!}
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="content">@lang("Votre commentaire")</label>
+                                                {!! Form::textarea('content', null, ['class' => 'form-control'])!!}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">@lang("Ajouter un commentaire")</button>
+                                        </div>
+                                    {!! Form::close() !!}
+                                @endif
                             @endauth
 
                             @guest()

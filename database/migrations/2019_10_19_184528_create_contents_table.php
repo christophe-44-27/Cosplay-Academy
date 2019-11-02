@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration
             $table->string('video_name')->nullable(true);
             $table->unsignedBigInteger('session_id');
             $table->foreign('session_id')->references('id')->on('sessions');
+            $table->boolean('free')->default(false);
         });
     }
 

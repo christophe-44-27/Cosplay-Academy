@@ -24,6 +24,12 @@
                             {!! Form::select('content_type', array('' => "Choisissez un type", 'article' => 'Article', 'video' => 'Vidéo')) !!}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>@lang('Aperçu gratuit') <i class="tip" data-tip-content="@lang("Ce contenu sera accessible gratuitement même si votre cours est payant. Il permettra à vos clients d'avoir un aperçu de votre cours.")"></i></h5>
+                            <input type="checkbox" name="free" class="form-control"/>
+                        </div>
+                    </div>
                     <!-- Row -->
                     <div class="row with-forms">
                         <!-- Address -->
