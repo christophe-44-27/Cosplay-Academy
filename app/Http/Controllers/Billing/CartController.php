@@ -14,7 +14,30 @@ class CartController extends Controller
     {
         $items = LaraCart::get()->cart->items;
 
-        return view('customer.cart.cart', compact('items'));
+        $total = 0;
+
+        foreach ($items as $item)
+        {
+            $total = $total + ($item->qty * $item->price);
+        }
+
+        return view('customer.cart.cart', compact('items', 'total'));
+    }
+
+    public function cartFallbackStripe()
+    {
+        $items = LaraCart::get()->cart->items;
+
+        $total = 0;
+
+        foreach ($items as $item)
+        {
+            $total = $total + ($item->qty * $item->price);
+        }
+
+        notify()->success(Lang::get("Votre paiement n'a pas été effectué."));
+
+        return view('customer.cart.cart', compact('items', 'total'));
     }
 
     /**

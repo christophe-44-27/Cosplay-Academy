@@ -20,22 +20,7 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="tab1">
-                                        <form action="/charge" method="post" id="payment-form">
-                                            <div class="form-row">
-                                                <label for="card-element">
-                                                    Credit or debit card
-                                                </label>
-                                                <div id="card-element">
-                                                    <!-- A Stripe Element will be inserted here. -->
-                                                </div>
-
-                                                <!-- Used to display Element errors. -->
-                                                <div id="card-errors" role="alert"></div>
-                                            </div>
-
-                                            <button>Submit Payment</button>
-                                        </form>
-                                        <form action="{{ route('stripe_charge') }}" method="POST">
+                                        <form id="payment-form" action="#" method="POST">
                                             <h2 style="font-size: 24px; margin-bottom: 20px; color: #ec296b;">@lang('Information de facturation')</h2>
                                             <div class="form-group">
                                                 <label class="form-label">@lang("Nom du porteur de la carte")</label>
@@ -47,28 +32,15 @@
                                             </div>
                                             <hr>
                                             <h2 style="font-size: 24px; margin-bottom: 20px; color: #ec296b;">@lang('Information de paiement')</h2>
-                                            <div class="form-group">
-                                                <label class="form-label">@lang("Numéro de la carte")</label>
-                                                <input type="card_number" class="form-control" id="email" placeholder="0000 0000 0000 0000">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <div class="form-group">
-                                                        <label class="form-label">Expiration</label>
-                                                        <div class="input-group">
-                                                            <input type="number" class="form-control" placeholder="MM" name="expire-month">
-                                                            <input type="number" class="form-control" placeholder="YY" name="expire-year">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label">CVV <i class="fa fa-question-circle"></i></label>
-                                                        <input name="cvc" type="number" class="form-control" required="">
+                                            <div id="formStripe" class="tab-pane active show">
+                                                <div class="form-group">
+                                                    <label for="card-element">Credit or debit card</label>
+                                                    <div id="card-element" class="form-control" style='height: 2.4em; padding-top: .7em;'>
+                                                        <!-- A Stripe Element will be inserted here. -->
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="#" class="btn btn-primary">Submit</a>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -87,23 +59,26 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>Cart Subtotal</td>
-                                            <td class="text-right">$792.00</td>
+                                            <td>@lang("Sous-total")</td>
+                                            <td class="text-right text-muted">{{ $total }} $</td>
                                         </tr>
                                         <tr>
-                                            <td><span>Totals</span></td>
-                                            <td class="text-right text-muted"><span>$792.00</span></td>
+                                            <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * 0.14975, 2) }} $</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span>Order Total</span></td>
-                                            <td><h2 class="price text-right mb-0">$792.00</h2></td>
+                                            <td><span>@lang("Frais transaction")</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * 0.029, 2) + 0.30 }} $</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>@lang("Total (charges incluses)")</span></td>
+                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * 0.14975, 2) + round($total * 0.029, 2) + 0.30 }} $</h2></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <form class="text-center">
-                                    <input class="btn btn-primary mt-2 m-b-20 " type="submit" value="Proceed To Checkout">
-                                    <input class="btn btn-success mt-2" type="submit" value="Continue Shopping">
+                                    <a href="{{ route('courses') }}" class="btn btn-success mt-2">@lang("Acheter d'autres cours")</a>
                                 </form>
                             @else
                                 <div class="alert alert-info">Votre panier est vide.</div>
@@ -115,184 +90,161 @@
         </div>
     </section>
 
-    @if($items)
-        <section class="sptb">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body items-gallery">
-                            <div class="items-blog-tab text-center">
-                                <h2 style="text-align:  left">Autres cours qui pourraient aussi vous intéresser</h2>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab-1">
-                                        <div class="row">
-                                            <div class="col-xl-3 col-lg-6 col-md-12">
-                                                <div class="card mb-xl-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/7.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Security Hacking</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-6 col-md-12">
-                                                <div class="card mb-xl-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/2.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Computer Networking</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-6 col-md-12">
-                                                <div class="card mb-lg-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/11.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Business Manegement</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-6 col-md-12">
-                                                <div class="card mb-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/1.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Java Courses</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab-2">
-                                        <div class="row">
-                                            <div class="col-xl-4 col-lg-12 col-md-12">
-                                                <div class="card mb-xl-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/15.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">UNIX Classes</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-12 col-md-12">
-                                                <div class="card mb-xl-0">
-                                                    <div class="item-card8-img">
-                                                        <img src="../assets/images/media/13.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Frame Works Classes</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-12 col-md-12">
-                                                <div class="card mb-0">
-                                                    <div class="item-card8-img">
-                                                        <img src="../assets/images/media/18.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Digital Marketing</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab-3">
-                                        <div class="row">
-                                            <div class="col-xl-4 col-lg-12 col-md-12">
-                                                <div class="card mb-xl-0">
-                                                    <div class="item-card8-img  br-tr-7 br-tl-7">
-                                                        <img src="../assets/images/media/4.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold"> Security Hacking</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-12 col-md-12">
-                                                <div class="card mb-0">
-                                                    <div class="item-card8-img">
-                                                        <img src="../assets/images/media/7.jpg" alt="img" class="cover-image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="item-card8-desc">
-                                                            <p class="text-muted">16 November 2018.</p>
-                                                            <h4 class="font-weight-semibold">Marketing Courses</h4>
-                                                            <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
+    {{--@if($items)--}}
+        {{--<section class="sptb">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-12">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body items-gallery">--}}
+                            {{--<div class="items-blog-tab text-center">--}}
+                                {{--<h2 style="text-align:  left">Autres cours qui pourraient aussi vous intéresser</h2>--}}
+                                {{--<div class="tab-content">--}}
+                                    {{--<div class="tab-pane active" id="tab-1">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-xl-3 col-lg-6 col-md-12">--}}
+                                                {{--<div class="card mb-xl-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/7.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Security Hacking</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-3 col-lg-6 col-md-12">--}}
+                                                {{--<div class="card mb-xl-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/2.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Computer Networking</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-3 col-lg-6 col-md-12">--}}
+                                                {{--<div class="card mb-lg-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/11.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Business Manegement</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-3 col-lg-6 col-md-12">--}}
+                                                {{--<div class="card mb-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/1.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Java Courses</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane" id="tab-2">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-xl-4 col-lg-12 col-md-12">--}}
+                                                {{--<div class="card mb-xl-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/15.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">UNIX Classes</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-4 col-lg-12 col-md-12">--}}
+                                                {{--<div class="card mb-xl-0">--}}
+                                                    {{--<div class="item-card8-img">--}}
+                                                        {{--<img src="../assets/images/media/13.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Frame Works Classes</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-4 col-lg-12 col-md-12">--}}
+                                                {{--<div class="card mb-0">--}}
+                                                    {{--<div class="item-card8-img">--}}
+                                                        {{--<img src="../assets/images/media/18.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Digital Marketing</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="tab-pane" id="tab-3">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-xl-4 col-lg-12 col-md-12">--}}
+                                                {{--<div class="card mb-xl-0">--}}
+                                                    {{--<div class="item-card8-img  br-tr-7 br-tl-7">--}}
+                                                        {{--<img src="../assets/images/media/4.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold"> Security Hacking</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-xl-4 col-lg-12 col-md-12">--}}
+                                                {{--<div class="card mb-0">--}}
+                                                    {{--<div class="item-card8-img">--}}
+                                                        {{--<img src="../assets/images/media/7.jpg" alt="img" class="cover-image">--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="card-body">--}}
+                                                        {{--<div class="item-card8-desc">--}}
+                                                            {{--<p class="text-muted">16 November 2018.</p>--}}
+                                                            {{--<h4 class="font-weight-semibold">Marketing Courses</h4>--}}
+                                                            {{--<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  laboriosam</p>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
+    {{--@endif--}}
 @endsection
-
-@push('javascripts')
-    <!-- Stripe.js v3 for Elements -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        var stripe = Stripe('pk_test_Dpa8kApSoONinwPYPvixA7k500imfy8unx');
-        var elements = stripe.elements();
-        // Custom styling can be passed to options when creating an Element.
-        var style = {
-            base: {
-                // Add your base input styles here. For example:
-                fontSize: '16px',
-                color: "#32325d",
-            }
-        };
-
-        // Create an instance of the card Element.
-        var card = elements.create('card', {style: style});
-
-        // Add an instance of the card Element into the `card-element` <div>.
-        card.mount('#card-element');
-    </script>
-@endpush

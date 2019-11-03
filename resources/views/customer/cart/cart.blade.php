@@ -50,12 +50,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <form class="text-left  product-cart m-t-20 mb-0">
-                                    <div class="row">
-                                        <div class="col-6"><input class="productcart form-control" type="text" placeholder="Coupon Code"></div>
-                                        <div class="col-6"><a href="#" class="btn btn-primary btn-md">Apply</a></div>
-                                    </div>
-                                </form>
                             @else
                                 <div class="alert alert-info">Votre panier est vide.</div>
                             @endif
@@ -73,23 +67,27 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>Cart Subtotal</td>
-                                            <td class="text-right">$792.00</td>
+                                            <td>@lang("Sous-total")</td>
+                                            <td class="text-right text-muted">{{ $total }} $</td>
                                         </tr>
                                         <tr>
-                                            <td><span>Totals</span></td>
-                                            <td class="text-right text-muted"><span>$792.00</span></td>
+                                            <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * 0.14975, 2) }} $</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span>Order Total</span></td>
-                                            <td><h2 class="price text-right mb-0">$792.00</h2></td>
+                                            <td><span>@lang("Frais transaction")</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * 0.029, 2) + 0.30 }} $</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>@lang("Total (charges incluses)")</span></td>
+                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * 0.14975, 2) + round($total * 0.029, 2) + 0.30 }} $</h2></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <form class="text-center">
                                     <a href="{{ route('cart_checkout') }}" class="btn btn-primary mt-2 m-b-20 ">@lang("Payer")</a>
-                                    <input class="btn btn-success mt-2" type="submit" value="Continue Shopping">
+                                    <a href="{{ route('courses') }}" class="btn btn-success mt-2">@lang("Acheter d'autres cours")</a>
                                 </form>
                             @else
                                 <div class="alert alert-info">Votre panier est vide.</div>
