@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\Billing\StripeService;
 use App\Services\CourseService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Stripe\Stripe;
 
 class AppServiceProvider extends ServiceProvider {
     /**
@@ -24,7 +24,6 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register() {
-        Stripe::setApiKey(getenv('STRIPE_SECRET'));
 
         if ($this->app->isLocal()) {
             $this->app->register(TelescopeServiceProvider::class);
@@ -32,6 +31,10 @@ class AppServiceProvider extends ServiceProvider {
 
         $this->app->bind(CourseService::class, function ($app) {
             return new CourseService();
+        });
+
+        $this->app->bind(StripeService::class, function ($app) {
+            return new StripeService();
         });
     }
 }

@@ -20,28 +20,9 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active show" id="tab1">
-                                        <form id="payment-form" action="#" method="POST">
-                                            <h2 style="font-size: 24px; margin-bottom: 20px; color: #ec296b;">@lang('Information de facturation')</h2>
-                                            <div class="form-group">
-                                                <label class="form-label">@lang("Nom du porteur de la carte")</label>
-                                                <input type="text" class="form-control" id="name" placeholder="John Doe">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">@lang("Adresse courriel")</label>
-                                                <input type="text" class="form-control" id="email" placeholder="johndoe@doe.com">
-                                            </div>
-                                            <hr>
-                                            <h2 style="font-size: 24px; margin-bottom: 20px; color: #ec296b;">@lang('Information de paiement')</h2>
-                                            <div id="formStripe" class="tab-pane active show">
-                                                <div class="form-group">
-                                                    <label for="card-element">Credit or debit card</label>
-                                                    <div id="card-element" class="form-control" style='height: 2.4em; padding-top: .7em;'>
-                                                        <!-- A Stripe Element will be inserted here. -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </form>
+                                        <!-- Component Vue JS for payment form -->
+                                        <payment-form></payment-form>
+                                        <!-- /Component Vue JS for payment form -->
                                     </div>
                                 </div>
                             </div>
@@ -248,3 +229,7 @@
     {{--</section>--}}
     {{--@endif--}}
 @endsection
+
+@push('javascripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+@endpush

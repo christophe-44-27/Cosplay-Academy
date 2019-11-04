@@ -10,7 +10,7 @@ return [
 	| any other location as required by the application or its packages.
 	|
 	*/
-    'name' => "Cosplay School",
+    'name' => env("APP_NAME"),
     /*
 	|--------------------------------------------------------------------------
 	| Application Environment
@@ -144,6 +144,7 @@ return [
 		 */
         LukePOLO\LaraCart\LaraCartServiceProvider::class,
         Yoeunes\Notify\NotifyServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 
         /*
 		 * Application Service Providers...
@@ -206,5 +207,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'LaraCart' => LukePOLO\LaraCart\Facades\LaraCart::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
     ],
 ];

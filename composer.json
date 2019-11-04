@@ -19,6 +19,7 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "lukepolo/laracart": "^1.8",
         "stevebauman/purify": "^2.0",
+        "cartalyst/stripe-laravel": "10.0.*",
         "yoeunes/notify": "^1.0"
     },
     "require-dev": {

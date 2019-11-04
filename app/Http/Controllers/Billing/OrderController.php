@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
+use App\Services\Billing\StripeService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use LukePOLO\LaraCart\Facades\LaraCart;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class OrderController extends Controller
 {
@@ -20,34 +25,55 @@ class OrderController extends Controller
         return view('customer.cart.checkout', compact('items', 'total'));
     }
 
-    /**
-     * @throws \Stripe\Exception\ApiErrorException
-     */
-    public function charge()
-    {
-        // Set your secret key: remember to change this to your live secret key in production
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
-        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET'));
 
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'name' => 'T-shirt',
-                'description' => 'Comfortable cotton t-shirt',
-                'images' => ['https://example.com/t-shirt.png'],
-                'amount' => 500,
-                'currency' => 'cad',
-                'quantity' => 1,
-            ]],
-            'success_url' => 'http://cosplayschool.test/order/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'http://cosplayschool.test/cart/payment-cancel',
+    public function charge(Request $request, StripeService $stripeService)
+    {
+        $user = Auth::user();
+        $stripe = Stripe::make(config('services.stripe.secret'));
+
+        //First step create or retrieve a customer
+        if(empty($user->stripe_customer_id)) {
+            $customer = $stripe->customers()->create([
+                'email' => $request->get('email'),
+                'name' => $request->get('name_on_card'),
+                'address' => [
+                    'line1' => $request->get('address')
+                ],
+            ]);
+            $card = $stripe->cards()->create($customer['id'], $request->get('stripeToken'));
+
+            $stripeService->addStripeCustomerId($user, $customer['id']);
+            $stripeService->addSomeBillingInformations($user, $card);
+        } elseif($stripe->customers()->find($user->stripe_customer_id)['deleted'] == true) {
+            $customer = $stripe->customers()->create([
+                'email' => $request->get('email'),
+                'name' => $request->get('name_on_card'),
+                'address' => [
+                    'line1' => $request->get('address')
+                ],
+            ]);
+            $card = $stripe->cards()->create($customer['id'], $request->get('stripeToken'));
+
+            $stripeService->addStripeCustomerId($user, $customer['id']);
+            $stripeService->addSomeBillingInformations($user, $card);
+        }else{
+            $customer = $stripe->customers()->find($user->stripe_customer_id);
+        }
+
+        $charge = Stripe::charges()->create([
+            'amount'   => 10.99,
+            'customer' => $customer['id'],
+//            'source' => $request->stripeToken,
+            'description' => "Achat d'un cours",
+            'receipt_email' => $request->get('email'),
+            'currency' => getenv('CURRENCY'),
         ]);
 
-        dd($session);
-    }
+        //La charge ayant été faite, on détruit le panier.
+//        LaraCart::destroyCart();
 
-    public function orderSuccess(string $sessionId)
-    {
-        dd($sessionId);
+        notify()->success(Lang::get("Votre paiement a bien été effectué !"));
+
+        return redirect(route('homepage'));
     }
 }

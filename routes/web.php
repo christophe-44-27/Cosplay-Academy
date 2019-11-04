@@ -27,6 +27,7 @@ Route::get('login/facebook/callback', 'Auth\LoginFacebookController@handleProvid
 Route::get('search', 'GuestHomepageController@search')->name('search_courses_homepage');
 Route::get('contact', 'Contact\ContactController@index')->name('contact');
 Route::post('contact/send', 'Contact\ContactController@contact')->name('contact_post');
+Route::post('/stripe/charge', 'Billing\OrderController@charge')->name('stripe_charge');
 
 Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function () {
 //    include('Admin/admin_routes.php');
