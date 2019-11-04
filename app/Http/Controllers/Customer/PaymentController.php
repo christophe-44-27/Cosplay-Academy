@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class PaymentController extends Controller {
     public function index() {
         $user = Auth::user();
 
-        $payments = Payment::where('user_id', '=', $user->id)->paginate(15);
+        $payments = Invoice::where('user_id', '=', $user->id)->paginate(15);
 
         $action = 'orders';
 

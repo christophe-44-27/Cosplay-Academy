@@ -61,25 +61,23 @@
         <!-- Invoices -->
         <div class="col-lg-6 col-md-12">
             <div class="dashboard-list-box invoices with-icons margin-top-20">
-                <h4>Payout History</h4>
+                <h4>@lang("Historique de paiement")</h4>
                 <ul>
-
-                    <li><i class="list-box-icon sl sl-icon-wallet"></i>
-                        <strong>$84.50</strong>
-                        <ul>
-                            <li class="unpaid">Unpaid</li>
-                            <li>Period: 02/2019</li>
-                        </ul>
-                    </li>
-
-                    <li><i class="list-box-icon sl sl-icon-wallet"></i>
-                        <strong>$189.20</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Period: 01/2019</li>
-                        </ul>
-                    </li>
-
+                    @if($lastTransactions)
+                        @foreach($lastTransactions as $lastTransaction)
+                            <li><i class="list-box-icon sl sl-icon-wallet"></i>
+                                <strong>{{ $lastTransaction->amount }} $</strong>
+                                <ul>
+                                    <li class="{{ ($lastTransaction->paid == true) ? 'paid' : 'unpaid'}}">{{ ($lastTransaction->paid == true) ? 'Payée' : 'Impayée'}}</li>
+                                    <li><a href=" {{ $lastTransaction->receipt_url }}">@lang("Télécharger la facture")</a></li>
+                                </ul>
+                            </li>
+                        @endforeach
+                    @else
+                        <div class="notification notice margin-bottom-30">
+                            <p>Vous n'avez effectué aucun paiement.</p>
+                        </div>
+                    @endif
                 </ul>
             </div>
         </div>

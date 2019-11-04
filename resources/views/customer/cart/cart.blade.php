@@ -76,11 +76,11 @@
                                         </tr>
                                         <tr>
                                             <td><span>@lang("Frais transaction")</span></td>
-                                            <td class="text-right text-muted"><span>{{ round($total * 0.029, 2) + 0.30 }} $</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * 0.0415, 2) + 0.31 }} $</span></td>
                                         </tr>
                                         <tr>
                                             <td><span>@lang("Total (charges incluses)")</span></td>
-                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * 0.14975, 2) + round($total * 0.029, 2) + 0.30 }} $</h2></td>
+                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * 0.14975, 2) + round($total * 0.0415, 2) + 0.31 }} $</h2></td>
                                         </tr>
                                         </tbody>
                                     </table>

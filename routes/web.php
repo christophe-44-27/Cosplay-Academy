@@ -37,6 +37,7 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 include ('Guest/tutorials.php');
 include ('Guest/cart.php');
 include ('Guest/users.php');
+include ('Guest/stripe_webhooks.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/

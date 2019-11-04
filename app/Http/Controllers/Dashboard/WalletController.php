@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Review;
+use App\Models\Invoice;
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller {
@@ -19,7 +18,7 @@ class WalletController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        $lastTransactions = Payment::where('user_id', '=', Auth::user()->id)
+        $lastTransactions = Invoice::where('user_id', '=', Auth::user()->id)
             ->orderBy('id', 'desc')
             ->paginate(6);
 

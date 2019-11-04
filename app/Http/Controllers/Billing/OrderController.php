@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use App\Services\Billing\StripeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use LukePOLO\LaraCart\Facades\LaraCart;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class OrderController extends Controller
 {
@@ -29,48 +29,34 @@ class OrderController extends Controller
     public function charge(Request $request, StripeService $stripeService)
     {
         $user = Auth::user();
-        $stripe = Stripe::make(config('services.stripe.secret'));
+//        $stripe = Stripe::make(config('services.stripe.secret'));
+        $customer = $stripeService->createOrRetrieveCustomer($request, $user, $user->stripe_customer_id);
 
-        //First step create or retrieve a customer
-        if(empty($user->stripe_customer_id)) {
-            $customer = $stripe->customers()->create([
-                'email' => $request->get('email'),
-                'name' => $request->get('name_on_card'),
-                'address' => [
-                    'line1' => $request->get('address')
-                ],
-            ]);
-            $card = $stripe->cards()->create($customer['id'], $request->get('stripeToken'));
+        $items = LaraCart::get()->cart->items;
 
-            $stripeService->addStripeCustomerId($user, $customer['id']);
-            $stripeService->addSomeBillingInformations($user, $card);
-        } elseif($stripe->customers()->find($user->stripe_customer_id)['deleted'] == true) {
-            $customer = $stripe->customers()->create([
-                'email' => $request->get('email'),
-                'name' => $request->get('name_on_card'),
-                'address' => [
-                    'line1' => $request->get('address')
-                ],
-            ]);
-            $card = $stripe->cards()->create($customer['id'], $request->get('stripeToken'));
+        $total = 0;
 
-            $stripeService->addStripeCustomerId($user, $customer['id']);
-            $stripeService->addSomeBillingInformations($user, $card);
-        }else{
-            $customer = $stripe->customers()->find($user->stripe_customer_id);
+        foreach ($items as $item)
+        {
+            $total = $total + ($item->qty * $item->price);
         }
 
-        $charge = Stripe::charges()->create([
-            'amount'   => 10.99,
-            'customer' => $customer['id'],
-//            'source' => $request->stripeToken,
-            'description' => "Achat d'un cours",
-            'receipt_email' => $request->get('email'),
-            'currency' => getenv('CURRENCY'),
-        ]);
+        $stripeService->createInvoiceItem($items, $customer['id']);
+        $invoice = $stripeService->createInvoice($customer['id']);
+        $payedInvoice = $stripeService->payInvoice($invoice['id']);
+
+        $datas = [
+            'invoice_id' => $payedInvoice['id'],
+            'amount' => $payedInvoice['amount_due'] / 100,
+            'receipt_url' => $payedInvoice['invoice_pdf'],
+            'paid' => $payedInvoice['paid'],
+            'user_id' => $user->id
+        ];
+
+        Invoice::create($datas);
 
         //La charge ayant été faite, on détruit le panier.
-//        LaraCart::destroyCart();
+        LaraCart::destroyCart();
 
         notify()->success(Lang::get("Votre paiement a bien été effectué !"));
 

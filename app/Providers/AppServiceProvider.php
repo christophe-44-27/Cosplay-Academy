@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Billing\PaymentService;
 use App\Services\Billing\StripeService;
 use App\Services\CourseService;
 use Illuminate\Support\ServiceProvider;
