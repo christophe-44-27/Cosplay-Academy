@@ -16,11 +16,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::put('courses/{course}/sessions/update/{session}', 'Professor\CourseSessionController@update')->name('course_session_update');
     Route::get('courses/{course}/sessions/{session}/remove', 'Professor\CourseSessionController@remove')->name('dashboard_course_remove_session');
     /** TUTORIELS CONTENUS **/
-    Route::get('courses/{course}/sessions/{session}/new-content', 'Dashboard\CourseContentController@newContent')->name('dashboard_tutorial_new_content');
-    Route::post('courses/{course}/sessions/{session}/store', 'Dashboard\CourseContentController@store')->name('dashboard_tutorial_content_store');
-    Route::get('courses/{course}/content/{content}/edit', 'Dashboard\CourseContentController@edit')->name('dashboard_tutorial_edit_content');
-    Route::post('courses/{course}/content/{content}/update', 'Dashboard\CourseContentController@update')->name('dashboard_tutorial_update_content');
-    Route::get('courses/{course}/content/{content}/remove', 'Dashboard\CourseContentController@remove')->name('dashboard_tutorial_remove_content');
     /** ADRESSES **/
     Route::get('address/new', 'Dashboard\AddressController@newAddress')->name('my_address');
     Route::post('address/create', 'Dashboard\AddressController@create')->name('my_address_create');

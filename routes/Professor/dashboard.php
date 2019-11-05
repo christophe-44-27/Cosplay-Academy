@@ -13,12 +13,17 @@ Route::prefix('dashboard/teachers')->middleware('auth')->group(function () {
     Route::get('courses/{course}/edit', 'Professor\CourseController@edit')->name('professor_course_edit');
     Route::put('courses/{course}/update', 'Professor\CourseController@update')->name('professor_course_update');
     Route::get('courses/{course}/delete', 'Professor\CourseController@delete')->name('professor_course_remove');
-
-    /** COURSES CONTENTS */
-    Route::get('courses/{course}/delete/{content}', 'Professor\CourseContentController@deleteContent')->name('professor_course_content_delete');
-
     Route::post('courses/image/upload', 'Shared\UploadController@uploadFromWysiwyg')->name('upload_from_wysiwyg');
     Route::get('courses/{course}/unpublish', 'Professor\CourseController@unpublish')->name('professor_course_unpublish');
+
+
+    /** COURSES CONTENTS */
+    Route::get('courses/{course}/sessions/{session}/new-content', 'Professor\CourseContentController@newContent')->name('dashboard_tutorial_new_content');
+    Route::post('courses/{course}/sessions/{session}/store', 'Professor\CourseContentController@store')->name('dashboard_tutorial_content_store');
+    Route::get('courses/{course}/content/{content}/edit', 'Professor\CourseContentController@edit')->name('dashboard_tutorial_edit_content');
+    Route::post('courses/{course}/content/{content}/update', 'Professor\CourseContentController@update')->name('dashboard_tutorial_update_content');
+    Route::get('courses/{course}/content/{content}/remove', 'Professor\CourseContentController@remove')->name('dashboard_tutorial_remove_content');
+    Route::get('courses/{course}/delete/{content}', 'Professor\CourseContentController@deleteContent')->name('professor_course_content_delete');
 
     /** PROFILE PROFESSOR **/
     Route::get('profile', 'Professor\ProfileController@index')->name('profile_professor');
