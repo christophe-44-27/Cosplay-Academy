@@ -17,8 +17,9 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('card-element', require('./components/CardElement.vue'));
-Vue.component('payment-form', require('./components/PaymentForm.vue'));
+Vue.component('card-element', require('./components/CardElement.vue').default);
+Vue.component('payment-form', require('./components/PaymentForm.vue').default);
+Vue.component('registration-form', require('./components/Security/RegistrationForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

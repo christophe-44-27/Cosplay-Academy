@@ -1,7 +1,6 @@
 @extends('layout.base_layout')
 
 @section('content')
-    @include('elements.blocs.notifications')
     <section class="sptb pt-6 pb-6">
         <div class="container">
             <div class="row">
@@ -175,6 +174,7 @@
 
     <section>
         <div class="cover-image sptb bg-background">
+            @include('elements.blocs.notifications')
             <div class="header-text1 mb-0">
                 <div class="container">
                     <div class="row">
@@ -191,33 +191,7 @@
                         </div>
                         <div class="col-xl-5 col-lg-5 col-md-12">
                             <div class="card mb-0 shadow-none">
-                                <div class="card-body"><h3 class="mb-4">@lang("Je m'inscris!")</h3>
-                                    <form method="POST" action="{{route('register')}}">
-                                        @csrf
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fe fe-user fs-16 lh-0 op-6"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="@lang('Nom de cosplayeur')">
-                                        </div>
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fe fe-mail fs-16 lh-0 op-6"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="@lang("Courriel")">
-                                        </div>
-                                        <div class="input-group mb-4">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fe fe-unlock fs-16 lh-0 op-6"></i>
-                                                </div>
-                                            </div>
-                                            <input type="password" class="form-control" placeholder="@lang("Mot de passe")">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">@lang("S'inscrire")</button>
-                                    </form>
-                                </div>
+                                <registration-form></registration-form>
                             </div>
                         </div>
                     </div>

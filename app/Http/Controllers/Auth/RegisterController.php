@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'name.required' => Lang::get("Veuillez saisir un nom d'affichage"),
             'name.unique' => Lang::get("Ce nom d'affichage est déjà utilisé."),
             'email.unique' => Lang::get("Cette adresse courriel est déjà utilisée."),
+            'email.required' => Lang::get("L'adrese courriel est obligatoire"),
             'password.required' => Lang::get('Veuillez saisir un mot de passe.'),
             'password.min' => Lang::get('Votre mot de passe doit être composé de 6 caractères minimum.'),
             'email.max' => Lang::get("Votre adresse courriel doit faire maximum 255 caractères."),
@@ -63,8 +64,6 @@ class RegisterController extends Controller
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'unique:users'],
-            'firstname' => ['required', 'string'],
-            'lastname' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ], $messages);

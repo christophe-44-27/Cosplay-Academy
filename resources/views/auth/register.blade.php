@@ -24,13 +24,13 @@
 
                                 <div class="firstname">
                                     <input id="firstname" type="text" name="firstname"
-                                           value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                           value="{{ old('firstname') }}" autocomplete="firstname" autofocus>
                                     <label>@lang('Prénom')</label>
                                 </div>
 
                                 <div class="lastname">
                                     <input id="lastname" type="text" name="lastname"
-                                           value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                           value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
                                     <label>@lang('Nom')</label>
                                 </div>
 
