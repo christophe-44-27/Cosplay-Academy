@@ -20,6 +20,7 @@ window.Vue = require('vue');
 Vue.component('card-element', require('./components/CardElement.vue').default);
 Vue.component('payment-form', require('./components/PaymentForm.vue').default);
 Vue.component('registration-form', require('./components/Security/RegistrationForm.vue').default);
+Vue.component('newsletter-subscription-form', require('./components/Newsletter/NewsletterSubscriptionForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

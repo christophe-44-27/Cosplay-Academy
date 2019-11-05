@@ -38,6 +38,7 @@ include ('Guest/tutorials.php');
 include ('Guest/cart.php');
 include ('Guest/users.php');
 include ('Guest/stripe_webhooks.php');
+include ('Guest/newsletter.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/

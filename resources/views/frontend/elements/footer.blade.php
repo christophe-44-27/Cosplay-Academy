@@ -52,12 +52,7 @@
                         <h6>@lang("S'inscrire à l'infolettre")</h6>
                         <hr class="deep-purple  text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <div class="clearfix"></div>
-                        <div class="input-group w-100">
-                            <input type="text" class="form-control br-tl-3  br-bl-3 " placeholder="@lang('Courriel')">
-                            <div class="input-group-append ">
-                                <button type="button" class="btn btn-primary br-tr-3  br-br-3"> @lang("S'inscrire") </button>
-                            </div>
-                        </div>
+                        <newsletter-subscription-form></newsletter-subscription-form>
                         <h6 class="mb-0 mt-5">@lang("Mode de paiement")</h6>
                         <hr class="deep-purple  text-primary accent-2 mb-2 mt-3 d-inline-block mx-auto">
                         <div class="clearfix"></div>

@@ -109,14 +109,15 @@
 
 <div id="app">
     @yield('content')
+
+    <!--Footer Section-->
+    @include('frontend.elements.footer')
+    <!--/Footer Section-->
+
+    <!-- Back to top -->
+    <a href="#top" id="back-to-top" ><i class="fa fa-long-arrow-up"></i></a>
 </div>
 
-<!--Footer Section-->
-@include('frontend.elements.footer')
-<!--/Footer Section-->
-
-<!-- Back to top -->
-<a href="#top" id="back-to-top" ><i class="fa fa-long-arrow-up"></i></a>
 
 <!-- JQuery js-->
 <script src="{{ asset('themes/frontend/js/jquery-3.2.1.min.js') }}"></script>
