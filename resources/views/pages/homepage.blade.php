@@ -172,6 +172,7 @@
     </section>
     <!--/Section-->
 
+    @guest()
     <section>
         <div class="cover-image sptb bg-background">
             @include('elements.blocs.notifications')
@@ -199,6 +200,7 @@
             </div><!-- /header-text -->
         </div>
     </section>
+    @endguest
 
     <section class="sptb">
         <div class="container">

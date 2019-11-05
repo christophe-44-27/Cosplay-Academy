@@ -7,7 +7,7 @@
             </ul>
         </div>
         <h3 class="mb-4">Je m'inscris !</h3>
-        <form id="registrationForm" method="POST" action="/register" v-on:submit="checkForm()">
+        <form id="registrationForm" method="POST" action="/register" @submit="checkForm">
             <div class="input-group mb-4">
                 <div class="input-group-prepend">
                     <div class="input-group-text"><i class="fe fe-user fs-16 lh-0 op-6"></i>
@@ -61,10 +61,9 @@
         },
         methods: {
             checkForm: function(e) {
-                console.log("coucou");
-                // if (this.name && this.email && this.password) {
-                //     return true;
-                // }
+                if (this.name && this.email && this.password) {
+                    return true;
+                }
 
                 this.errors = [];
 
