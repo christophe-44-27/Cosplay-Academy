@@ -21,6 +21,7 @@
                                             <tr>
                                                 <th>@lang('Désignation')</th>
                                                 <th>@lang("Prix")</th>
+                                                <th>@lang("Frais de transaction")</th>
                                                 <th>@lang("Quantité")</th>
                                                 <th>@lang("Action")</th>
                                             </tr>
@@ -34,7 +35,16 @@
                                                             @if($item->price == 0)
                                                                 @lang('Gratuit')
                                                             @else
-                                                                {{ $item->price }}
+                                                                {{ round($item->price, 2) }} $
+                                                            @endif
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            @if($item->price == 0)
+                                                                @lang('Gratuit')
+                                                            @else
+                                                                {{ round($item->price * getenv('FEE_STRIPE') / 100 + getenv('FEE_STRIPE_CENT'), 2) }} $
                                                             @endif
                                                         </span>
                                                     </td>
@@ -54,6 +64,7 @@
                                 <div class="alert alert-info">Votre panier est vide.</div>
                             @endif
                         </div>
+                        <small style="padding-left: 5px">* Le prix affiché comprend les frais de transaction de Stripe d'un montant de 2.9% + 0.31cts.</small>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -69,19 +80,15 @@
                                         <tbody>
                                         <tr>
                                             <td>@lang("Sous-total")</td>
-                                            <td class="text-right text-muted">{{ $total }} $</td>
+                                            <td class="text-right text-muted">{{ round($total, 2) }} $</td>
                                         </tr>
                                         <tr>
                                             <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
                                             <td class="text-right text-muted"><span>{{ round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</span></td>
                                         </tr>
                                         <tr>
-                                            <td><span>@lang("Frais transaction")</span></td>
-                                            <td class="text-right text-muted"><span>{{ round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</span></td>
-                                        </tr>
-                                        <tr>
                                             <td><span>@lang("Total (charges incluses)")</span></td>
-                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) + round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</h2></td>
+                                            <td><h2 class="price text-right mb-0"> {{ round($total + $total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</h2></td>
                                         </tr>
                                         </tbody>
                                     </table>

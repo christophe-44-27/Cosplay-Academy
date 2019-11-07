@@ -63,7 +63,7 @@ class StripeService
     public function createInvoice(string $customerId)
     {
         $invoice = $this->_stripe_api->invoices()->create($customerId, [
-            'tax_percent' => getenv('TAX_PERCENT_CA_RATE')
+            'tax_percent' => getenv('TAX_PERCENT_CA_RATE'),
         ]);
 
         return $invoice;
@@ -81,7 +81,9 @@ class StripeService
         foreach ($items as $item)
         {
             $invoiceItem = $this->_stripe_api->invoiceItems()->create($customerId, [
-                'amount'   => $item->price,
+                'amount'   => ($item->price
+                    + ($item->price * getenv('FEE_STRIPE') / 100)
+                    + getenv('FEE_STRIPE_CENT')) * $item->qty,
                 'description' => $item->name,
                 'currency' => getenv('CURRENCY'),
             ]);

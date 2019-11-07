@@ -38,23 +38,20 @@
                             @if($items)
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
+
                                         <tbody>
-                                            <tr>
-                                                <td>@lang("Sous-total")</td>
-                                                <td class="text-right text-muted">{{ $total }} $</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
-                                                <td class="text-right text-muted"><span>{{ round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span>@lang("Frais transaction")</span></td>
-                                                <td class="text-right text-muted"><span>{{ round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span>@lang("Total (charges incluses)")</span></td>
-                                                <td><h2 class="price text-right mb-0"> {{ $total + round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) + round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</h2></td>
-                                            </tr>
+                                        <tr>
+                                            <td>@lang("Sous-total")</td>
+                                            <td class="text-right text-muted">{{ round($total, 2) }} $</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
+                                            <td class="text-right text-muted"><span>{{ round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>@lang("Total (charges incluses)")</span></td>
+                                            <td><h2 class="price text-right mb-0"> {{ round($total + $total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</h2></td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

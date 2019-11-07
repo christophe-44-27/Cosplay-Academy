@@ -16,9 +16,11 @@ class CartController extends Controller
 
         $total = 0;
 
-        foreach ($items as $item)
-        {
-            $total = $total + ($item->qty * $item->price);
+        if ($items) {
+            foreach ($items as $item)
+            {
+                $total = $total + $item->qty * ($item->price + (($item->price * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
+            }
         }
 
         return view('customer.cart.cart', compact('items', 'total'));
@@ -32,7 +34,7 @@ class CartController extends Controller
 
         foreach ($items as $item)
         {
-            $total = $total + ($item->qty * $item->price);
+            $total = $total + $item->qty * ($item->price + (($item->price * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
         }
 
         notify()->success(Lang::get("Votre paiement n'a pas été effectué."));
