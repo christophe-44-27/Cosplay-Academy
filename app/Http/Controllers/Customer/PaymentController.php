@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
-use App\Models\Payment;
+use App\Models\Earning;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller {

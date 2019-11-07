@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Models\Session;
 use App\Models\Course;
@@ -22,7 +22,7 @@ class CourseSessionController extends Controller {
     public function newSession(Course $course)
     {
         $controller = 'courses';
-        return view('professor.courses.add_sessions', compact('course', 'controller'));
+        return view('instructor.courses.add_sessions', compact('course', 'controller'));
     }
 
     /**
@@ -52,7 +52,7 @@ class CourseSessionController extends Controller {
     {
         $controller = 'courses';
 
-        return view('professor.courses.edit_session', compact('course', 'session', 'controller'));
+        return view('instructor.courses.edit_session', compact('course', 'session', 'controller'));
     }
 
     /**

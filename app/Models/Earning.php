@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Earning extends Model
 {
-    protected $table = 'transactions';
+    protected $table = 'earnings';
     protected $guarded = [];
     public $timestamps = true;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * Get the owning earningable model.
      */
-    public function transactionable()
+    public function earningable()
     {
         return $this->morphTo();
     }
@@ -24,5 +24,13 @@ class Transaction extends Model
     public function seller()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'earningable_id');
     }
 }

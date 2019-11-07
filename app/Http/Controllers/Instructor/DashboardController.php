@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Models\Course;
 use App\Http\Controllers\Controller;
@@ -31,6 +31,6 @@ class DashboardController extends Controller
 
         $userFeeds = Feed::where('user_id', '=', $user->id)->limit(6)->orderBy('id', 'DESC')->get();
 
-        return view('professor.dashboard', compact('controller', 'nbCours', 'nbTutorials', 'userFeeds'));
+        return view('instructor.dashboard', compact('controller', 'nbCours', 'nbTutorials', 'userFeeds'));
     }
 }

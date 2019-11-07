@@ -19,10 +19,12 @@
                 complete: false,
                 errorMessage: '',
                 stripeOptions: {
+                    // see https://stripe.com/docs/stripe.js#element-options for details
                     style: {
                         base: {
                             color: '#32325d',
-                            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                            lineHeight: '18px',
+                            fontFamily: '"Raleway", Helvetica, sans-serif',
                             fontSmoothing: 'antialiased',
                             fontSize: '16px',
                             '::placeholder': {
@@ -48,11 +50,13 @@
                 createToken().then(data => console.log(data.token))
             },
             change(event) {
-                this.errorMessage = event.error ? event.error.message : '';
+                // if (event.error) {
+                //   this.errorMessage = event.error.message;
+                // } else {
+                //   this.errorMessage = ''
+                // }
+                this.errorMessage = event.error ? event.error.message : ''
             }
-        },
-        mounted() {
-            console.log('Component mounted.')
         }
     }
 </script>

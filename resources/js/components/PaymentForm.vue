@@ -1,5 +1,5 @@
 <template>
-    <form action="/stripe/charge" method="POST" id="payment-form" @submit.prevent="pay()">
+    <form action="/stripe/charge" method="POST" id="payment-form" @submit="pay">
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" class="form-control" id="email" name="email">
@@ -65,6 +65,7 @@
 
         <!-- CSRF Field -->
         <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="stripeToken">
 
         <div class="spacer"></div>
 
@@ -82,7 +83,8 @@
             }
         },
         methods: {
-            pay () {
+            pay: function(e){
+                e.preventDefault();
                 // createToken returns a Promise which resolves in a result object with
                 // either a token or an error key.
                 // See https://stripe.com/docs/api#tokens for the token object.
@@ -90,7 +92,7 @@
                 // More general https://stripe.com/docs/stripe.js#stripe-create-token.
                 var options = {
                     name: this.name_on_card,
-                }
+                };
                 createToken(options).then(result => {
                     // var form = document.getElementById('payment-form');
                     var hiddenInput = document.createElement('input');
@@ -98,9 +100,10 @@
                     hiddenInput.setAttribute('name', 'stripeToken');
                     hiddenInput.setAttribute('value', result.token.id);
                     this.$el.appendChild(hiddenInput);
+
                     // Submit the form
                     this.$el.submit();
-                })
+                });
             }
         }
     }

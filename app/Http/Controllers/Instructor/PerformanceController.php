@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
+use App\Models\Earning;
 use Illuminate\Support\Facades\Auth;
 
-class TransactionController extends Controller
+class PerformanceController extends Controller
 {
     /**
      * TutorialController constructor.
@@ -21,10 +21,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $controller = 'transactions';
+        $controller = 'earnings';
 
-        $transactions = Transaction::where('seller_id', '=', Auth::user()->id)->paginate(10);
+        $earnings = Earning::where('seller_id', '=', Auth::user()->id)->paginate(10);
 
-        return view('professor.transactions.list', compact('controller', 'transactions'));
+        return view('instructor.earnings.index', compact('controller', 'earnings'));
     }
 }

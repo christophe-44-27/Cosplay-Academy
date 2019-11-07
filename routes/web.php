@@ -34,17 +34,19 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 });
 
 /*** GUEST Section ***/
-include ('Guest/tutorials.php');
-include ('Guest/cart.php');
-include ('Guest/users.php');
-include ('Guest/stripe_webhooks.php');
-include ('Guest/newsletter.php');
+include('Common/tutorials.php');
+include('Common/cart.php');
+include('Common/users.php');
+include('Common/stripe_webhooks.php');
+include('Common/newsletter.php');
 /*** /GUEST Section ***/
 
 /*** Connected User Section ***/
 include ('ConnectedUser/dashboard_routes.php');
 include ('ConnectedUser/courses.php');
-include ('Professor/dashboard.php');
+include('Instructor/dashboard.php');
+include('Instructor/performance.php');
+include('Instructor/courses.php');
 include ('ConnectedUser/cart.php');
 include ('ConnectedUser/messagerie.php');
 

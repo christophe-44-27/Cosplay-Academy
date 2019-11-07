@@ -89,7 +89,7 @@ class Course extends Model
      */
     public function payments()
     {
-        return $this->morphMany(Payment::class, 'paymentable');
+        return $this->morphMany(Earning::class, 'paymentable');
     }
 
     /**

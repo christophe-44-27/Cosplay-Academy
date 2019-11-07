@@ -2,7 +2,6 @@
 
 namespace App\Services\Billing;
 
-use App\Models\TaxRate;
 use App\Models\User;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;

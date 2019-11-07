@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Requests\ProfessorProfileRequest;
 use App\Models\Country;
@@ -36,7 +36,7 @@ class ProfileController extends Controller
             $professor = new ProfessorProfile();
         }
 
-        return view('professor.profile.edit', compact('controller', 'professor', 'countries'));
+        return view('instructor.profile.edit', compact('controller', 'professor', 'countries'));
     }
 
     public function store(ProfessorProfileRequest $request)

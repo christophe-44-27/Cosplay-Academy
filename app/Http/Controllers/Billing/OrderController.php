@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
+use App\Services\Billing\PaymentService;
 use App\Services\Billing\StripeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class OrderController extends Controller
     }
 
 
-    public function charge(Request $request, StripeService $stripeService)
+    public function charge(Request $request, StripeService $stripeService, PaymentService $paymentService)
     {
         $user = Auth::user();
 //        $stripe = Stripe::make(config('services.stripe.secret'));
@@ -35,15 +36,21 @@ class OrderController extends Controller
         $items = LaraCart::get()->cart->items;
 
         $total = 0;
+        $itemIds = [];
 
         foreach ($items as $item)
         {
+            array_push($itemIds, $item->id);
             $total = $total + ($item->qty * $item->price);
         }
+
 
         $stripeService->createInvoiceItem($items, $customer['id']);
         $invoice = $stripeService->createInvoice($customer['id']);
         $payedInvoice = $stripeService->payInvoice($invoice['id']);
+
+        //On ajoute des lignes dans earning pour les auteurs. 1 ligne = 1 cours de vendu.
+        $paymentService->createEarning($itemIds, $payedInvoice);
 
         $datas = [
             'invoice_id' => $payedInvoice['id'],
@@ -56,7 +63,7 @@ class OrderController extends Controller
         Invoice::create($datas);
 
         //La charge ayant été faite, on détruit le panier.
-        LaraCart::destroyCart();
+//        LaraCart::destroyCart();
 
         notify()->success(Lang::get("Votre paiement a bien été effectué !"));
 

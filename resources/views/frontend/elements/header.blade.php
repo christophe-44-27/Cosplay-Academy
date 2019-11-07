@@ -14,7 +14,7 @@
                     <ul class="header-icons-link">
                         @auth()
                             <li class="">
-                                <a href="{{ route('professor_dashboard') }}" class="header-icons-link1"><i class="fa fa-briefcase" data-toggle="tooltip"
+                                <a href="{{ route('instructor_dashboard') }}" class="header-icons-link1"><i class="fa fa-briefcase" data-toggle="tooltip"
                                                                           data-placement="bottom" title="" data-original-title="@lang('Section formateur')"></i></a>
                             </li>
                         @endauth

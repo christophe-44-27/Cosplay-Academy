@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Requests\ProfessorProfileRequest;
 use App\Models\Country;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
-use App\Models\Payment;
+use App\Models\Earning;
 use App\Models\ProfessorProfile;
 use App\Models\User;
 use GuzzleHttp\Client;

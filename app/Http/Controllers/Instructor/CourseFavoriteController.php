@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Models\Course;
 use App\Http\Controllers\Controller;
@@ -24,7 +24,7 @@ class CourseFavoriteController extends Controller {
 
         $controller = 'favorites';
 
-        return view('professor.courses.course_favorites', compact('courses', 'controller'));
+        return view('instructor.courses.course_favorites', compact('courses', 'controller'));
     }
 
 

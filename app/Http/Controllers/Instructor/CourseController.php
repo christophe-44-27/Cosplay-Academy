@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Professor;
+namespace App\Http\Controllers\Instructor;
 
 use App\Http\Requests\CourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
@@ -34,7 +34,7 @@ class CourseController extends Controller {
             ->paginate(6);
         $controller = 'courses';
 
-        return view('professor.courses.index', compact('courses', 'controller'));
+        return view('instructor.courses.index', compact('courses', 'controller'));
     }
 
     /**
@@ -48,7 +48,7 @@ class CourseController extends Controller {
             ->paginate(6);
         $controller = 'courses';
 
-        return view('professor.courses.index', compact('courses', 'controller'));
+        return view('instructor.courses.index', compact('courses', 'controller'));
     }
 
     /**
@@ -61,7 +61,7 @@ class CourseController extends Controller {
 
         $controller = 'tutorials';
         $course = new Course();
-        return view('professor.courses.new', compact('categories', 'controller',
+        return view('instructor.courses.new', compact('categories', 'controller',
             'course', 'types', 'languages'));
     }
 
@@ -120,7 +120,7 @@ class CourseController extends Controller {
         $currentUrl = $request->url();
         $controller = 'tutorials';
 
-        return view('professor.courses.edit', compact(
+        return view('instructor.courses.edit', compact(
             'course',
             'categories',
             'types',

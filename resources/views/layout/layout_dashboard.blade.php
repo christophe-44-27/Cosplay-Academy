@@ -28,8 +28,8 @@
                 <div class="left-side">
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="{{ route('professor_dashboard') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
-                        <a href="{{ route('professor_dashboard') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
+                        <a href="{{ route('instructor_dashboard') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
+                        <a href="{{ route('instructor_dashboard') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
                     </div>
 
                     <!-- Mobile Navigation -->
@@ -61,7 +61,7 @@
                                 Mon compte
                             </div>
                             <ul>
-                                <li><a href="{{ route('professor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
+                                <li><a href="{{ route('instructor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
                                 <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a>
                                 </li>
                                 <li><a href="#"><i class="fa fa-calendar-check-o"></i>

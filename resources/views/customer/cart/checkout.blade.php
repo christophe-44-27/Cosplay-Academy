@@ -39,22 +39,22 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <tbody>
-                                        <tr>
-                                            <td>@lang("Sous-total")</td>
-                                            <td class="text-right text-muted">{{ $total }} $</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
-                                            <td class="text-right text-muted"><span>{{ round($total * 0.14975, 2) }} $</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>@lang("Frais transaction")</span></td>
-                                            <td class="text-right text-muted"><span>{{ round($total * 0.0415, 2) + 0.31 }} $</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>@lang("Total (charges incluses)")</span></td>
-                                            <td><h2 class="price text-right mb-0"> {{ $total + round($total * 0.14975, 2) + round($total * 0.0415, 2) + 0.31 }} $</h2></td>
-                                        </tr>
+                                            <tr>
+                                                <td>@lang("Sous-total")</td>
+                                                <td class="text-right text-muted">{{ $total }} $</td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@lang("Taxes (TVQ + TPS)")</span></td>
+                                                <td class="text-right text-muted"><span>{{ round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) }} $</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@lang("Frais transaction")</span></td>
+                                                <td class="text-right text-muted"><span>{{ round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>@lang("Total (charges incluses)")</span></td>
+                                                <td><h2 class="price text-right mb-0"> {{ $total + round($total * getenv('TAX_PERCENT_CA_RATE') / 100, 2) + round($total * getenv('FEE_STRIPE') / 100, 2) + getenv('FEE_STRIPE_CENT') }} $</h2></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -229,7 +229,3 @@
     {{--</section>--}}
     {{--@endif--}}
 @endsection
-
-@push('javascripts')
-    <script src="{{ asset('js/app.js') }}"></script>
-@endpush
