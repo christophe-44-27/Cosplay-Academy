@@ -106,65 +106,39 @@
         <!-- Invoices -->
         <div class="col-lg-6 col-md-12">
             <div class="dashboard-list-box invoices with-icons margin-top-20">
-                <h4>Invoices</h4>
+                <h4>@lang("Mes derniers revenus")</h4>
+                @if($earnings)
                 <ul>
-
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Professional Plan</strong>
+                    @foreach($earnings as $earning)
+                        <li><i class="list-box-icon sl sl-icon-doc"></i>
+                            {{ $earning->earningable->title }} : <strong>{{ round($earning->earningable->price,2) }} $</strong>
                         <ul>
-                            <li class="unpaid">Unpaid</li>
+                            <li class="{{ ($earning->paid == true) ? 'paid' : 'unpaid' }}">
+                                @if($earning->paid == true)
+                                    @lang("Paiement validé")
+                                @else
+                                    @lang("Paiement en attente")
+                                @endif
+                            </li>
                             <li>Order: #00124</li>
-                            <li>Date: 20/07/2019</li>
+                            <li>{{ \Illuminate\Support\Carbon::createFromTimeString($earning->created_at)->format('d/m/Y') }}</li>
                         </ul>
                         <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
+                            <a href="{{ route('course_details', $earning->earningable ) }}" target="_blank" class="button gray">@lang("Voir le cours")</a>
                         </div>
                     </li>
-
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Extended Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00108</li>
-                            <li>Date: 14/07/2019</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
-
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Extended Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00097</li>
-                            <li>Date: 10/07/2019</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
-
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Basic Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00091</li>
-                            <li>Date: 30/06/2019</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
-
+                    @endforeach
                 </ul>
+                @else
+                    <div class="alert alert-info">
+                        @lang("Vous n'avez encore perçu aucun revenu mais ça va venir !")
+                    </div>
+                @endif
             </div>
         </div>
 
 
         <!-- Copyrights -->
-        <div class="col-md-12">
-            <div class="copyrights">© 2019 Listeo. All Rights Reserved.</div>
-        </div>
+        @include('elements.blocs.dashboard-footer')
     </div>
 @endsection
