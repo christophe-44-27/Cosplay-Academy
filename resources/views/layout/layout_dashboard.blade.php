@@ -31,15 +31,6 @@
                         <a href="{{ route('instructor_dashboard') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
                         <a href="{{ route('instructor_dashboard') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
                     </div>
-
-                    <!-- Mobile Navigation -->
-                    <div class="mmenu-trigger">
-                        <button class="hamburger hamburger--collapse" type="button">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                        </button>
-                    </div>
                 </div>
                 <!-- Left Side Content / End -->
 
@@ -77,7 +68,7 @@
                             </ul>
                         </div>
 
-                        <a href="{{ route('professor_course_new') }}" class="button border with-icon">Ajouter un tutoriel <i
+                        <a href="{{ route('professor_course_new') }}" class="button border with-icon">Ajouter un cours <i
                                 class="sl sl-icon-plus"></i></a>
                     </div>
                     <!-- Header Widget / End -->

@@ -20,10 +20,8 @@ class CreateTutorialsTable extends Migration
             $table->string('url_video', 255)->nullable();
             $table->string('video_id', 255)->nullable();
             $table->string('thumbnail_picture', 255);
-            $table->string('main_picture', 255);
             $table->boolean('is_published')->default(0);
-            $table->integer('nb_views');
-            $table->integer('nb_likes');
+            $table->integer('difficulty')->default(1);
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('language_id');
@@ -32,8 +30,11 @@ class CreateTutorialsTable extends Migration
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('user_id', 'fk_user_id')->references('id')->on('users');
             $table->string('slug', 255);
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE tutorials ADD FULLTEXT title(title, content)');
     }
 
     /**

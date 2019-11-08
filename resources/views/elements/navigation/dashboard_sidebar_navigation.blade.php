@@ -4,12 +4,12 @@
 <div class="dashboard-nav">
     <div class="dashboard-nav-inner">
         <ul data-submenu-title="Main">
-            <li class="{{ ($controller == 'dashboard') ? 'active' : '' }}">
+            <li class="{{ (request()->is('instructors')) ? 'active' : '' }}">
                 <a href="{{ route('instructor_dashboard') }}">
                     <i class="sl sl-icon-settings"></i> Tableau de bord
                 </a>
             </li>
-            <li class="{{ ($controller == 'inbox') ? 'active' : '' }}">
+            <li class="{{ (request()->is('inbox*')) ? 'active' : '' }}">
                 <a href="{{ route('inbox') }}">
                     <i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span>
                 </a>
@@ -17,8 +17,8 @@
         </ul>
 
         <ul data-submenu-title="Enseigner">
-            <li class="{{ ($controller == 'courses') ? 'active' : '' }}">
-                <a><i class="sl sl-icon-layers"></i> @lang('Mes cours')</a>
+            <li class="{{ (request()->is('instructors/courses*')) ? 'active' : '' }}">
+                <a><i class="sl sl-icon-docs"></i> @lang('Mes cours')</a>
                 <ul>
                     <li>
                         <a href="{{ route('professor_course_list') }}">
@@ -34,7 +34,18 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ ($controller == 'reviews') ? 'active' : '' }}">
+            <li class="{{ (request()->is('instructors/tutorials*')) ? 'active' : '' }}">
+                <a><i class="sl sl-icon-doc"></i> @lang('Mes tutoriels')</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('instructor_tutorials_list') }}">
+                            @lang("Tous mes tutoriels")
+                            <span class="nav-tag green">{{ $published_tutorials }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{ (request()->is('instructors/reviews*')) ? 'active' : '' }}">
                 <a><i class="sl sl-icon-star"></i> Avis</a>
                 <ul>
                     <li><a href="{{ route('reviews') }}">Mes avis <span class="nav-tag green">6</span></a>
@@ -44,11 +55,11 @@
                 </ul>
             </li>
             <li><a href="{{ route('professor_course_favorites') }}"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
-            <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
+            <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un cours</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">
-            <li><a href="{{ route('profile_professor') }}"><i class="sl sl-icon-user"></i> Mon profil de formateur</a></li>
+            <li class="{{ (request()->is('instructors/profile*')) ? 'active' : '' }}"><a href="{{ route('profile_professor') }}"><i class="sl sl-icon-user"></i> Mon profil de formateur</a></li>
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="sl sl-icon-power"></i> Déconnexion

@@ -1,6 +1,24 @@
 @extends('layout.layout_dashboard')
 @section('content')
     <div class="row">
+        @if(isset($user->stripe_connect_account_id))
+            <div class="col-md-12">
+                <div class="notification success">
+                    <p>Votre compte de paiement a bien été configuré. Lors de vos échanges avec nos services, veuillez communiquer
+                    ce numéro si votre demande est relative à vos paiements reçus.</p>
+                    <p><b>Votre numéro de compte : {{ $user->stripe_connect_account_id }}</b></p>
+                </div>
+            </div>
+        @endif
+        <div class="col-md-12">
+            <div class="notification notice">
+                <b>Remarque : </b> Une fois que votre profil aura été rempli, vous allez être redirigé vers le site de Stripe avant de saisir vos
+                coordonnées bancaires en créant votre compte de paiement sur la plateforme Stripe.
+                <p>Ce compte de paiement vous permettra de recevoir les sommes perçues lorsque des membres achèteront vos cours sur la Cosplay Academy.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             @include('elements.blocs.listeo_notifications')
             <div id="add-listing">
@@ -59,9 +77,6 @@
                     <!-- Section / End -->
                     {!! Form::submit(\Illuminate\Support\Facades\Lang::get('Enregistrer & continuer'), ['class' => 'button preview']) !!}
                 {!! Form::close() !!}
-                @if(isset($user->stripe_connect_account_id))
-                    <a href="#" class="button medium"><i class="fa fa-money"></i> Modifier mes informations de paiement</a> <br>
-                @endif
             </div>
         </div>
         @include('elements.blocs.dashboard-footer')

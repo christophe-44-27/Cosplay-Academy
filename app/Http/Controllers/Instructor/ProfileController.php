@@ -39,6 +39,10 @@ class ProfileController extends Controller
         return view('instructor.profile.edit', compact('controller', 'professor', 'countries'));
     }
 
+    /**
+     * @param ProfessorProfileRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(ProfessorProfileRequest $request)
     {
         $validated = $request->validated();
@@ -61,12 +65,17 @@ class ProfileController extends Controller
         return redirect()->away("https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&stripe_user[business_type]=individual&stripe_user[email]=" . $user->email . "&stripe_user[country]=" . $professor->country->iso_code . "&stripe_user[first_name]=" . $professor->firstname . "&stripe_user[last_name]=" . $professor->lastname . "&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
     }
 
+    /**
+     * @param ProfessorProfileRequest $request
+     * @param ProfessorProfile $professor
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(ProfessorProfileRequest $request, ProfessorProfile $professor)
     {
         $validated = $request->validated();
         $professor->update($validated);
 
-        return redirect(route('profile_professor'))->with('sucess', Lang::get("Votre profil a bien été mis à jour."));
+        return redirect(route('profile_professor'))->with('success', Lang::get("Votre profil a bien été mis à jour."));
     }
 
     /**
@@ -89,12 +98,16 @@ class ProfileController extends Controller
         $user = User::where('id', '=', Auth::user()->id)->get()->first();
         $user->update(['stripe_connect_account_id' => $datas['stripe_user_id']]);
 
-        return redirect(route('stripe_overview'))->with('success', Lang::get("Votre compte de paiement a bien été configuré !"));
+        return redirect(route('profile_professor'))->with('success', Lang::get("Votre compte de paiement a bien été configuré !"));
     }
 
+    /**
+     * @param ProfessorProfile $professor
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function createStripePaymentAccount(ProfessorProfile $professor)
     {
         $user = Auth::user();
-        return redirect()->away("https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&stripe_user[business_type]=individual&stripe_user[email]=" . $user->email . "&stripe_user[country]=" . $professor->country->iso_code . "&stripe_user[first_name]=" . $professor->firstname . "&stripe_user[last_name]=" . $professor->lastname . "&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
+        return redirect()->away("https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&stripe_user[business_type]=individual&stripe_user[email]=" . $user->email . "&stripe_user[country]=" . $professor->country->iso_code . "&stripe_user[first_name]=" . $professor->firstname . "&stripe_user[last_name]=" . $professor->lastname . "&redirect_uri=http://cosplayschool.test/instructors/stripe/profile/registration/success");
     }
 }

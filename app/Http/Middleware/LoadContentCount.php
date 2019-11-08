@@ -30,6 +30,8 @@ class LoadContentCount {
             view()->share('published_courses', Course::where('user_id', '=', $user->id)
                 ->count());
 
+            view()->share('published_tutorials', Tutorial::where('user_id', '=', $user->id)->count());
+
             view()->share('to_moderate_tutorials', Tutorial::where('user_id', '=', $user->id)
                 ->where('is_published', '=', false)
                 ->where('is_reported', '=', false)
