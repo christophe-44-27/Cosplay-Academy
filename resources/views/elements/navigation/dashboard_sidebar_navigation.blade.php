@@ -32,6 +32,7 @@
                             <span class="nav-tag green">{{ $to_moderate_courses }}</span>
                         </a>
                     </li>
+                    <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un cours</a></li>
                 </ul>
             </li>
             <li class="{{ (request()->is('instructors/tutorials*')) ? 'active' : '' }}">
@@ -43,6 +44,7 @@
                             <span class="nav-tag green">{{ $published_tutorials }}</span>
                         </a>
                     </li>
+                    <li><a href="{{ route('instructor_tutorial_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un tutoriel</a></li>
                 </ul>
             </li>
             <li class="{{ (request()->is('instructors/reviews*')) ? 'active' : '' }}">
@@ -55,7 +57,6 @@
                 </ul>
             </li>
             <li><a href="{{ route('professor_course_favorites') }}"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
-            <li><a href="{{ route('professor_course_new') }}"><i class="sl sl-icon-plus"></i> Ajouter un cours</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">
