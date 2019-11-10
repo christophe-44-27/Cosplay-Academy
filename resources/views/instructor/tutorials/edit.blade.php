@@ -29,13 +29,17 @@
                             {!! Form::select('category_id', $categories, $tutorial->category_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                     </div>
+                    
                     <div class="row with-forms">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <h5>Lien de votre vidéo <i class="tip" data-tip-content="Exemple : https://www.youtube.com/watch?v=WI0a6xX-fKA (Lien YouTube uniquement)"></i></h5>
+                            {!! Form::text('url_video', $tutorial->url_video) !!}
+                        </div>
+                        <div class="col-md-4">
                             <h5>Langue</h5>
                             {!! Form::select('language_id', $languages, $tutorial->language_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
-                        <!-- Type --><!-- Status -->
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
                             {!! Form::file('thumbnail_picture') !!}
                         </div>

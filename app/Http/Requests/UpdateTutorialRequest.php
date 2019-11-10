@@ -24,12 +24,8 @@ class UpdateTutorialRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'category_id' => 'required',
-            'content' => 'required',
-            'language_id' => 'required',
-            'difficulty' => 'required',
-            'thumbnail_picture' => 'dimensions:min_width=750,min_height=422',
+            'title' => 'required|text',
+            'content'  => 'required',
         ];
     }
 
@@ -38,15 +34,10 @@ class UpdateTutorialRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
-    {
+    public function messages() {
         return [
             'title.required' => "Un titre de tutoriel est requis.",
-            'category_id.required' => "Veuillez sélectionner une catégorie.",
-            'language_id.required' => "Veuillez spécifier la langue du tutoriel.",
-            'difficulty.required' => "Veuillez spécifier la difficulté du tutoriel.",
             'content.required' => "Veuillez remplir la section contenu.",
-            'thumbnail_picture.dimensions' => "Les dimensions de la miniature doivent être d'au moins  750px * 422px",
         ];
     }
 }
