@@ -12,7 +12,7 @@
         "build-analytics-prod": "cd nova-components/Analytics && npm run prod"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.19.0",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.5",
@@ -25,6 +25,7 @@
     "dependencies": {
         "@deveodk/vue-toastr": "^1.1.0",
         "toastr": "^2.1.4",
-        "vue-stripe-elements-plus": "^0.3.2"
+        "vue-stripe-elements-plus": "^0.3.2",
+        "vuex": "^3.1.2"
     }
 }

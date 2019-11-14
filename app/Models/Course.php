@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    use Filterable;
 
     protected $table = 'courses';
     public $timestamps = true;

@@ -12,3 +12,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('categories', 'Api\CategoriesController@getCategories');
+Route::get('courses', 'Api\CourseController@get');
+Route::get('courses/search', 'Api\CourseController@search');
