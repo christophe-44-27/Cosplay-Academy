@@ -32,9 +32,9 @@ class CourseFilter extends QueryFilter
     }
 
     /**
-     * @param string $types
+     * @param array $types
      */
-    public function types(string $types)
+    public function types(array $types)
     {
         $this->builder->whereIn('type_id', $types);
     }

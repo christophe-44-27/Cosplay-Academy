@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Support\Facades\Auth;
 
 class CourseCollection extends Resource
 {
@@ -18,13 +19,14 @@ class CourseCollection extends Resource
             'id' => $this->id,
             'title' => $this->title,
             'introduction' => $this->introduction,
-            'thumbnail_picture' => $this->thumbnail_picture,
+            'thumbnail_picture' => getenv('APP_URL') . '/storage/' . $this->thumbnail_picture,
             'is_published' => $this->is_published,
             'slug' => $this->slug,
             'featured' => $this->featured,
             'price' => $this->price,
             'difficulty' => $this->difficulty,
-            'category' => $this->category->name
+            'category' => $this->category->name,
+            'author' => $this->user->name
         ];
     }
 }

@@ -9,8 +9,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import { store } from './store/Courses/store'
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,8 +21,6 @@ Vue.component('card-element', require('./components/CardElement.vue').default);
 Vue.component('payment-form', require('./components/PaymentForm.vue').default);
 Vue.component('registration-form', require('./components/Security/RegistrationForm.vue').default);
 Vue.component('newsletter-subscription-form', require('./components/Newsletter/NewsletterSubscriptionForm.vue').default);
-Vue.component('courses-result', require('./components/Course/ResultComponent.vue').default);
-Vue.component('search-courses-filter', require('./components/Course/SearchComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,6 +29,5 @@ Vue.component('search-courses-filter', require('./components/Course/SearchCompon
  */
 
 const app = new Vue({
-    el: '#app',
-    store
+    el: '#app'
 });

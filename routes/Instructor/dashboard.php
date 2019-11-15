@@ -17,8 +17,4 @@ Route::prefix('instructors')->middleware('auth')->group(function () {
     /** REVIEWS **/
     Route::get('reviews', 'Instructor\ReviewController@index')->name('reviews');
     Route::get('received-reviews', 'Instructor\ReviewController@receivedReviews')->name('received_reviews');
-
-
-    /** TRANSACTIONS */
-    Route::get('payments', 'Instructor\PaymentController@index')->name('payments');
 });
