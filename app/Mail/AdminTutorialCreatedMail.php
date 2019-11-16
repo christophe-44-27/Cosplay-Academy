@@ -32,6 +32,6 @@ class AdminTutorialCreatedMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.administrators.tutorial_created');
     }
 }
