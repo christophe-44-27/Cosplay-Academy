@@ -24,7 +24,7 @@ class TutorialRequest extends FormRequest {
     public function rules()
     {
         return [
-            'title' => 'required|text',
+            'title' => 'required',
             'content'  => 'required',
             'thumbnail_picture'  => 'required|dimensions:min_width=750,min_height=422',
         ];
