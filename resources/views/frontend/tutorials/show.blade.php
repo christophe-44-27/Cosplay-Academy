@@ -67,11 +67,11 @@
                             <div class="product-slider">
                                 <ul class="list-unstyled video-list-thumbs">
                                     <li class="mb-0">
-                                        <a data-toggle="modal" data-target="#homeVideo" class="class-video p-0">
-                                            {{--<div class="arrow-ribbon bg-primary">20% off</div>--}}
+                                        @if($tutorial->video_id)
+                                            <div id="ytplayer"></div>
+                                        @else
                                             <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="img" class="img-responsive br-3">
-                                            <span class="fe fe-play-circle text-white class-icon"></span>
-                                        </a>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>
@@ -306,4 +306,25 @@
 @endsection
 @push('javascripts')
     <script src="{{ asset('themes/frontend/plugins/accordion/accordion.min.js') }}"></script>
+
+    @if($tutorial->video_id)
+        <script>
+            // Load the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // Replace the 'ytplayer' element with an <iframe> and
+            // YouTube player after the API code downloads.
+            var player;
+            function onYouTubePlayerAPIReady() {
+                player = new YT.Player('ytplayer', {
+                    height: '422',
+                    width: '722',
+                    videoId: '{{ $tutorial->video_id }}'
+                });
+            }
+        </script>
+    @endif
 @endpush
