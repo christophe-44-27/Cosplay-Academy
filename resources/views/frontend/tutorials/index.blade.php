@@ -174,7 +174,7 @@
                                                                                 class="text-muted fs-13"><i
                                                                                     class="fa fa-clock-o text-muted mr-1"></i> {{ $tutorial->created_at->diffForHumans() }}</span></a>
                                                                     </div>
-                                                                    <p class="mb-0 leading-tight">{!! $tutorial->content !!}</p>
+                                                                    <p class="mb-0 leading-tight">{!! \Illuminate\Support\Str::limit(strip_tags($tutorial->content), 50  ) !!}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="card-footer pt-4 pb-4">
@@ -235,7 +235,7 @@
                                                                                 class="text-muted"><i
                                                                                     class="fa fa-clock-o text-muted mr-1"></i> {{ $tutorial->created_at->diffForHumans() }}</span></a>
                                                                     </div>
-                                                                    <p class="mb-0">{!! $tutorial->content !!}</p>
+                                                                    <p class="mb-0">{!! \Illuminate\Support\Str::limit(strip_tags($tutorial->content), 25  ) !!}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="card-footer">

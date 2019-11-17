@@ -83,6 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tutorials()
+    {
+        return $this->hasMany(Tutorial::class);
+    }
+
+    /**
      * @return string
      */
     public function getRouteKeyName()

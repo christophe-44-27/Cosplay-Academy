@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TutorialCollection;
 use App\Models\Category;
 use App\Models\Tutorial;
 use App\Services\Tutorials\TutorialService;
@@ -38,6 +39,8 @@ class TutorialController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate(15);
 
+        $tutorials = TutorialCollection::collection($tutorials);
+
         $selectedCategory = $category->filter_value;
 
         return view('frontend.tutorials.index', compact('tutorials', 'category', 'categories', 'selectedCategory'));
@@ -50,9 +53,6 @@ class TutorialController extends Controller {
      */
     public function show(Request $request, Tutorial $tutorial) {
 
-        $tutorial->nb_views = $tutorial->nb_views + 1;
-        $tutorial->save();
-
         $currentUrl = $request->url();
 
         $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
@@ -61,7 +61,7 @@ class TutorialController extends Controller {
                 ->limit(4)
                 ->get();
 
-        return view('frontend.tutorials.show', compact('course', 'currentUrl', 'relatedTutorials'));
+        return view('frontend.tutorials.show', compact('tutorial', 'currentUrl', 'relatedTutorials'));
     }
 
     /**

@@ -3,9 +3,10 @@
 namespace App\Http\Resources;
 
 use App\Models\Category;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Support\Str;
 
-class TutorialRessource extends JsonResource
+class TutorialCollection extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +18,7 @@ class TutorialRessource extends JsonResource
     {
         return [
             'title' => $this->title,
-            'content' => $this->content,
+            'preview_content' => Str::limit($this->content, 10),
             'video_id' => $this->video_id,
             'thumbnail_picture' => $this->thumbnail_picture,
             'is_published' => $this->is_published,
