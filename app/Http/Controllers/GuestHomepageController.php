@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Filters\Courses\CourseFilter;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Tutorial;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
 
@@ -35,8 +36,7 @@ class GuestHomepageController extends Controller {
     }
 
     /**
-     * @param Request $request
-     * @param CourseService $courseService
+     * @param CourseFilter $courseFilter
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function search(CourseFilter $courseFilter)
@@ -47,5 +47,20 @@ class GuestHomepageController extends Controller {
             ->where('featured', '=', true)
             ->get();
         return view('frontend.courses.index', compact('courses', 'categories'));
+    }
+
+    /**
+     * @param CourseFilter $courseFilter
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function searchTutorials(CourseFilter $courseFilter)
+    {
+        $tutorials = Tutorial::filter($courseFilter)->where('is_published', '=', true)->paginate(10);
+
+        $categories = Category::orderBy('name', 'ASC')
+            ->where('featured', '=', true)
+            ->get();
+
+        return view('frontend.tutorials.index', compact('tutorials', 'categories'));
     }
 }

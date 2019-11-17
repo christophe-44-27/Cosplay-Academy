@@ -16,7 +16,7 @@ class TutorialController extends Controller {
     public function index() {
         $tutorials = Tutorial::where('is_published', '=', true)
             ->orderBy('id', 'desc')
-            ->paginate(6);
+            ->paginate(10);
 
         $categories = Category::orderBy('name', 'ASC')->get();
 
@@ -55,13 +55,13 @@ class TutorialController extends Controller {
 
         $currentUrl = $request->url();
 
-        $relatedTutorial = Tutorial::where('category_id', '=', $tutorial->category->id)
+        $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
                 ->where('is_published', '=', true)
                 ->orderBy('id', 'DESC')
                 ->limit(4)
                 ->get();
 
-        return view('frontend.tutorials.show', compact('course', 'currentUrl', 'relatedTutorial'));
+        return view('frontend.tutorials.show', compact('course', 'currentUrl', 'relatedTutorials'));
     }
 
     /**

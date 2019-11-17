@@ -94,6 +94,7 @@ class TutorialController extends Controller {
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
+            'url_video' => (($request->get('url_video')) ? $request->get('url_video') : null),
             'is_published' => false,
         ];
 
@@ -144,6 +145,7 @@ class TutorialController extends Controller {
             'content' => $validated['content'],
             'language_id' => $validated['language_id'],
             'slug' => Str::slug($request->get('title')),
+            'url_video' => (($request->get('url_video')) ? $request->get('url_video') : null),
             'difficulty' => $validated['difficulty'],
         ];
 

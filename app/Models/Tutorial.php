@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Tutorial extends Model
 {
+    use Filterable;
+
     protected $table = 'tutorials';
     public $timestamps = true;
     protected $guarded = [];

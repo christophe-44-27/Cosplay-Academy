@@ -51,13 +51,13 @@
                                     <a href="{{ route('profile') }}" class="dropdown-item">
                                         <i class="dropdown-icon icon icon-user"></i> Mon profil
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('inbox') }}">
                                         <i class="dropdown-icon icon icon-speech"></i> Boîte de réception
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         <i class="dropdown-icon icon icon-bell"></i> Notifications
                                     </a>
-                                    <a href="mydash.html" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <i class="dropdown-icon  icon icon-settings"></i> Réglages
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

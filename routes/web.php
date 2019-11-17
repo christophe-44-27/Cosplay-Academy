@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login/facebook', 'Auth\LoginFacebookController@redirectToProvider')->name('facebook_login');
 Route::get('login/facebook/callback', 'Auth\LoginFacebookController@handleProviderCallback');
 Route::get('search', 'GuestHomepageController@search')->name('search_courses_homepage');
+Route::get('tutorials/search', 'GuestHomepageController@searchTutorials')->name('search_tutorials_homepage');
 Route::get('contact', 'Contact\ContactController@index')->name('contact');
 Route::post('contact/send', 'Contact\ContactController@contact')->name('contact_post');
 Route::post('/stripe/charge', 'Billing\OrderController@charge')->name('stripe_charge');
