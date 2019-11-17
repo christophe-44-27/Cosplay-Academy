@@ -235,7 +235,7 @@
                                                                                 class="text-muted"><i
                                                                                     class="fa fa-clock-o text-muted mr-1"></i> {{ $tutorial->created_at->diffForHumans() }}</span></a>
                                                                     </div>
-                                                                    <p class="mb-0">{{ \Illuminate\Support\Str::limit($tutorial->content, 25) }}</p>
+                                                                    <p class="mb-0">{!! \Illuminate\Support\Str::limit($tutorial->content, 50) !!}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="card-footer">
