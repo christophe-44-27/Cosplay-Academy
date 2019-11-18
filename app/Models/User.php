@@ -69,6 +69,14 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+    public function tutorialFavorites()
+    {
+        return $this->belongsToMany(Tutorial::class, 'tutorial_user_favorites', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function courseParticipations()
     {
         return $this->belongsToMany(Course::class, 'course_participations', 'user_id');

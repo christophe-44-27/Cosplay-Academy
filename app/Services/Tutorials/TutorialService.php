@@ -7,17 +7,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Lang;
 
 class TutorialService {
-
-    /**
-     * @param Tutorial $tutorial
-     * @return void
-     */
-    public function incrementeViewCounter(Tutorial $tutorial)
-    {
-        $tutorial->nb_views = $tutorial->nb_views + 1;
-        $tutorial->save();
-    }
-
     /**
      * @param Tutorial $tutorial
      * @return void

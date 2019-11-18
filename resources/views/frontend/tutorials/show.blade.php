@@ -37,11 +37,6 @@
                                                 @endswitch
                                             </a>
                                         </li>
-                                        <li class="mr-5">
-                                            <a href="#" class="icons">
-                                                <i class="icon icon-people text-muted mr-1"></i> 0 @lang('participants')
-                                            </a>
-                                        </li>
                                     </ul>
                                     <div class="rating-stars d-flex mr-5">
                                         <div class="rating-stars-container mr-2">
@@ -53,14 +48,14 @@
                                             <div class="rating-star sm">
                                                 <i class="fa fa-heart"></i>
                                             </div>
-                                        </div> 0 @lang('favoris')
+                                        </div> {{ $tutorial->userFavorites->count() }} @lang('favoris')
                                     </div>
                                     <div class="rating-stars d-flex ml-5">
                                         <div class="rating-stars-container mr-2">
                                             <div class="rating-star sm">
                                                 <i class="fa fa-eye"></i>
                                             </div>
-                                        </div> 0 @lang('vues')
+                                        </div> {{ $tutorial->tutorialViews->count() }} @lang('vues')
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +120,7 @@
                                             <a href="{{ route('tutorial_details', $relatedTutorial) }}" class="btn btn-secondary">
                                                 <span class="font-weight-bold"><i class="fa fa-eye"></i> </span> @lang("Voir")
                                             </a>
-                                            <a href="#" class="btn btn-primary text-white float-right">
+                                            <a href="{{ route('tutorial_add_to_favorites', $relatedTutorial) }}" class="btn btn-primary text-white float-right">
                                                 <span class="font-weight-bold"><i class="fa fa-heart"></i> </span> @lang("Ajouter aux favoris")
                                             </a>
                                         </div>
@@ -229,7 +224,11 @@
                                 </div>
                             </div>
                             <div class="">
-                                <a href="#" class="btn btn-primary btn-lg btn-block">@lang("Ajouter aux favoris")</a>
+                                @if(!$userAlreadyFavorite)
+                                    <a href="{{ route('tutorial_add_to_favorites', $tutorial) }}" class="btn btn-primary btn-lg btn-block">@lang("Ajouter aux favoris")</a>
+                                @else
+                                    <a href="{{ route('tutorial_favorite_remove', $tutorial )}}" class="btn btn-azure btn-lg btn-block">@lang("Retirer des favoris")</a>
+                                @endif
                             </div>
                         </div>
                     </div>

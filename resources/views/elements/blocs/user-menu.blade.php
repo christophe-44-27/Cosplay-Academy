@@ -6,7 +6,10 @@
         <span class="icon1 mr-3"><i class="icon icon-diamond"></i></span> Mes cours
     </a>
     <a href="{{ route('course_favorite') }}" class="{{ ($action == 'course_favorites') ? 'active' : '' }} d-flex border-bottom">
-        <span class="icon1 mr-3"><i class="icon icon-heart"></i></span> Mes favoris
+        <span class="icon1 mr-3"><i class="icon icon-heart"></i></span> Mes cours favoris
+    </a>
+    <a href="{{ route('tutorial_favorite') }}" class="{{ ($action == 'tutorial_favorites') ? 'active' : '' }} d-flex border-bottom">
+        <span class="icon1 mr-3"><i class="icon icon-heart"></i></span> Mes tutoriels favoris
     </a>
     <a href="{{ route('payment_history') }}" class="{{ ($action == 'orders') ? 'active' : '' }} d-flex  border-bottom">
         <span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Historique de paiement

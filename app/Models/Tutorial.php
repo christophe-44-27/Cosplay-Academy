@@ -42,7 +42,7 @@ class Tutorial extends Model
      */
     public function userFavorites()
     {
-        return $this->belongsToMany(User::class, 'tutorial_user_favorites', 'tutorial');
+        return $this->belongsToMany(User::class, 'tutorial_user_favorites', 'tutorial_id');
     }
 
     /**

@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\TutorialCollection;
 use App\Models\Category;
 use App\Models\Tutorial;
-use App\Services\Tutorials\TutorialService;
+use App\Services\TutorialService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 
 class TutorialController extends Controller {
@@ -48,12 +49,20 @@ class TutorialController extends Controller {
 
     /**
      * @param Request $request
+     * @param TutorialService $tutorialService
      * @param Tutorial $tutorial
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request, Tutorial $tutorial) {
+    public function show(Request $request, TutorialService $tutorialService, Tutorial $tutorial) {
 
         $currentUrl = $request->url();
+        $userAlreadyFavorite = false;
+
+        if(Auth::user() && Auth::user()->tutorials)
+        {
+            $tutorialService->incrementeViewCounter($tutorial);
+            $userAlreadyFavorite = Auth::user()->tutorialFavorites()->where('tutorial_id', $tutorial->id)->exists();
+        }
 
         $relatedTutorials = Tutorial::where('category_id', '=', $tutorial->category->id)
                 ->where('is_published', '=', true)
@@ -61,7 +70,7 @@ class TutorialController extends Controller {
                 ->limit(4)
                 ->get();
 
-        return view('frontend.tutorials.show', compact('tutorial', 'currentUrl', 'relatedTutorials'));
+        return view('frontend.tutorials.show', compact('tutorial', 'currentUrl', 'relatedTutorials', 'userAlreadyFavorite'));
     }
 
     /**
