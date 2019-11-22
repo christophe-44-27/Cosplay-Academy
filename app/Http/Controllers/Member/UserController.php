@@ -25,7 +25,7 @@ class UserController extends Controller {
         $authorCoursesReviews = Review::where('author_id', '=', $user->id)->get();
         $totalReviews = 0;
 
-        if($authorCoursesReviews)
+        if($authorCoursesReviews->count() > 0)
         {
             foreach ($authorCoursesReviews as $review)
             {
