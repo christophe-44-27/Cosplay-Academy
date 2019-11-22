@@ -114,78 +114,82 @@
                                                                 @foreach($courses as $course)
                                                                     <div class="card overflow-hidden">
                                                                         <div class="d-md-flex">
-                                                                    <div class="item-card9-img">
-                                                                        <div class="item-card9-imgs">
-                                                                            <a href="{{ route('course_details', $course) }}"></a>
-                                                                            @if($course->thumbnail_picture)
-                                                                                <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img" class="cover-image">
-                                                                            @else
-                                                                                <img src="{{ asset('images/default-thumbnails.png') }}" align="img" class="cover-image">
-                                                                            @endif
-                                                                        </div>
-                                                                        <div class="item-card9-icons">
-                                                                            <a href="#" class="item-card9-icons1 bg-primary"> <i class="fa fa fa-heart"></i></a>
-                                                                            <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i class="fa fa fa-share-alt"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card border-0 mb-0">
-                                                                        <div class="card-body ">
-                                                                            <div class="item-card9">
-                                                                                <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold mt-1">{{ $course->title }}</h3></a>
-                                                                                <div class="mt-2 mb-2">
-                                                                                    <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-briefcase mr-1"></i> {{ $course->category->name }}</span></a>
-                                                                                    <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-user text-muted mr-1"></i> {{ $course->user->name }}</span></a>
-                                                                                    <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-clock-o text-muted mr-1"></i> {{ $course->created_at->diffForHumans() }}</span></a>
+                                                                            <div class="item-card9-img">
+                                                                                <div class="item-card9-imgs">
+                                                                                    <a href="{{ route('course_details', $course) }}"></a>
+                                                                                    @if($course->thumbnail_picture)
+                                                                                        <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img" class="cover-image">
+                                                                                    @else
+                                                                                        <img src="{{ asset('images/default-thumbnails.png') }}" align="img" class="cover-image">
+                                                                                    @endif
                                                                                 </div>
-                                                                                <p class="mb-0 leading-tight">{{ \Illuminate\Support\Str::limit($course->introduction, 50) }} </p>
+                                                                                <div class="item-card9-icons">
+                                                                                    <a href="#" class="item-card9-icons1 bg-primary"> <i class="fa fa fa-heart"></i></a>
+                                                                                    <a href="#" class="item-card9-icons1 bg-black-trasparant"> <i class="fa fa fa-share-alt"></i></a>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="card-footer pt-4 pb-4">
-                                                                            <div class="item-card9-footer d-flex">
-                                                                                <div class="item-card9-cost">
-                                                                                    <h4 class="text-dark font-weight-semibold mb-0 mt-0">
-                                                                                        @if($course->amount > 0)
-                                                                                            {{ $course->amount }} $
-                                                                                        @else
-                                                                                            @lang('Gratuit')
-                                                                                        @endif
-                                                                                    </h4>
+                                                                            <div class="card border-0 mb-0">
+                                                                                <div class="card-body ">
+                                                                                    <div class="item-card9">
+                                                                                        <a href="page-details.html" class="text-dark"><h3 class="font-weight-semibold mt-1">{{ $course->title }}</h3></a>
+                                                                                        <div class="mt-2 mb-2">
+                                                                                            <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-briefcase mr-1"></i> {{ $course->category->name }}</span></a>
+                                                                                            <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-user text-muted mr-1"></i> {{ $course->user->name }}</span></a>
+                                                                                            <a href="#" class="mr-4"><span class="text-muted fs-13"><i class="fa fa-clock-o text-muted mr-1"></i> {{ $course->created_at->diffForHumans() }}</span></a>
+                                                                                        </div>
+                                                                                        <p class="mb-0 leading-tight">{{ \Illuminate\Support\Str::limit($course->introduction, 50) }} </p>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ml-auto">
-                                                                                    <div class="rating-stars block">
-                                                                                        <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value"  value="{{ round($course->reviews->avg('nb_stars'), PHP_ROUND_HALF_UP) }}">
-                                                                                        <div class="rating-stars-container">
-                                                                                            @if($course->reviews->count() > 0)
-                                                                                                @include('frontend.elements.blocs.rating')
-                                                                                            @else
-                                                                                                <div class="rating-star sm">
-                                                                                                    <i class="fa fa-star"></i>
+                                                                                <div class="card-footer pt-4 pb-4">
+                                                                                    <div class="item-card9-footer d-flex">
+                                                                                        <div class="item-card9-cost">
+                                                                                            <h4 class="text-dark font-weight-semibold mb-0 mt-0">
+                                                                                                @if($course->amount > 0)
+                                                                                                    {{ $course->amount }} $
+                                                                                                @else
+                                                                                                    @lang('Gratuit')
+                                                                                                @endif
+                                                                                            </h4>
+                                                                                        </div>
+                                                                                        <div class="ml-auto">
+                                                                                            <div class="rating-stars block">
+                                                                                                <input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value"  value="{{ round($course->reviews->avg('nb_stars'), PHP_ROUND_HALF_UP) }}">
+                                                                                                <div class="rating-stars-container">
+                                                                                                    @if($course->reviews->count() > 0)
+                                                                                                        @include('frontend.elements.blocs.rating')
+                                                                                                    @else
+                                                                                                        <div class="rating-star sm">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                        </div>
+                                                                                                        <div class="rating-star sm">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                        </div>
+                                                                                                        <div class="rating-star sm">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                        </div>
+                                                                                                        <div class="rating-star sm">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                        </div>
+                                                                                                        <div class="rating-star sm">
+                                                                                                            <i class="fa fa-star"></i>
+                                                                                                        </div>
+                                                                                                    @endif
                                                                                                 </div>
-                                                                                                <div class="rating-star sm">
-                                                                                                    <i class="fa fa-star"></i>
-                                                                                                </div>
-                                                                                                <div class="rating-star sm">
-                                                                                                    <i class="fa fa-star"></i>
-                                                                                                </div>
-                                                                                                <div class="rating-star sm">
-                                                                                                    <i class="fa fa-star"></i>
-                                                                                                </div>
-                                                                                                <div class="rating-star sm">
-                                                                                                    <i class="fa fa-star"></i>
-                                                                                                </div>
-                                                                                            @endif
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                    </div>
                                                                 @endforeach
                                                             @else
-                                                                <div class="alert alert-info">
-                                                                    Ce professeur n'a encore publié aucun cours, patience :)
+                                                                <div class="card overflow-hidden">
+                                                                    <div class="d-md-flex">
+                                                                        <div class="alert alert-info">
+                                                                            Ce professeur n'a encore publié aucun cours, patience :)
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             @endif
                                                         </div>
