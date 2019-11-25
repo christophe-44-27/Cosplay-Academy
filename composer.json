@@ -19,6 +19,7 @@
         "laravelcollective/html": "^5.8",
         "league/flysystem-aws-s3-v3": "^1.0",
         "lukepolo/laracart": "^1.8",
+        "stripe/stripe-php": "^7.13",
         "yoeunes/notify": "^1.0"
     },
     "require-dev": {

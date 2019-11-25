@@ -7,6 +7,7 @@ Route::prefix('instructors')->middleware('auth')->group(function () {
 
     /** PROFILE PROFESSOR **/
     Route::get('profile', 'Instructor\ProfileController@index')->name('profile_professor');
+    Route::get('profile/edit', 'Instructor\ProfileController@edit')->name('profile_professor_edit');
     Route::put('profile/{professor}/update', 'Instructor\ProfileController@update')->name('profile_professor_update');
     Route::post('profile/store', 'Instructor\ProfileController@store')->name('profile_professor_store');
 

@@ -7,10 +7,12 @@ use App\Models\Country;
 use App\Http\Controllers\Controller;
 use App\Models\ProfessorProfile;
 use App\Models\User;
+use App\Services\Billing\StripeService;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Stripe\Stripe;
 
 class ProfileController extends Controller
 {
@@ -25,7 +27,7 @@ class ProfileController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(StripeService $stripeService)
     {
         $controller = 'profile';
 
@@ -36,7 +38,12 @@ class ProfileController extends Controller
             $professor = new ProfessorProfile();
         }
 
-        return view('instructor.profile.edit', compact('controller', 'professor', 'countries'));
+        if (Auth::user()->stripe_connect_account_id)
+        {
+            $stripeLoginLink = $stripeService->createLoginLink(Auth::user()->stripe_connect_account_id);
+        }
+
+        return view('instructor.profile.edit', compact('controller', 'professor', 'countries', 'stripeLoginLink'));
     }
 
     /**
@@ -62,7 +69,28 @@ class ProfileController extends Controller
 
         $professor = ProfessorProfile::create($arrayToCreate);
 
-        return redirect()->away("https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&stripe_user[business_type]=individual&stripe_user[email]=" . $user->email . "&stripe_user[country]=" . $professor->country->iso_code . "&stripe_user[first_name]=" . $professor->firstname . "&stripe_user[last_name]=" . $professor->lastname . "&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
+        return redirect()->away("https://dashboard.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
+    }
+
+    /**
+     * @param StripeService $stripeService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    public function edit(StripeService $stripeService)
+    {
+        $controller = 'profile';
+        $stripeLoginLink = null;
+        $professor = ProfessorProfile::where('user_id', '=', Auth::user()->id)->get()->first();
+
+        if (Auth::user()->stripe_connect_account_id)
+        {
+            $stripeLoginLink = $stripeService->createLoginLink(Auth::user()->stripe_connect_account_id);
+        }
+
+        $countries = Country::orderBy('name', 'DESC')->pluck('name', 'id');
+
+        return view('instructor.profile.edit', compact('controller', 'professor', 'countries', 'stripeLoginLink'));
     }
 
     /**

@@ -3,20 +3,22 @@
     <div class="row">
         @if(isset($user->stripe_connect_account_id))
             <div class="col-md-12">
-                <div class="notification success">
-                    <p>Votre compte de paiement a bien été configuré. Lors de vos échanges avec nos services, veuillez communiquer
-                    ce numéro si votre demande est relative à vos paiements reçus.</p>
-                    <p><b>Votre numéro de compte : {{ $user->stripe_connect_account_id }}</b></p>
+                <div class="notification notice">
+                    <p>Votre compte de paiement a bien été configuré. Vous pouvez y accéder en cliquant sur le bouton ci-dessous.</p>
+                    @if(isset($stripeLoginLink))
+                        <a class="button" style="float: unset !important;" href="{{ $stripeLoginLink->url }}" target="_blank">Tableau de bord Stripe</a>
+                    @endif
+                </div>
+            </div>
+        @else
+            <div class="col-md-12">
+                <div class="notification notice">
+                    <b>Remarque : </b> Une fois que votre profil aura été rempli, vous allez être redirigé vers le site de Stripe avant de saisir vos
+                    coordonnées bancaires en créant votre compte de paiement sur la plateforme Stripe.
+                    <p>Ce compte de paiement vous permettra de recevoir les sommes perçues lorsque des membres achèteront vos cours sur la Cosplay Academy.</p>
                 </div>
             </div>
         @endif
-        <div class="col-md-12">
-            <div class="notification notice">
-                <b>Remarque : </b> Une fois que votre profil aura été rempli, vous allez être redirigé vers le site de Stripe avant de saisir vos
-                coordonnées bancaires en créant votre compte de paiement sur la plateforme Stripe.
-                <p>Ce compte de paiement vous permettra de recevoir les sommes perçues lorsque des membres achèteront vos cours sur la Cosplay Academy.</p>
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -79,6 +81,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
+
         @include('elements.blocs.dashboard-footer')
     </div>
 @endsection

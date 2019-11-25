@@ -57,6 +57,18 @@ class StripeService
     }
 
     /**
+     * @param string $accountId
+     * @return \Stripe\LoginLink
+     * @throws \Stripe\Exception\ApiErrorException
+     */
+    public function createLoginLink(string $accountId)
+    {
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
+        return \Stripe\Account::createLoginLink($accountId);
+    }
+
+    /**
      * @param string $customerId
      * @return mixed
      */
