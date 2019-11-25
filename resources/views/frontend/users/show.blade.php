@@ -186,7 +186,7 @@
                                                             @else
                                                                 <div class="card overflow-hidden">
                                                                     <div class="d-md-flex">
-                                                                        <div class="alert alert-info">
+                                                                        <div class="alert alert-primary" role="alert">
                                                                             Ce professeur n'a encore publié aucun cours, patience :)
                                                                         </div>
                                                                     </div>

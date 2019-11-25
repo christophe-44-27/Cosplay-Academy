@@ -14,12 +14,13 @@
 
 
                     <!-- Title -->
+                    <!-- Row -->
                     <div class="row with-forms">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Nom du contenu <i class="tip" data-tip-content="Le nom ne sera pas affiché publiquement."></i></h5>
                             {{ Form::text('name', $content->name, ['class' => 'search-field']) }}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Type de contenu</h5>
                             <select required="required" name="content_type">
                                 <option value="">Choisissez un type</option>
@@ -32,29 +33,35 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <!-- Title -->
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>@lang('Aperçu gratuit') <i class="tip" data-tip-content="@lang("Ce contenu sera accessible gratuitement même si votre cours est payant. Il permettra à vos clients d'avoir un aperçu de votre cours.")"></i></h5>
-                            <input type="checkbox" name="free" class="form-control" {{ ($content->free == '1') ? 'checked' : '' }} />
+                            <input type="checkbox" name="free" class="form-control" {{ ($content->free == true) ? 'checked' : '' }}/>
                         </div>
                     </div>
                     <!-- Row -->
                     <div class="row with-forms">
-                        <!-- Address -->
-                        <div class="col-md-6" id="videoSession">
-                            <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
-                            <input type="file" name="video_session">
-                        </div>
-                        <!-- Address -->
-                        <div class="col-md-6" id="previewVideo">
-                            <video style="width: 100%;" controls>
-                                <source src="{{ $url_video }}" type="video/mp4">
-                                Je suis désolé, votre navigateur ne supporte pas les vidéos HTML5
-                                au format WebM avec VP8 ni au format MP4 avec H.264.
-                                <!-- Vous pouvez intégrer un lecteur Flash ici pour lire la vidéo mp4 dans les anciens navigateurs -->
-                            </video>
+                        <div id="videoSession">
+                            <!-- Address -->
+                            <div class="col-md-6">
+                                <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
+                                <input type="file" name="video_session">
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-md-6" id="previewVideo">
+                                <video style="width: 100%;" controls>
+                                    <source src="{{ $url_video }}" type="video/mp4">
+                                    Je suis désolé, votre navigateur ne supporte pas les vidéos HTML5
+                                    au format WebM avec VP8 ni au format MP4 avec H.264.
+                                    <!-- Vous pouvez intégrer un lecteur Flash ici pour lire la vidéo mp4 dans les anciens navigateurs -->
+                                </video>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-md-12">
+                                <h5>Description de la vidéo <i class="tip" data-tip-content="La description est obligatoire afin de permettre aux malentendants de comprendre le contenu."></i></h5>
+                                {{ Form::textarea('video_script', $content->video_script, ['class' => 'tinymce']) }}
+                            </div>
                         </div>
 
                         <!-- City -->

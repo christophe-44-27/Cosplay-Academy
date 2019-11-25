@@ -3,6 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
+            @include('elements.blocs.listeo_notifications')
             <div id="add-listing">
                 <!-- Section -->
                 {!! Form::open(['url' => route('dashboard_tutorial_content_store', ['tutorial' => $tutorial, 'session' => $session]), 'enctype' => "multipart/form-data"]) !!}
@@ -15,27 +16,33 @@
 
                     <!-- Title -->
                     <div class="row with-forms">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Nom du contenu <i class="tip" data-tip-content="Le nom ne sera pas affiché publiquement."></i></h5>
                             <input name="name" class="search-field" type="text" value=""/>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>Type de contenu</h5>
                             {!! Form::select('content_type', array('' => "Choisissez un type", 'article' => 'Article', 'video' => 'Vidéo')) !!}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h5>@lang('Aperçu gratuit') <i class="tip" data-tip-content="@lang("Ce contenu sera accessible gratuitement même si votre cours est payant. Il permettra à vos clients d'avoir un aperçu de votre cours.")"></i></h5>
                             <input type="checkbox" name="free" class="form-control"/>
                         </div>
                     </div>
                     <!-- Row -->
                     <div class="row with-forms">
-                        <!-- Address -->
-                        <div class="col-md-6" id="videoSession">
-                            <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
-                            <input type="file" name="video_session">
+                        <div id="videoSession">
+                            <!-- Address -->
+                            <div class="col-md-6">
+                                <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
+                                <input type="file" name="video_session">
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-md-12">
+                                <h5>Description de la vidéo <i class="tip" data-tip-content="La description est obligatoire afin de permettre aux malentendants de comprendre le contenu."></i></h5>
+                                {{ Form::textarea('video_script', null, ['class' => 'tinymce']) }}
+                            </div>
                         </div>
 
                         <!-- City -->

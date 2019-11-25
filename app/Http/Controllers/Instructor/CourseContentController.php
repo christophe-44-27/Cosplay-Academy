@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Session;
+use Illuminate\Support\Facades\Validator;
 
 class CourseContentController extends Controller {
     /**
@@ -26,9 +27,28 @@ class CourseContentController extends Controller {
 
     public function store(Course $tutorial, Session $session, Request $request)
     {
+        $messages = [
+            'name.required' => 'Veuillez indiquer un nom de contenu',
+            'video_session.required' => "Vous devez spécifier un fichier vidéo.",
+            'video_session.mimetypes' => "Votre fichier ne correspond pas à une vidéo.",
+            'video_script.required' => "Veuillez remplir la partie script pour rendre la vidéo plus accessible.",
+            'article_content.required' => "Veuillez rédiger un contenu pour votre article."
+        ];
+
         switch ($request->get('content_type'))
         {
             case 'article':
+
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required',
+                    'article_content' => 'required',
+                ], $messages);
+
+                if ($validator->fails()) {
+                    return redirect(route('dashboard_tutorial_new_content', ['course' => $tutorial, 'session' => $session]))
+                        ->withErrors($validator)
+                        ->withInput();
+                }
 
                 $tutorialContent = new Content();
                 $tutorialContent->name = $request->get('name');
@@ -42,6 +62,18 @@ class CourseContentController extends Controller {
                 break;
 
             case 'video':
+
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required',
+                    'video_session' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+                    'video_script' => 'required',
+               ], $messages);
+
+                if ($validator->fails()) {
+                    return redirect(route('dashboard_tutorial_new_content', ['course' => $tutorial, 'session' => $session]))
+                        ->withErrors($validator)
+                        ->withInput();
+                }
 
                 $content = new Content();
                 $path = $content->video_name;
@@ -58,6 +90,7 @@ class CourseContentController extends Controller {
                         'session_id' => $session->id,
                         'free' => ($request->get('free') == 'on') ? true : false,
                         'content_article' => null,
+                        'video_script' => $request->get('video_script'),
                         'video_name' => $path
                     ];
                 }
@@ -107,9 +140,28 @@ class CourseContentController extends Controller {
     {
         $datas = [];
 
+        $messages = [
+            'name.required' => 'Veuillez indiquer un nom de contenu',
+            'video_session.required' => "Vous devez spécifier un fichier vidéo.",
+            'video_session.mimetypes' => "Votre fichier ne correspond pas à une vidéo.",
+            'video_script.required' => "Veuillez remplir la partie script pour rendre la vidéo plus accessible.",
+            'article_content.required' => "Veuillez rédiger un contenu pour votre article."
+        ];
+
         switch ($request->get('content_type'))
         {
             case 'article':
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required',
+                    'article_content' => 'required',
+                ], $messages);
+
+                if ($validator->fails()) {
+                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $tutorial, 'content' => $content]))
+                        ->withErrors($validator)
+                        ->withInput();
+                }
+
                 $datas = [
                     'name' => $request->get('name'),
                     'type' => $request->get('content_type'),
@@ -126,16 +178,30 @@ class CourseContentController extends Controller {
             case 'video':
                 $path = $content->video_name;
 
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required',
+                    'video_session' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+                    'video_script' => 'required',
+                ], $messages);
+
+                if ($validator->fails()) {
+                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $tutorial, 'content' => $content]))
+                        ->withErrors($validator)
+                        ->withInput();
+                }
+
                 if($request->file('video_session'))
                 {
                     $path = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
                 }
+
 
                 if($path) {
                     $datas = [
                         'name' => $request->get('name'),
                         'type' => $request->get('content_type'),
                         'free' => ($request->get('free') == 'on') ? true : false,
+                        'video_script' => $request->get('video_script'),
                         'content_article' => null,
                         'video_name' => $path
                     ];
