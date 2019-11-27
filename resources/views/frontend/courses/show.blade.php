@@ -104,14 +104,38 @@
                                         <div class="panel panel-default active">
                                             <div class="panel-heading " role="tab" id="headingOne">
                                                 <h4 class="panel-title">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                                        Collapsible Group Item #1
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse-{{ $session->id }}" aria-expanded="false" aria-controls="collapse-{{ $session->id }}" class="collapsed">
+                                                       {{ $session->name }}
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="collapseOne" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" style="">
+                                            <div id="collapse-{{ $session->id }}" class="panel-collapse" role="tabpanel" aria-labelledby="headingOne" style="">
                                                 <div class="panel-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                    <table class="table table-hover">
+                                                        @foreach($session->contents as $content)
+                                                            <tr>
+                                                                <td width="30px"><i class="fa {{ ($content->type == 'video') ? 'fa-video-camera' : 'fa-edit' }} " style="font-size: 30px"></i> </td>
+                                                                <td style="line-height: 30px">{{ $content->name }}</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    @if($content->free == '1')
+                                                                        @if(!$userAlreadyParticipate)
+                                                                            <a href="#" target="_blank" style="font-weight: bold">@lang("Aperçu")</a>
+                                                                        @else
+                                                                            <a href="{{ route('course_show_content', ['course' => $course, 'content' => $content]) }}" style="font-weight: bold">@lang("Accéder à la leçon")</a>
+                                                                        @endif
+                                                                    @else
+                                                                        @if(!$userAlreadyParticipate)
+                                                                            <i class="fa-2x fa fa-lock"></i>
+                                                                        @else
+                                                                            <a href="{{ route('course_show_content', ['course' => $course, 'content' => $content]) }}" style="font-weight: bold">@lang("Accéder à la leçon")</a>
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
