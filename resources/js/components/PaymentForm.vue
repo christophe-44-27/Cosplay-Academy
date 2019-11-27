@@ -1,5 +1,5 @@
 <template>
-    <form action="/stripe/charge" method="POST" id="payment-form" @submit="pay">
+    <form action="/app/public/stripe/charge" method="POST" id="payment-form" @submit="pay">
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" class="form-control" id="email" name="email">
