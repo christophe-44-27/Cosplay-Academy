@@ -6,7 +6,7 @@
     <div class="row">
 
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="dashboard-stat color-1">
                 <div class="dashboard-stat-content"><h4>{{ $nbCours }}</h4> <span>@lang("Mes cours")</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-File"></i></div>
@@ -14,27 +14,10 @@
         </div>
 
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="dashboard-stat color-2">
                 <div class="dashboard-stat-content"><h4>{{ $nbTutorials }}</h4> <span>@lang("Mes tutoriels")</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-File"></i></div>
-            </div>
-        </div>
-
-
-        <!-- Item -->
-        <div class="col-lg-3 col-md-6">
-            <div class="dashboard-stat color-3">
-                <div class="dashboard-stat-content"><h4>95</h4> <span>@lang("Avis reçus")</span></div>
-                <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
-            </div>
-        </div>
-
-        <!-- Item -->
-        <div class="col-lg-3 col-md-6">
-            <div class="dashboard-stat color-4">
-                <div class="dashboard-stat-content"><h4>126</h4> <span>@lang("Mis en favoris")</span></div>
-                <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
             </div>
         </div>
     </div>

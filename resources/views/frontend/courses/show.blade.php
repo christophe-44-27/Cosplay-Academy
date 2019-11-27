@@ -67,10 +67,9 @@
                             <div class="product-slider">
                                 <ul class="list-unstyled video-list-thumbs">
                                     <li class="mb-0">
-                                        <a data-toggle="modal" data-target="#homeVideo" class="class-video p-0">
+                                        <a data-toggle="modal" data-target="#homeVideo" class="p-0">
                                             {{--<div class="arrow-ribbon bg-primary">20% off</div>--}}
-                                            <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img" class="img-responsive br-3">
-                                            <span class="fe fe-play-circle text-white class-icon"></span>
+                                            <img src="{{ asset('storage/' . $course->main_picture) }}" alt="img" class="img-responsive br-3">
                                         </a>
                                     </li>
                                 </ul>
@@ -88,7 +87,9 @@
                             <div class="btn-list">
                                 <a href="#" class="btn btn-secondary icons"><i class="fe fe-share-2 mr-1"></i> @lang("Partager")</a>
                                 <a href="#" class="btn btn-danger icons" data-toggle="modal" data-target="#report"><i class="icon icon-exclamation mr-1"></i> @lang("Signaler")</a>
-                                <a href="#" class="btn btn-primary icons"><i class="icon icon-heart  mr-1"></i> {{ $course->userFavorites->count() }}</a>
+                                <a href="{{ route('course_add_to_favorites', $course) }}" class="btn btn-primary icons">
+                                    <i class="icon icon-heart  mr-1"></i> {{ $course->userFavorites->count() }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -382,19 +383,6 @@
                         <div class="card-footer">
                             <div class="text-center">
                                 <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#contact"><i class="fa fa-user"></i> @lang("Contactez-moi")</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">@lang("Partager sur les réseaux sociaux")</h3>
-                        </div>
-                        <div class="card-body product-filter-desc">
-                            <div class="product-filter-icons text-center">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                                <a href="#" class="pinterest-bg"><i class="fa fa-pinterest"></i></a>
                             </div>
                         </div>
                     </div>

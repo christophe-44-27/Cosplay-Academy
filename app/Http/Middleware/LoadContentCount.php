@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Course;
+use App\Models\Message;
+use App\Models\Thread;
 use App\Models\Tutorial;
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +30,10 @@ class LoadContentCount {
                 ->count());
 
             view()->share('published_courses', Course::where('user_id', '=', $user->id)
+                ->count());
+
+            view()->share('received_messages', Thread::where('receiver_id', '=', $user->id)
+                ->where('is_read', '=', false)
                 ->count());
 
             view()->share('published_tutorials', Tutorial::where('user_id', '=', $user->id)->count());

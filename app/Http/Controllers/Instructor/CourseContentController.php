@@ -136,7 +136,7 @@ class CourseContentController extends Controller {
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Course $tutorial, Content $content, Request $request)
+    public function update(Course $course, Content $content, Request $request)
     {
         $datas = [];
 
@@ -157,7 +157,7 @@ class CourseContentController extends Controller {
                 ], $messages);
 
                 if ($validator->fails()) {
-                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $tutorial, 'content' => $content]))
+                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $course, 'content' => $content]))
                         ->withErrors($validator)
                         ->withInput();
                 }
@@ -180,12 +180,12 @@ class CourseContentController extends Controller {
 
                 $validator = Validator::make($request->all(), [
                     'name' => 'required',
-                    'video_session' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+                    'video_session' => 'nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
                     'video_script' => 'required',
                 ], $messages);
 
                 if ($validator->fails()) {
-                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $tutorial, 'content' => $content]))
+                    return redirect(route('dashboard_tutorial_edit_content', ['course' => $course, 'content' => $content]))
                         ->withErrors($validator)
                         ->withInput();
                 }
@@ -194,7 +194,6 @@ class CourseContentController extends Controller {
                 {
                     $path = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
                 }
-
 
                 if($path) {
                     $datas = [
@@ -214,7 +213,7 @@ class CourseContentController extends Controller {
 
         $content->update($datas);
 
-        return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été mis à jour.");
+        return redirect(route('professor_course_edit', $course))->with('success', "Le contenu a bien été mis à jour.");
     }
 
     public function deleteContent(Course $course, Content $content)

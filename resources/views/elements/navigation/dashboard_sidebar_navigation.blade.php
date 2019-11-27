@@ -11,7 +11,7 @@
             </li>
             <li class="{{ (request()->is('inbox*')) ? 'active' : '' }}">
                 <a href="{{ route('inbox') }}">
-                    <i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span>
+                    <i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages"> {{ $received_messages }}</span>
                 </a>
             </li>
         </ul>

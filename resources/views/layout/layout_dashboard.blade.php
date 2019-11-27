@@ -24,15 +24,36 @@
         <!-- Header -->
         <div id="header" class="not-sticky">
             <div class="container">
-                <!-- Left Side Content -->
                 <div class="left-side">
-                    <!-- Logo -->
                     <div id="logo">
-                        <a href="{{ route('instructor_dashboard') }}"><img src="{{ asset('images/logo-big-cs.png') }}" alt=""></a>
-                        <a href="{{ route('instructor_dashboard') }}" class="dashboard-logo"><img src="images/logo2.png" alt=""></a>
+
+                        <a href="https://listeo.pro/" title="Listeo" rel="home"><img src="https://listeo.pro/wp-content/uploads/2019/02/logo.png" data-rjs="" alt="Listeo"></a>
+                        <a href="https://listeo.pro/" class="dashboard-logo" title="Listeo" rel="home"><img src="https://listeo.pro/wp-content/uploads/2019/02/logo2.png" data-rjs="https://listeo.pro/wp-content/uploads/2019/02/logo2.png" alt="Listeo"></a>
                     </div>
+
+
+                    <!-- Mobile Navigation -->
+                    <div class="mmenu-trigger ">
+                        <button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+                        </button>
+                    </div>
+
+
+                    <!-- Main Navigation -->
+                    <nav id="navigation" class="style-1">
+                        <ul id="responsive" class="menu">
+                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20 parentid0 depth0 dropdown">
+                                <a href="{{ route('homepage') }}" class="button border with-icon">Vue participant</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="clearfix"></div>
+                    <!-- Main Navigation / End -->
+
                 </div>
-                <!-- Left Side Content / End -->
 
                 <!-- Right Side Content / End -->
                 <div class="right-side">
@@ -52,11 +73,6 @@
                                 Mon compte
                             </div>
                             <ul>
-                                <li><a href="{{ route('instructor_dashboard') }}"><i class="sl sl-icon-settings"></i> Tableau de bord</a></li>
-                                <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-calendar-check-o"></i>
-                                        Mes tutoriels</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="sl sl-icon-power"></i> Déconnexion

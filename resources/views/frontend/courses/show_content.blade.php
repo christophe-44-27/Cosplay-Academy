@@ -36,6 +36,24 @@
                     </div>
                 </div>
             </div>
+            @if($content->video_script)
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <div class="card overflow-hidden">
+                            <div class="card-body">
+                                <div class="item-det mb-4">
+                                    <h3>Contenu écrit de la leçon</h3>
+                                </div>
+                                <div class="item-det mb-4">
+                                    @if($content->type == 'video')
+                                        {!! $content->video_script !!}
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </section><!--/Section-->
 @endsection
