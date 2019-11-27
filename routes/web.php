@@ -34,6 +34,7 @@ Route::prefix('admin3744')->middleware('auth', 'verify_admin')->group(function (
 //    include('Admin/admin_routes.php');
 });
 
+
 /*** GUEST Section ***/
 include('Common/tutorials.php');
 include('Common/cart.php');
