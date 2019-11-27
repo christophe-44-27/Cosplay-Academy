@@ -174,7 +174,7 @@
                                                                                 class="text-muted fs-13"><i
                                                                                     class="fa fa-clock-o text-muted mr-1"></i> {{ $course->created_at->diffForHumans() }}</span></a>
                                                                     </div>
-                                                                    <p class="mb-0 leading-tight">{!! \Illuminate\Support\Str::limit($course->introduction, 50) !!}</p>
+                                                                    <p class="mb-0 leading-tight">{{ \Illuminate\Support\Str::limit($course->introduction, 50) }}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="card-footer pt-4 pb-4">
