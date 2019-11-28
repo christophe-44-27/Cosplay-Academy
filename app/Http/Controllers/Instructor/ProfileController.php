@@ -69,7 +69,15 @@ class ProfileController extends Controller
 
         $professor = ProfessorProfile::create($arrayToCreate);
 
-        return redirect()->away("https://dashboard.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
+        if (!$user->stripe_connect_account_id)
+        {
+            return redirect()->away("https://dashboard.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_Fs2rLCdMXCNqOB31eSlPZtqLD6lAM005&redirect_uri=http://cosplayschool.test/dashboard/stripe/profile/registration/success");
+        } else
+        {
+            notify()->success(Lang::get("Votre profil a bien été enregistré, merci !"));
+            return redirect(route('profile_professor'));
+        }
+
     }
 
     /**
@@ -103,7 +111,8 @@ class ProfileController extends Controller
         $validated = $request->validated();
         $professor->update($validated);
 
-        return redirect(route('profile_professor'))->with('success', Lang::get("Votre profil a bien été mis à jour."));
+        notify()->success(Lang::get("Votre profil a bien été mis à jour, merci !"));
+        return redirect(route('profile_professor'));
     }
 
     /**

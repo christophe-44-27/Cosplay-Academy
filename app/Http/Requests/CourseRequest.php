@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Lang;
 
 class CourseRequest extends FormRequest {
     /**
@@ -43,8 +44,8 @@ class CourseRequest extends FormRequest {
     public function messages()
     {
         return [
-            'title.required' => 'A title is required',
-            'introduction.required'  => 'A message is required',
+            'title.required' => Lang::get('Le titre du cours est obligatoire'),
+            'introduction.required'  => Lang::get('Vous devez indiquer une introduction'),
 //            'thumbnail_picture.required' => 'Vous devez mettre une image de "miniature"',
 //            'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
 //            'main_picture.required' => 'Vous devez mettre une image de couverture',

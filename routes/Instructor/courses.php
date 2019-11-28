@@ -22,11 +22,6 @@ Route::prefix('instructors')->middleware('auth')->group(function () {
     Route::get('courses/{course}/sessions/{session}/remove', 'Instructor\CourseSessionController@remove')->name('dashboard_course_remove_session');
 
 
-    /** COURSES FAVORITES */
-    Route::get('courses/favorites', 'Instructor\CourseFavoriteController@index')->name('professor_course_favorites');
-    Route::get('courses/favorites/remove/{course}', 'Instructor\CourseFavoriteController@removeFromFavorites')->name('professor_course_favorites_remove');
-
-
     /** COURSES CONTENTS */
     Route::get('courses/{course}/sessions/{session}/new-content', 'Instructor\CourseContentController@newContent')->name('dashboard_tutorial_new_content');
     Route::post('courses/{course}/sessions/{session}/store', 'Instructor\CourseContentController@store')->name('dashboard_tutorial_content_store');

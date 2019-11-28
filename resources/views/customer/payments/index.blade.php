@@ -42,7 +42,7 @@
                                         <thead>
                                             <tr>
                                                 <th>@lang("Numéro de facture")</th>
-                                                <th>@lang("Designation")</th>
+                                                <th>@lang("Statut")</th>
                                                 <th>@lang("Date")</th>
                                                 <th>@lang("Prix total")</th>
                                                 <th>@lang("Type de paiement")</th>
@@ -52,13 +52,17 @@
                                         <tbody>
                                             @foreach($payments as $payment)
                                                 <tr>
-                                                    <td class="text-primary">{{ $payment->payment_id }}</td>
+                                                    <td class="text-primary">{{ $payment->invoice_id }}</td>
                                                     <td>
-                                                        {{ $payment->course->title }}
+                                                        @if($payment->paid)
+                                                            <i class="fa fa-check-circle green"></i>
+                                                        @else
+                                                            <i class="fa fa-times-circle"></i>
+                                                        @endif
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::createFromTimeString($payment->created_at)->format('d/m/Y') }}</td>
                                                     <td class="font-weight-semibold fs-16">{{ $payment->amount }} $</td>
-                                                    <td class="font-weight-semibold fs-16">{{ $payment->card_brand }} - {{ $payment->last4 }}</td>
+                                                    <td class="font-weight-semibold fs-16">@lang("Paiement par CB - Stripe")</td>
                                                     <td>
                                                         <a href="{{ $payment->receipt_url }}" target="_blank" class="badge badge-info">Reçu</a>
                                                     </td>

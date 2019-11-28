@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main-color.css') }}" id="colors">
     @stack('stylesheets')
+    @notify_css
 </head>
 <body>
 
@@ -136,6 +137,8 @@
 <script type="text/javascript" src="{{ asset('scripts/custom.js') }}"></script>
 
 @stack('javascripts')
+@notify_js
+@notify_render
 
 </body>
 </html>

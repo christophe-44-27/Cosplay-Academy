@@ -49,6 +49,7 @@ include ('ConnectedUser/courses.php');
 include('Instructor/dashboard.php');
 include('Instructor/performance.php');
 include('Instructor/courses.php');
+include('Instructor/favorites.php');
 include('Instructor/tutorials.php');
 include ('ConnectedUser/cart.php');
 include ('ConnectedUser/messagerie.php');

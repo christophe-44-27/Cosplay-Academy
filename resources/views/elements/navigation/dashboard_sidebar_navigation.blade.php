@@ -50,13 +50,13 @@
             <li class="{{ (request()->is('instructors/reviews*')) ? 'active' : '' }}">
                 <a><i class="sl sl-icon-star"></i> Avis</a>
                 <ul>
-                    <li><a href="{{ route('reviews') }}">Mes avis <span class="nav-tag green">6</span></a>
+                    <li><a href="{{ route('reviews') }}">Avis donnés</a>
                     </li>
-                    <li><a href="{{ route('received_reviews') }}">Avis de mes fans <span class="nav-tag yellow">1</span></a>
+                    <li><a href="{{ route('received_reviews') }}">Avis reçus</a>
                     </li>
                 </ul>
             </li>
-            <li><a href="{{ route('professor_course_favorites') }}"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
+            <li class="{{ (request()->is('instructors/favorites*')) ? 'active' : '' }}"><a href="{{ route('professor_course_favorites') }}"><i class="sl sl-icon-heart"></i> Mes favoris</a></li>
         </ul>
 
         <ul data-submenu-title="Mon compte">
