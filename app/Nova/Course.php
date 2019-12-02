@@ -2,15 +2,12 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
 
 class Course extends Resource
@@ -59,16 +56,17 @@ class Course extends Resource
                 ->path("courses/thumbnails")->maxWidth(258),
             Image::make('main_picture')->hideFromIndex(),
             Text::make('title')->sortable(),
-            Text::make('nb_views')->hideWhenUpdating()->hideWhenCreating(),
-            Text::make('nb_likes')->hideWhenUpdating()->hideWhenCreating(),
+            Select::make('is_published')->options([
+                1 => 'Publié',
+                0 => "Non publié"
+            ])->hideWhenCreating()->hideWhenUpdating(),
             Trix::make('content')->hideFromIndex()->withFiles('trix_course'),
             Select::make('difficulty')->options([
                 '1' => 'Débutant',
                 '2' => "Intermédiaire",
                 '3' => "Expert"
-            ])->hideFromIndex(),
+            ]),
             HasMany::make('sessions')->hideFromIndex()
-
         ];
     }
 
@@ -127,6 +125,8 @@ class Course extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Actions\ValidateCourse()
+        ];
     }
 }

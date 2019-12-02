@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Requests\CourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Services\SessionService;
+use App\Mail\CourseCreatedMail;
 use App\Models\Language;
 use App\Models\Course;
 use App\Models\Category;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller {
     /**
@@ -97,14 +99,18 @@ class CourseController extends Controller {
             'is_published' => false,
         ];
 
-        $tutorial = Course::create($arrayToCreate);
+        $course = Course::create($arrayToCreate);
 
         if ($request->hasfile('documents'))
         {
-            $tutorialService->uploadDocuments($request->get('documents'), $tutorial);
+            $tutorialService->uploadDocuments($request->get('documents'), $course);
         }
 
-        return redirect(route('professor_course_list'))->with('success', Lang::get("Le cours a été créé avec succès !"));
+        //Send admin email to notify the course creation.
+        Mail::to(getenv('MAIL_ADMIN'))->send(new CourseCreatedMail($course));
+
+        notify()->success(Lang::get("Le cours a été créé avec succès !"));
+        return redirect(route('professor_course_list'));
     }
 
     /**

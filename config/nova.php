@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'name' => 'Nova Site',
+    'name' => "Cosplay Academy - Administration",
 
     /*
     |--------------------------------------------------------------------------

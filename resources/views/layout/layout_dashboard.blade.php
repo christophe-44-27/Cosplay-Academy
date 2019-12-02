@@ -3,7 +3,7 @@
 
     <!-- Basic Page Needs
     ================================================== -->
-    <title>Listeo</title>
+    <title>Cosplay Academy</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -123,7 +123,8 @@
 
 <!-- Scripts
 ================================================== -->
-<script type="text/javascript" src="{{ asset('scripts/jquery-3.4.1.min.js') }}"></script>
+@notify_js
+@notify_render
 <script type="text/javascript" src="{{ asset('scripts/jquery-migrate-3.1.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('scripts/mmenu.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('scripts/chosen.min.js') }}"></script>
@@ -137,8 +138,6 @@
 <script type="text/javascript" src="{{ asset('scripts/custom.js') }}"></script>
 
 @stack('javascripts')
-@notify_js
-@notify_render
 
 </body>
 </html>

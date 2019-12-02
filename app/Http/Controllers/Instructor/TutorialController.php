@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Requests\UpdateTutorialRequest;
 use App\Http\Services\SessionService;
 use App\Mail\AdminTutorialCreatedMail;
+use App\Mail\TutorialCreatedMail;
 use App\Models\Language;
 use App\Models\Course;
 use App\Models\Category;
@@ -100,7 +101,8 @@ class TutorialController extends Controller {
 
         $tutorial = Tutorial::create($arrayToCreate);
 
-        Mail::to(getenv('MAIL_ADMIN'))->send(new AdminTutorialCreatedMail($tutorial));
+        //Send admin email to notify the tutorial creation.
+        Mail::to(getenv('MAIL_ADMIN'))->send(new TutorialCreatedMail($tutorial));
 
         return redirect(route('instructor_tutorials_list'))->with('success', Lang::get("Le tutoriel a été créé avec succès !"));
     }

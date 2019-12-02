@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\Billing\PaymentService;
 use App\Services\Billing\StripeService;
 use App\Services\CourseService;
+use App\Services\Instructors\CourseContentService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -40,6 +41,10 @@ class AppServiceProvider extends ServiceProvider {
 
         $this->app->bind(PaymentService::class, function ($app) {
             return new PaymentService();
+        });
+
+        $this->app->bind(CourseContentService::class, function ($app) {
+            return new CourseContentService();
         });
     }
 }

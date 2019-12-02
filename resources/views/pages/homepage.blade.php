@@ -87,7 +87,7 @@
             <div class="section-title center-block text-center">
                 <h2>@lang("Nos coups de coeur")</h2>
                 <span class="sectiontitle-design"><span class="icons"></span></span>
-                <p>Nous avons sélectionné pour vous nos cours préférés <3</p>
+                <p>Nous avons sélectionné pour vous nos contenus préférés <3</p>
             </div>
             <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
                 @foreach($featuredCourses as $featuredCours)

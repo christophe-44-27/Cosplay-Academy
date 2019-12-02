@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
@@ -57,6 +58,14 @@ class Category extends Resource
                 ->rules('required', 'max:255'),
             Text::make('Filter value')
                 ->sortable()
+                ->rules('required', 'max:255'),
+            Text::make('Icon name')
+                ->rules('required', 'max:255'),
+            Select::make('Featured')
+                ->options([
+                    1 => 'Oui',
+                    0 => 'Non'
+                ])
                 ->rules('required', 'max:255'),
         ];
     }

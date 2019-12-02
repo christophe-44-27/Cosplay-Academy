@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Instructor;
 use App\Models\Content;
 use App\Models\Course;
 use App\Http\Controllers\Controller;
+use App\Services\Instructors\CourseContentService;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,14 @@ class CourseContentController extends Controller {
         return view('dashboard.tutorial-contents.new_content', compact('tutorial', 'session', 'controller'));
     }
 
-    public function store(Course $tutorial, Session $session, Request $request)
+    /**
+     * @param Course $tutorial
+     * @param Session $session
+     * @param Request $request
+     * @param CourseContentService $contentService
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Course $tutorial, Session $session, Request $request, CourseContentService $contentService)
     {
         $messages = [
             'name.required' => 'Veuillez indiquer un nom de contenu',
@@ -50,15 +58,11 @@ class CourseContentController extends Controller {
                         ->withInput();
                 }
 
-                $tutorialContent = new Content();
-                $tutorialContent->name = $request->get('name');
-                $tutorialContent->type = $request->get('content_type');
-                $tutorialContent->content_article = $request->get('article_content');
-                $tutorialContent->session_id = $session->id;
-                $tutorialContent->free = ($request->get('free') == 'on') ? true : false;
-                $tutorialContent->save();
+                //Call service to build content and save it.
+                $contentService->createContent($request, $session->id);
 
-                return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
+                notify()->success(Lang::get("Le contenu a bien été ajouté au cours !"));
+                return redirect(route('professor_course_edit', $tutorial));
                 break;
 
             case 'video':
@@ -75,29 +79,18 @@ class CourseContentController extends Controller {
                         ->withInput();
                 }
 
-                $content = new Content();
-                $path = $content->video_name;
-
                 if($request->file('video_session'))
                 {
-                    $path = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
+                    $video_name = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
                 }
 
-                if($path) {
-                    $datas = [
-                        'name' => $request->get('name'),
-                        'type' => $request->get('content_type'),
-                        'session_id' => $session->id,
-                        'free' => ($request->get('free') == 'on') ? true : false,
-                        'content_article' => null,
-                        'video_script' => $request->get('video_script'),
-                        'video_name' => $path
-                    ];
+                if($video_name) {
+                    //Call service to build content and save it.
+                    $contentService->createContentWithS3Upload($request, $session->id, $video_name);
                 }
 
-                Content::create($datas);
-
-                return redirect(route('professor_course_edit', $tutorial))->with('success', "Le contenu a bien été ajouté au cours.");
+                notify()->success(Lang::get("Le contenu a bien été ajouté au cours !"));
+                return redirect(route('professor_course_edit', $tutorial));
                 break;
             default:
                 break;
@@ -213,13 +206,15 @@ class CourseContentController extends Controller {
 
         $content->update($datas);
 
-        return redirect(route('professor_course_edit', $course))->with('success', "Le contenu a bien été mis à jour.");
+        notify()->success(Lang::get("\"Le contenu a bien été mis à jour."));
+        return redirect(route('professor_course_edit', $course));
     }
 
     public function deleteContent(Course $course, Content $content)
     {
         $content->delete();
 
-        return redirect(route('professor_course_edit', $course))->with('success', Lang::get("Votre contenu a bien été supprimé !"));
+        notify()->success(Lang::get("Votre contenu a bien été supprimé !"));
+        return redirect(route('professor_course_edit', $course));
     }
 }

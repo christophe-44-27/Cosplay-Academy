@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Course;
+use App\Models\Tutorial;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,16 +11,16 @@ class TutorialCreatedMail extends Mailable {
     use Queueable, SerializesModels;
 
     /**
-     * @var Course
+     * @var Tutorial
      */
     public $tutorial;
 
     /**
      * TutorialCreatedMail constructor.
      *
-     * @param Course $tutorial
+     * @param Tutorial $tutorial
      */
-    public function __construct(Course $tutorial) {
+    public function __construct(Tutorial $tutorial) {
         $this->tutorial = $tutorial;
     }
 
@@ -30,8 +30,7 @@ class TutorialCreatedMail extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->from('contact@cosplayschool.ca')
-            ->subject("Votre tutoriel a bien été créé !")
+        return $this->subject("[ADMIN] Cosplay Academy - Création d'un tutoriel")
             ->view('emails.tutorials_created_email');
     }
 }

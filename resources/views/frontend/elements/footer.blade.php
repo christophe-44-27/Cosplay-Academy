@@ -6,8 +6,8 @@
                     <div class="col-lg-3 col-md-12">
                         <h6>@lang('La Cosplay Academy')</h6>
                         <hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
-                        <p>@lang("Vous avez envie d'apprendre le Cosplay ? Nous vous offrons de nombreux tutoriels vous permettant d'apprendre et d'améliorer vos compétences en cosplay. Que
-                        vous soyez novice, intermédiaire, artisan ou maître, vous trouverez le tutoriel qui vous conviendra le mieux.")</p>
+                        <p>@lang("Vous avez envie de concevoir votre prochain costume de A à Z mais vous ne savez pas par où commencer ? Grâce à la Cosplay Academy, vous allez pouvoir
+                        découvrir de nouvelles compétences afin de réaliser les costumes de vos rêves !")</p>
                     </div>
                     <div class="col-lg-2 col-md-12">
                         <h6>@lang("Nos services")</h6>
@@ -30,20 +30,13 @@
                                 <a href="#"><i class="fa fa-home mr-3 text-primary"></i> Québec, G1B 0M7, Canada</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-envelope mr-3 text-primary"></i> contact@cosplay-academy.com</a></li>
-                            <li>
-                                <a href="#"><i class="fa fa-phone mr-3 text-primary"></i> +1 418-554-2964</a>
+                                <a href="#"><i class="fa fa-envelope mr-3 text-primary"></i> contact@cosplay-academy.com</a>
                             </li>
                         </ul>
                         <ul class="list-unstyled list-inline mt-3">
                             <li class="list-inline-item">
                                 <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light">
                                     <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light">
-                                    <i class="fa fa-twitter"></i>
                                 </a>
                             </li>
                         </ul>
