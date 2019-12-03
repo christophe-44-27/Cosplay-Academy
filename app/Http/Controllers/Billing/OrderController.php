@@ -20,7 +20,7 @@ class OrderController extends Controller
 
         foreach ($items as $item)
         {
-            $total = $total + $item->qty * ($item->price + (($item->price * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
+            $total = $total + $item->qty * (($item->price / 100) + ((($item->price / 100) * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
         }
 
         return view('customer.cart.checkout', compact('items', 'total'));
@@ -41,7 +41,7 @@ class OrderController extends Controller
         foreach ($items as $item)
         {
             array_push($itemIds, $item->id);
-            $total = $total + ($item->qty * $item->price);
+            $total = $total + ($item->qty * ($item->price / 100));
         }
 
 

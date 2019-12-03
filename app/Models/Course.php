@@ -128,6 +128,14 @@ class Course extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function content_price()
+    {
+        return $this->belongsTo(ContentPrice::class);
+    }
+
+    /**
      * @param $event
      */
     public function recordFeed($event)

@@ -6,6 +6,7 @@ use App\Http\Requests\CourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Http\Services\SessionService;
 use App\Mail\CourseCreatedMail;
+use App\Models\ContentPrice;
 use App\Models\Language;
 use App\Models\Course;
 use App\Models\Category;
@@ -58,13 +59,13 @@ class CourseController extends Controller {
      */
     public function newTutorial() {
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
+        $prices = ContentPrice::orderBy('id', 'ASC')->where('country_id', '1')->pluck('name', 'id');
 
         $controller = 'tutorials';
         $course = new Course();
         return view('instructor.courses.new', compact('categories', 'controller',
-            'course', 'types', 'languages'));
+            'course', 'languages', 'prices'));
     }
 
     /**
@@ -80,7 +81,6 @@ class CourseController extends Controller {
     )
     {
         $validated = $request->validated();
-        $videoId = null;
 
         $thumbnail = $fileUploadService->upload($request, 'course_image', 258, 150, 'courses/thumbnails');
         $main_picture = $fileUploadService->upload($request, 'course_image', 740, 440, 'courses/main-picture');
@@ -88,11 +88,11 @@ class CourseController extends Controller {
         $arrayToCreate = [
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
-            'type_id' => $validated['type_id'],
             'introduction' => $validated['introduction'],
             'thumbnail_picture' => $thumbnail,
             'main_picture' => $main_picture,
             'difficulty' => $validated['difficulty'],
+            'content_price_id' => $validated['content_price_id'],
             'language_id' => $validated['language_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
@@ -120,8 +120,8 @@ class CourseController extends Controller {
      */
     public function edit(Request $request, Course $course) {
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
+        $prices = ContentPrice::orderBy('id', 'ASC')->where('country_id', '1')->pluck('name', 'id');
 
         $currentUrl = $request->url();
         $controller = 'tutorials';
@@ -129,21 +129,21 @@ class CourseController extends Controller {
         return view('instructor.courses.edit', compact(
             'course',
             'categories',
-            'types',
             'currentUrl',
             'languages',
             'controller',
-            'url_video'
+            'url_video',
+            'prices'
         ));
     }
 
     /**
      * @param UpdateCourseRequest $request
      * @param FileUploadService $fileUploadService
-     * @param Course $tutorial
+     * @param Course $course
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(UpdateCourseRequest $request, FileUploadService $fileUploadService, Course $tutorial, SessionService $sessionService)
+    public function update(UpdateCourseRequest $request, FileUploadService $fileUploadService, Course $course, SessionService $sessionService)
     {
         $validated = $request->validated();
 
@@ -151,11 +151,10 @@ class CourseController extends Controller {
             'title' => $validated['title'],
             'category_id' => $validated['category_id'],
             'introduction' => $validated['introduction'],
-            'price' => $request->request->get('price'),
             'language_id' => $validated['language_id'],
+            'content_price_id' => $validated['content_price_id'],
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
-            'type_id' => $validated['type_id'],
             'difficulty' => $validated['difficulty']
         ];
 
@@ -164,15 +163,15 @@ class CourseController extends Controller {
             $arrayToUpdate['thumbnail_picture'] = $thumbnail;
         }
 
-        $tutorial->update($arrayToUpdate);
+        $course->update($arrayToUpdate);
 
         if($request->has('sessions'))
         {
-            $sessionService->saveSessions($request->get('sessions'), $tutorial);
+            $sessionService->saveSessions($request->get('sessions'), $course);
         }
 
-        $request->session()->flash('success', Lang::get("Le cours a bien été mis à jour, merci !"));
-        return redirect(route('professor_course_list'));
+        notify()->success(Lang::get("Le cours a bien été mis à jour, merci !"));
+        return redirect(route('professor_course_edit', $course));
     }
 
     /**

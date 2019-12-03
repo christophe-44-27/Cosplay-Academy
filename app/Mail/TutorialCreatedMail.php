@@ -31,6 +31,6 @@ class TutorialCreatedMail extends Mailable {
      */
     public function build() {
         return $this->subject("[ADMIN] Cosplay Academy - Création d'un tutoriel")
-            ->view('emails.tutorials_created_email');
+            ->view('emails.administrators.tutorial_created');
     }
 }

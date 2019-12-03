@@ -29,9 +29,21 @@
                             {!! Form::select('category_id', $categories, $tutorial->category_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
                     </div>
+
+                    <div class="row with-forms">
+                        <div class="col-md-6">
+                            <h5>Tarification <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
+                            {!! Form::select('content_price_id', $prices, $tutorial->content_price_id, ['id' => 'content_price_id', 'class' => 'chosen-select-no-single']) !!}
+                        </div>
+
+                        <div id="videoAmazon" class="col-md-6">
+                            <h5>Fichier vidéo <i class="tip" data-tip-content="La vidéo est hébergée sur Amazon."></i></h5>
+                            <input type="file" name="video_session">
+                        </div>
+                    </div>
                     
                     <div class="row with-forms">
-                        <div class="col-md-4">
+                        <div id="videoYoutube" class="col-md-4">
                             <h5>Lien de votre vidéo <i class="tip" data-tip-content="Exemple : https://www.youtube.com/watch?v=WI0a6xX-fKA (Lien YouTube uniquement)"></i></h5>
                             {!! Form::text('url_video', $tutorial->url_video) !!}
                         </div>
@@ -78,5 +90,27 @@
         tinymce.init({
             selector: '#introduction',
         });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            if($('#content_price_id option:selected').text() === 'Gratuit'){
+                $('#videoYoutube').show();
+                $('#videoAmazon').hide();
+            } else{
+                $('#videoYoutube').hide();
+                $('#videoAmazon').show();
+            }
+        });
+
+        $('#content_price_id').change(function(){
+            if($('#content_price_id option:selected').text() === 'Gratuit'){
+                $('#videoYoutube').show();
+                $('#videoAmazon').hide();
+            } else{
+                $('#videoYoutube').hide();
+                $('#videoAmazon').show();
+            }
+        })
     </script>
 @endpush

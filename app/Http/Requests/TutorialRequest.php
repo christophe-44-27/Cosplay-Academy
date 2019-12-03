@@ -29,6 +29,8 @@ class TutorialRequest extends FormRequest {
             'category_id' => 'required',
             'difficulty' => 'required',
             'language_id' => 'required',
+            'content_price_id' => 'required',
+            'video_session' => 'nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
             'thumbnail_picture'  => 'required|dimensions:min_width=750,min_height=422',
         ];
     }
@@ -44,6 +46,7 @@ class TutorialRequest extends FormRequest {
             'content.required' => "Veuillez remplir la section contenu.",
             'category_id.required' => "Veuillez choisir une catégorie.",
             'difficulty.required' => "Veuillez indiquer la difficulté du tutoriel.",
+            'content_price_id.required' => "Veuillez indiquer une tranche de prix",
             'language_id.required' => "Veuillez indiquer la langue du tutoriel.",
             'thumbnail_picture.required' => "Veuillez renseigner une image pour le tutoriel",
             'thumbnail_picture.dimensions' => "Les dimensions de l'image doivent être d'au moins  750px * 422px",

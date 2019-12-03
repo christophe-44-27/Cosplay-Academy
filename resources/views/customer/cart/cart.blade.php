@@ -35,7 +35,7 @@
                                                             @if($item->price == 0)
                                                                 @lang('Gratuit')
                                                             @else
-                                                                {{ round($item->price, 2) }} $
+                                                                {{ round($item->price / 100, 2) }} $
                                                             @endif
                                                         </span>
                                                     </td>
@@ -44,7 +44,7 @@
                                                             @if($item->price == 0)
                                                                 @lang('Gratuit')
                                                             @else
-                                                                {{ round($item->price * getenv('FEE_STRIPE') / 100 + getenv('FEE_STRIPE_CENT'), 2) }} $
+                                                                {{ round(($item->price / 100) * getenv('FEE_STRIPE') / 100 + getenv('FEE_STRIPE_CENT'), 2) }} $
                                                             @endif
                                                         </span>
                                                     </td>

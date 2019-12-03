@@ -26,10 +26,10 @@ class CourseRequest extends FormRequest {
         return [
             'title' => 'required',
             'category_id' => 'required',
-            'type_id' => 'required',
             'introduction' => 'required',
             'language_id' => 'required',
             'difficulty' => 'required',
+            'content_price_id' => 'required',
 //            'thumbnail_picture' => 'required|dimensions:min_width=258,min_height=150',
 //            'main_picture' => 'required|dimensions:min_width=700,min_height=500',
 //            'filename.*' => 'mimes:doc,pdf,docx,zip|size:2048',
@@ -46,6 +46,7 @@ class CourseRequest extends FormRequest {
         return [
             'title.required' => Lang::get('Le titre du cours est obligatoire'),
             'introduction.required'  => Lang::get('Vous devez indiquer une introduction'),
+            'content_price_id.required' => "Veuillez indiquer une tranche de prix",
 //            'thumbnail_picture.required' => 'Vous devez mettre une image de "miniature"',
 //            'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
 //            'main_picture.required' => 'Vous devez mettre une image de couverture',

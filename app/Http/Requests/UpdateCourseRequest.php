@@ -28,8 +28,8 @@ class UpdateCourseRequest extends FormRequest
             'category_id' => 'required',
             'introduction' => 'required',
             'language_id' => 'required',
+            'content_price_id' => 'required',
             'difficulty' => 'required',
-            'type_id' => 'required',
             'keywords' => 'nullable',
             'thumbnail_picture' => 'dimensions:min_width=258,min_height=150',
             'main_picture' => 'dimensions:min_width=700,min_height=500',
@@ -46,6 +46,7 @@ class UpdateCourseRequest extends FormRequest
         return [
             'title.required' => 'A title is required',
             'introduction.required' => 'A message is required',
+            'content_price_id.required' => "Veuillez indiquer une tranche de prix",
             'thumbnail_picture.dimensions' => 'Minimum dimensions are 258x150px',
             'main_picture.dimensions' => 'Minimum dimensions are 700x500px',
         ];

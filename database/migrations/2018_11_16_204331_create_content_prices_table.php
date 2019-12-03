@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseTypesTable extends Migration
+class CreateContentPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateCourseTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_types', function (Blueprint $table)
-        {
+        Schema::create('content_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->text('name');
+            $table->integer('amount_in_cents');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateCourseTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_types');
+        Schema::dropIfExists('content_prices');
     }
 }

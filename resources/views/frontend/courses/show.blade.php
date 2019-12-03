@@ -197,6 +197,9 @@
                                         <a href="{{ route('course_details', $relatedCours) }}"></a>
                                         <img src="{{ asset('storage/' . $relatedCours->thumbnail_picture) }}" alt="img" class="cover-image">
                                     </div>
+                                    <div class="item-card7-overlaytext">
+                                        <h4 class="font-weight-semibold mb-0"> {{ $relatedCours->content_price->name }}</h4>
+                                    </div>
                                     <div class="card-body">
                                         <div class="item-card7-desc mb-3">
                                             <a href="{{ route('course_details', $relatedCours) }}" class="text-dark">
@@ -316,28 +319,9 @@
                             <div class="mb-5">
                                 <div class="text-dark mb-2">
                                     <span class="text-dark font-weight-semibold h1">
-                                        @if($course->price > 0)
-                                            <small>Prix :</small>
-                                            @if($course->reduced_price)
-                                                {{ $course->new_price }} $
-                                            @else
-                                                {{ $course->price }} $
-                                            @endif
-                                        @else
-                                            Cours gratuit
-                                        @endif
+                                        {{ $course->content_price->amount_in_cents / 100 }} $
                                     </span>
-                                    @if($course->reduced_price)
-                                        <span class="text-muted h3 font-weight-normal ml-1"><span class="strike-text">{{ $course->price }}</span></span>
-                                    @endif
                                 </div>
-                                @if($course->reduced_price)
-                                    <p class="text-danger">
-                                        <i class="fe fe-clock mr-1"></i>
-                                        {{ Carbon::now()->diffInDays($course->reduce_price_ending, false) }}
-                                        @lang(" jours avant la fin de cette offre !")
-                                    </p>
-                                @endif
                             </div>
                             <div class="">
                                 @if(!$userAlreadyFavorite)
@@ -346,7 +330,7 @@
                                     <a href="{{ route('course_favorite_remove', $course )}}" class="btn btn-azure btn-lg btn-block">@lang("Retirer des favoris")</a>
                                 @endif
 
-                                @if($course->price > 0)
+                                @if($course->content_price->name != 'Gratuit')
                                     <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
                                 @else
                                     @if(!$userAlreadyParticipate)
@@ -421,7 +405,7 @@
                                         @foreach($featuredCourses as $featuredCourse)
                                             <li class="item">
                                             <div class="media m-0 mt-0 p-5">
-                                                <img class="mr-4" src="../assets/images/png/11.png" alt="img">
+                                                <img class="mr-4" src="{{ asset('storage/' . $featuredCourse->thumbnail_picture ) }}" alt="img">
                                                 <div class="media-body">
                                                     <h4 class="mt-2 mb-1">{{ $featuredCourse->title }}</h4>
                                                     <span class="rated-products-ratings">
@@ -431,11 +415,7 @@
                                                             <i class="fa fa-star text-warning"> </i>
                                                             <i class="fa fa-star text-warning"> </i>
                                                         </span>
-                                                    @if($featuredCourse->type->id == 2)
-                                                        <div class="h5 mb-0 font-weight-semibold mt-1">{{ $featuredCourse->price }} $</div>
-                                                    @else
-                                                        <div class="h5 mb-0 font-weight-semibold mt-1">@lang("Gratuit !")</div>
-                                                    @endif
+                                                    <div class="h5 mb-0 font-weight-semibold mt-1">{{ $featuredCourse->content_price->name }}</div>
                                                 </div>
                                             </div>
                                         </li>

@@ -283,10 +283,22 @@
                                 @endif
                                 <div class="item-tag">
                                     <h4  class="mb-0">
-                                        @if($course->price and $course->price > 0)
-                                            {{ $course->price }} $
+                                        @if($course->content_price->amount_in_cents == 0)
+                                            @lang("Gratuit")
                                         @else
-                                            Gratuit
+                                            {{ $course->content_price->amount_in_cents / 100 }}
+
+                                            @switch($course->content_price->country->currency)
+                                                @case('CAD')
+                                                    $
+                                                    @break
+                                                @case('EUR')
+                                                    €
+                                                    @break
+                                                @default
+                                                    $
+                                                    @break
+                                            @endswitch
                                         @endif
                                     </h4>
                                 </div>

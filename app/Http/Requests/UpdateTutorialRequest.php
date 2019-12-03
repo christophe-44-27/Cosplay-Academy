@@ -24,8 +24,12 @@ class UpdateTutorialRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|text',
+            'title' => 'required',
             'content'  => 'required',
+            'category_id' => 'required',
+            'language_id' => 'required',
+            'content_price_id' => 'required',
+            'difficulty' => 'required',
         ];
     }
 

@@ -181,8 +181,8 @@
                                                                 <div class="item-card9-footer d-flex">
                                                                     <div class="item-card9-cost">
                                                                         <h4 class="text-dark font-weight-semibold mb-0 mt-0">
-                                                                            @if($course->amount > 0)
-                                                                                {{ $course->amount }} $
+                                                                            @if($course->content_price->amount_in_cents > 0)
+                                                                                {{ $course->content_price->amount_in_cents / 100 }} $
                                                                             @else
                                                                                 @lang('Gratuit')
                                                                             @endif

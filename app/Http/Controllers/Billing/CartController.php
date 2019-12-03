@@ -19,7 +19,7 @@ class CartController extends Controller
         if ($items) {
             foreach ($items as $item)
             {
-                $total = $total + $item->qty * ($item->price + (($item->price * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
+                $total = $total + $item->qty * (($item->price / 100) + ((($item->price / 100) * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
             }
         }
 
@@ -34,7 +34,7 @@ class CartController extends Controller
 
         foreach ($items as $item)
         {
-            $total = $total + $item->qty * ($item->price + (($item->price * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
+            $total = $total + $item->qty * (($item->price / 100) + ((($item->price / 100) * getenv('FEE_STRIPE') / 100) + getenv('FEE_STRIPE_CENT')));
         }
 
         notify()->success(Lang::get("Votre paiement n'a pas été effectué."));
@@ -65,7 +65,7 @@ class CartController extends Controller
      */
     public function addItem(Course $course)
     {
-        LaraCart::add($course->id, $course->title, 1, $course->price);
+        LaraCart::add($course->id, $course->title, 1, $course->content_price->amount_in_cents);
 
         return redirect('cart')->with('success', Lang::get("Votre cours a bien été ajouté à votre panier."));
     }

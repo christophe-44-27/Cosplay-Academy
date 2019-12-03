@@ -93,8 +93,8 @@ class StripeService
         foreach ($items as $item)
         {
             $invoiceItem = $this->_stripe_api->invoiceItems()->create($customerId, [
-                'amount'   => ($item->price
-                    + ($item->price * getenv('FEE_STRIPE') / 100)
+                'amount'   => (($item->price / 100)
+                    + (($item->price / 100) * getenv('FEE_STRIPE') / 100)
                     + getenv('FEE_STRIPE_CENT')) * $item->qty,
                 'description' => $item->name,
                 'currency' => getenv('CURRENCY'),

@@ -19,14 +19,17 @@
                             <h5>Titre <i class="tip" data-tip-content="Exemple : Création d'une armure en worbla"></i></h5>
                             {!! Form::text('title', $course->title, ['class' => 'search-field'])!!}
                         </div>
+
                         <div class="col-md-4">
-                            <h5>Type de tutoriel </h5>
-                            {!! Form::select('type_id', $types, $course->type_id, ['class' => 'chosen-select-no-single']) !!}
+                            <h5>Tarification <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
+                            {!! Form::select('content_price_id', $prices, $course->content_price_id, ['class' => 'chosen-select-no-single']) !!}
                         </div>
+
                         <div class="col-md-4">
-                            <h5>Pix du cours <i class="tip" data-tip-content="Ne remplir que si vous choisissez premium"></i></h5>
-                            {!! Form::text('price', $course->price) !!}
+                            <h5>Image du cours <i class="tip" data-tip-content="Directives importantes : 750 x 422 pixels, formats .jpg, .jpeg,. gif ou .png., aucun texte sur l’image."></i></h5>
+                            {!! Form::file('course_image') !!}
                         </div>
+
                         <div class="col-md-12">
                             <h5>Description</h5>
                             {!! Form::textarea('introduction', $course->introduction, ['id' => 'introduction'])!!}

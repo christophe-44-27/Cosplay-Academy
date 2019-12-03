@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateTutorialRequest;
 use App\Http\Services\SessionService;
 use App\Mail\AdminTutorialCreatedMail;
 use App\Mail\TutorialCreatedMail;
+use App\Models\ContentPrice;
 use App\Models\Language;
 use App\Models\Course;
 use App\Models\Category;
@@ -21,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TutorialController extends Controller {
@@ -62,13 +64,13 @@ class TutorialController extends Controller {
      */
     public function newTutorial() {
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
+        $prices = ContentPrice::orderBy('id', 'ASC')->where('country_id', '1')->pluck('name', 'id');
 
         $controller = 'tutorials';
         $tutorial = new Tutorial();
         return view('instructor.tutorials.new', compact('categories', 'controller',
-            'tutorial', 'types', 'languages'));
+            'tutorial','languages', 'prices'));
     }
 
     /**
@@ -82,9 +84,14 @@ class TutorialController extends Controller {
     )
     {
         $validated = $request->validated();
-        $videoId = null;
+        $video_name = null;
 
         $thumbnail = $fileUploadService->upload($request, 'thumbnail_picture', 258, 150, 'tutorials/thumbnails');
+
+        if($request->file('video_session'))
+        {
+            $video_name = Storage::disk('s3')->put('tutorials/videos', $request->file('video_session'), 'public');
+        }
 
         $arrayToCreate = [
             'title' => $validated['title'],
@@ -93,6 +100,8 @@ class TutorialController extends Controller {
             'thumbnail_picture' => $thumbnail,
             'difficulty' => $validated['difficulty'],
             'language_id' => $validated['language_id'],
+            'content_price_id' => $validated['content_price_id'],
+            'video_path' => ($video_name != null) ? $video_name : null,
             'user_id' => Auth::id(),
             'slug' => Str::slug($validated['title']),
             'url_video' => (($request->get('url_video')) ? $request->get('url_video') : null),
@@ -114,8 +123,8 @@ class TutorialController extends Controller {
      */
     public function edit(Request $request, Tutorial $tutorial) {
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $types = CourseType::orderBy('name', 'ASC')->pluck('name', 'id');
         $languages = Language::orderBy('name', 'ASC')->pluck('name', 'id');
+        $prices = ContentPrice::orderBy('id', 'ASC')->where('country_id', '1')->pluck('name', 'id');
 
         $currentUrl = $request->url();
         $controller = 'tutorials';
@@ -123,7 +132,7 @@ class TutorialController extends Controller {
         return view('instructor.tutorials.edit', compact(
             'tutorial',
             'categories',
-            'types',
+            'prices',
             'currentUrl',
             'languages',
             'controller',
@@ -134,10 +143,10 @@ class TutorialController extends Controller {
     /**
      * @param UpdateTutorialRequest $request
      * @param FileUploadService $fileUploadService
-     * @param Course $tutorial
+     * @param Tutorial $tutorial
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, Course $tutorial, SessionService $sessionService)
+    public function update(UpdateTutorialRequest $request, FileUploadService $fileUploadService, Tutorial $tutorial, SessionService $sessionService)
     {
         $validated = $request->validated();
 
@@ -146,6 +155,7 @@ class TutorialController extends Controller {
             'category_id' => $validated['category_id'],
             'content' => $validated['content'],
             'language_id' => $validated['language_id'],
+            'content_price_id' => $validated['content_price_id'],
             'slug' => Str::slug($request->get('title')),
             'url_video' => (($request->get('url_video')) ? $request->get('url_video') : null),
             'difficulty' => $validated['difficulty'],
@@ -158,9 +168,8 @@ class TutorialController extends Controller {
 
         $tutorial->update($arrayToUpdate);
 
-
-        $request->session()->flash('success', Lang::get("Le tutoriel a bien été mis à jour, merci !"));
-        return redirect(route('instructor_tutorials_list'));
+        notify()->success(Lang::get("Le tutoriel a bien été mis à jour, merci !"));
+        return redirect(route('instructor_tutorial_edit', $tutorial));
     }
 
     /**
