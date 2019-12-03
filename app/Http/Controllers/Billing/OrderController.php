@@ -63,7 +63,7 @@ class OrderController extends Controller
         Invoice::create($datas);
 
         //La charge ayant été faite, on détruit le panier.
-//        LaraCart::destroyCart();
+        LaraCart::destroyCart();
 
         notify()->success(Lang::get("Votre paiement a bien été effectué !"));
 
