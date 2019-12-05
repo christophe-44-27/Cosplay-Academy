@@ -89,28 +89,34 @@
                                 </div>
                             </div>
                             <div class="card-header border-top">
-                                <h3 class="card-title">Type</h3>
+                                <h3 class="card-title">@lang("Tarifs")</h3>
                             </div>
                             <div class="card-body">
                                 <div class="filter-product-checkboxs">
-                                    <label class="custom-control custom-checkbox mb-2">
-                                        <input type="checkbox" class="custom-control-input" name="types[]"
-                                               value="gratuit">
-                                        <span class="custom-control-label">
-                                            Gratuit
-                                        </span>
-                                    </label>
-                                    <label class="custom-control custom-checkbox mb-0">
-                                        <input type="checkbox" class="custom-control-input" name="types[]"
-                                               value="premium">
-                                        <span class="custom-control-label">
-                                            Payant
-                                        </span>
-                                    </label>
+                                    @if($prices)
+                                        @foreach($prices as $price)
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="prices[]"
+                                                       value="{{ $price->id }}" {{ (isset($selectedCategory) && $selectedCategory == $category->filter_value) ? 'checked' : '' }}>
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">
+                                                        @if($price->amount_in_cents == 0)
+                                                            Gratuit
+                                                        @else
+                                                            @lang($price->amount_in_cents / 100) $
+                                                        @endif
+                                                        <span class="label label-secondary float-right">
+                                                            //Component
+                                                        </span>
+                                                    </a>
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-block">Apply Filter</button>
+                                <button type="submit" class="btn btn-primary btn-block">@lang("Rechercher")</button>
                             </div>
                         </div>
                     {!! Form::close() !!}

@@ -18,6 +18,8 @@ class CreateMessagesTable extends Migration
             $table->text('body');
             $table->unsignedBigInteger('thread_id');
             $table->foreign('thread_id')->references('id')->on('threads');
+            $table->unsignedBigInteger('receiver_id');
+            $table->foreign('receiver_id')->references('id')->on('users');
             $table->unsignedBigInteger('sender_id');
             $table->foreign('sender_id')->references('id')->on('users');
             $table->boolean('is_read')->default(false);

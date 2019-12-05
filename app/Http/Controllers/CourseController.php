@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\ContentPrice;
 use App\Models\Course;
 use App\Models\Category;
 use App\Providers\AppServiceProvider;
@@ -23,9 +24,10 @@ class CourseController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate(6);
 
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
         $categories = Category::orderBy('name', 'ASC')->get();
 
-        return view('frontend.courses.index', compact('courses', 'categories'));
+        return view('frontend.courses.index', compact('courses', 'categories', 'prices'));
     }
 
     /**
@@ -44,8 +46,9 @@ class CourseController extends Controller {
             ->paginate(15);
 
         $selectedCategory = $category->filter_value;
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
 
-        return view('frontend.courses.index', compact('courses', 'category', 'categories', 'selectedCategory'));
+        return view('frontend.courses.index', compact('courses', 'category', 'categories', 'selectedCategory', 'prices'));
     }
 
     public function show(Request $request, Course $course, CourseService $courseService)

@@ -6,6 +6,7 @@ use App\Models\ProfessorProfile;
 use App\Models\Session;
 use App\Models\Course;
 use App\Models\Content;
+use App\Models\Thread;
 use App\Models\Tutorial;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('content', Content::class);
         Route::model('professor', ProfessorProfile::class);
         Route::model('user', User::class);
+        Route::model('thread', Thread::class);
     }
 
     /**

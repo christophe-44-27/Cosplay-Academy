@@ -13,7 +13,7 @@
                     <ul>
                         @foreach($threads as $thread)
                             <li class="{{ ($thread->is_read == true) ? '' : 'unread' }}">
-                            <a href="#">
+                            <a href="{{ route('show_thread_messages', $thread) }}">
                                 <div class="message-avatar">
                                     @if(count($thread->messages) > 0)
                                         @foreach($thread->messages as $message)
@@ -67,20 +67,6 @@
                     @endif
                 </div>
             </div>
-
-            <!-- Pagination -->
-            <div class="clearfix"></div>
-            <div class="pagination-container margin-top-30 margin-bottom-0">
-                <nav class="pagination">
-                    <ul>
-                        <li><a href="#" class="current-page">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- Pagination / End -->
-
         </div>
 
         <!-- Copyrights -->
