@@ -54,11 +54,8 @@
                                     <a class="dropdown-item" href="{{ route('inbox') }}">
                                         <i class="dropdown-icon icon icon-speech"></i> Boîte de réception
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="dropdown-icon icon icon-bell"></i> Notifications
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="dropdown-icon  icon icon-settings"></i> Réglages
+                                    <a href="{{ route('change-password') }}" class="dropdown-item">
+                                        <i class="dropdown-icon  icon icon-settings"></i> Sécurité
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="dropdown-icon icon icon-power"></i> Déconnexion

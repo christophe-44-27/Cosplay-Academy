@@ -74,6 +74,42 @@ class InboxController extends Controller
         return redirect(route('show_thread_messages', $thread));
     }
 
+    /**
+     * @param Request $request
+     * @param int $receiverId
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function createThread(Request $request, int $receiverId)
+    {
+        $validator = Validator::make($request->all(), ['title' => 'required','body' => 'required',], ['title' => "Le titre du message est obligatoire", 'body' => "Vous ne pouvez pas envoyer un message vide."]);
+
+        $validated = $validator->validated();
+
+        $senderThread = new Thread();
+        $senderThread->title = $validated['title'];
+        $senderThread->body = $validated['body'];
+        $senderThread->sender_id = Auth::id();
+        $senderThread->receiver_id = $receiverId;
+        $senderThread->created_at = Carbon::now();
+        $senderThread->updated_at = Carbon::now();
+
+        $senderThread->save();
+
+        $copyThread = new Thread();
+        $copyThread->title = $validated['title'];
+        $copyThread->body = $validated['body'];
+        $copyThread->sender_id = Auth::id();
+        $copyThread->receiver_id = Auth::id();
+        $copyThread->created_at = Carbon::now();
+        $copyThread->updated_at = Carbon::now();
+        $copyThread->is_read = true;
+
+        $copyThread->save();
+
+        notify()->success(Lang::get("Votre message a bien été envoyé !"));
+        return redirect(route('inbox'));
+    }
+
     public function deleteConversation(Thread $thread)
     {
         foreach ($thread->messages as $message)

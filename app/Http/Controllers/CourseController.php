@@ -51,6 +51,12 @@ class CourseController extends Controller {
         return view('frontend.courses.index', compact('courses', 'category', 'categories', 'selectedCategory', 'prices'));
     }
 
+    /**
+     * @param Request $request
+     * @param Course $course
+     * @param CourseService $courseService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Request $request, Course $course, CourseService $courseService)
     {
         $currentUrl = $request->url();
@@ -70,9 +76,11 @@ class CourseController extends Controller {
             $courseService->incrementeViewCounter($course);
             $userAlreadyParticipate = Auth::user()->courseParticipations()->where('course_id', $course->id)->exists();
             $userAlreadyFavorite = Auth::user()->courseFavorites()->where('course_id', $course->id)->exists();
+            $receiver = $course->user;
         }
 
-        return view('frontend.courses.show', compact('course', 'currentUrl', 'relatedCourses',  'userAlreadyParticipate', 'featuredCourses', 'userAlreadyFavorite'));
+        return view('frontend.courses.show', compact('course', 'receiver', 'currentUrl', 'relatedCourses',
+            'userAlreadyParticipate', 'featuredCourses', 'userAlreadyFavorite'));
     }
 
     /**

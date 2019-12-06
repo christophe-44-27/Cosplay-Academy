@@ -45,7 +45,9 @@
                                     </ul>
                                     <div class="rating-stars d-flex mr-5">
                                         <div class="rating-stars-container mr-2">
-                                            @include('frontend.elements.blocs.rating')
+                                            @component('frontend.elements.blocs.rating')
+                                                @slot('course', $course)
+                                            @endcomponent
                                         </div>
                                     </div>
                                     <div class="rating-stars d-flex">
@@ -330,11 +332,17 @@
                                     <a href="{{ route('course_favorite_remove', $course )}}" class="btn btn-azure btn-lg btn-block">@lang("Retirer des favoris")</a>
                                 @endif
 
-                                @if($course->content_price->name != 'Gratuit')
-                                    <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
-                                @else
-                                    @if(!$userAlreadyParticipate)
+                                @if(!$userAlreadyParticipate)
+                                    @if($course->content_price->name != 'Gratuit')
+                                        <a href="{{ route('cart_item_add', $course) }}" class="btn btn-secondary btn-lg btn-block">@lang("Acheter")</a>
+                                    @else
                                         <a href="{{ route('course_user_participate', $course) }}" class="btn btn-azure btn-lg btn-block">@lang("S'inscrire")</a>
+                                    @endif
+                                @else
+                                    @if($course->content_price->name != 'Gratuit')
+                                        <div style="text-align: center; padding: 10px; color: green;">
+                                            <h4>@lang("Vous êtes inscrit(e) à ce cours")</h4>
+                                        </div>
                                     @else
                                         <a href="{{ route('course_user_cancel_participation', $course) }}" class="btn btn-warning btn-lg btn-block">@lang("Se désincrire")</a>
                                     @endif
@@ -388,11 +396,40 @@
                             </div>
                         </div>
                         @endif
+                        @auth
                         <div class="card-footer">
                             <div class="text-center">
                                 <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#contact"><i class="fa fa-user"></i> @lang("Contactez-moi")</a>
                             </div>
+                            <!-- Message Modal -->
+                            <div class="modal fade" id="contact" tabindex="-1" role="dialog"  aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        {!! Form::open(['method' => 'post', 'url' => route('create_thread', ['receiverId' => $receiver->id])]) !!}
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">@lang("Contacter l'auteur")</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => "Titre de votre message"]) !!}
+                                                </div>
+                                                <div class="form-group mb-0">
+                                                    {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => '6', 'placeholder' => 'Votre message']) !!}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">@lang("Annuler")</button>
+                                                <button type="submit" class="btn btn-success">@lang("Envoyer")</button>
+                                            </div>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                            </div><!-- /Message Modal -->
                         </div>
+                        @endauth
                     </div>
                     @if($featuredCourses)
                         <div class="card">
@@ -408,13 +445,9 @@
                                                 <img class="mr-4" src="{{ asset('storage/' . $featuredCourse->thumbnail_picture ) }}" alt="img">
                                                 <div class="media-body">
                                                     <h4 class="mt-2 mb-1">{{ $featuredCourse->title }}</h4>
-                                                    <span class="rated-products-ratings">
-                                                            <i class="fa fa-star text-warning"> </i>
-                                                            <i class="fa fa-star text-warning"> </i>
-                                                            <i class="fa fa-star text-warning"> </i>
-                                                            <i class="fa fa-star text-warning"> </i>
-                                                            <i class="fa fa-star text-warning"> </i>
-                                                        </span>
+                                                    @component('frontend.elements.blocs.featured_course_rating')
+                                                        @slot('course', $featuredCourse)
+                                                    @endcomponent
                                                     <div class="h5 mb-0 font-weight-semibold mt-1">{{ $featuredCourse->content_price->name }}</div>
                                                 </div>
                                             </div>

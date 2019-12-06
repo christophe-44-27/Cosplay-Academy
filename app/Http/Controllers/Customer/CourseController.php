@@ -25,7 +25,7 @@ class CourseController extends Controller
     public function myCourses()
     {
         $user = Auth::user();
-        $courses = $user->courses;
+        $courses = $user->courseParticipations;
         $action = 'my_courses';
 
         return view('courses.course_liste', compact('courses', 'action'));

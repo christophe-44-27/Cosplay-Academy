@@ -33,7 +33,7 @@ class PaymentService
                     - ($invoice['amount_paid'] / 100 * getenv('FEE_STRIPE') / 100)
                     - getenv('FEE_STRIPE_CENT')
                     - ($invoice['amount_paid'] / 100 * getenv('TAX_PERCENT_CA_RATE') / 100) ,
-                'paid' => ($invoice['status'] == 'paid') ? true : false,
+                'paid' => false,
                 'seller_id' => $course->user_id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

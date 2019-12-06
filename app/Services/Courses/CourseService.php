@@ -95,4 +95,13 @@ class CourseService {
 
         return $results->paginate(15);
     }
+
+    /**
+     * @param array $courseIds
+     * @param User $user
+     */
+    public function addCourseInscription(array $courseIds, User $user)
+    {
+        $user->courseParticipations()->attach($courseIds);
+    }
 }

@@ -38,7 +38,9 @@
                                         @foreach($thread->messages as $message)
                                             @if($loop->last)
                                                 <div class="message-by-headline">
-                                                    <h5>{{ $message->sender->name }} <i>{{ ($message->is_read == true) ? '' : "Non lu" }}</i></h5>
+                                                    @if($message->is_read != true or $thread->is_read != true)
+                                                        <h5>{{ $message->sender->name }} <i>Non lu</i></h5>
+                                                    @endif
                                                     <span>{{ $message->created_at->diffForHumans() }}</span>
                                                 </div>
                                                 <p>{{ \Illuminate\Support\Str::limit($message->body, 50) }}</p>
@@ -46,7 +48,11 @@
                                         @endforeach
                                     @else
                                         <div class="message-by-headline">
-                                            <h5>{{ $thread->sender->name }} <i>{{ ($thread->is_read == true) ? '' : "Non lu" }}</i></h5>
+                                            <h5>{{ $thread->sender->name }}
+                                                @if($thread->is_read != true)
+                                                    <i>{{ ($thread->is_read == true) ? '' : "Non lu" }}</i>
+                                                @endif
+                                            </h5>
                                             <span>{{ $thread->created_at->diffForHumans() }}</span>
                                         </div>
                                         <p>{{ \Illuminate\Support\Str::limit($thread->body, 50) }}</p>

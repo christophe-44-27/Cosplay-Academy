@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Services\Billing\PaymentService;
 use App\Services\Billing\StripeService;
+use App\Services\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -27,7 +28,7 @@ class OrderController extends Controller
     }
 
 
-    public function charge(Request $request, StripeService $stripeService, PaymentService $paymentService)
+    public function charge(Request $request, StripeService $stripeService, PaymentService $paymentService, CourseService $courseService)
     {
         $user = Auth::user();
 //        $stripe = Stripe::make(config('services.stripe.secret'));
@@ -51,6 +52,8 @@ class OrderController extends Controller
 
         //On ajoute des lignes dans earning pour les auteurs. 1 ligne = 1 cours de vendu.
         $paymentService->createEarning($itemIds, $payedInvoice);
+
+        $courseService->addCourseInscription($itemIds, $user);
 
         $datas = [
             'invoice_id' => $payedInvoice['id'],
