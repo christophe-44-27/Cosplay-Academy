@@ -50,6 +50,7 @@
                                         @lang('Créer son compte')
                                     </button>
                                 </div>
+                                <p class="text-dark mb-0">@lang("Vous avez un compte ?")<a href="{{ route('login') }}" class="text-primary ml-1">@lang("Connexion")</a></p>
                             </form>
                         </div>
                     </div>
