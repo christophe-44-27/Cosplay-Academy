@@ -4,8 +4,8 @@
             <div class="col-lg-8 col-md-12">
                 <div class="header-search-logo d-none d-lg-block">
                     <a class="header-logo" href="{{ route('homepage') }}">
-                        <img src="{{ asset('themes/frontend/images/brand/logo1.png') }}" class="header-brand-img" alt=" logo">
-                        <img src="{{ asset('themes/frontend/images/brand/logo.png') }}" class="header-brand-img header-white" alt="logo">
+                        <img src="{{ asset('images/logo_cosplay_academy.png') }}" class="header-brand-img" alt=" logo">
+                        <img src="{{ asset('images/logo_cosplay_academy.png') }}" class="header-brand-img header-white" alt="logo">
                     </a>
                 </div>
             </div>
