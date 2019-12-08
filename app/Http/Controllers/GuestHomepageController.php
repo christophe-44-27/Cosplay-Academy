@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\Courses\CourseFilter;
 use App\Models\Category;
+use App\Models\ContentPrice;
 use App\Models\Course;
 use App\Models\Tutorial;
 use App\Services\CourseService;
@@ -37,30 +38,37 @@ class GuestHomepageController extends Controller {
 
     /**
      * @param CourseFilter $courseFilter
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(CourseFilter $courseFilter)
+    public function search(CourseFilter $courseFilter, Request $request)
     {
         $courses = Course::filter($courseFilter)->where('is_published', '=', true)->paginate(10);
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
 
-        $categories = Category::orderBy('name', 'ASC')
-            ->where('featured', '=', true)
-            ->get();
-        return view('frontend.courses.index', compact('courses', 'categories'));
+        $selectedDifficulties = $request->get('difficulties');
+        $selectedPrices = $request->get('prices');
+        $selectedCategories = $request->get('categories');
+
+        return view('frontend.courses.index', compact('courses', 'categories', 'prices', 'selectedDifficulties', 'selectedPrices', 'selectedCategories'));
     }
 
     /**
      * @param CourseFilter $courseFilter
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function searchTutorials(CourseFilter $courseFilter)
+    public function searchTutorials(CourseFilter $courseFilter, Request $request)
     {
         $tutorials = Tutorial::filter($courseFilter)->where('is_published', '=', true)->paginate(10);
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
 
-        $categories = Category::orderBy('name', 'ASC')
-            ->where('featured', '=', true)
-            ->get();
+        $selectedDifficulties = $request->get('difficulties');
+        $selectedPrices = $request->get('prices');
+        $selectedCategories = $request->get('categories');
 
-        return view('frontend.tutorials.index', compact('tutorials', 'categories'));
+        return view('frontend.tutorials.index', compact('tutorials', 'categories', 'prices','selectedCategories', 'selectedPrices', 'selectedDifficulties'));
     }
 }

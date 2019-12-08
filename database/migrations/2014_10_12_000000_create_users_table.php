@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('stripe_customer_id', 255)->nullable();
             $table->boolean('enabled')->default(0);
             $table->boolean('blocked')->default(0);
+            $table->boolean('featured')->default(0);
             $table->string('avatar', 255)->nullable();
             $table->dateTime('last_login')->nullable();
             $table->timestamp('email_verified_at')->nullable();

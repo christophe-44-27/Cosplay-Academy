@@ -32,6 +32,7 @@
                             </div>
                         </div>
                         <div class="card mb-lg-0">
+                            <a href="{{ route('tutorials') }}" class="btn btn-secondary btn-block">@lang("Supprimer les filtres")</a>
                             <div class="card-header">
                                 <h3 class="card-title">@lang("Catégories")</h3>
                             </div>
@@ -42,7 +43,7 @@
                                         @foreach($categories as $category)
                                             <label class="custom-control custom-checkbox mb-3">
                                                 <input type="checkbox" class="custom-control-input" name="categories[]"
-                                                       value="{{ $category->id }}" {{ (isset($selectedCategory) && $selectedCategory == $category->filter_value) ? 'checked' : '' }}>
+                                                       value="{{ $category->id }}" {{ (isset($selectedCategories) && in_array($category->id, $selectedCategories) ? 'checked' : '') }}>
                                                 <span class="custom-control-label">
                                                     <a href="#" class="text-dark">@lang($category->name) <span
                                                             class="label label-secondary float-right">14</span></a>
@@ -60,28 +61,28 @@
                                 <div class="filter-product-checkboxs">
                                     <label class="custom-control custom-checkbox mb-2">
                                         <input type="checkbox" class="custom-control-input" name="difficulties[]"
-                                               value="1">
+                                               value="1" {{ (isset($selectedDifficulties) && in_array('1', $selectedDifficulties)) ? 'checked' : '' }}>
                                         <span class="custom-control-label">
                                             @lang('Novice')
                                         </span>
                                     </label>
                                     <label class="custom-control custom-checkbox mb-2">
                                         <input type="checkbox" class="custom-control-input" name="difficulties[]"
-                                               value="2">
+                                               value="2" {{ (isset($selectedDifficulties) && in_array('2', $selectedDifficulties)) ? 'checked' : '' }}>
                                         <span class="custom-control-label">
                                             @lang('Intermédiaire')
                                         </span>
                                     </label>
                                     <label class="custom-control custom-checkbox mb-2">
                                         <input type="checkbox" class="custom-control-input" name="difficulties[]"
-                                               value="3">
+                                               value="3" {{ (isset($selectedDifficulties) && in_array('3', $selectedDifficulties)) ? 'checked' : '' }}>
                                         <span class="custom-control-label">
                                             @lang('Maître')
                                         </span>
                                     </label>
                                     <label class="custom-control custom-checkbox mb-2">
                                         <input type="checkbox" class="custom-control-input" name="difficulties[]"
-                                               value="4">
+                                               value="4" {{ (isset($selectedDifficulties) && in_array('4', $selectedDifficulties)) ? 'checked' : '' }}>
                                         <span class="custom-control-label">
                                             @lang('Artisan')
                                         </span>
@@ -89,28 +90,31 @@
                                 </div>
                             </div>
                             <div class="card-header border-top">
-                                <h3 class="card-title">Type</h3>
+                                <h3 class="card-title">@lang("Tarifs")</h3>
                             </div>
                             <div class="card-body">
                                 <div class="filter-product-checkboxs">
-                                    <label class="custom-control custom-checkbox mb-2">
-                                        <input type="checkbox" class="custom-control-input" name="types[]"
-                                               value="gratuit">
-                                        <span class="custom-control-label">
-                                            Gratuit
-                                        </span>
-                                    </label>
-                                    <label class="custom-control custom-checkbox mb-0">
-                                        <input type="checkbox" class="custom-control-input" name="types[]"
-                                               value="premium">
-                                        <span class="custom-control-label">
-                                            Payant
-                                        </span>
-                                    </label>
+                                    @if($prices)
+                                        @foreach($prices as $price)
+                                            <label class="custom-control custom-checkbox mb-3">
+                                                <input type="checkbox" class="custom-control-input" name="prices[]"
+                                                       value="{{ $price->id }}" {{ (isset($selectedPrices) && in_array($price->id, $selectedPrices) ? 'checked' : '') }}>
+                                                <span class="custom-control-label">
+                                                    <a href="#" class="text-dark">
+                                                        @if($price->amount_in_cents == 0)
+                                                            Gratuit
+                                                        @else
+                                                            @lang($price->amount_in_cents / 100) $
+                                                        @endif
+                                                    </a>
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-block">Apply Filter</button>
+                                <button type="submit" class="btn btn-primary btn-block">@lang("Rechercher")</button>
                             </div>
                         </div>
                     {!! Form::close() !!}
@@ -268,29 +272,4 @@
         </div>
     </section>
     <!--/Coursed Listing-->
-
-    <!-- Onlinesletter-->
-    <section class="sptb bg-white border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-xl-6 col-md-12">
-                    <div class="sub-newsletter">
-                        <h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> @lang("Inscrivez-vous à notre infolettre !")</h3>
-                        <p class="mb-0">@lang("Inscrivez-vous à notre infolettre et recevez les derniers tutoriels et cours publiés sur la Cosplay Academy")</p>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-xl-6 col-md-12">
-                    <div class="input-group sub-input mt-1">
-                        <input type="text" class="form-control input-lg " placeholder="@lang("Saisissez votre courriel")">
-                        <div class="input-group-append ">
-                            <button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3">
-                                @lang("Je m'inscris !")
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Onlinesletter-->
 @endsection

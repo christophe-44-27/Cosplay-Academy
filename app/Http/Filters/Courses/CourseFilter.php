@@ -12,7 +12,9 @@ class CourseFilter extends QueryFilter
      */
     public function keywords(string $keywords)
     {
-        $this->builder->whereRaw("MATCH(title, introduction) AGAINST('*" . $keywords . "*' IN BOOLEAN MODE)");
+        $escapedKeywords = addslashes(htmlentities($keywords));
+
+        $this->builder->whereRaw("MATCH(title, introduction) AGAINST('*" . $escapedKeywords . "*' IN BOOLEAN MODE)");
     }
 
     /**
@@ -37,5 +39,13 @@ class CourseFilter extends QueryFilter
     public function types(array $types)
     {
         $this->builder->whereIn('type_id', $types);
+    }
+
+    /**
+     * @param array $prices
+     */
+    public function prices(array $prices)
+    {
+        $this->builder->whereIn('content_price_id', $prices);
     }
 }

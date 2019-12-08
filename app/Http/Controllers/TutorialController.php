@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\TutorialCollection;
 use App\Models\Category;
+use App\Models\ContentPrice;
 use App\Models\Tutorial;
 use App\Services\TutorialService;
 use Illuminate\Http\Request;
@@ -20,9 +21,10 @@ class TutorialController extends Controller {
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
         $categories = Category::orderBy('name', 'ASC')->get();
 
-        return view('frontend.tutorials.index', compact('tutorials', 'categories'));
+        return view('frontend.tutorials.index', compact('tutorials', 'categories', 'prices'));
     }
 
     /**
@@ -41,10 +43,11 @@ class TutorialController extends Controller {
             ->paginate(15);
 
         $tutorials = TutorialCollection::collection($tutorials);
+        $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
 
         $selectedCategory = $category->filter_value;
 
-        return view('frontend.tutorials.index', compact('tutorials', 'category', 'categories', 'selectedCategory'));
+        return view('frontend.tutorials.index', compact('tutorials', 'category', 'categories', 'selectedCategory', 'prices'));
     }
 
     /**

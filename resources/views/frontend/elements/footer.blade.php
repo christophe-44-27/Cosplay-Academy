@@ -13,12 +13,11 @@
                         <h6>@lang("Nos services")</h6>
                         <hr class="deep-purple text-primary accent-2 mb-4 mt-0 d-inline-block mx-auto">
                         <ul class="list-unstyled mb-0">
-                            <li><a href="javascript:;">@lang("Notre équipe")</a></li>
-                            <li><a href="javascript:;">@lang("Contactez-nous")</a></li>
-                            <li><a href="javascript:;">@lang("A propos")</a></li>
-                            <li><a href="javascript:;">@lang("Cours")</a></li>
-                            <li><a href="javascript:;">@lang("Blog")</a></li>
-                            <li><a href="javascript:;">@lang("Politique de confidentialité")</a></li>
+                            <li><a href="{{ route('contact') }}">@lang("Contactez-nous")</a></li>
+                            <li><a href="{{ route('about')}}">@lang("A propos")</a></li>
+                            <li><a href="{{ route('courses') }}">@lang("Cours")</a></li>
+                            <li><a href="{{ route('cgv') }}">@lang("Conditions générales de vente")</a></li>
+                            <li><a href="{{ route('cgu') }}">@lang("Conditions générales d'utilisation")</a></li>
                         </ul>
                     </div>
 
