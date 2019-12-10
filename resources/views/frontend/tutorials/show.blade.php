@@ -64,8 +64,6 @@
                                     <li class="mb-0">
                                         @if($tutorial->video_id)
                                             <div id="ytplayer"></div>
-                                        @else
-                                            <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="img" class="img-responsive br-3">
                                         @endif
                                     </li>
                                 </ul>
