@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\Tutorials\TutorialFilter;
 use App\Http\Filters\Courses\CourseFilter;
 use App\Models\Category;
 use App\Models\ContentPrice;
 use App\Models\Course;
 use App\Models\Tutorial;
-use App\Services\CourseService;
 use Illuminate\Http\Request;
 
 class GuestHomepageController extends Controller {
@@ -55,13 +55,13 @@ class GuestHomepageController extends Controller {
     }
 
     /**
-     * @param CourseFilter $courseFilter
+     * @param TutorialFilter $tutorialFilter
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function searchTutorials(CourseFilter $courseFilter, Request $request)
+    public function searchTutorials(TutorialFilter $tutorialFilter, Request $request)
     {
-        $tutorials = Tutorial::filter($courseFilter)->where('is_published', '=', true)->paginate(10);
+        $tutorials = Tutorial::filter($tutorialFilter)->where('is_published', '=', true)->paginate(10);
         $prices = ContentPrice::where('country_id', '1')->orderBy('id', 'ASC')->get();
         $categories = Category::orderBy('name', 'ASC')->get();
 
