@@ -89,15 +89,15 @@
                 <span class="sectiontitle-design"><span class="icons"></span></span>
                 <p>Nous avons sélectionné pour vous nos contenus préférés <3</p>
             </div>
-            <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
-                @foreach($featuredCourses as $featuredCours)
+            <div id="myCarousel2" class="owl-carousel owl-carousel-icons2">
+                @foreach($featuredTutorials as $featuredTutorial)
                     <div class="item">
                         <div class="ribbon ribbon-top-left text-danger"><span class="bg-danger">@lang("Coup de coeur")</span></div>
                         <div class="card mb-0">
                         <div class="item-card2-img">
-                            <a href="{{ route('course_details', $featuredCours) }}"></a>
-                            @if($featuredCours->thumbnail_picture)
-                                <img src="{{ asset('storage/' . $featuredCours->thumbnail_picture) }}" alt="img"
+                            <a href="{{ route('tutorial_details', $featuredTutorial) }}"></a>
+                            @if($featuredTutorial->thumbnail_picture)
+                                <img src="{{ asset('storage/' . $featuredTutorial->thumbnail_picture) }}" alt="img"
                                      class="cover-image">
                             @else
                                 <img src="https://via.placeholder.com/740x440" alt="img"
@@ -105,8 +105,8 @@
                             @endif
                             <div class="item-tag">
                                 <h4  class="mb-0">
-                                    @if($featuredCours->price and $featuredCours->price > 0)
-                                        {{ $featuredCours->price }} $
+                                    @if($featuredTutorial->content_price->amount_in_cents > 0)
+                                        {{ $featuredTutorial->content_price->amount_in_cents / 100 }} $
                                     @else
                                         Gratuit
                                     @endif
@@ -137,19 +137,19 @@
                             </div>
                         </div>
                         <div class="item-card2-icons">
-                            <a href="{{ route('course_add_to_favorites', $featuredCours) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                            <a href="{{ route('tutorial_add_to_favorites', $featuredTutorial) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
                         </div>
                         <div class="card-body">
                             <div class="item-card2">
                                 <div class="item-card2-desc">
                                     <div class="item-card2-text mb-3">
-                                        <a href="{{ route('course_details', $featuredCours) }}" class="text-dark"><h4 class="mb-2">{{ $featuredCours->title }}</h4></a>
+                                        <a href="{{ route('tutorial_details', $featuredTutorial) }}" class="text-dark"><h4 class="mb-2">{{ $featuredTutorial->title }}</h4></a>
                                     </div>
-                                    <p class="">{{ \Illuminate\Support\Str::limit($featuredCours->content, 20) }} </p>
+                                    <p class="">{{ \Illuminate\Support\Str::limit($featuredTutorial->content, 20) }} </p>
                                     <ul class="mb-0">
-                                        <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $featuredCours->language->name }}</a></li>
-                                        <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $featuredCours->created_at->diffForHumans() }}</a></li>
-                                        <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $featuredCours->user->name }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $featuredTutorial->language->name }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $featuredTutorial->created_at->diffForHumans() }}</a></li>
+                                        <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $featuredTutorial->user->name }}</a></li>
                                         <li><a href="#" class="icons"></a></li>
                                     </ul>
                                 </div>
@@ -157,9 +157,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="item-card2-footer">
-                                <a href="{{ route('course_details', $featuredCours) }}" class="btn btn-outline-dark"><span
+                                <a href="{{ route('tutorial_details', $featuredTutorial) }}" class="btn btn-outline-dark"><span
                                         class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
-                                <a href="{{ route('course_add_to_favorites', $featuredCours) }}"
+                                <a href="{{ route('tutorial_add_to_favorites', $featuredTutorial) }}"
                                    class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i
                                             class="fa fa-heart"></i></span> Favoris</a>
                             </div>
@@ -269,13 +269,13 @@
                 <p>Améliorez-vous et apprenez de nouvelles choses grâce aux contenus que nous vous proposons</p>
             </div>
             <div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
-                @foreach($courses as $course)
+                @foreach($tutorials as $tutorial)
                     <div class="item">
                         <div class="card mb-0">
                             <div class="item-card2-img">
-                                <a href="{{ route('course_details', $course) }}"></a>
-                                @if($course->thumbnail_picture)
-                                    <img src="{{ asset('storage/' . $course->thumbnail_picture) }}" alt="img"
+                                <a href="{{ route('tutorial_details', $tutorial) }}"></a>
+                                @if($tutorial->thumbnail_picture)
+                                    <img src="{{ asset('storage/' . $tutorial->thumbnail_picture) }}" alt="img"
                                          class="cover-image">
                                 @else
                                     <img src="https://via.placeholder.com/740x440" alt="img"
@@ -283,12 +283,12 @@
                                 @endif
                                 <div class="item-tag">
                                     <h4  class="mb-0">
-                                        @if($course->content_price->amount_in_cents == 0)
+                                        @if($tutorial->content_price->amount_in_cents == 0)
                                             @lang("Gratuit")
                                         @else
-                                            {{ $course->content_price->amount_in_cents / 100 }}
+                                            {{ $tutorial->content_price->amount_in_cents / 100 }}
 
-                                            @switch($course->content_price->country->currency)
+                                            @switch($tutorial->content_price->country->currency)
                                                 @case('CAD')
                                                     $
                                                     @break
@@ -327,19 +327,19 @@
                                 </div>
                             </div>
                             <div class="item-card2-icons">
-                                <a href="{{ route('course_add_to_favorites', $course) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
+                                <a href="{{ route('tutorial_add_to_favorites', $tutorial) }}" class="item-card2-icons-l"> <i class="fa fa-heart text-danger"></i></a>
                             </div>
                             <div class="card-body">
                                 <div class="item-card2">
                                     <div class="item-card2-desc">
                                         <div class="item-card2-text mb-3">
-                                            <a href="{{ route('course_details', $course) }}" class="text-dark"><h4 class="mb-2">{{ $course->title }}</h4></a>
+                                            <a href="{{ route('tutorial_details', $tutorial) }}" class="text-dark"><h4 class="mb-2">{{ $tutorial->title }}</h4></a>
                                         </div>
-                                        <p class="">{{ \Illuminate\Support\Str::limit($course->content, 20) }} </p>
+                                        <p class="">{{ \Illuminate\Support\Str::limit($tutorial->content, 20) }} </p>
                                         <ul class="mb-0">
-                                            <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $course->language->name }}</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $course->created_at->diffForHumans() }}</a></li>
-                                            <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $course->user->name }}</a></li>
+                                            <li><a href="#" class="icons"><i class="icon icon-flag  mr-1"></i>  {{ $tutorial->language->name }}</a></li>
+                                            <li><a href="#" class="icons"><i class="icon icon-event  mr-1"></i> {{ $tutorial->created_at->diffForHumans() }}</a></li>
+                                            <li><a href="#" class="icons"><i class="icon icon-user mr-1"></i> {{ $tutorial->user->name }}</a></li>
                                             <li><a href="#" class="icons"></a></li>
                                         </ul>
                                     </div>
@@ -347,9 +347,9 @@
                             </div>
                             <div class="card-footer">
                                 <div class="item-card2-footer">
-                                    <a href="{{ route('course_details', $course) }}" class="btn btn-outline-dark"><span
+                                    <a href="{{ route('tutorial_details', $tutorial) }}" class="btn btn-outline-dark"><span
                                             class="font-weight-bold"><i class="fa fa-eye"></i></span> Voir</a>
-                                    <a href="{{ route('course_add_to_favorites', $course) }}"
+                                    <a href="{{ route('tutorial_add_to_favorites', $tutorial) }}"
                                        class="btn btn-primary text-white float-right"><span class="font-weight-bold"><i
                                                 class="fa fa-heart"></i></span> Favoris</a>
                                 </div>

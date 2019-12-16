@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 class GuestHomepageController extends Controller {
 
     public function index() {
-        $courses = Course::where('is_published', '=', true)
+        $tutorials = Tutorial::where('is_published', '=', true)
             ->orderBy('id', 'desc')
             ->limit(8)
             ->get();
 
-        $featuredCourses = Course::where('is_published', '=', true)
+        $featuredTutorials = Tutorial::where('is_published', '=', true)
             ->where('featured', '=', true)
             ->orderBy('id', 'desc')
             ->limit(8)
@@ -31,8 +31,8 @@ class GuestHomepageController extends Controller {
         $listCategories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
 
         return view('pages.homepage', compact(
-            'courses',
-            'categories', 'listCategories', 'featuredCourses'
+            'tutorials',
+            'categories', 'listCategories', 'featuredTutorials', 'contents'
         ));
     }
 

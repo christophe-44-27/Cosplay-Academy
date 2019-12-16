@@ -149,8 +149,10 @@
 <!-- Custom js-->
 <script src="{{ asset('themes/frontend/js/custom.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+
 @notify_js
 @notify_render
+
 @stack('javascripts')
 
 </body>
